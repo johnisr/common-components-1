@@ -1,5 +1,16 @@
+import orderBy from "lodash/orderBy";
+
 // With a font-size of 13px, the average character width is 8px for Roboto font
 const CHARACTER_WIDTH_IN_PIXELS = 8;
+
+// Format string value into lowercase
+function getValue(value) {
+  if (typeof value === "string") {
+    return value.toLowerCase();
+  }
+
+  return value;
+}
 
 /**
  * Useful for describing the width of a group of columns with variable header
@@ -24,5 +35,5 @@ export function InputIsMatched(searchValue, itemValue) {
 }
 
 export function SortListByType(array, sortBy, sortType) {
-  return lodash.orderBy(array, [(row) => getValue(row[sortBy])], [sortType]);
+  return orderBy(array, [(row) => getValue(row[sortBy])], [sortType]);
 }

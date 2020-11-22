@@ -1,14 +1,10 @@
-import React, { useState, useRef, useEffect, useMemo } from "./node_modules/react";
-import * as PropTypes from "./node_modules/prop-types";
-import { ScrollSync, Grid, AutoSizer } from "./node_modules/react-virtualized";
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import * as PropTypes from "prop-types";
+import { ScrollSync, Grid, AutoSizer } from "react-virtualized";
 import "./Datatable.css";
-import FontAwesome from "./node_modules/react-fontawesome";
-import { trackEvent } from "../../Tracking/Events";
-import { DATATABLE } from "../../Tracking/Category";
-import { SORT_BY, CLICK_CELL } from "../../Tracking/Action";
-import { toLabel } from "../../Tracking/Label";
-import filter from "./node_modules/lodash/filter";
-import isEmpty from "./node_modules/lodash/isEmpty";
+import FontAwesome from "react-fontawesome";
+import filter from "lodash/filter";
+import isEmpty from "lodash/isEmpty";
 
 const DEFAULT_HEADER_ROW_HEIGHT = 40;
 

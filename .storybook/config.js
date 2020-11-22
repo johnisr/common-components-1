@@ -4,6 +4,7 @@ import { version, homepage } from "../package.json";
 function loadStories() {
   require("../examples");
   require("../examples/Brand/Brand.js");
+  require("../examples/Table/Table.js");
   // You can require as many stories as you need.
 }
 
