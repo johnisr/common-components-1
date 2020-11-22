@@ -1,0 +1,35 @@
+.paginationController {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  .rowPerPageSelector {
+    &__button {
+      box-shadow: none;
+      height: 25px;
+      width: 78px;
+      padding: 0px 15px;
+    }
+  }
+
+  .paginationPage {
+    display: flex;
+    flex-direction: row;
+
+    &__input {
+      height: 25px;
+      width: 35px;
+      text-align: center;
+      box-shadow: none;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 13px;
+    }
+
+    &__button {
+      box-shadow: none;
+      height: 25px;
+      padding: 0 15px;
+    }
+  }
+}

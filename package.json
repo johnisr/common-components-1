@@ -3,9 +3,6 @@
   "version": "0.0.5",
   "description": "This package will hold commonly used component by Validere Inc.",
   "main": "index.js",
-  "scripts": {
-    "test": "jest --coverage"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ValidereInc/common-components.git"
@@ -15,5 +12,20 @@
   "bugs": {
     "url": "https://github.com/ValidereInc/common-components/issues"
   },
-  "homepage": "https://github.com/ValidereInc/common-components#readme"
+  "homepage": "https://github.com/ValidereInc/common-components#readme",
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-fontawesome": "^1.7.1",
+    "react-virtualized": "^9.22.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-options": "^5.3.21",
+    "@storybook/react": "^6.0.27"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  }
 }
