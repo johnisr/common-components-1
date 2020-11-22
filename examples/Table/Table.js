@@ -1,19 +1,36 @@
-import React from "./node_modules/react";
-import { storiesOf } from "./node_modules/@storybook/react";
-import Table from "./CustomTable";
-import { Column, AutoSizer } from "./node_modules/react-virtualized";
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import Datatable from "../../src/Table/Datatable";
 import PropTypeRow from "../Common/PropTypeRow";
-import "./node_modules/react-virtualized/styles.css";
+import "react-virtualized/styles.css";
 import "./Table.css";
+import { AutoSizer } from "react-virtualized";
 
-const example = [
+const data = [
   { col_1: 1, col_2: 1, col_3: 1 },
   { col_1: 2, col_2: 2, col_3: 2 },
   { col_1: 3, col_2: 3, col_3: 3 },
   { col_1: 4, col_2: 4, col_3: 4 },
 ];
 
-const NUM_OF_COLUMNS = 3;
+const Headers = [
+  {
+    label: "col_1",
+    key: "col_1",
+    width: 150,
+    fixed: true,
+  },
+  {
+    label: "col_2",
+    key: "col_2",
+    width: 150
+  },
+  {
+    label: "col_3",
+    key: "col_3",
+    width: 150
+  }
+];
 
 function printList(list) {
   return list;
@@ -32,27 +49,22 @@ storiesOf("Tables", module).add("Table", () => (
         data is rendered through children component.
       </p>
       <div className="table__example">
-
+        <AutoSizer>
+          {({ height, width }) => (
+            <Datatable
+              title="Datatable"
+              width={width}
+              height={height}
+              headers={Headers}
+              list={data}
+              filterKey="col_1"
+              filterTitle="col_1"
+              defaultSortBy="col_1"
+              defaultSortDirection="desc"
+            />
+          )}
+        </AutoSizer>
       </div>
-    </section>
-    <section>
-      <div className="header">Children</div>
-      <p>
-        Since this component is built on top of the react-virtualized this means
-        that you will be able to utilized the table component from
-        react-virtualized. In this example we use{" "}
-        <a href="https://github.com/bvaughn/react-virtualized/blob/master/docs/Column.md">
-          Column{" "}
-        </a>
-        component to define what the header is and how the table row is going to
-        be rendered.
-        <br />
-        <br />
-        <b>
-          Please note: If you want to have sort function on the column, you must
-          make sure the key value is in the list.
-        </b>
-      </p>
     </section>
     <section>
       <div className="header">PropTypes</div>
@@ -87,18 +99,6 @@ storiesOf("Tables", module).add("Table", () => (
         isRequired={false}
       />
       <PropTypeRow
-        title="filterKey"
-        type="string"
-        description="The list will filtered by the FilterKey's value"
-        isRequired={false}
-      />
-      <PropTypeRow
-        title="filterTitle"
-        type="string"
-        description="Value to show on the search box"
-        isRequired={false}
-      />
-      <PropTypeRow
         title="defaultSortBy"
         type="string"
         description="The table will be sorted in ascending order with the key provided"
@@ -114,18 +114,6 @@ storiesOf("Tables", module).add("Table", () => (
         title="rowHeight"
         type="number"
         description="Define table row height"
-        isRequired={false}
-      />
-      <PropTypeRow
-        title="csvDownload"
-        type="function"
-        description="Trigger csv download function"
-        isRequired={false}
-      />
-      <PropTypeRow
-        title="filterRow"
-        type="node"
-        description="An filtering element"
         isRequired={false}
       />
     </section>

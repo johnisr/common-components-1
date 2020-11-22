@@ -4,12 +4,9 @@ import { InputIsMatched, SortListByType } from "./DatatableHelper";
 import DatatableGrid from "./DatatableGrid";
 import intersectionBy from "lodash/intersectionBy";
 import { AutoSizer } from "react-virtualized";
-import { Checkbox } from "react-bootstrap";
 import findIndex from "lodash/findIndex";
-import find from "lodash/find";
 import unionBy from "lodash/unionBy";
 import differenceBy from "lodash/differenceBy";
-import PaginationController from "./PaginationController/PaginationController";
 import "./CustomTable.css";
 
 const DEFAULT_ROW_HEIGHT = 40;
@@ -30,14 +27,6 @@ const getSortedList = (headers, list, sortBy, sortDirection) => {
   }
 };
 
-// Only need to check the row that is filtered
-const isAllRowChecked = (filteredList, checkedList) => {
-  return (
-    filteredList.length &&
-    differenceBy(filteredList, checkedList, "id").length === 0
-  );
-};
-
 class Datatable extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +37,6 @@ class Datatable extends Component {
       selectedHeaders: [],
       sortBy: props.defaultSortBy || "",
       sortDirection: props.defaultSortDirection || "asc",
-      isPaginationEnabled:
-        !!props.paginationDetail && !!props.onPaginationChange,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -58,9 +45,7 @@ class Datatable extends Component {
     this.setSortBy = this.setSortBy.bind(this);
     this.setSortDirection = this.setSortDirection.bind(this);
     this.updateHeaders = this.updateHeaders.bind(this);
-    this.checkboxRenderer = this.checkboxRenderer.bind(this);
     this.onCheckboxClicked = this.onCheckboxClicked.bind(this);
-    this.onPaginationChange = this.onPaginationChange.bind(this);
   }
 
   componentDidMount() {
@@ -80,9 +65,6 @@ class Datatable extends Component {
     this.setState({
       filterValue: value,
     });
-
-    debounceTrackEvent(DATATABLE, FILTER_NAME, toLabel({ value }));
-    this.onPaginationChange();
   }
 
   getFilterList(list, filterBy, value) {
@@ -91,7 +73,6 @@ class Datatable extends Component {
 
   csvDownload(list) {
     this.props.csvDownload(list);
-    trackEvent(DATATABLE, DOWNLOAD_CSV);
   }
 
   onSelect(selectedHeaders) {
@@ -124,8 +105,6 @@ class Datatable extends Component {
 
     if (nextCheckedAllState) {
       newCheckedList = unionBy(this.state.checkedList, filteredList, "id");
-
-      trackEvent(DATATABLE, CLICK_ALL);
     } else {
       newCheckedList = differenceBy(this.state.checkedList, filteredList, "id");
     }
@@ -150,38 +129,14 @@ class Datatable extends Component {
 
   setSortDirection(sortDirection) {
     this.setState({ sortDirection });
-    this.onPaginationChange();
   }
 
   setSortBy(sortBy) {
     this.setState({ sortBy });
-    this.onPaginationChange();
   }
 
   onAddClick() {
     this.props.onAddClick();
-
-    if (this.props.gaAction) {
-      trackEvent(DATATABLE, this.props.gaAction);
-    }
-  }
-
-  onPaginationChange(paginationDetail) {
-    // set pagination detail only if pagination is enabled.
-    if (this.state.isPaginationEnabled) {
-      const { filterKey } = this.props;
-      const { filterValue, sortBy, sortDirection } = this.state;
-
-      this.props.onPaginationChange({
-        ...paginationDetail,
-        sort: {
-          [sortBy]: sortDirection,
-        },
-        filter: {
-          [filterKey]: filterValue,
-        },
-      });
-    }
   }
 
   getErrorMessage(isLoading, headers) {
@@ -196,39 +151,19 @@ class Datatable extends Component {
     return null;
   }
 
-  checkboxRenderer(rowData) {
-    const isChecked = !!find(this.state.checkedList, { id: rowData.id });
-
-    return (
-      <div className="datatable__checkboxCell">
-        <Checkbox
-          checked={isChecked}
-          onChange={() => this.onCheckboxClicked(rowData, isChecked)}
-        />
-      </div>
-    );
-  }
-
   render() {
     const {
       title,
       width,
       filterKey,
-      filterRow,
       filterPillbox,
-      filterTitle,
-      csvDownload,
       list,
-      headers,
-      addButtonName,
-      customizableColumns,
       collapseBorder,
       isLoading,
       rowHeight,
       customSearch,
       noFilterListCount,
       height,
-      paginationDetail,
     } = this.props;
 
     const {
@@ -237,7 +172,6 @@ class Datatable extends Component {
       selectedHeaders,
       sortBy,
       sortDirection,
-      checkedList,
       isPaginationEnabled,
     } = this.state;
 
@@ -258,23 +192,6 @@ class Datatable extends Component {
     );
 
     const errorMessage = this.getErrorMessage(isLoading, selectedHeaders);
-
-    const checkAllState = isAllRowChecked(sortedFilteredList, checkedList);
-
-    const checkboxColumn = {
-      label: (
-        <Checkbox
-          checked={checkAllState}
-          onChange={() =>
-            this.onCheckAllClick(sortedFilteredList, checkAllState)
-          }
-        />
-      ),
-      key: "checkbox",
-      width: 35,
-      cellRenderer: this.checkboxRenderer,
-      fixed: true,
-    };
 
     let filterPillBoxWithCount = null;
     if (filterPillbox) {
@@ -300,47 +217,6 @@ class Datatable extends Component {
           {title ? <div className="customTable__title">{title}</div> : null}
         </div>
 
-        <div className="datatable__actionContainer">
-          <div className="datatable__filterRow">
-            {(filterKey || customSearch) && (
-              <Inputbox
-                className="inputbox-compress"
-                placeholder={` ${filterTitle ? filterTitle : "Search"}`}
-                onChange={this.handleSearch}
-              />
-            )}
-
-            {filterRow}
-          </div>
-
-          <div className="datatable__actionRow">
-            {customizableColumns && (
-              <MultiDropdownInputWithSearch
-                title="columns"
-                className="columnFilterButton"
-                value={selectedHeaders}
-                options={headers}
-                filterKey="label"
-                onSelect={this.onSelect}
-                pullRight
-                fixedTitle
-                disableSelectedOptions
-                gaAction={SELECT_COLUMNS}
-              />
-            )}
-
-            {csvDownload && (
-              <Button
-                className="csvDownloadButton"
-                onClick={() => this.csvDownload(filteredList)}
-                disabled={filteredList.length === 0}
-              >
-                .csv
-              </Button>
-            )}
-          </div>
-        </div>
-
         {filterPillBoxWithCount}
 
         {errorMessage ? (
@@ -350,11 +226,7 @@ class Datatable extends Component {
             <AutoSizer disableWidth>
               {({ height }) => (
                 <DatatableGrid
-                  headers={
-                    this.props.onCheckboxClick
-                      ? [checkboxColumn, ...selectedHeaders]
-                      : selectedHeaders
-                  }
+                  headers={selectedHeaders}
                   list={sortedFilteredList}
                   height={height}
                   width={width}
@@ -373,15 +245,6 @@ class Datatable extends Component {
                 />
               )}
             </AutoSizer>
-          </div>
-        )}
-
-        {paginationDetail && (
-          <div className="datatable__footer">
-            <PaginationController
-              paginationDetail={paginationDetail}
-              onPaginationChange={this.onPaginationChange}
-            />
           </div>
         )}
       </div>
@@ -424,7 +287,6 @@ Datatable.propTypes = {
   getRowClassName: PropTypes.func,
   gaAction: PropTypes.string,
   paginationDetail: PropTypes.object,
-  onPaginationChange: PropTypes.func,
 };
 
 export default Datatable;
