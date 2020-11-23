@@ -1,7 +1,7 @@
-import Datatable from './Table/Datatable';
+import Datatable from "./Table/Datatable";
 
-export { Datatable }
+export { Datatable };
 
 export default {
-  Datatable
+  Datatable,
 };

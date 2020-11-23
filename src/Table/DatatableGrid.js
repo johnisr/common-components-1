@@ -62,7 +62,6 @@ const DatatableGrid = React.forwardRef((props, ref) => {
 
   const onCellClick = (rowValue) => {
     props.onCellClick(rowValue);
-    trackEvent(DATATABLE, CLICK_CELL, toLabel({ value: rowValue.name }));
   };
 
   const onMouseEnter = (rowValue) => {
@@ -190,19 +189,9 @@ const DatatableGrid = React.forwardRef((props, ref) => {
     if (columnKey !== sortBy) {
       props.setSortBy(columnKey);
       props.setSortDirection("desc");
-      trackEvent(
-        DATATABLE,
-        SORT_BY,
-        toLabel({ value: columnKey, sortDirection: "desc" })
-      );
     } else {
       let nextSortDirection = sortDirection === "asc" ? "desc" : "asc";
       props.setSortDirection(nextSortDirection);
-      trackEvent(
-        DATATABLE,
-        SORT_BY,
-        toLabel({ value: columnKey, sortDirection: nextSortDirection })
-      );
     }
   };
 

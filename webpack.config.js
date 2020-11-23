@@ -22,6 +22,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    library: 'validere-common',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
