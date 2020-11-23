@@ -1,19 +1,22 @@
 const path = require("path");
 
 module.exports = {
-  mode: "production",
   entry: "./src/index.js",
   output: {
     path: path.resolve("dist"),
     filename: "index.js",
-    libraryTarget: "commonjs2",
   },
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
     ],
   },
