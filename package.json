@@ -2,7 +2,10 @@
   "name": "validere-common-components",
   "version": "0.0.5",
   "description": "This package will hold commonly used component by Validere Inc.",
-  "main": "index.js",
+  "main": "./dist/bundle.js",
+  "files": [
+      "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ValidereInc/common-components.git"
