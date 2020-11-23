@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Datatable from "../../src/Table/Datatable";
+import { Datatable } from "../../src/index";
 import PropTypeRow from "../Common/PropTypeRow";
 import "react-virtualized/styles.css";
 import "./Table.css";
