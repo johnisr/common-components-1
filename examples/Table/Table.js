@@ -19,6 +19,28 @@ function printList(list) {
   return list;
 }
 
+function headerRowRenderer(props) {
+  const { className, columns, style } = props;
+  return (
+    <div className={className} role="row" style={style}>
+      {columns}
+    </div>
+  );
+}
+
+function defaultHeaderRenderer(props) {
+  const { dataKey, label, sortBy, sortDirection } = props;
+  return (
+    <span
+      className="CustomTable__header"
+      key="label"
+      title={typeof label === "string" ? label : null}
+    >
+      {`Custom ${label}`}
+    </span>
+  );
+}
+
 storiesOf("Tables", module).add("Table", () => (
   <div className="tables container">
     <section>
@@ -39,6 +61,7 @@ storiesOf("Tables", module).add("Table", () => (
               list={example}
               width={width}
               height={height}
+              headerHeight={50}
               filterKey="col_1"
               filterTitle="Column 1"
               defaultSortBy="col_1"
@@ -48,6 +71,7 @@ storiesOf("Tables", module).add("Table", () => (
                 label="Col 1"
                 dataKey="col_1"
                 width={width / NUM_OF_COLUMNS}
+                headerRenderer={defaultHeaderRenderer}
               />
               <Column
                 label="Col 2"
@@ -58,6 +82,7 @@ storiesOf("Tables", module).add("Table", () => (
                 label="Col 3"
                 dataKey="col_3"
                 width={width / NUM_OF_COLUMNS}
+                headerRenderer={defaultHeaderRenderer}
               />
             </CustomTable>
           )}
@@ -102,6 +127,18 @@ storiesOf("Tables", module).add("Table", () => (
         type="number"
         description="Height constraint for list (determines how many actual rows are rendered)"
         isRequired={true}
+      />
+      <PropTypeRow
+        title="headerHeight"
+        type="number"
+        description="Height constraint for header"
+        isRequired={false}
+      />
+      <PropTypeRow
+        title="headerRowRenderer"
+        type="function"
+        description="Render function for header row."
+        isRequired={false}
       />
       <PropTypeRow
         title="list"
