@@ -1,19 +1,34 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { CustomTable } from "../../src/index";
-import { Column, AutoSizer } from "react-virtualized";
+import {
+  Column,
+  AutoSizer,
+  CellMeasurerCache,
+  CellMeasurer,
+} from "react-virtualized";
 import PropTypeRow from "../Common/PropTypeRow";
 import "react-virtualized/styles.css";
 import "./Table.css";
 
 const example = [
-  { col_1: 1, col_2: 1, col_3: 1 },
+  {
+    col_1:
+      "Some very very very very long text that is too big for the minHeight",
+    col_2: 1,
+    col_3: 1,
+  },
   { col_1: 2, col_2: 2, col_3: 2 },
   { col_1: 3, col_2: 3, col_3: 3 },
   { col_1: 4, col_2: 4, col_3: 4 },
 ];
 
 const NUM_OF_COLUMNS = 3;
+
+const cache = new CellMeasurerCache({
+  fixedWidth: true,
+  minHeight: 60,
+});
 
 function printList(list) {
   return list;
@@ -41,6 +56,34 @@ function defaultHeaderRenderer(props) {
   );
 }
 
+function dynamicHeightRenderer({
+  dataKey,
+  parent,
+  rowIndex,
+  columnIndex,
+  cellData,
+}) {
+  return (
+    <CellMeasurer
+      cache={cache}
+      columnIndex={0}
+      key={dataKey}
+      parent={parent}
+      rowIndex={rowIndex}
+    >
+      {({ measure, registerChild }) => (
+        <div
+          onLoad={measure}
+          ref={registerChild}
+          style={{ "overflow-wrap": "break-word", "whiteSpace": "normal" }}
+        >
+          {cellData}
+        </div>
+      )}
+    </CellMeasurer>
+  );
+}
+
 storiesOf("Tables", module).add("Table", () => (
   <div className="tables container">
     <section>
@@ -62,16 +105,19 @@ storiesOf("Tables", module).add("Table", () => (
               width={width}
               height={height}
               headerHeight={50}
+              rowHeight={cache.rowHeight}
               filterKey="col_1"
               filterTitle="Column 1"
               defaultSortBy="col_1"
               csvDownload={printList}
+              deferredMeasurementCache={cache}
             >
               <Column
                 label="Col 1"
                 dataKey="col_1"
                 width={width / NUM_OF_COLUMNS}
                 headerRenderer={defaultHeaderRenderer}
+                cellRenderer={dynamicHeightRenderer}
               />
               <Column
                 label="Col 2"
@@ -138,6 +184,9 @@ storiesOf("Tables", module).add("Table", () => (
         title="headerRowRenderer"
         type="function"
         description="Render function for header row."
+        title="rowHeight"
+        type="number"
+        description="Height constraint for row. Defaults to 40px"
         isRequired={false}
       />
       <PropTypeRow
@@ -192,6 +241,12 @@ storiesOf("Tables", module).add("Table", () => (
         title="filterRow"
         type="node"
         description="An filtering element"
+        isRequired={false}
+      />
+      <PropTypeRow
+        title="deferredMeasurementCache"
+        type="CellMeasurerCache"
+        description="see React-Virualized docs for more information https://github.com/bvaughn/react-virtualized/blob/ff2e15c87ed1f52891682c0764b7c27549aa9cba/docs/CellMeasurer.md#using-cellmeasurer-with-images"
         isRequired={false}
       />
     </section>
