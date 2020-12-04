@@ -165,6 +165,7 @@ class CustomTable extends Component {
       addButtonName,
       filterRow,
       filterPillbox,
+      deferredMeasurementCache,
     } = this.props;
 
     const { highlightIndex, updateTable } = this.state;
@@ -207,6 +208,7 @@ class CustomTable extends Component {
         ) : null}
 
         <Table
+          deferredMeasurementCache={deferredMeasurementCache}
           width={width - BORDER_OFFSET}
           height={TableHeight}
           headerHeight={headerHeight}
@@ -264,6 +266,7 @@ CustomTable.propTypes = {
   onRowClick: PropTypes.func,
   customSort: PropTypes.object,
   rowClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  deferredMeasurementCache: PropTypes.object,
 };
 
 export default CustomTable;
