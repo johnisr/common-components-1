@@ -162,7 +162,6 @@ class CustomTable extends Component {
       filterTitle,
       csvDownload,
       cellClassName,
-      addButtonName,
       filterRow,
       filterPillbox,
       deferredMeasurementCache,
@@ -198,7 +197,7 @@ class CustomTable extends Component {
         className={`customTable ${this.props.className}`}
         style={{ width: width }}
       >
-        {title || this.props.onAddClick ? (
+        {title ? (
           <div
             className="customTable__titleContainer"
             style={{ marginBottom: filterKey ? null : "20px" }}
@@ -234,38 +233,68 @@ class CustomTable extends Component {
 }
 
 CustomTable.propTypes = {
+  /** The title of the table shown above */
   title: PropTypes.string,
+  /** The  className given to table container */
   className: PropTypes.string,
+  /** The array of objects, each representing a row */
   list: PropTypes.array,
+  /** How many pixels from left to right does the table take up */
   width: PropTypes.number,
+  /** How many pixels from top to bottom does the table take up */
   height: PropTypes.number,
+  /** How many pixels in height is the header row */
   headerHeight: PropTypes.number,
   headerRenderer: PropTypes.func,
+  /** Highlights the row with data matching the passed in object */
   highlightRow: PropTypes.object,
+  /** The row containing the dropdowns, inputs, and dateselectors for filtering */
   filterRow: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  /** The children of this table are usually the react-virtualized Column components  */
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  /** Shows the selected values of the dropdown in a pillbox */
   filterPillbox: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  /** Which column (identified by key) is what the table is originally sorted by */
   defaultSortBy: PropTypes.string,
+  /** Is the table originally sorted ascending (asc) or descending (desc) */
   defaultSortDirection: PropTypes.string,
+  /** Provides an input field that filters the list of objects based on the value
+   *  of the given property
+   **/
   filterKey: PropTypes.string,
+  /** The placeholder text if the input field is present  */
   filterTitle: PropTypes.string,
+  /** css className given to the inner grid container */
   cellClassName: PropTypes.string,
+  /** the height in pixels of each row, defaults to 40 if none given */
   rowHeight: PropTypes.number,
-  addButtonName: PropTypes.string,
+  /** A function that is given the entire list as an argument. Shows a button
+   *  with the label ".csv" that triggers the function when clicked
+   */
   csvDownload: PropTypes.func,
-  onAddClick: PropTypes.func,
+  /** The function called when a row is clicked. Given the row object as an argument */
   onRowClick: PropTypes.func,
+  /** An object with properties corresponding to a column dataKey with the value being
+   *  a custom sorter to be used to sort the list by that column
+   */
   customSort: PropTypes.object,
+  /**
+   * A string that gives all row containers the className or a function that takes in
+   * the row object and determines the row container className
+   */
   rowClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /** a react-virtualized CellMeasurerCache that allows for customizable row heights
+   *  depending on the contained data
+   */
   deferredMeasurementCache: PropTypes.object,
 };
 
