@@ -103,7 +103,7 @@ padding: 0 .5em;
 }
 
 .datatable__actionRow .csvDownloadButton {
-  color: var(--link-colour);
+  color: #2196f3;
   height: 100%;
   border: 1px solid #ddd;
   box-shadow: none;
@@ -116,7 +116,7 @@ padding: 0 .5em;
 }
 
 .datatable__actionRow .columnFilterButton #input-dropdown-addon {
-  color: var(--link-colour);
+  color: #2196f3;
   display: inline-block;
   padding: 2px 12px;
   border-radius: 3px;
