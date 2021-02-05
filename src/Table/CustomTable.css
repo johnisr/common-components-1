@@ -62,24 +62,6 @@
   vertical-align: top;
 }
 
-.datatable__actionRow .csvDownloadButton {
-  color: var(--link-colour);
-  float: right;
-  margin-right: 10px;
-  height: 100%;
-  border: 1px solid #ddd;
-  box-shadow: none;
-  padding: 0px 15px;
-}
-
-.customTable__titleContainer .addButton {
-  color: #ffffff;
-  background-color: var(--validere-colour);
-  margin-right: 10px;
-  box-shadow: none;
-  padding: 5px 10px;
-}
-
 .noDataRow {
   margin-top: 10px;
   text-align: center;
