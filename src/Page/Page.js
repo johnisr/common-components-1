@@ -2,29 +2,14 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import ReactLoader from "../Loader/ReactLoader";
 import FontAwesome from "react-fontawesome";
-import { Link } from "react-router-dom";
 import Title from "../Title/Title";
 import "./Page.css";
 
 /** The default margins are 15px */
-const Page = ({
-  className = "",
-  style,
-  title,
-  link,
-  onClick,
-  children,
-  loaded,
-}) => {
+const Page = ({ className = "", style, title, onClick, children, loaded }) => {
   return (
     <div className={`page ${className}`} style={style}>
       <div className="page__titleContainer">
-        {link && (
-          <Link to={link}>
-            <FontAwesome name="arrow-left" className="page__link" />
-          </Link>
-        )}
-
         {onClick && (
           <FontAwesome
             name="arrow-left"
@@ -63,8 +48,6 @@ Page.propTypes = {
     PropTypes.node,
     PropTypes.string,
   ]),
-  /** If present, displays a button that links to the given url */
-  link: PropTypes.string,
   /** If present, displays a button that executes a function on click */
   onClick: PropTypes.func,
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
