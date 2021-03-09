@@ -6,9 +6,9 @@ import "./Panel.css";
 
 const Panel = ({ className = "", style, title, loaded, children }) => {
   return (
-    <div className={`cmn_panel ${className}`} style={style}>
+    <div className={`commonPanel ${className}`} style={style}>
       {title && (
-        <Title type="panelheader" className="cmn_panel__title">
+        <Title type="panelheader" className="commonPanel__title">
           {title}
         </Title>
       )}

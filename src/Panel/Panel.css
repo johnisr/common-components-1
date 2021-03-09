@@ -1,4 +1,4 @@
-.cmn_panel {
+.commonPanel {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
@@ -8,6 +8,6 @@
   position: relative;
 }
 
-.cmn_panel__title {
+.commonPanel__title {
   margin-bottom: 15px;
 }
