@@ -7,8 +7,24 @@ export const HEADER_STYLE = {
 };
 
 export const SUBHEADER_STYLE = {
+  ...HEADER_STYLE,
   fontSize: "14px",
-  fontWeight: "bold",
+};
+
+export const PANELHEADER_STYLE = {
+  ...HEADER_STYLE,
+  fontSize: "16px",
+};
+
+const getFontStyle = (type) => {
+  switch (type) {
+    case "subheader":
+      return SUBHEADER_STYLE;
+    case "panelheader":
+      return PANELHEADER_STYLE;
+    default:
+      return HEADER_STYLE;
+  }
 };
 
 /**
@@ -17,7 +33,7 @@ export const SUBHEADER_STYLE = {
  * should be used throughout the app for titles.
  */
 const Title = ({ style, className, type = "header", children }) => {
-  const fontStyle = type === "subheader" ? SUBHEADER_STYLE : HEADER_STYLE;
+  const fontStyle = getFontStyle(type);
 
   return (
     <div style={{ ...fontStyle, ...style }} className={className}>
@@ -30,7 +46,7 @@ Title.propTypes = {
   /** The inline style object applied to the containing div */
   style: PropTypes.object,
   /** Determines the default inline style the Title will use */
-  type: PropTypes.oneOf(["header", "subheader"]),
+  type: PropTypes.oneOf(["header", "subheader", "panelheader"]),
   /** The className applied to the containing div, useful for positioning */
   className: PropTypes.string,
   /** The content displayed */

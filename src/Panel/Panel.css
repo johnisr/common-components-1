@@ -1,0 +1,13 @@
+.commonPanel {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: none;
+  margin-bottom: 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.commonPanel__title {
+  margin-bottom: 15px;
+}

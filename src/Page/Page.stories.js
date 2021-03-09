@@ -1,9 +1,7 @@
 import React from "react";
 import Page from "./Page";
 
-const Template = (args) => (
-    <Page {...args}>Content</Page>
-);
+const Template = (args) => <Page {...args}>Content</Page>;
 
 export const Default = Template.bind({});
 Default.args = {
