@@ -13,7 +13,7 @@ const options = {
   trail: 80, // Afterglow percentage
   fps: 20, // Frames per second when using setTimeout() as a fallback for CSS
   zIndex: 2e9, // The z-index (defaults to 2000000000)
-  className: "componentLoader", // The CSS class to assign to the spinner
+  className: "commonLoader", // The CSS class to assign to the spinner
   top: "0", // Top position relative to parent
   left: "50%", // Left position relative to parent
   shadow: false, // Whether to render a shadow
