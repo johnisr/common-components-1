@@ -14,4 +14,7 @@ export default {
   parameters: {
     componentSubtitle: "A button component",
   },
+  argTypes: {
+    children: { type: "string" },
+  },
 };
