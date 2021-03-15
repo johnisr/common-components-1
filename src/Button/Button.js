@@ -27,7 +27,7 @@ const getIcon = (isLoading, icon, iconClassName) => {
 const Button = ({
   className = "",
   style,
-  type = "primary",
+  type,
   onClick,
   disabled,
   icon,
