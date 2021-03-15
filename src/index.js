@@ -4,8 +4,9 @@ import Title from "./Title/Title";
 import ReactLoader from "./Loader/ReactLoader";
 import Page from "./Page/Page";
 import Panel from "./Panel/Panel";
+import Button from "./Button/Button";
 
-export { CustomTable, Datatable, Title, ReactLoader, Page, Panel };
+export { CustomTable, Datatable, Title, ReactLoader, Page, Panel, Button };
 
 export default {
   CustomTable,
@@ -14,4 +15,5 @@ export default {
   ReactLoader,
   Page,
   Panel,
+  Button,
 };

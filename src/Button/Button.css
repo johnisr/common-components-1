@@ -1,0 +1,61 @@
+.commonButton {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.846;
+  letter-spacing: 0.1px;
+  padding: 4px 16px;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 0.4s;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.commonButton[disabled] {
+  cursor: not-allowed;
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+.commonButton .loadingIcon {
+  transition-timing-function: ease-in;
+}
+
+.commonButton__iconMargin {
+  margin-left: 4px;
+}
+
+.commonPrimaryButton {
+  background-color: #15aab1;;
+  color: #fff;
+}
+
+.commonPrimaryButton.buttonOutline {
+  color: #15aab1;
+}
+
+
+
+.commonDangerButton {
+  background-color: #e51c23;
+  color: #fff;
+}
+
+.commonDangerButton.buttonOutline {
+  color: #e51c23;
+}
+
+.commonDefaultButton {
+  background-color: #f8f9fa;
+  color: #424242;
+}
+
+.buttonOutline {
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+}
