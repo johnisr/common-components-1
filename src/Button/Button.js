@@ -5,12 +5,12 @@ import "./Button.css";
 
 const getTypeClassName = (type) => {
   switch (type) {
-    case "default":
-      return "commonDefaultButton";
+    case "primary":
+      return "commonPrimaryButton";
     case "danger":
       return "commonDangerButton";
     default:
-      return "commonPrimaryButton";
+      return "commonDefaultButton";
   }
 };
 
