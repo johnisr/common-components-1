@@ -48,6 +48,7 @@ const Button = ({
       onClick={onClick}
       disabled={isLoading || disabled}
       style={style}
+      type="button"
     >
       <>
         {buttonIcon}
