@@ -102,34 +102,6 @@ padding: 0 .5em;
   vertical-align: top;
 }
 
-.datatable__actionRow .csvDownloadButton {
-  color: #2196f3;
-  height: 100%;
-  border: 1px solid #ddd;
-  box-shadow: none;
-  padding: 0px 15px;
-}
-
-.datatable__actionRow .columnFilterButton {
-  display: inline-block;
-  margin-right: 5px;
-}
-
-.datatable__actionRow .columnFilterButton #input-dropdown-addon {
-  color: #2196f3;
-  display: inline-block;
-  padding: 2px 12px;
-  border-radius: 3px;
-  margin-right: 5px;
-}
-
-.datatable__actionRow .columnFilterButton .dropdown {
-  display: inline-block;
-}
-
-.datatable__actionRow .columnFilterButton .dropdown-menu-right {
-  left: -250px;
-}
 
 .datatable .checkbox {
   margin-top: 0;
