@@ -1,0 +1,18 @@
+.common__breadcrumbs {
+  margin-left: 15px;
+  margin-bottom: -5px;
+}
+
+.common__breadcrumbs  .common__breadcrumb {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  outline: none;
+  text-transform: capitalize;
+}
+
+.common__breadcrumb .icon {
+  margin-right: 10px;
+}
