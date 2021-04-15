@@ -64,10 +64,10 @@ const Button = ({
 Button.propTypes = {
   /** The className given to the button */
   className: PropTypes.string,
-  /** The stlye given to the button */
+  /** The style given to the button */
   style: PropTypes.object,
-  /** Gives preset styling options for the color, background-color, and text */
-  type: PropTypes.oneOf(["primary", "danger", "default"]),
+  /** Gives preset styling options ("primary", "danger", "default") for the color, background-color, and text */
+  type: PropTypes.string,
   /** If true, adds a border around the button */
   outline: PropTypes.bool,
   /** The function executed when clicking a button */

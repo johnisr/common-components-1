@@ -45,8 +45,8 @@ const Title = ({ style, className, type = "header", children }) => {
 Title.propTypes = {
   /** The inline style object applied to the containing div */
   style: PropTypes.object,
-  /** Determines the default inline style the Title will use */
-  type: PropTypes.oneOf(["header", "subheader", "panelheader"]),
+  /** Determines the default inline style ("header", "subheader", "panelheader") the Title will use */
+  type: PropTypes.string,
   /** The className applied to the containing div, useful for positioning */
   className: PropTypes.string,
   /** The content displayed */
