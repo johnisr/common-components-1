@@ -16,6 +16,18 @@ WithOnClick.args = {
   onClick: () => alert("clicked"),
 };
 
+export const WithBreadcrumbs = Template.bind({});
+WithBreadcrumbs.storyName = "Page With breadcrumbs";
+WithBreadcrumbs.args = {
+  ...Default.args,
+  breadcrumbs: [
+    { title: "Previously", onClick: () => alert("First breadcrumb clicked") },
+    { title: "Navigated", onClick: () => alert("Second breadcrumb clicked") },
+    { title: "Pages", onClick: () => alert("Third breadcrumb clicked") },
+    { title: "Current Page", onClick: () => alert("Last breadcrumb disabled") },
+  ],
+};
+
 export default {
   title: "Page",
   component: Page,

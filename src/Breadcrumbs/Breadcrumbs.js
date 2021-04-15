@@ -4,24 +4,16 @@ import * as PropTypes from "prop-types";
 import "./Breadcrumbs.css";
 
 const Breadcrumb = (props) => {
-  return (
-    <button
-      className="common__breadcrumb"
-      onClick={props.onClick}
-      disabled={props.disabled}
-    >
-      {!props.isFirstBreadcrumb && (
-        <FontAwesome className="icon" name="angle-right" />
-      )}
-
-      <span
-        style={
-          !props.isLastBreadcrumb ? { color: "#2196f3" } : { cursor: "default" }
-        }
-      >
+  return props.isLastBreadcrumb ? (
+    <div className="breadcrumb__item">{props.title}</div>
+  ) : (
+    <div className="breadcrumb__item">
+      <a className="breadcrumb__link" onClick={props.onClick}>
         {props.title}
-      </span>
-    </button>
+      </a>
+
+      <FontAwesome className="icon" name="angle-right" />
+    </div>
   );
 };
 
@@ -33,15 +25,12 @@ const Breadcrumbs = (props) => {
     >
       {props.breadcrumbs.map(({ title, onClick }, index) => {
         const isLastBreadcrumb = index === props.breadcrumbs.length - 1;
-        const isFirstBreadcrumb = index === 0;
 
         return (
           <Breadcrumb
             key={title}
             title={title}
             onClick={onClick}
-            disabled={isLastBreadcrumb}
-            isFirstBreadcrumb={isFirstBreadcrumb}
             isLastBreadcrumb={isLastBreadcrumb}
           />
         );
@@ -53,8 +42,6 @@ const Breadcrumbs = (props) => {
 Breadcrumb.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  isFirstBreadcrumb: PropTypes.bool,
   isLastBreadcrumb: PropTypes.bool,
 };
 

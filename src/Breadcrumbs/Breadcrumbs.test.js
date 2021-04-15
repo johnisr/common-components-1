@@ -31,10 +31,10 @@ describe("Breadcrumbs", () => {
       className
     );
 
-    expect(wrapper.find(".common__breadcrumb").text()).toEqual(title);
+    expect(wrapper.find(".breadcrumb__item").text()).toEqual(title);
 
     // If only 1 breadcrumb, not clickable (current page open)
-    wrapper.find(".common__breadcrumb").simulate("click");
+    wrapper.find(".breadcrumb__item").simulate("click");
     expect(onClick).not.toHaveBeenCalled();
   });
 
@@ -51,14 +51,14 @@ describe("Breadcrumbs", () => {
 
     const wrapper = mount(<Breadcrumbs breadcrumbs={breadcrumbs} />);
 
-    const firstBreadcrumb = wrapper.find(".common__breadcrumb").at(0);
+    const firstBreadcrumb = wrapper.find(".breadcrumb__link");
 
     expect(firstBreadcrumb.text()).toEqual(firstTitle);
 
     firstBreadcrumb.simulate("click");
     expect(firstOnClick).toHaveBeenCalled();
 
-    const secondBreadcrumb = wrapper.find(".common__breadcrumb").at(1);
+    const secondBreadcrumb = wrapper.find(".breadcrumb__item").at(1);
 
     expect(secondBreadcrumb.text()).toEqual(secondTitle);
 
@@ -72,6 +72,6 @@ describe("Breadcrumbs", () => {
 
     const wrapper = mount(<Breadcrumbs breadcrumbs={breadcrumbs} />);
 
-    expect(wrapper.find(".common__breadcrumb").exists()).toEqual(false);
+    expect(wrapper.find(".breadcrumb__item").exists()).toEqual(false);
   });
 });
