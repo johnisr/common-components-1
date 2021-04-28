@@ -1,21 +1,33 @@
 import React from "react";
 import { CustomTable } from "../index";
-import { Column, CellMeasurerCache, CellMeasurer } from "react-virtualized";
+import {
+  Column,
+  CellMeasurerCache,
+  CellMeasurer,
+  SortIndicator,
+} from "react-virtualized";
 import "react-virtualized/styles.css";
 
 const example = [
   {
-    col_1:
-      "Some very very very very long text that is too big for the minHeight",
-    col_2: 1,
-    col_3: 1,
+    name: "Validere Admin User",
+    role: "admin",
+    id: 3,
+    email: "admin@validere.com",
   },
-  { col_1: 2, col_2: 2, col_3: 2 },
-  { col_1: 3, col_2: 3, col_3: 3 },
-  { col_1: 4, col_2: 4, col_3: 4 },
+  {
+    name: "Validere Validere Drayton Valley TT 550 User 1",
+    role: "manager",
+    id: 4,
+    email: "user1@validere.com",
+  },
+  {
+    name: "Validere Validere Fox Creek TT 229 User 2",
+    role: "admin",
+    id: 5,
+    email: "user2@validere.com",
+  },
 ];
-
-const NUM_OF_COLUMNS = 3;
 
 const cache = new CellMeasurerCache({
   fixedWidth: true,
@@ -25,27 +37,26 @@ const cache = new CellMeasurerCache({
 function printList(list) {
   return list;
 }
-
-function headerRowRenderer(props) {
-  const { className, columns, style } = props;
-  return (
-    <div className={className} role="row" style={style}>
-      {columns}
-    </div>
-  );
-}
-
 function defaultHeaderRenderer(props) {
   const { dataKey, label, sortBy, sortDirection } = props;
-  return (
+  const showSortIndicator = sortBy === dataKey;
+  const children = [
     <span
-      className="CustomTable__header"
+      className="ReactVirtualized__Table__headerTruncatedText"
       key="label"
       title={typeof label === "string" ? label : null}
     >
-      {`Custom ${label}`}
-    </span>
-  );
+      {label}
+    </span>,
+  ];
+
+  if (showSortIndicator) {
+    children.push(
+      <SortIndicator key="SortIndicator" sortDirection={sortDirection} />
+    );
+  }
+
+  return children;
 }
 
 function dynamicHeightRenderer({
@@ -67,7 +78,7 @@ function dynamicHeightRenderer({
         <div
           onLoad={measure}
           ref={registerChild}
-          style={{ "overflow-wrap": "break-word", whiteSpace: "normal" }}
+          style={{ "overflow-wrap": "break-word", "whiteSpace": "normal" }}
         >
           {cellData}
         </div>
@@ -76,34 +87,44 @@ function dynamicHeightRenderer({
   );
 }
 
+const NUM_OF_COLUMNS = 3;
 export const Primary = (args) => (
   <CustomTable {...args}>
     <Column
-      label="Col 1"
-      dataKey="col_1"
+      label="Name"
+      dataKey="name"
       width={args.width / NUM_OF_COLUMNS}
       headerRenderer={defaultHeaderRenderer}
       cellRenderer={dynamicHeightRenderer}
     />
-    <Column label="Col 2" dataKey="col_2" width={args.width / NUM_OF_COLUMNS} />
     <Column
-      label="Col 3"
-      dataKey="col_3"
+      label="Role"
+      dataKey="role"
       width={args.width / NUM_OF_COLUMNS}
       headerRenderer={defaultHeaderRenderer}
+      cellRenderer={dynamicHeightRenderer}
+    />
+    <Column
+      label="email"
+      dataKey="email"
+      width={args.width / NUM_OF_COLUMNS}
+      headerRenderer={defaultHeaderRenderer}
+      cellRenderer={dynamicHeightRenderer}
     />
   </CustomTable>
 );
+
 Primary.args = {
   width: 500,
   height: 500,
   list: example,
   headerHeight: 50,
+  filterKey: "name",
+  defaultSortBy: "name",
+  defaultSortDirection: "asc",
   rowHeight: cache.rowHeight,
-  filterKey: "col_1",
-  filterTitle: "Column 1",
-  defaultSoryBy: "col_1",
   deferredMeasurementCache: cache,
+
   csvDownload: printList,
 };
 

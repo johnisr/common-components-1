@@ -183,12 +183,12 @@ class CustomTable extends Component {
 
     if (children) {
       childrenWithProps = React.Children.map(children, (child) => {
-        if (!child.props.headerRenderer) {
+        if (child) {
           return React.cloneElement(child, {
             headerRenderer: this.headerRenderer,
           });
         }
-        return child;
+        return null;
       });
     }
 
