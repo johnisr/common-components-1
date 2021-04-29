@@ -37,9 +37,9 @@ const cache = new CellMeasurerCache({
 function printList(list) {
   return list;
 }
+
 function defaultHeaderRenderer(props) {
-  const { dataKey, label, sortBy, sortDirection } = props;
-  const showSortIndicator = sortBy === dataKey;
+  const { label } = props;
   const children = [
     <span
       className="ReactVirtualized__Table__headerTruncatedText"
@@ -49,13 +49,6 @@ function defaultHeaderRenderer(props) {
       {label}
     </span>,
   ];
-
-  if (showSortIndicator) {
-    children.push(
-      <SortIndicator key="SortIndicator" sortDirection={sortDirection} />
-    );
-  }
-
   return children;
 }
 
@@ -94,21 +87,18 @@ export const Primary = (args) => (
       label="Name"
       dataKey="name"
       width={args.width / NUM_OF_COLUMNS}
-      headerRenderer={defaultHeaderRenderer}
       cellRenderer={dynamicHeightRenderer}
     />
     <Column
       label="Role"
       dataKey="role"
       width={args.width / NUM_OF_COLUMNS}
-      headerRenderer={defaultHeaderRenderer}
       cellRenderer={dynamicHeightRenderer}
     />
     <Column
       label="email"
       dataKey="email"
       width={args.width / NUM_OF_COLUMNS}
-      headerRenderer={defaultHeaderRenderer}
       cellRenderer={dynamicHeightRenderer}
     />
   </CustomTable>
@@ -124,7 +114,6 @@ Primary.args = {
   defaultSortDirection: "asc",
   rowHeight: cache.rowHeight,
   deferredMeasurementCache: cache,
-
   csvDownload: printList,
 };
 
