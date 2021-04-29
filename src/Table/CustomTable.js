@@ -157,7 +157,7 @@ class CustomTable extends Component {
       width,
       rowHeight,
       headerHeight = 40,
-      headerRowRenderer,
+      headerRenderer,
       filterKey,
       filterTitle,
       csvDownload,
@@ -183,12 +183,13 @@ class CustomTable extends Component {
 
     if (children) {
       childrenWithProps = React.Children.map(children, (child) => {
-        if (!child.props.headerRenderer) {
+        // provide default headerRenderer
+        if (child) {
           return React.cloneElement(child, {
-            headerRenderer: this.headerRenderer,
+            headerRenderer: headerRenderer ?? this.headerRenderer,
           });
         }
-        return child;
+        return null;
       });
     }
 
@@ -215,7 +216,6 @@ class CustomTable extends Component {
           rowGetter={({ index }) => sortedlist[index]}
           rowHeight={rowHeight ? rowHeight : 40}
           noRowsRenderer={this.noRowsRenderer}
-          headerRowRenderer={headerRowRenderer}
           rowStyle={({ index }) => this.getRowColor(index)}
           scrollToIndex={highlightIndex}
           updateTable={updateTable}
@@ -245,6 +245,7 @@ CustomTable.propTypes = {
   height: PropTypes.number,
   /** How many pixels in height is the header row */
   headerHeight: PropTypes.number,
+  /** A function used to render the header  */
   headerRenderer: PropTypes.func,
   /** Highlights the row with data matching the passed in object */
   highlightRow: PropTypes.object,
