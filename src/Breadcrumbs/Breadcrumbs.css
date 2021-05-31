@@ -1,5 +1,5 @@
 .common__breadcrumbs {
-  margin-bottom: 10px;
+  position: absolute;
 }
 
 .common__breadcrumbs  .breadcrumb__item {

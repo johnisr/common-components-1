@@ -25,17 +25,19 @@ const Page = ({
         </div>
       )}
 
-      <div className="page__titleContainer">
-        {onClick && (
-          <FontAwesome
-            name="arrow-left"
-            onClick={onClick}
-            className="page__link"
-          />
-        )}
+      {title && (
+        <div className="page__titleContainer">
+          {onClick && (
+            <FontAwesome
+              name="arrow-left"
+              onClick={onClick}
+              className="page__link"
+            />
+          )}
 
-        {title && <Title className="page__title">{title}</Title>}
-      </div>
+          <Title className="page__title">{title}</Title>
+        </div>
+      )}
 
       {loaded !== undefined ? (
         <ReactLoader loaded={loaded} position={50}>
