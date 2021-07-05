@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: sunday
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@storybook/addon-docs"
+    versions:
+    - 6.2.0
+    - 6.2.2
+  - dependency-name: "@storybook/addon-essentials"
+    versions:
+    - 6.2.0
