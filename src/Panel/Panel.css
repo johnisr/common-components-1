@@ -12,3 +12,7 @@
 .commonPanel__title {
   margin-bottom: 15px;
 }
+
+.commonPanel__clickable {
+  cursor: pointer;
+}

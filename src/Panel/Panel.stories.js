@@ -22,6 +22,13 @@ WithCustomTitle.args = {
   ),
 };
 
+export const WithOnClick = Template.bind({});
+WithOnClick.storyName = "Panel With onClick";
+WithOnClick.args = {
+  ...Default.args,
+  onClick: () => alert("Panel Clicked"),
+};
+
 export default {
   title: "Panel",
   component: Panel,
