@@ -4,9 +4,17 @@ import ReactLoader from "../Loader/ReactLoader";
 import Title from "../Title/Title";
 import "./Panel.css";
 
-const Panel = ({ className = "", style, title, loaded, children }) => {
+const Panel = ({ className = "", style, title, loaded, onClick, children }) => {
+  const isClickable = onClick && (loaded === undefined || loaded);
+
   return (
-    <div className={`commonPanel ${className}`} style={style}>
+    <div
+      className={`commonPanel ${
+        isClickable ? "commonPanel__clickable" : ""
+      } ${className}`}
+      style={style}
+      onClick={isClickable && onClick}
+    >
       {title && (
         <Title type="panelheader" className="commonPanel__title">
           {title}
@@ -42,6 +50,8 @@ Panel.propTypes = {
   ]),
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
   loaded: PropTypes.bool,
+  /** If present, executes the given function when the panel is clicked */
+  onClick: PropTypes.func,
 };
 
 export default Panel;
