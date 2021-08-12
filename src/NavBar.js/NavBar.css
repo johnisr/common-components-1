@@ -1,0 +1,84 @@
+.commonNavbar {
+  height: 60px;
+  width: 100vw;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.commonNavbar .validereIcon__container {
+  width: 130px;
+  height: 100%;
+  margin: 0px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commonNavbar .validereIcon {
+  max-width: 130px;
+  height: auto;
+}
+
+.commonNavbar .link__container {
+  flex-grow: 1;
+}
+
+.commonNavbar .link__container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+}
+
+.commonNavbar .link__container li {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 30px;
+}
+
+.commonNavbar .activeSelection {
+  position: relative;
+  font-weight: bold;
+}
+
+.commonNavbar .link__container a {
+  text-transform: uppercase;
+  color: #223D54;
+  cursor: pointer;
+}
+
+.commonNavbar .link__container a:hover {
+  text-decoration: none;
+}
+
+.commonNavbar .link__container .activeSelectionLine  {
+  position: absolute;
+  top: 45px;
+  border-bottom: 2px solid #C4C4C4;
+  width: 60px;
+}
+
+.commonNavbar .profileIcon__container {
+  margin-right: 15px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commonNavbar .profileIcon {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  background-color: #4CACAE;
+}
