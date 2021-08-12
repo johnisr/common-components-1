@@ -14,6 +14,26 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "file-loader?limit=10000&mimetype=image/svg+xml",
+      },
+      {
+        test: /\.gif/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "file-loader?limit=10000&mimetype=image/gif",
+      },
+      {
+        test: /\.jpg/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "file-loader?limit=10000&mimetype=image/jpg",
+      },
+      {
+        test: /\.png/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "file-loader?limit=10000&mimetype=image/png&name=[name].[ext]",
+      },
     ],
   },
   resolve: {
