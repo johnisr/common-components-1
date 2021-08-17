@@ -1,0 +1,19 @@
+{
+  "validereColour": "#45c0c1",
+  "linkColour": "#2196f3",
+  "navLinkColour": "#223D54",
+  "navButtonColour": "#4CACAE",
+  "lightTextColour": "#bbb",
+  "statusCompletedColour": "#4caf50",
+  "statusPendingColour": "#ef6c00",
+  "statusErrorColour": "#e51c23",
+  "borderColour": "#ddd",
+  "menuHighlightColour": "#eee",
+  "menuItemColour": "#555",
+  "disabledFontColour": "#3b3b3b9c",
+  "buttonFocusColour": "#d4d4d4",
+  "tooltipColour": "#0c0c0c",
+  "alarmColour": "#ff9800",
+  "textColour": "#424242",
+  "disabledRowColour": "#f4f4f4"
+}

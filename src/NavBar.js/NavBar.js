@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as PropTypes from "prop-types";
-import "./NavBar.css";
+import "./NavBar.scss";
 import icon from "../../static/logo_validere.png";
 import { havePermission, getFirstChar } from "./NavBarHelper";
 import { Popover } from "react-tiny-popover";
