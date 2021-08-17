@@ -110,7 +110,7 @@ NavBar.propTypes = {
   /** A string indicating the active application */
   activeApplication: PropTypes.string,
   /** The base url of the environment being linked to */
-  url: PropTypes.string,
+  url: PropTypes.string.isRequired,
   /** The object containing user's permissions */
   permissions: PropTypes.object,
   /** The user profile returned by the request @me */
@@ -118,7 +118,7 @@ NavBar.propTypes = {
   /** app version */
   version: PropTypes.string,
   /** sign out function */
-  onSignOut: PropTypes.func,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 export default NavBar;

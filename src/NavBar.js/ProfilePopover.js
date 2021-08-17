@@ -34,7 +34,6 @@ const PropfilePopover = (props) => {
 };
 
 MenuItem.propTypes = {
-  /** The className given to the PropfilePopover */
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.oneOfType([
@@ -44,9 +43,8 @@ MenuItem.propTypes = {
 };
 
 PropfilePopover.propTypes = {
-  /** The className given to the PropfilePopover */
   version: PropTypes.string,
-  onSignOut: PropTypes.func,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 export default PropfilePopover;
