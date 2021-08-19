@@ -17,9 +17,7 @@ describe("Page", () => {
       "commercial:core": ["read"],
       "esg:core": ["read"],
     };
-    const profile = {
-      name: "Validere",
-    };
+    const name = "Validere";
     const onSignOut = jest.fn();
     const className = "aClassName";
     const style = { background: "red" };
@@ -29,7 +27,7 @@ describe("Page", () => {
       <NavBar
         activeApplication={activeApplication}
         permissions={permissions}
-        profile={profile}
+        name={name}
         onSignOut={onSignOut}
         className={className}
         style={style}
@@ -42,9 +40,7 @@ describe("Page", () => {
     expect(wrapper.find(".commonNavbar").prop("style")).toEqual(style);
 
     // uses first char of profile name in profile icon
-    expect(wrapper.find(".profileIcon").text()).toEqual(
-      getFirstChar(profile.name)
-    );
+    expect(wrapper.find(".profileIcon").text()).toEqual(getFirstChar(name));
 
     // active application is Dashboard
     expect(wrapper.find(".activeSelection").text()).toEqual("Dashboard");

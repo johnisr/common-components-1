@@ -3,6 +3,8 @@
   "linkColour": "#2196f3",
   "navLinkColour": "#223D54",
   "navButtonColour": "#4CACAE",
+  "sidebarTextColour": "#fafafaa8",
+  "sidebarBackgroundColour": "#183e56",
   "lightTextColour": "#bbb",
   "statusCompletedColour": "#4caf50",
   "statusPendingColour": "#ef6c00",

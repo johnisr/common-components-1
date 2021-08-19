@@ -6,7 +6,10 @@ import Page from "./Page/Page";
 import Panel from "./Panel/Panel";
 import Button from "./Button/Button";
 import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
-import NavBar from "./NavBar.js/NavBar";
+import NavBar from "./NavBar/NavBar";
+import Sidebar from "./Sidebar/Sidebar";
+
+import useSidebar from "./Sidebar/useSidebar";
 
 export {
   CustomTable,
@@ -18,6 +21,8 @@ export {
   Button,
   Breadcrumbs,
   NavBar,
+  Sidebar,
+  useSidebar,
 };
 
 export default {
@@ -30,4 +35,6 @@ export default {
   Button,
   Breadcrumbs,
   NavBar,
+  Sidebar,
+  useSidebar,
 };
