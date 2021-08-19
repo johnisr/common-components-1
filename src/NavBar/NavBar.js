@@ -39,7 +39,7 @@ const NavBar = ({
   url,
   activeApplication,
   permissions,
-  profile,
+  name,
   version,
   onSignOut,
 }) => {
@@ -87,14 +87,14 @@ const NavBar = ({
           positions={["bottom"]}
           align="end"
           padding={10}
-          onClickOutside={() => setIsPopoverOpen(false)} // handle click events outside of the popover/target here!
+          onClickOutside={() => setIsPopoverOpen(false)}
           content={<ProfilePopover onSignOut={onSignOut} version={version} />}
         >
           <button
             onClick={() => setIsPopoverOpen(true)}
             className="profileIcon"
           >
-            {getFirstChar(profile?.name)}
+            {getFirstChar(name)}
           </button>
         </Popover>
       </div>
@@ -113,8 +113,8 @@ NavBar.propTypes = {
   url: PropTypes.string.isRequired,
   /** The object containing user's permissions */
   permissions: PropTypes.object,
-  /** The user profile returned by the request @me */
-  profile: PropTypes.object,
+  /** The user name */
+  name: PropTypes.string,
   /** app version */
   version: PropTypes.string,
   /** sign out function */

@@ -13,9 +13,7 @@ Default.args = {
     "commercial:core": ["read"],
     "esg:core": ["read"],
   },
-  profile: {
-    name: "Validere",
-  },
+  name: "Validere",
   onSignOut: () => alert("onSignOut button clicked"),
 };
 

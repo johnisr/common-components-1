@@ -7,6 +7,8 @@ module.exports = {
     "--link-colour": colours.linkColour,
     "--navLink-colour": colours.navLinkColour,
     "--navButton-colour": colours.navButtonColour,
+    "--sidebarText-colour": colours.sidebarTextColour,
+    "--sidebarBackground-colour": colours.sidebarBackgroundColour,
     "--light-text-colour": colours.lightTextColour,
     "--statusCompletedColour": colours.statusCompletedColour,
     "--statusPendingColour": colours.statusPendingColour,
