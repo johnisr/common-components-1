@@ -14,13 +14,13 @@ Default.args = {
       icon: "calendar",
       nested: [
         {
-          title: "Scheduled Tasks",
           id: "scheduled_task",
+          title: "Scheduled Tasks",
           link: () => alert("Scheduled Tasks clicked"),
         },
         {
-          title: "Manage Workflows",
           id: "manage_workflows",
+          title: "Manage Workflows",
           link: () => alert("Manage Workflows clicked"),
         },
       ],
