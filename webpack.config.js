@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const jsonImporter = require("node-sass-json-importer");
 
 module.exports = {
@@ -16,14 +15,7 @@ module.exports = {
       {
         test: /\.(sass|scss|css)$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // you can specify a publicPath here
-              // by default it uses publicPath in webpackOptions.output
-              publicPath: "../",
-            },
-          },
+          "style-loader",
           "css-loader",
           "postcss-loader",
           {
@@ -96,6 +88,9 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
+  externals: {
+    react: "react",
+  },
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
@@ -103,12 +98,7 @@ module.exports = {
     libraryExport: "default",
     library: "validere-common",
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     hot: true,
