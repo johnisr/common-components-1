@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
 import "./Sidebar.scss";
@@ -14,7 +13,9 @@ const SIDEBAR_WIDTH = "220px";
 const MINI_SIDEBAR_WIDTH = "60px";
 
 function getGreeting() {
-  const hour = moment().hour();
+  const date = new Date();
+  const hour = date.getHours();
+
   if (hour > 16) {
     return "Good evening!";
   }
