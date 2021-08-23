@@ -92,6 +92,7 @@ module.exports = {
     react: "react",
   },
   output: {
+    publicPath: "/",
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
     libraryTarget: "umd",
