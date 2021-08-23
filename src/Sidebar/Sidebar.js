@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
 import "./Sidebar.scss";
-import logo from "../../static/logo_white.png";
-import icon from "../../static/logo_icon.png";
 import SidebarListTab, { SidebarTab } from "./SidebarListTab";
 import { Popover } from "react-tiny-popover";
 import { getFirstChar } from "../NavBar/NavBarHelper";
@@ -80,9 +78,17 @@ const Sidebar = ({
       {showLogo && (
         <div>
           {isSidebarExpanded ? (
-            <img className="validere_logo" src={logo} alt="Validere" />
+            <img
+              className="validere_logo"
+              src="https://validere.com/wp-content/uploads/logo_white_text.png"
+              alt="Validere"
+            />
           ) : (
-            <img className="validere_icon" src={icon} alt="Validere" />
+            <img
+              className="validere_icon"
+              src="https://validere.com/wp-content/uploads/logo_icon.png"
+              alt="Validere"
+            />
           )}
         </div>
       )}
