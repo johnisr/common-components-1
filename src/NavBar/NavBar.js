@@ -52,7 +52,11 @@ const NavBar = ({
             activeApplication !== "dashboard" ? `${url}${LINKS[0].link}` : null
           }
         >
-          <img className="validereIcon" src="https://validere.com/wp-content/uploads/logo_validere_full.png" alt="Validere Icon" />
+          <img
+            className="validereIcon"
+            src="https://validere.com/wp-content/uploads/logo_validere_full.png"
+            alt="Validere Icon"
+          />
         </a>
       </div>
 
