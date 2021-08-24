@@ -152,6 +152,7 @@ const Sidebar = ({
             content={<ProfilePopover onSignOut={onSignOut} version={version} />}
           >
             <div
+              key="profileButton"
               className="commonSidebar__bottom__profile"
               onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
             >
