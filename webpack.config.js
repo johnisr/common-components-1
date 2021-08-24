@@ -1,6 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
 const jsonImporter = require("node-sass-json-importer");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -88,9 +92,6 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
-  externals: {
-    react: "react",
-  },
   output: {
     publicPath: "/",
     path: path.resolve(__dirname, "./dist"),
@@ -99,9 +100,24 @@ module.exports = {
     libraryExport: "default",
     library: "validere-common",
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new CleanWebpackPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+  ],
   devServer: {
     contentBase: path.resolve(__dirname, "./dist"),
     hot: true,
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: true,
+        parallel: true,
+      }),
+      new CssMinimizerPlugin(),
+    ],
   },
 };
