@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as PropTypes from "prop-types";
 import "./NavBar.scss";
-import icon from "../../static/logo_validere.png";
 import { havePermission, getFirstChar } from "./NavBarHelper";
 import { Popover } from "react-tiny-popover";
 import ProfilePopover from "./ProfilePopover";
@@ -53,7 +52,11 @@ const NavBar = ({
             activeApplication !== "dashboard" ? `${url}${LINKS[0].link}` : null
           }
         >
-          <img className="validereIcon" src={icon} alt="Validere Icon" />
+          <img
+            className="validereIcon"
+            src="https://validere.com/wp-content/uploads/logo_validere_full.png"
+            alt="Validere Icon"
+          />
         </a>
       </div>
 
