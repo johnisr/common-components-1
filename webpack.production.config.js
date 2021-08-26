@@ -122,7 +122,9 @@ module.exports = {
     new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, "./dist"),
+    static: {
+      directory: "./dist",
+    },
     hot: true,
   },
   optimization: {
