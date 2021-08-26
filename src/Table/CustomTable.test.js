@@ -11,22 +11,22 @@ Enzyme.configure({
 // Original ordering is by name asc
 const members = [
   {
-    name: "Validere Admin User",
+    name: "test 1",
     role: "admin",
     id: 3,
-    email: "admin@validere.com",
+    email: "test1@validere.com",
   },
   {
-    name: "Validere Validere Drayton Valley TT 550 User 1",
+    name: "test 2",
     role: "manager",
     id: 4,
-    email: "user1@validere.com",
+    email: "test2@validere.com",
   },
   {
-    name: "Validere Validere Fox Creek TT 229 User 2",
+    name: "test 3",
     role: "admin",
     id: 5,
-    email: "user2@validere.com",
+    email: "test3@validere.com",
   },
 ];
 
@@ -54,10 +54,11 @@ describe("CustomTable", () => {
         >
           <Column label="Name" dataKey="name" width={200} />
           <Column label="Role" dataKey="role" width={200} />
-          <Column label="email" dataKey="email" width={200} disableSort />
+          <Column label="email" dataKey="email" width={200} disableSort={true} />
         </CustomTable>
       );
     });
+
     afterEach(() => {
       wrapper.unmount();
     });
@@ -109,11 +110,9 @@ describe("CustomTable", () => {
 
       // Reverse default sorting order of name by clicking on name header
       nameHeader.simulate("click");
-      nameHeader.simulate("click");
       wrapper.setProps();
-      wrapper.update();
       const sortedByNameDesc = members.sort((a, b) =>
-        a.name.localeCompare(b.name)
+        b.name.localeCompare(a.name)
       );
 
       expect(
@@ -126,23 +125,28 @@ describe("CustomTable", () => {
         wrapper.find("[aria-colindex=3]").map((emailCol) => emailCol.text())
       ).toEqual(sortedByNameDesc.map((member) => member.email));
 
-      // Change sorting order back to name asc
+      //Change sorting order back to name asc
       nameHeader.simulate("click");
+      const sortByNameAsc = members.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
       expect(
         wrapper.find("[aria-colindex=1]").map((nameCol) => nameCol.text())
-      ).toEqual(members.map((member) => member.name));
+      ).toEqual(sortByNameAsc.map((member) => member.name));
+
       expect(
         wrapper.find("[aria-colindex=2]").map((roleCol) => roleCol.text())
-      ).toEqual(members.map((member) => member.role));
+      ).toEqual(sortByNameAsc.map((member) => member.role));
+      
       expect(
         wrapper.find("[aria-colindex=3]").map((emailCol) => emailCol.text())
-      ).toEqual(members.map((member) => member.email));
+      ).toEqual(sortByNameAsc.map((member) => member.email));
     });
 
     it("should not change sortby if column with prop disableSort is clicked", () => {
       const emailHeader = wrapper
-        .find(".ReactVirtualized__Table__headerColumn span")
-        .at(2);
+        .find(".ReactVirtualized__Table__headerColumn div").at(2);
 
       // Original order is by name
       expect(

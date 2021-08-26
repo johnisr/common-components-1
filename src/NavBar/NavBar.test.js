@@ -8,6 +8,12 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const URL = "https://validere.com";
+
+const sharedProps = {
+
+}
+
 describe("Page", () => {
   it("should render", () => {
     const activeApplication = "dashboard";
@@ -32,6 +38,7 @@ describe("Page", () => {
         className={className}
         style={style}
         version={version}
+        url={URL}
       />
     );
 
@@ -70,7 +77,13 @@ describe("Page", () => {
       "esg:core": [],
     };
 
-    const wrapper = mount(<NavBar permissions={permissions} />);
+    const wrapper = mount(
+      <NavBar
+        permissions={permissions}
+        onSignOut={()=> {}}
+        url={URL}
+      />
+    );
 
     expect(
       wrapper.find("li").map((reactwrapper) => reactwrapper.text())
