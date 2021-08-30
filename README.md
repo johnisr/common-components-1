@@ -1,4 +1,4 @@
-# common-components
+# common-components [![Testing CI](https://github.com/ValidereInc/common-components/actions/workflows/test.yml/badge.svg)](https://github.com/ValidereInc/common-components/actions/workflows/test.yml)
 A shared repo for all the Validere frontend components.
 
 ### Getting started
