@@ -71,7 +71,7 @@ function dynamicHeightRenderer({
         <div
           onLoad={measure}
           ref={registerChild}
-          style={{ "overflow-wrap": "break-word", "whiteSpace": "normal" }}
+          style={{ "overflow-wrap": "break-word", whiteSpace: "normal" }}
         >
           {cellData}
         </div>

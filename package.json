@@ -1,6 +1,6 @@
 {
   "name": "validere-common-components",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "This package will hold commonly used component by Validere Inc.",
   "main": "./dist/bundle.js",
   "files": [
@@ -87,7 +87,9 @@
     "copy-package": "cp package.json development/",
     "build-dev": "webpack --config ./webpack.config.js --mode development && npm run copy-package",
     "build-prod": "webpack --config ./webpack.production.config.js --mode production",
-    "build": "npm run build-dev && npm run build-prod"
+    "build": "npm run build-dev && npm run build-prod",
+    "linting": "eslint src && stylelint \"src/**/*.scss\"",
+    "prettier": "prettier --write \"src/**/*.{js,scss}\""
   },
   "jest": {
     "testEnvironment": "jsdom"

@@ -10,10 +10,6 @@ Enzyme.configure({
 
 const URL = "https://validere.com";
 
-const sharedProps = {
-
-}
-
 describe("Page", () => {
   it("should render", () => {
     const activeApplication = "dashboard";
@@ -78,11 +74,7 @@ describe("Page", () => {
     };
 
     const wrapper = mount(
-      <NavBar
-        permissions={permissions}
-        onSignOut={()=> {}}
-        url={URL}
-      />
+      <NavBar permissions={permissions} onSignOut={() => {}} url={URL} />
     );
 
     expect(
