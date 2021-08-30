@@ -1,11 +1,6 @@
 import React from "react";
 import { CustomTable } from "../index";
-import {
-  Column,
-  CellMeasurerCache,
-  CellMeasurer,
-  SortIndicator,
-} from "react-virtualized";
+import { Column, CellMeasurerCache, CellMeasurer } from "react-virtualized";
 import "react-virtualized/styles.css";
 
 const example = [
@@ -38,27 +33,7 @@ function printList(list) {
   return list;
 }
 
-function defaultHeaderRenderer(props) {
-  const { label } = props;
-  const children = [
-    <span
-      className="ReactVirtualized__Table__headerTruncatedText"
-      key="label"
-      title={typeof label === "string" ? label : null}
-    >
-      {label}
-    </span>,
-  ];
-  return children;
-}
-
-function dynamicHeightRenderer({
-  dataKey,
-  parent,
-  rowIndex,
-  columnIndex,
-  cellData,
-}) {
+function dynamicHeightRenderer({ dataKey, parent, rowIndex, cellData }) {
   return (
     <CellMeasurer
       cache={cache}
