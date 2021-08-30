@@ -81,6 +81,7 @@
   },
   "scripts": {
     "test": "jest test --env=jsdom --watch",
+    "test-ci": "jest test --env=jsdom --runInBand --coverage",
     "coverage": "jest test --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "start": "webpack serve --config ./webpack.config.js --mode development",
