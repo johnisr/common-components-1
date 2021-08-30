@@ -35,13 +35,8 @@ export const SidebarTab = (props) => {
 };
 
 const SidebarListTab = (props) => {
-  const {
-    details,
-    activeTab,
-    openListTab,
-    setOpenListTab,
-    isSidebarExpanded,
-  } = props;
+  const { details, activeTab, openListTab, setOpenListTab, isSidebarExpanded } =
+    props;
 
   const isListTabActive =
     activeTab === details.id ||

@@ -54,10 +54,10 @@
       text-decoration: none;
     }
 
-    .activeSelectionLine  {
+    .activeSelectionLine {
       position: absolute;
       top: 45px;
-      border-bottom: 2px solid #C4C4C4;
+      border-bottom: 2px solid #c4c4c4;
       width: 60px;
     }
   }
@@ -74,13 +74,13 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .profileIcon {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     border: none;
     color: white;
-    background-color: #4CACAE;
+    background-color: #4cacae;
   }
 }

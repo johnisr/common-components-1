@@ -159,7 +159,6 @@ class CustomTable extends Component {
       headerHeight = 40,
       headerRenderer,
       filterKey,
-      filterTitle,
       csvDownload,
       cellClassName,
       filterRow,
@@ -272,8 +271,6 @@ CustomTable.propTypes = {
    *  of the given property
    **/
   filterKey: PropTypes.string,
-  /** The placeholder text if the input field is present  */
-  filterTitle: PropTypes.string,
   /** css className given to the inner grid container */
   cellClassName: PropTypes.string,
   /** the height in pixels of each row, defaults to 40 if none given */

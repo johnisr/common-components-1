@@ -54,7 +54,12 @@ describe("CustomTable", () => {
         >
           <Column label="Name" dataKey="name" width={200} />
           <Column label="Role" dataKey="role" width={200} />
-          <Column label="email" dataKey="email" width={200} disableSort={true} />
+          <Column
+            label="email"
+            dataKey="email"
+            width={200}
+            disableSort={true}
+          />
         </CustomTable>
       );
     });
@@ -138,7 +143,7 @@ describe("CustomTable", () => {
       expect(
         wrapper.find("[aria-colindex=2]").map((roleCol) => roleCol.text())
       ).toEqual(sortByNameAsc.map((member) => member.role));
-      
+
       expect(
         wrapper.find("[aria-colindex=3]").map((emailCol) => emailCol.text())
       ).toEqual(sortByNameAsc.map((member) => member.email));
@@ -146,7 +151,8 @@ describe("CustomTable", () => {
 
     it("should not change sortby if column with prop disableSort is clicked", () => {
       const emailHeader = wrapper
-        .find(".ReactVirtualized__Table__headerColumn div").at(2);
+        .find(".ReactVirtualized__Table__headerColumn div")
+        .at(2);
 
       // Original order is by name
       expect(

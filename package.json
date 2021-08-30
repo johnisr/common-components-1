@@ -87,7 +87,9 @@
     "copy-package": "cp package.json development/",
     "build-dev": "webpack --config ./webpack.config.js --mode development && npm run copy-package",
     "build-prod": "webpack --config ./webpack.production.config.js --mode production",
-    "build": "npm run build-dev && npm run build-prod"
+    "build": "npm run build-dev && npm run build-prod",
+    "linting": "eslint src",
+    "prettier": "prettier --write \"src/**/*.{js,scss}\""
   },
   "jest": {
     "testEnvironment": "jsdom"
