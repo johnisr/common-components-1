@@ -1,6 +1,6 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import Sidebar from "./Sidebar";
 import { getFirstChar } from "../NavBar/NavBarHelper";
 
@@ -36,7 +36,7 @@ describe("Sidebar", () => {
         title: "Samples",
         icon: "code-fork",
         link: secondLink,
-      },
+      },  
     ];
     const name = "Validere";
     const className = "aClassName";
