@@ -36,7 +36,7 @@ describe("Sidebar", () => {
         title: "Samples",
         icon: "code-fork",
         link: secondLink,
-      },  
+      },
     ];
     const name = "Validere";
     const className = "aClassName";
