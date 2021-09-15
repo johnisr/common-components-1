@@ -30,7 +30,7 @@ const Modal = ({
   airaLabel = "Modal",
 }) => {
   const dialogRef = useRef(null);
-  
+
   const modalSize = getModalSize(size);
 
   return (
@@ -107,7 +107,7 @@ Modal.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  /** 
+  /**
    * The focus is changed by default to the first focusable element in the modal.
    * If the focus is not wanted at all, set this to true
    */
