@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import * as PropTypes from "prop-types";
 import "@reach/dialog/styles.css";
 import "./Modal.scss";
@@ -24,21 +24,25 @@ const Modal = ({
   size,
   open,
   onClose,
+  disableInitialFocus = false,
   initialFocusRef = null,
   children,
   airaLabel = "Modal",
 }) => {
+  const dialogRef = useRef(null);
+  
   const modalSize = getModalSize(size);
 
   return (
     <CommonModalContext.Provider value={{ onClose }}>
       <Dialog
         isOpen={open}
-        initialFocusRef={initialFocusRef}
+        initialFocusRef={disableInitialFocus ? dialogRef : initialFocusRef}
         onDismiss={onClose}
         className={`commonModal modalSlideDown ${modalSize} ${className}`}
         style={style}
         aria-label={airaLabel}
+        ref={dialogRef}
       >
         {children}
       </Dialog>
@@ -103,9 +107,13 @@ Modal.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  /** 
+   * The focus is changed by default to the first focusable element in the modal.
+   * If the focus is not wanted at all, set this to true
+   */
+  disableInitialFocus: PropTypes.bool,
   /**
-   * The focus is changed to the first focusable element in the modal when the modal is opened.
-   * Pass a ref here to not use the default focus
+   * Pass a ref to the desired initialFocus if the default focus is on the wrong element
    */
   initialFocusRef: PropTypes.object,
   /** A string that labels the current element for screen readers */
