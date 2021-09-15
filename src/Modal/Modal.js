@@ -1,6 +1,6 @@
+import "@reach/dialog/styles.css";
 import React, { useContext, useRef } from "react";
 import * as PropTypes from "prop-types";
-import "@reach/dialog/styles.css";
 import "./Modal.scss";
 import { Dialog } from "@reach/dialog";
 import FontAwesome from "react-fontawesome";

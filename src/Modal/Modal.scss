@@ -33,6 +33,10 @@
   }
 }
 
+body {
+  --reach-dialog: 1;
+}
+
 [data-reach-dialog-overlay] {
   z-index: 1050;
   overflow-x: auto;
