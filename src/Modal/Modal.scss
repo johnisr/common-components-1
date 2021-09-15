@@ -1,0 +1,73 @@
+.commonModal {
+  background-color: white;
+
+  &__header {
+    padding: 15px 15px 0px;
+    display: flex;
+
+    .closeButton {
+      margin-left: auto;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
+  &__body {
+    padding: 15px;
+  }
+
+  &__footer {
+    padding: 15px;
+    padding-top: 0;
+    text-align: right;
+  }
+}
+
+[data-reach-dialog-overlay] {
+  z-index: 1050;
+  overflow-x: auto;
+  animation: modalOverlayFade 0.15s ease;
+}
+
+[data-reach-dialog-content] {
+  padding: 0;
+  margin: 30px auto;
+  animation: modalSlideDown 0.3s ease;
+}
+
+@keyframes modalSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-25%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalOverlayFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  [data-reach-dialog-content] {
+    width: 600px;
+  }
+
+  [data-reach-dialog-content].commonModal--small {
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  [data-reach-dialog-content].commonModal--large {
+    width: 900px;
+  }
+}
