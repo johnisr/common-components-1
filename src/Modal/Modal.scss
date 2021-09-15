@@ -5,11 +5,20 @@
     padding: 15px 15px 0px;
     display: flex;
 
+    > * {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-right: 5px;
+    }
+
     .closeButton {
       margin-left: auto;
-      display: inline-block;
+      margin-right: 0;
+      display: flex;
+      align-items: center;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 25px;
     }
   }
 
