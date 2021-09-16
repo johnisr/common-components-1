@@ -1,3 +1,4 @@
+import Modal from "./Modal/Modal";
 import CustomTable from "./Table/CustomTable";
 import Datatable from "./Table/Datatable";
 import Title from "./Title/Title";
@@ -23,6 +24,7 @@ export {
   NavBar,
   Sidebar,
   useSidebar,
+  Modal,
 };
 
 export default {
@@ -37,4 +39,5 @@ export default {
   NavBar,
   Sidebar,
   useSidebar,
+  Modal,
 };
