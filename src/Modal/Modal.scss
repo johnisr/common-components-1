@@ -1,3 +1,5 @@
+@import "../zindex-vars.json";
+
 .commonModal {
   background-color: white;
 
@@ -38,7 +40,7 @@ body {
 }
 
 [data-reach-dialog-overlay] {
-  z-index: 1050;
+  z-index: $zIndexModalBackdrop;
   overflow-x: auto;
   animation: modalOverlayFade 0.15s ease;
 }

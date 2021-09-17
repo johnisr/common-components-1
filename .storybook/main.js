@@ -3,7 +3,16 @@ const jsonImporter = require("node-sass-json-importer");
 
 module.exports = {
   stories: ["./*.stories.@(js|mdx)", "../src/**/*.stories.@(js|mdx)"],
-  addons: ["@storybook/addon-docs", '@storybook/addon-essentials'],
+  addons: ["@storybook/addon-docs", '@storybook/addon-essentials', 
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
+  ],
   core: {
     builder: "webpack5",
   },
@@ -20,6 +29,7 @@ module.exports = {
       use: [
         "style-loader",
         "css-loader",
+        "postcss-loader",
         {
           loader: "sass-loader",
           options: {
