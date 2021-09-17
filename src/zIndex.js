@@ -13,5 +13,8 @@ module.exports = {
     "--zindex-tooltip": zIndex.zIndexTooltip,
     "--zindex-alert": zIndex.zIndexAlert,
     "--zindex-loader": zIndex.zIndexLoader,
+    "--zindex-layer-first": zIndex.layer.first,
+    "--zindex-layer-second": zIndex.layer.second,
+    "--zindex-layer-third": zIndex.layer.third,
   },
 };

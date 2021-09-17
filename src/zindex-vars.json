@@ -8,5 +8,10 @@
   "zIndexPopover":                    1070,
   "zIndexTooltip":                    1080,
   "zIndexAlert":                      1090,
-  "zIndexLoader":                     1100
+  "zIndexLoader":                     1100,
+  "layer": {
+    "first": 1,
+    "second": 2,
+    "third": 3
+  }
 }
