@@ -24,7 +24,7 @@ describe("Modal", () => {
           style={style}
           className={className}
         >
-          <Modal.Header closeButton>Title</Modal.Header>
+          <Modal.Header>Title</Modal.Header>
           <Modal.Body>Content</Modal.Body>
           <Modal.Footer>Footer</Modal.Footer>
         </Modal>
