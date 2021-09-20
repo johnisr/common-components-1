@@ -33,7 +33,7 @@ Default.args = {
 
 const withModalComponentChildren = (
   <>
-    <Modal.Header closeButton>
+    <Modal.Header>
       <Title>This is the Header</Title>
     </Modal.Header>
 

@@ -50,7 +50,7 @@ const Modal = ({
   );
 };
 
-const Header = ({ children, style, className = "", closeButton, ...props }) => {
+const Header = ({ children, style, className = "", ...props }) => {
   const { onClose } = useContext(CommonModalContext);
   return (
     <div
@@ -60,9 +60,7 @@ const Header = ({ children, style, className = "", closeButton, ...props }) => {
     >
       {children}
 
-      {closeButton && (
-        <FontAwesome className="closeButton" name="times" onClick={onClose} />
-      )}
+      <FontAwesome className="closeButton" name="times" onClick={onClose} />
     </div>
   );
 };
