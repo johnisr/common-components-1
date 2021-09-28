@@ -41,13 +41,15 @@ const Sidebar = ({
   style,
   tabs,
   activeTab,
-  showLogo,
   onSignOut,
   name,
   version,
   isPinned = false,
   onPinClick,
   isExpanded = false,
+  onHomeClick,
+  homeLinkText,
+  onBackClick,
 }) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -75,21 +77,37 @@ const Sidebar = ({
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {showLogo && (
-        <div>
-          {isSidebarExpanded ? (
-            <img
-              className="validere_logo"
-              src="https://validere.com/wp-content/uploads/logo_white_text.png"
-              alt="Validere"
-            />
-          ) : (
-            <img
-              className="validere_icon"
-              src="https://validere.com/wp-content/uploads/logo_icon.png"
-              alt="Validere"
-            />
-          )}
+      {onBackClick && (
+        <div
+          className={`commonSidebar__backTab ${
+            isSidebarExpanded
+              ? "commonSidebar__visible"
+              : "commonSidebar__invisible"
+          }`}
+          onClick={() => onBackClick?.()}
+        >
+          <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+          Back to hubs
+        </div>
+      )}
+
+      {onHomeClick && homeLinkText && (
+        <div className="commonSidebar__homeTab" onClick={() => onHomeClick?.()}>
+          <img
+            className="validere_icon"
+            src="https://validere.com/wp-content/uploads/logo_icon.png"
+            alt="Validere"
+          />
+
+          <span
+            className={
+              isSidebarExpanded
+                ? "commonSidebar__visible"
+                : "commonSidebar__invisible"
+            }
+          >
+            {homeLinkText}
+          </span>
         </div>
       )}
 
@@ -192,8 +210,6 @@ Sidebar.propTypes = {
   tabs: PropTypes.array.isRequired,
   /** The current tab id being displayed in the main page */
   activeTab: PropTypes.string,
-  /** Show the validere icon/logo at the top of the sidebar */
-  showLogo: PropTypes.bool,
   /** If given, the sidebar shows the pinIcon which calls this function when clicked */
   onPinClick: PropTypes.func,
   /** Boolean determining if sidebar is pinned or not */
@@ -206,6 +222,12 @@ Sidebar.propTypes = {
   onSignOut: PropTypes.func,
   /**  Boolean function determining is sidebar is currently expanded */
   isExpanded: PropTypes.bool,
+  /** Text describing the current web app */
+  homeLinkText: PropTypes.string,
+  /** The function called when the home link is clicked */
+  onHomeClick: PropTypes.func,
+  /** The function called when the back link is clicked */
+  onBackClick: PropTypes.func,
 };
 
 export default Sidebar;

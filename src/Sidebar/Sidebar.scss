@@ -20,13 +20,41 @@
   }
 
   .validere_icon {
-    width: 25px;
-    height: 21px;
-    margin-bottom: 15px;
+    width: 22px;
+    height: 19px;
+    margin-right: 15px;
   }
 
   &__activeTab {
     color: #fff;
+  }
+
+  &__backTab {
+    background-color: #0ca5a5;
+    height: 35px;
+    width: 190px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-left: -5px;
+    margin-top: -5px;
+
+    .icon {
+      font-size: 19px;
+      margin-right: 15px;
+    }
+  }
+
+  &__homeTab {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
   }
 
   &__bottom {
@@ -130,5 +158,32 @@
 
   &__popoverContainer {
     z-index: $zIndexPopover;
+  }
+
+  &__collapseContainer {
+    overflow: hidden;
+  }
+
+  &__collapsed {
+    transform: translateY(-100);
+    opacity: 0;
+    height: 0;
+  }
+
+  &__expanded {
+    animation: tabSlideDown 0.15s ease forwards;
+  }
+}
+
+@keyframes tabSlideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    height: 100%;
+    transform: translateY(0);
   }
 }

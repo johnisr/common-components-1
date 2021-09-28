@@ -1,9 +1,22 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
-import { Collapse } from "react-collapse";
 
 const HIGHLIGHT_COLOR = "#ffffff";
+
+const Collapse = ({ isOpen, children }) => {
+  return (
+    <div className="commonSidebar__collapseContainer">
+      <div
+        className={` ${
+          isOpen ? "commonSidebar__expanded" : "commonSidebar__collapsed"
+        }`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
 
 export const SidebarTab = (props) => {
   const { details, activeTab, isSidebarExpanded } = props;
@@ -38,13 +51,13 @@ const SidebarListTab = (props) => {
   const { details, activeTab, openListTab, setOpenListTab, isSidebarExpanded } =
     props;
 
-  const isListTabActive =
-    activeTab === details.id ||
-    !!details.nested.find((tab) => tab.id === activeTab);
-
   const isOpen =
     openListTab === details.id ||
     details.nested.find((detail) => detail.id === openListTab);
+
+  const isListTabActive =
+    activeTab === details.id ||
+    !!details.nested.find((tab) => tab.id === activeTab);
 
   const onDropdownClicked = () => {
     // Collapse the dropdown when the user click on the dropdown twice
@@ -80,11 +93,11 @@ const SidebarListTab = (props) => {
         <div className="commonSidebar__tabIcon" onClick={onDropdownClicked}>
           <FontAwesome
             className="fa-fw"
-            name={isListTabActive ? "angle-up" : "angle-down"}
+            name={isOpen ? "angle-up" : "angle-down"}
           />
         </div>
       </div>
-      <Collapse isOpened={isOpen && isSidebarExpanded}>
+      <Collapse isOpen={isOpen && isSidebarExpanded}>
         <ul className="commonSidebar__links">
           {details.nested.map((detail, index) => {
             return (
@@ -105,6 +118,14 @@ const SidebarListTab = (props) => {
       </Collapse>
     </div>
   );
+};
+
+Collapse.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 SidebarTab.propTypes = {
