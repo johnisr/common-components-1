@@ -53,7 +53,7 @@ const SidebarListTab = (props) => {
 
   const isOpen =
     openListTab === details.id ||
-    details.nested.find((detail) => detail.id === openListTab);
+    !!details.nested.find((detail) => detail.id === openListTab);
 
   const isListTabActive =
     activeTab === details.id ||

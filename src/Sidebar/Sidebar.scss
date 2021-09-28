@@ -104,10 +104,6 @@
     }
   }
 
-  & .ReactCollapse--collapse {
-    transition: height 100ms;
-  }
-
   .commonSidebar__visible {
     transition: opacity 0.1s;
     opacity: 1;
@@ -171,7 +167,7 @@
   }
 
   &__expanded {
-    animation: tabSlideDown 0.15s ease forwards;
+    animation: tabSlideDown 0.1s ease forwards;
   }
 }
 
