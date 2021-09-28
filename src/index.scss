@@ -1,0 +1,91 @@
+.font-headline {
+  &-xl {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 44px;
+  }
+  &-lg {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 36px;
+  }
+  &-md {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 30px;
+  }
+  &-sm {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 26px;
+  }
+}
+
+.font-body {
+  &-1 {
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    line-height: 26px;
+
+    &-bold {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      line-height: 26px;
+    }
+  }
+
+  &-2 {
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    line-height: 24px;
+
+    &-bold {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      line-height: 24px;
+    }
+  }
+
+  &-3 {
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    line-height: 22px;
+
+    &-bold {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      line-height: 22px;
+    }
+  }
+
+  &-3 {
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+    line-height: 20px;
+
+    &-bold {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      line-height: 20px;
+    }
+  }
+}
+
+.font-button {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+}

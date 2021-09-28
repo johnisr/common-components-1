@@ -1,4 +1,4 @@
-import { zIndex } from "../zIndex";
+import styles from "../constants/index";
 
 const options = {
   lines: 100, // The number of lines to draw
@@ -14,7 +14,7 @@ const options = {
   speed: 1.6, // Rounds per second
   trail: 80, // Afterglow percentage
   fps: 20, // Frames per second when using setTimeout() as a fallback for CSS
-  zIndex: zIndex.zIndexLoader, // The z-index (defaults to 2000000000)
+  zIndex: styles.zIndexLoader, // The z-index (defaults to 2000000000  if not set)
   className: "commonLoader", // The CSS class to assign to the spinner
   top: "0", // Top position relative to parent
   left: "50%", // Left position relative to parent
