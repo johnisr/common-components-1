@@ -1,91 +1,51 @@
+@import "constants/mixins/index.scss";
+
 .font-headline {
   &-xl {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: 0.005em;
-    line-height: 44px;
+    @include fontStyles(headline, xl);
   }
   &-lg {
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: 0.005em;
-    line-height: 36px;
+    @include fontStyles(headline, lg);
   }
   &-md {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    line-height: 30px;
+    @include fontStyles(headline, md);
   }
   &-sm {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    line-height: 26px;
+    @include fontStyles(headline, sm);
   }
 }
 
 .font-body {
   &-1 {
-    font-size: 18px;
-    font-weight: normal;
-    letter-spacing: 0.01em;
-    line-height: 26px;
+    @include fontStyles(body, 1);
 
     &-bold {
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0.01em;
-      line-height: 26px;
+      @include fontStyles(body, 1, true);
     }
   }
-
   &-2 {
-    font-size: 16px;
-    font-weight: normal;
-    letter-spacing: 0.01em;
-    line-height: 24px;
+    @include fontStyles(body, 2);
 
     &-bold {
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: 0.01em;
-      line-height: 24px;
+      @include fontStyles(body, 2, true);
     }
   }
-
   &-3 {
-    font-size: 14px;
-    font-weight: normal;
-    letter-spacing: 0.01em;
-    line-height: 22px;
+    @include fontStyles(body, 3);
 
     &-bold {
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 0.01em;
-      line-height: 22px;
+      @include fontStyles(body, 3, true);
     }
   }
-
-  &-3 {
-    font-size: 12px;
-    font-weight: normal;
-    letter-spacing: 0.01em;
-    line-height: 20px;
+  &-4 {
+    @include fontStyles(body, 4);
 
     &-bold {
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 0.01em;
-      line-height: 20px;
+      @include fontStyles(body, 4, true);
     }
   }
 }
 
 .font-button {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0.01em;
+  @include fontStyles(button);
 }
