@@ -68,6 +68,24 @@ const Sidebar = ({
 
   const isSidebarExpanded = isPinned || isExpanded;
 
+  // {showLogo && (
+  //   <div>
+  //     {isSidebarExpanded ? (
+  //       <img
+  //         className="validere_logo"
+  //         src="https://validere.com/wp-content/uploads/logo_white_text.png"
+  //         alt="Validere"
+  //       />
+  //     ) : (
+  //       <img
+  //         className="validere_icon"
+  //         src="https://validere.com/wp-content/uploads/logo_icon.png"
+  //         alt="Validere"
+  //       />
+  //     )}
+  //   </div>
+  // )}
+
   return (
     <div
       className={`commonSidebar ${className}`}
@@ -76,19 +94,21 @@ const Sidebar = ({
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {onBackClick && (
-        <div
-          className={`commonSidebar__backTab ${
-            isSidebarExpanded
-              ? "commonSidebar__visible"
-              : "commonSidebar__invisible"
-          }`}
-          onClick={() => onBackClick?.()}
-        >
-          <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
-          Back to hubs
-        </div>
-      )}
+      {onBackClick ? (
+        isSidebarExpanded ? (
+          <div
+            className={`commonSidebar__backTab ${"commonSidebar__visible"}`}
+            onClick={() => onBackClick?.()}
+          >
+            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+            Back to hubs
+          </div>
+        ) : (
+          <div className="commonSidebar__backTab commonSidebar__backTab--collapse">
+            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+          </div>
+        )
+      ) : null}
 
       {homeTabText && (
         <div className="commonSidebar__homeTab">
