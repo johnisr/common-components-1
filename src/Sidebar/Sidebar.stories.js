@@ -44,12 +44,6 @@ const Template = (_args) => {
     });
   };
 
-  const toggleHomeLink = () => {
-    updateState({
-      onHomeClick: state.onHomeClick ? null : () => alert("onHomeClick"),
-    });
-  };
-
   return (
     <div>
       <div
@@ -75,10 +69,6 @@ const Template = (_args) => {
           outline={true}
         >
           {state.onBackClick ? "Hide" : "Show"} Back Tab
-        </Button>
-
-        <Button onClick={toggleHomeLink} type="primary">
-          {state.onHomeClick ? "Hide" : "Show"} Home Tab
         </Button>
       </div>
     </div>
@@ -147,8 +137,7 @@ Default.args = {
   isPinned: false,
   onPinClick: () => alert("onPinClick"),
   isExpanded: false,
-  onHomeClick: () => alert("onHomeClick"),
-  homeLinkText: "Home",
+  homeTabText: "Operations",
   onBackClick: () => alert("onBackClick"),
 };
 

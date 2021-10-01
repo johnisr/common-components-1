@@ -47,8 +47,7 @@ const Sidebar = ({
   isPinned = false,
   onPinClick,
   isExpanded = false,
-  onHomeClick,
-  homeLinkText,
+  homeTabText,
   onBackClick,
 }) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
@@ -91,8 +90,8 @@ const Sidebar = ({
         </div>
       )}
 
-      {onHomeClick && homeLinkText && (
-        <div className="commonSidebar__homeTab" onClick={() => onHomeClick?.()}>
+      {homeTabText && (
+        <div className="commonSidebar__homeTab">
           <img
             className="validere_icon"
             src="https://validere.com/wp-content/uploads/logo_icon.png"
@@ -106,7 +105,7 @@ const Sidebar = ({
                 : "commonSidebar__invisible"
             }
           >
-            {homeLinkText}
+            {homeTabText}
           </span>
         </div>
       )}
@@ -223,9 +222,7 @@ Sidebar.propTypes = {
   /**  Boolean function determining is sidebar is currently expanded */
   isExpanded: PropTypes.bool,
   /** Text describing the current web app */
-  homeLinkText: PropTypes.string,
-  /** The function called when the home link is clicked */
-  onHomeClick: PropTypes.func,
+  homeTabText: PropTypes.string,
   /** The function called when the back link is clicked */
   onBackClick: PropTypes.func,
 };
