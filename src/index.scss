@@ -16,28 +16,28 @@
 }
 
 .font-body {
-  &-1 {
+  &-18 {
     @include fontStyles(body, 1);
 
     &-bold {
       @include fontStyles(body, 1, true);
     }
   }
-  &-2 {
+  &-16 {
     @include fontStyles(body, 2);
 
     &-bold {
       @include fontStyles(body, 2, true);
     }
   }
-  &-3 {
+  &-14 {
     @include fontStyles(body, 3);
 
     &-bold {
       @include fontStyles(body, 3, true);
     }
   }
-  &-4 {
+  &-12 {
     @include fontStyles(body, 4);
 
     &-bold {
