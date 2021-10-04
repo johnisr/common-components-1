@@ -68,24 +68,6 @@ const Sidebar = ({
 
   const isSidebarExpanded = isPinned || isExpanded;
 
-  // {showLogo && (
-  //   <div>
-  //     {isSidebarExpanded ? (
-  //       <img
-  //         className="validere_logo"
-  //         src="https://validere.com/wp-content/uploads/logo_white_text.png"
-  //         alt="Validere"
-  //       />
-  //     ) : (
-  //       <img
-  //         className="validere_icon"
-  //         src="https://validere.com/wp-content/uploads/logo_icon.png"
-  //         alt="Validere"
-  //       />
-  //     )}
-  //   </div>
-  // )}
-
   return (
     <div
       className={`commonSidebar ${className}`}

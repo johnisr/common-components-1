@@ -31,6 +31,7 @@
 
   &__backTab {
     background-color: #0ca5a5;
+    color: #fff;
     height: 35px;
     width: 190px;
     border-radius: 6px;
@@ -43,7 +44,7 @@
     margin-top: -5px;
 
     .icon {
-      font-size: 19px;
+      font-size: 22px;
       margin-right: 15px;
     }
 
@@ -58,7 +59,7 @@
   &__homeTab {
     display: flex;
     align-items: center;
-    padding: 12px 0;
+    padding: 20px 0;
     text-transform: uppercase;
     color: #fff;
     cursor: pointer;
