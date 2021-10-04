@@ -77,8 +77,8 @@ const Sidebar = ({
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {onBackClick ? (
-        isSidebarExpanded ? (
+      {onBackClick &&
+        (isSidebarExpanded ? (
           <div
             className={`commonSidebar__backTab ${"commonSidebar__visible"}`}
             onClick={() => onBackClick?.()}
@@ -90,8 +90,7 @@ const Sidebar = ({
           <div className="commonSidebar__backTab commonSidebar__backTab--collapse">
             <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
           </div>
-        )
-      ) : null}
+        ))}
 
       {homeTabText && (
         <div className="commonSidebar__homeTab">
