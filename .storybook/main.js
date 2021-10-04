@@ -1,6 +1,8 @@
 const path = require('path');
 const jsonImporter = require("node-sass-json-importer");
 
+const localStylesRegex = /\.module\.(sass|scss|css)$/i;
+
 module.exports = {
   stories: ["./*.stories.@(js|mdx)", "../src/**/*.stories.@(js|mdx)"],
   addons: ["@storybook/addon-docs", '@storybook/addon-essentials', 
