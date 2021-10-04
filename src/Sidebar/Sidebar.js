@@ -6,6 +6,7 @@ import SidebarListTab, { SidebarTab } from "./SidebarListTab";
 import { Popover } from "react-tiny-popover";
 import { getFirstChar } from "../NavBar/NavBarHelper";
 import ProfilePopover from "../NavBar/ProfilePopover";
+import config from "../../config";
 
 const SIDEBAR_WIDTH = "220px";
 const MINI_SIDEBAR_WIDTH = "60px";
@@ -96,7 +97,7 @@ const Sidebar = ({
         <div className="commonSidebar__homeTab">
           <img
             className="validere_icon"
-            src="https://validere.com/wp-content/uploads/logo_icon.png"
+            src={config.VALIDERE_ICON_URL}
             alt="Validere"
           />
 
