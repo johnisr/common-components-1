@@ -7,6 +7,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const globalStylesRegex = /\.(sass|scss|css)$/i;
+const localStylesRegex = /\.module\.(sass|scss|css)$/i;
+
 module.exports = {
   mode: "production",
   entry: path.resolve(__dirname, "./src/index.js"),
@@ -18,7 +21,40 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.(sass|scss|css)$/i,
+        test: localStylesRegex,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: "../",
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+              modules: true,
+            },
+          },
+          "postcss-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                // adds the ability to import JSON files in to SASS/SCSS variables
+                // currently used with `css-vars.json` for importing colour variables to SASS
+                importer: jsonImporter(),
+              },
+            },
+          },
+        ],
+        sideEffects: true,
+      },
+      {
+        test: globalStylesRegex,
+        exclude: localStylesRegex,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,

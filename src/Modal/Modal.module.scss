@@ -1,0 +1,97 @@
+@import "../constants/index.js";
+
+[data-reach-dialog-overlay] {
+  z-index: $zIndexModalBackdrop;
+  overflow-x: auto;
+  animation: modalOverlayFade 0.15s ease;
+}
+
+[data-reach-dialog-content] {
+  padding: 0;
+  margin: 30px auto;
+  animation: modalSlideDown 0.3s ease;
+}
+
+.modal {
+  background-color: white;
+  width: 600px;
+
+  @media only screen and (max-width: 768px) {
+    margin: 10px;
+    width: auto;
+  }
+
+  &--small {
+    width: 300px;
+    margin: 30px auto;
+
+    @media only screen and (max-width: 320px) {
+      margin: 10px;
+      width: auto;
+    }
+  }
+
+  &--large {
+    width: 900px;
+
+    @media only screen and (max-width: 1024px) {
+      margin: 10px;
+      width: auto;
+    }
+  }
+}
+
+.header {
+  padding: 15px 15px 0px;
+  display: flex;
+
+  > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 5px;
+  }
+}
+
+.closeButton {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.content {
+  padding: 15px;
+}
+
+.footer {
+  padding: 15px;
+  padding-top: 0;
+  text-align: right;
+}
+
+body {
+  --reach-dialog: 1;
+}
+
+@keyframes modalSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-25%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalOverlayFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

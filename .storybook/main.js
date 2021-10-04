@@ -25,7 +25,32 @@ module.exports = {
     // to allow the usage of css variables in storybook e.g. color: var(--someVar);
     // Currently has problems with comments/non-css keywords
     config.module.rules.push({
+      test: /\.module\.scss$/,
+      use: [
+        "style-loader",
+        {
+          loader: "css-loader",
+          options: {
+            importLoaders: 2,
+            modules: true,
+          },
+        },
+        "postcss-loader",
+        {
+          loader: "sass-loader",
+          options: {
+            sassOptions: {
+              // adds the ability to import JSON files in to SASS/SCSS variables
+              // currently used with `css-vars.json` for importing colour variables to SASS
+              importer: jsonImporter(),
+            },
+          },
+        },
+      ],
+      sideEffects: true,
+    },{
       test: /\.scss$/,
+      exclude: localStylesRegex,
       use: [
         "style-loader",
         "css-loader",
