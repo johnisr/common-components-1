@@ -37,7 +37,7 @@ module.exports = {
               importLoaders: 2,
               modules: {
                 auto: localStylesRegex,
-                localIdentName: "[hash:base64]",
+                localIdentName: "[hash:base64:6]",
               },
             },
           },
