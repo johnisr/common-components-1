@@ -21,7 +21,7 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: localStylesRegex,
+        test: globalStylesRegex,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -35,7 +35,10 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 2,
-              modules: true,
+              modules: {
+                auto: localStylesRegex,
+                localIdentName: "[hash:base64]",
+              },
             },
           },
           "postcss-loader",
@@ -51,44 +54,6 @@ module.exports = {
           },
         ],
         sideEffects: true,
-      },
-      {
-        test: globalStylesRegex,
-        exclude: localStylesRegex,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // you can specify a publicPath here
-              // by default it uses publicPath in webpackOptions.output
-              publicPath: "../",
-            },
-          },
-          "css-loader",
-          "postcss-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              sassOptions: {
-                // adds the ability to import JSON files in to SASS/SCSS variables
-                // currently used with `css-vars.json` for importing colour variables to SASS
-                importer: jsonImporter(),
-              },
-            },
-          },
-        ],
-        sideEffects: true,
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "file-loader",
-          options: {
-            limit: 10000,
-            mimetype: "image/svg+xml",
-          },
-        },
       },
       {
         test: /\.gif/,
