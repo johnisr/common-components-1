@@ -1,7 +1,79 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
+import { useArgs } from "@storybook/client-api";
 import Sidebar from "./Sidebar";
+import { useSidebar } from "..";
+import Button from "../Button/Button";
 
-const Template = (args) => <Sidebar {...args} />;
+const Template = (_args) => {
+  const [state, updateState] = useArgs();
+  const { isExpanded, isPinned, expandSidebar, collapseSidebar, onPinClick } =
+    useSidebar();
+
+  // The expand/collapse sidebar functions are linked to the `isExpanded` variable
+  // returned by useSidebar(). The controls are linked to state.
+  useLayoutEffect(() => {
+    updateState({ isExpanded });
+  }, [isExpanded]);
+
+  useLayoutEffect(() => {
+    updateState({ isPinned });
+  }, [isPinned]);
+
+  // replace all links with toggleActiveTab
+  useEffect(() => {
+    updateState({
+      tabs: state.tabs.map((tab) => {
+        const newTabs = { ...tab, link: () => toggleActiveTab(tab.id) };
+        if (tab.nested) {
+          newTabs.nested = newTabs.nested.map((newTab) => {
+            return { ...newTab, link: () => toggleActiveTab(newTab.id) };
+          });
+        }
+        return newTabs;
+      }),
+    });
+  }, []);
+
+  const toggleActiveTab = (activeTab) => {
+    updateState({ activeTab });
+  };
+
+  const toggleBackLink = () => {
+    updateState({
+      onBackClick: state.onBackClick ? null : () => alert("onBackClick"),
+    });
+  };
+
+  return (
+    <div>
+      <div
+        onMouseEnter={(e) => expandSidebar(e)}
+        onMouseLeave={(e) => collapseSidebar(e)}
+      >
+        <Sidebar {...state} onPinClick={onPinClick} />
+      </div>
+
+      <div
+        style={{
+          marginLeft: "220px",
+        }}
+      >
+        <div>
+          Add/remove functions from props here (as it can not be done in
+          storybook controls)
+        </div>
+
+        <Button
+          style={{ marginRight: "10px" }}
+          onClick={toggleBackLink}
+          outline={true}
+        >
+          {state.onBackClick ? "Hide" : "Show"} Back Tab
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 
@@ -60,12 +132,13 @@ Default.args = {
     left: "0px",
     bottom: "0px",
   },
-  showLogo: true,
   onSignOut: () => alert("onSignout button clicked"),
   name: "Validere",
   isPinned: false,
   onPinClick: () => alert("onPinClick"),
   isExpanded: false,
+  homeTabText: "Operations",
+  onBackClick: () => alert("onBackClick"),
 };
 
 export default {
