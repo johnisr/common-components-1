@@ -17,31 +17,31 @@
 
 .font-body {
   &-18 {
-    @include fontStyles(body, 1);
+    @include fontStyles(body, 18);
 
     &-bold {
-      @include fontStyles(body, 1, true);
+      @include fontStyles(body, 18, true);
     }
   }
   &-16 {
-    @include fontStyles(body, 2);
+    @include fontStyles(body, 16);
 
     &-bold {
-      @include fontStyles(body, 2, true);
+      @include fontStyles(body, 16, true);
     }
   }
   &-14 {
-    @include fontStyles(body, 3);
+    @include fontStyles(body, 14);
 
     &-bold {
-      @include fontStyles(body, 3, true);
+      @include fontStyles(body, 14, true);
     }
   }
   &-12 {
-    @include fontStyles(body, 4);
+    @include fontStyles(body, 12);
 
     &-bold {
-      @include fontStyles(body, 4, true);
+      @include fontStyles(body, 12, true);
     }
   }
 }
