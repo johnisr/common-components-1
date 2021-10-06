@@ -6,6 +6,7 @@ import SidebarListTab, { SidebarTab } from "./SidebarListTab";
 import { Popover } from "react-tiny-popover";
 import { getFirstChar } from "../NavBar/NavBarHelper";
 import ProfilePopover from "../NavBar/ProfilePopover";
+import config from "../../config";
 
 const SIDEBAR_WIDTH = "220px";
 const MINI_SIDEBAR_WIDTH = "60px";
@@ -41,13 +42,14 @@ const Sidebar = ({
   style,
   tabs,
   activeTab,
-  showLogo,
   onSignOut,
   name,
   version,
   isPinned = false,
   onPinClick,
   isExpanded = false,
+  homeTabText,
+  onBackClick,
 }) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -75,21 +77,38 @@ const Sidebar = ({
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {showLogo && (
-        <div>
-          {isSidebarExpanded ? (
-            <img
-              className="validere_logo"
-              src="https://validere.com/wp-content/uploads/logo_white_text.png"
-              alt="Validere"
-            />
-          ) : (
-            <img
-              className="validere_icon"
-              src="https://validere.com/wp-content/uploads/logo_icon.png"
-              alt="Validere"
-            />
-          )}
+      {onBackClick &&
+        (isSidebarExpanded ? (
+          <div
+            className={`commonSidebar__backTab ${"commonSidebar__visible"}`}
+            onClick={() => onBackClick?.()}
+          >
+            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+            Back to hubs
+          </div>
+        ) : (
+          <div className="commonSidebar__backTab commonSidebar__backTab--collapse">
+            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+          </div>
+        ))}
+
+      {homeTabText && (
+        <div className="commonSidebar__homeTab">
+          <img
+            className="validere_icon"
+            src={config.VALIDERE_ICON_URL}
+            alt="Validere"
+          />
+
+          <span
+            className={
+              isSidebarExpanded
+                ? "commonSidebar__visible"
+                : "commonSidebar__invisible"
+            }
+          >
+            {homeTabText}
+          </span>
         </div>
       )}
 
@@ -192,8 +211,6 @@ Sidebar.propTypes = {
   tabs: PropTypes.array.isRequired,
   /** The current tab id being displayed in the main page */
   activeTab: PropTypes.string,
-  /** Show the validere icon/logo at the top of the sidebar */
-  showLogo: PropTypes.bool,
   /** If given, the sidebar shows the pinIcon which calls this function when clicked */
   onPinClick: PropTypes.func,
   /** Boolean determining if sidebar is pinned or not */
@@ -206,6 +223,10 @@ Sidebar.propTypes = {
   onSignOut: PropTypes.func,
   /**  Boolean function determining is sidebar is currently expanded */
   isExpanded: PropTypes.bool,
+  /** Text describing the current web app */
+  homeTabText: PropTypes.string,
+  /** The function called when the back link is clicked */
+  onBackClick: PropTypes.func,
 };
 
 export default Sidebar;

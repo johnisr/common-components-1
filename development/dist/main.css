@@ -653,11 +653,39 @@ body {
     height: 15px;
     margin-bottom: 21px; }
   .commonSidebar .validere_icon {
-    width: 25px;
-    height: 21px;
-    margin-bottom: 15px; }
+    width: 22px;
+    height: 19px;
+    margin-right: 15px; }
   .commonSidebar__activeTab {
     color: #fff; }
+  .commonSidebar__backTab {
+    background-color: #0ca5a5;
+    color: #fff;
+    height: 35px;
+    width: 190px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin-left: -5px;
+    margin-top: -5px; }
+    .commonSidebar__backTab .icon {
+      font-size: 22px;
+      margin-right: 15px; }
+    .commonSidebar__backTab--collapse {
+      background-color: transparent;
+      height: 30px;
+      margin: 0;
+      padding: 0; }
+  .commonSidebar__homeTab {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer; }
   .commonSidebar__bottom {
     margin-top: auto;
     margin-bottom: 15px;
@@ -694,8 +722,6 @@ body {
       text-overflow: ellipsis;
       white-space: nowrap;
       width: 100%; }
-  .commonSidebar .ReactCollapse--collapse {
-    transition: height 100ms; }
   .commonSidebar .commonSidebar__visible {
     transition: opacity 0.1s;
     opacity: 1; }
@@ -730,4 +756,33 @@ body {
     margin-bottom: 0; }
   .commonSidebar__popoverContainer {
     z-index: 1070; }
+  .commonSidebar__collapseContainer {
+    overflow: hidden; }
+  .commonSidebar__collapsed {
+    transform: translateY(-100);
+    opacity: 0;
+    height: 0; }
+  .commonSidebar__expanded {
+    -webkit-animation: tabSlideDown 0.1s ease forwards;
+            animation: tabSlideDown 0.1s ease forwards; }
+
+@-webkit-keyframes tabSlideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-100%); }
+  to {
+    opacity: 1;
+    height: 100%;
+    transform: translateY(0); } }
+
+@keyframes tabSlideDown {
+  from {
+    opacity: 0;
+    height: 0;
+    transform: translateY(-100%); }
+  to {
+    opacity: 1;
+    height: 100%;
+    transform: translateY(0); } }
 
