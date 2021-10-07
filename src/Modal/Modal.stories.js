@@ -6,15 +6,19 @@ import Page from "../Page/Page";
 import { useArgs } from "@storybook/client-api";
 
 const Template = (_args) => {
-  const [state, upstateState] = useArgs();
-  const onClose = () => upstateState({ open: !state.open });
+  const [state, updateState] = useArgs();
+  const onClose = () => {
+    state.onClose?.();
+    updateState({ open: !state.open });
+  };
+
   return (
     <Page>
       <div>
         Use the `open` control or{" "}
         <span
           style={{ cursor: "pointer", textDecoration: "underline" }}
-          onClick={() => upstateState({ open: true })}
+          onClick={() => updateState({ open: true })}
         >
           click here
         </span>{" "}
@@ -28,6 +32,7 @@ const Template = (_args) => {
 export const Default = Template.bind({});
 Default.args = {
   open: true,
+  size: "medium",
   children: <div>Modal</div>,
 };
 

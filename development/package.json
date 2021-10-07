@@ -4,7 +4,8 @@
   "description": "This package will hold commonly used component by Validere Inc.",
   "main": "./dist/bundle.js",
   "files": [
-    "dist"
+    "dist",
+    "src/constants"
   ],
   "browserslist": [
     "defaults",

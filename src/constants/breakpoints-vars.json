@@ -1,0 +1,6 @@
+{
+  "mobileBreakpoint": "320px",
+  "tabletBreakpoint": "768px",
+  "desktopBreakpoint": "1024px",
+  "extraLargeBreakpoint": "1400px"
+}

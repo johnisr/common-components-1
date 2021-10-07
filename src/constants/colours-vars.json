@@ -1,0 +1,91 @@
+{
+  "validereColour": "#45c0c1",
+  "linkColour": "#2196f3",
+  "navLinkColour": "#223D54",
+  "navButtonColour": "#4CACAE",
+  "sidebarTextColour": "#fafafaa8",
+  "sidebarBackgroundColour": "#183e56",
+  "lightTextColour": "#bbb",
+  "statusCompletedColour": "#4caf50",
+  "statusPendingColour": "#ef6c00",
+  "statusErrorColour": "#e51c23",
+  "borderColour": "#ddd",
+  "menuHighlightColour": "#eee",
+  "menuItemColour": "#555",
+  "disabledFontColour": "#3b3b3b9c",
+  "buttonFocusColour": "#d4d4d4",
+  "tooltipColour": "#0c0c0c",
+  "alarmColour": "#ff9800",
+  "textColour": "#424242",
+  "disabledRowColour": "#f4f4f4",
+
+  "primary": {
+    "50": "#DFF4F5",
+    "100": "#AEE3E4",
+    "200": "#76D2D2",
+    "300": "#2DBFBE",
+    "400": "#21B1AE",
+    "500": "#1DA29D",
+    "600": "#1A948F",
+    "700": "#16847E",
+    "800": "#12736D",
+    "900": "#0A574E"
+  },
+  "background": {
+    "white": "#FFFFFF",
+    "default": "#F2F5F6",
+    "dark": "#DEE7E8",
+    "lines": "#C0CBCC"
+  },
+  "surface": {
+    "light": "#1B4B63",
+    "default": "#103748",
+    "dark": "#0C2836"
+  },
+  "status": {
+    "success": "#3AE894",
+    "successLight": "#E1FCEF",
+    "warning": "#FF8F27",
+    "warningLight": "#FFEEDF",
+    "error": "#D83B3E",
+    "errorLight": "#FFE4E5",
+    "default": "#3179E4",
+    "defaultLight": "#E0EEFB"
+  },
+  "text": {
+    "000": "#FFFFFF",
+    "100": "#D8E1E4",
+    "200": "#B8C1C5",
+    "300": "#A0ACB2",
+    "400": "#89989E",
+    "500": "#6D838D",
+    "600": "#4D6670",
+    "700": "#33515D",
+    "800": "#1B4254",
+    "900": "#0E2A36"
+  },
+  "charts": {
+    "000": "#5A3489",
+    "100": "#356CD6",
+    "200": "#2CA4E7",
+    "300": "#30D6EC",
+    "400": "#43DBB1",
+    "500": "#E9D525",
+    "600": "#F1B924",
+    "700": "#EA8723",
+    "800": "#E35154",
+    "900": "#E34079"
+  },
+  "chartsHover": {
+    "000": "#5E27E9",
+    "100": "#387CFC",
+    "200": "#2AB1FC",
+    "300": "#31E5FD",
+    "400": "#35E8B7",
+    "500": "#FDE931",
+    "600": "#FCC32B",
+    "700": "#FC9023",
+    "800": "#FB5256",
+    "900": "#FB4282"
+  }
+}

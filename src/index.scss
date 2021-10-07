@@ -1,0 +1,51 @@
+@import "constants/mixins/index.scss";
+
+.font-headline {
+  &-xl {
+    @include fontStyles(headline, xl);
+  }
+  &-lg {
+    @include fontStyles(headline, lg);
+  }
+  &-md {
+    @include fontStyles(headline, md);
+  }
+  &-sm {
+    @include fontStyles(headline, sm);
+  }
+}
+
+.font-body {
+  &-18 {
+    @include fontStyles(body, 1);
+
+    &-bold {
+      @include fontStyles(body, 1, true);
+    }
+  }
+  &-16 {
+    @include fontStyles(body, 2);
+
+    &-bold {
+      @include fontStyles(body, 2, true);
+    }
+  }
+  &-14 {
+    @include fontStyles(body, 3);
+
+    &-bold {
+      @include fontStyles(body, 3, true);
+    }
+  }
+  &-12 {
+    @include fontStyles(body, 4);
+
+    &-bold {
+      @include fontStyles(body, 4, true);
+    }
+  }
+}
+
+.font-button {
+  @include fontStyles(button);
+}

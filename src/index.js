@@ -1,3 +1,6 @@
+import "./index.scss";
+import { styles } from "./constants";
+
 import Modal from "./Modal/Modal";
 import CustomTable from "./Table/CustomTable";
 import Datatable from "./Table/Datatable";
@@ -25,6 +28,7 @@ export {
   Sidebar,
   useSidebar,
   Modal,
+  styles,
 };
 
 export default {
@@ -40,4 +44,5 @@ export default {
   Sidebar,
   useSidebar,
   Modal,
+  styles,
 };

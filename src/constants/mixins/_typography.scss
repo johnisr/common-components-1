@@ -1,0 +1,62 @@
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+*/
+@mixin fontStyles($font, $size: 18, $isBold: false) {
+  @if ($font == headline) {
+    font-weight: 600;
+
+    @if ($size == xl) {
+      font-size: 32px;
+      line-height: 44px;
+      letter-spacing: 0.005em;
+    }
+    @if ($size == lg) {
+      font-size: 26px;
+      line-height: 36px;
+      letter-spacing: 0.005em;
+    }
+    @if ($size == md) {
+      font-size: 22px;
+      line-height: 30px;
+      letter-spacing: 0.01em;
+    }
+    @if ($size == sm) {
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  @if ($font == body) {
+    letter-spacing: 0.01em;
+    @if ($isBold == true) {
+      font-weight: bold;
+    } @else {
+      font-weight: normal;
+    }
+    @if ($size == 18) {
+      font-size: 18px;
+      line-height: 26px;
+    }
+    @if ($size == 16) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    @if ($size == 14) {
+      font-size: 14px;
+      line-height: 22px;
+    }
+    @if ($size == 12) {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+
+  @if ($font == button) {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+}

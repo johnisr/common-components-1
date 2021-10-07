@@ -5,6 +5,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const globalStylesRegex = /\.(sass|scss|css)$/i;
+const localStylesRegex = /\.module\.(sass|scss|css)$/i;
 
 module.exports = {
   mode: "production",
@@ -17,10 +21,26 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.(sass|scss|css)$/i,
+        test: globalStylesRegex,
         use: [
-          "style-loader",
-          "css-loader",
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: "../",
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+              modules: {
+                auto: localStylesRegex,
+                localIdentName: "[hash:base64:6]",
+              },
+            },
+          },
           "postcss-loader",
           {
             loader: "sass-loader",
@@ -34,17 +54,6 @@ module.exports = {
           },
         ],
         sideEffects: true,
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "file-loader",
-          options: {
-            limit: 10000,
-            mimetype: "image/svg+xml",
-          },
-        },
       },
       {
         test: /\.gif/,
@@ -120,6 +129,7 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new CleanWebpackPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+    new MiniCssExtractPlugin(),
   ],
   devServer: {
     static: {

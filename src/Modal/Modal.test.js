@@ -17,7 +17,6 @@ describe("Modal", () => {
 
     const wrapper = mount(
       <div>
-        <div className="outside">Outside</div>
         <Modal
           open={open}
           onClose={onClose}
@@ -31,10 +30,8 @@ describe("Modal", () => {
       </div>
     );
 
-    expect(wrapper.find("div.commonModal").prop("className")).toContain(
-      className
-    );
-    expect(wrapper.find("div.commonModal").prop("style")).toEqual(style);
+    expect(wrapper.find("div.modal").prop("className")).toContain(className);
+    expect(wrapper.find("div.modal").prop("style")).toEqual(style);
 
     expect(wrapper.find(Modal.Header).text()).toEqual("Title");
 

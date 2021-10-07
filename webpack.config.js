@@ -1,6 +1,10 @@
 const path = require("path");
 const webpack = require("webpack");
 const jsonImporter = require("node-sass-json-importer");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const globalStylesRegex = /\.(sass|scss|css)$/i;
+const localStylesRegex = /\.module\.(sass|scss|css)$/i;
 
 module.exports = {
   mode: "development",
@@ -13,10 +17,26 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.(sass|scss|css)$/i,
+        test: globalStylesRegex,
         use: [
-          "style-loader",
-          "css-loader",
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              publicPath: "../",
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+              modules: {
+                auto: localStylesRegex,
+                localIdentName: "[name]__[local]",
+              },
+            },
+          },
           "postcss-loader",
           {
             loader: "sass-loader",
@@ -111,7 +131,10 @@ module.exports = {
       root: "ReactDOM",
     },
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin(),
+  ],
   devServer: {
     static: {
       directory: "./dist",

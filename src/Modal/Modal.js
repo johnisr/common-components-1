@@ -1,22 +1,22 @@
 import "@reach/dialog/styles.css";
 import React, { useContext, useRef } from "react";
 import * as PropTypes from "prop-types";
-import "./Modal.scss";
+import styles from "./Modal.module.scss";
 import { Dialog } from "@reach/dialog";
 import FontAwesome from "react-fontawesome";
 
 const getModalSize = (size) => {
   switch (size) {
     case "large":
-      return "commonModal--large";
+      return styles["modal--large"];
     case "small":
-      return "commonModal--small";
+      return styles["modal--small"];
     default:
       return "";
   }
 };
 
-const CommonModalContext = React.createContext();
+const ModalContext = React.createContext();
 
 const Modal = ({
   className = "",
@@ -34,40 +34,40 @@ const Modal = ({
   const modalSize = getModalSize(size);
 
   return (
-    <CommonModalContext.Provider value={{ onClose }}>
+    <ModalContext.Provider value={{ onClose }}>
       <Dialog
         isOpen={open}
         initialFocusRef={disableInitialFocus ? dialogRef : initialFocusRef}
         onDismiss={onClose}
-        className={`commonModal modalSlideDown ${modalSize} ${className}`}
+        className={`${styles.modal} ${modalSize} ${className}`}
         style={style}
         aria-label={airaLabel}
         ref={dialogRef}
       >
         {children}
       </Dialog>
-    </CommonModalContext.Provider>
+    </ModalContext.Provider>
   );
 };
 
 const Header = ({ children, style, className = "", ...props }) => {
-  const { onClose } = useContext(CommonModalContext);
+  const { onClose } = useContext(ModalContext);
   return (
-    <div
-      style={style}
-      className={`commonModal__header ${className}`}
-      {...props}
-    >
+    <div style={style} className={`${styles.header} ${className}`} {...props}>
       {children}
 
-      <FontAwesome className="closeButton" name="times" onClick={onClose} />
+      <FontAwesome
+        className={styles.closeButton}
+        name="times"
+        onClick={onClose}
+      />
     </div>
   );
 };
 
 const Body = ({ children, style, className = "", ...props }) => {
   return (
-    <div style={style} className={`commonModal__body ${className}`} {...props}>
+    <div style={style} className={`${styles.content} ${className}`} {...props}>
       {children}
     </div>
   );
@@ -75,11 +75,7 @@ const Body = ({ children, style, className = "", ...props }) => {
 
 const Footer = ({ children, style, className = "", ...props }) => {
   return (
-    <div
-      style={style}
-      className={`commonModal__footer ${className}`}
-      {...props}
-    >
+    <div style={style} className={`${styles.footer} ${className}`} {...props}>
       {children}
     </div>
   );
