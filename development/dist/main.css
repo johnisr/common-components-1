@@ -31,47 +31,31 @@
 
 .font-body-18 {
   letter-spacing: 0.01em;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 26px; }
+  font-weight: normal; }
   .font-body-18-bold {
     letter-spacing: 0.01em;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 26px; }
+    font-weight: bold; }
 
 .font-body-16 {
   letter-spacing: 0.01em;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px; }
+  font-weight: normal; }
   .font-body-16-bold {
     letter-spacing: 0.01em;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 24px; }
+    font-weight: bold; }
 
 .font-body-14 {
   letter-spacing: 0.01em;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px; }
+  font-weight: normal; }
   .font-body-14-bold {
     letter-spacing: 0.01em;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 22px; }
+    font-weight: bold; }
 
 .font-body-12 {
   letter-spacing: 0.01em;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 20px; }
+  font-weight: normal; }
   .font-body-12-bold {
     letter-spacing: 0.01em;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 20px; }
+    font-weight: bold; }
 
 .font-button {
   font-size: 16px;
