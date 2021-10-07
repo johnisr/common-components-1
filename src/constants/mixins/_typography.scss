@@ -2,7 +2,7 @@
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
  *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
 */
-@mixin fontStyles($font, $size: 14, $isBold: false) {
+@mixin fontStyles($font, $size: 18, $isBold: false) {
   @if ($font == headline) {
     font-weight: 600;
 

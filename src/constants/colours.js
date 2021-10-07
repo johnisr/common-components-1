@@ -33,6 +33,8 @@ module.exports = {
     "--colour-primary-800": colours.primary["800"],
     "--colour-primary-900": colours.primary["900"],
 
+    "--colour-white": "#FFFFFF",
+
     "--colour-text-0": colours.text["000"],
     "--colour-text-100": colours.text["100"],
     "--colour-text-200": colours.text["200"],
@@ -54,7 +56,7 @@ module.exports = {
     "--colour-default-light": colours.status.defaultLight,
 
     "--colour-background": colours.background.default,
-    "--colour-background-light": colours.background.light,
+    "--colour-background-light": colours.background.white,
     "--colour-background-dark": colours.background.dark,
     "--colour-background-lines": colours.background.lines,
 
