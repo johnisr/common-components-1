@@ -3,7 +3,7 @@
   \***********************************************************************************************************************************************************************************************************/
 /**
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
- *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
 */
 .font-headline-xl {
   font-weight: 600;
@@ -31,31 +31,47 @@
 
 .font-body-18 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px; }
   .font-body-18-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 26px; }
 
 .font-body-16 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px; }
   .font-body-16-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px; }
 
 .font-body-14 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px; }
   .font-body-14-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px; }
 
 .font-body-12 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px; }
   .font-body-12-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px; }
 
 .font-button {
   font-size: 16px;
@@ -778,7 +794,7 @@ body {
   \***************************************************************************************************************************************************************************************************************************/
 /**
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
- *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
 */
 .FormLabel-module__labelContainer {
   display: flex;
@@ -812,7 +828,7 @@ body {
   \***************************************************************************************************************************************************************************************************************************/
 /**
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
- *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
 */
 .FormError-module__formError {
   margin-top: 8px;
@@ -828,7 +844,7 @@ body {
   \**************************************************************************************************************************************************************************************************************************************/
 /**
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
- *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
 */
 .TextInput-module__wrapper {
   margin-bottom: 15px;
