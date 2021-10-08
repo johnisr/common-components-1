@@ -96,6 +96,7 @@ can be passed to set initial values or to have them reset to those values.
 ```js highlight-line="2"
 import useForm from "../utils/hooks/useForm";
 import FormInputWrapper from "./FormInputWrapper";
+import FormButton from "./FormButton";
 
 const SomeForm = () => {
   const formMethods = useForm();
@@ -113,6 +114,8 @@ const SomeForm = () => {
   return (
     <Form onSubmit={handleSubmit} {...formMethods}>
       <FormInputWrapper name="uniqueName" as={SomeInput} isDisabled={isDisabled} />
+
+      <FormButton onClick={handleSubmit} isSubmit />
     </Form>
   );
 };
