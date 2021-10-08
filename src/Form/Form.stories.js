@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import TextInput from "./FormInputs/TextInput";
 import { useArgs } from "@storybook/client-api";
+import Page from "../Page/Page";
+import Panel from "../Panel/Panel";
 import CommonForm from "./Form";
 import FormButton from "./FormButton";
 import FormLabel from "./FormLabel";
 import FormError from "./FormError";
 import ControlledSelectInput, { SelectInput } from "./FormInputs/SelectInput";
 import FormInputWrapper from "./FormInputs/FormInputWrapper";
-import { useForm } from "react-hook-form";
-import styles from "../constants/index";
+import useForm from "../utils/hooks/useForm";
 
 /* eslint-disable react/prop-types */
 
@@ -33,15 +34,29 @@ const Form = (props) => {
   );
 };
 
-const ExtraControls = (props) => {
+const ButtonContainer = (props) => {
   return (
     <div
       style={{
-        marginTop: "50px",
-        border: `1px solid ${styles.background.lines}`,
-        padding: "10px",
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
       }}
     >
+      <FormButton type="danger" isReset onClick={props.onReset}>
+        Reset
+      </FormButton>
+
+      <FormButton type="primary" isSubmit onClick={() => {}}>
+        Submit Button
+      </FormButton>
+    </div>
+  );
+};
+
+const ExtraControls = (props) => {
+  return (
+    <>
       <div className="font-headline-sm">Extra Controls / Results</div>
 
       <div style={{ textAlign: "right" }}>
@@ -59,12 +74,12 @@ const ExtraControls = (props) => {
       </div>
 
       {props.submittedArgs && <PrintJson data={props.submittedArgs} />}
-    </div>
+    </>
   );
 };
 
-const Template = (_args) => {
-  const [state, updateState] = useArgs(_args);
+const Template = (args) => {
+  const [state, updateState] = useArgs();
   const [submittedArgs, setSubmittedArgs] = useState(null);
   const [responseTime, setResponseTime] = useState(1000);
 
@@ -81,46 +96,27 @@ const Template = (_args) => {
     updateState({ isDisabled: false });
   };
 
-  const { children, ...props } = _args;
+  const { children, ...props } = args;
 
   return (
-    <Form onSubmit={onSubmit} defaultValues={state.defaultValues}>
-      <div
-        style={{
-          padding: "15px 10px",
-          border: `1px solid ${styles.background.lines}`,
-        }}
-      >
-        <div className="font-headline-md" style={{ marginBottom: "20px" }}>
-          Form
-        </div>
+    <Page title="Form">
+      <Form onSubmit={onSubmit} defaultValues={state.defaultValues}>
+        <Panel>
+          {children(props)}
 
-        {children(props)}
+          <ButtonContainer reset={props.reset} />
+        </Panel>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
-        >
-          <FormButton type="danger" isReset onClick={onReset}>
-            Reset
-          </FormButton>
-
-          <FormButton type="primary" isSubmit onClick={() => {}}>
-            Submit Button
-          </FormButton>
-        </div>
-      </div>
-
-      <ExtraControls
-        responseTime={responseTime}
-        setResponseTime={setResponseTime}
-        onReset={onReset}
-        submittedArgs={submittedArgs}
-      />
-    </Form>
+        <Panel>
+          <ExtraControls
+            responseTime={responseTime}
+            setResponseTime={setResponseTime}
+            onReset={onReset}
+            submittedArgs={submittedArgs}
+          />
+        </Panel>
+      </Form>
+    </Page>
   );
 };
 
@@ -223,7 +219,7 @@ MultipleInputForm.args = {
 MultipleInputForm.storyName = "Form with Multiple Inputs";
 
 export default {
-  title: "Form",
+  title: "Form/FormInputs",
   component: TextInput,
   subcomponents: {
     SelectInput,

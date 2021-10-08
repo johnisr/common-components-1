@@ -1,0 +1,119 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Form/Introduction" />
+
+# Introduction
+
+Forms are managed by [react-hook-form](https://react-hook-form.com/) and the form inputs are registered via the 
+[register api](https://react-hook-form.com/api/useform/register) (e.g. `TextBoxInput`) or the [Controller api](https://react-hook-form.com/api/usecontroller/controller) 
+(e.g. `SelectInput` via `FormInputWrapper`). Inputs are first validated onblur or when the form is submitted. They
+differentiate between disabled, error, and validated states as well as hover/focused/active pseudo classes. Validation
+is also done at an input level, showing error messages close to the input. 
+
+## Getting Started
+
+Inputs should have these properties to be able to display all the various states in the design system
+
+
+| Required Input Prop | Reason |
+| :--  | :-- |
+| name | The input's `id` property to link label and input together |
+| onChange/onBlur | Expose the value after events so parent can change state accordingly |
+| value | The value to display in the input |
+| placeholder | Input hint (if needed/has a place) |
+| inputRef | If validation fails, calls `focus()` on this element if it is the earliest error |
+| isDisabled / isError / isValidated | The states of an input (along with default, as well as hover/active/focus). The input should have styling to match each of the above states |
+| showIcon | The icon to match the design system. This should also be styled to match isDisabled / isError / isValidated |
+
+```js highlight-line="2"
+import classNames from "classnames/bind";
+import FontAwesome from "react-fontawesome";
+import styles from "SomeInput.module.scss";
+
+const cx = classNames.bind(styles);
+
+const SomeInput = (props) => (
+  <div>
+    <input
+      id={props.name}
+      className={cx("someInput", {
+        "someInput--validated": props.isValidated,
+        "someInput--error": props.isError,
+        "someInput--disabled": props.isDisabled,
+      })}
+      onChange={props.onChange}
+      onBlur={props.onBlur}
+      value={props.value}
+      placeholder={props.placeholder}
+      ref={props.inputRef}
+    />
+
+    {props.showIcon && props.isValidated && (
+      <FontAwesome
+        name={
+          props.isDisabled ? "disabled-icon" : props.isError ? "error-icon" : "valid-icon"
+        }
+        className={cx("icon", {
+          "icon--validated": props.isValidated,
+          "icon--error": props.isError,
+          "icon--disabled": props.isDisabled,
+        })}
+      />
+    )}
+  </div>
+);
+```
+A contrived example, but it should be enough to show to be able to display all the necessary states for the
+design system. `someInput:hover`, `someInput:focused`, and `someInput:active` should be addressed as well
+in the scss file.
+
+## Connecting the input via `FormInputWrapper`
+
+The basic design of the forms in the design guideline has a form label and an isRequired label at the top
+and the error message at the bottom. Using the `FormLabel` and `FormError` components can be done, but
+using the `FormInputWrapper` should be simpler, as long as the following props is added:
+
+| Required Input Prop | Reason |
+| :--  | :-- |
+| as | The form input component (that uses the above props) being rendered |
+| Label | The text associated with the input |
+| isRequired | Enhances validation, adds isRequired label to the right |
+| validate | custom validation object if needed |
+
+```js highlight-line="2"
+const ControlledSomeInput = (props) => {
+  return <FormInputWrapper as={SomeInput} {...props}  />;
+};
+```
+
+## Using `useForm()` to manage the form
+
+The useForm in `utils` folder has some defaults to use (e.g. validate onTouch/submit). It can be
+extended just like the [useForm api](https://react-hook-form.com/api/useform) and the formMethods
+can be destructured to get any of the methods needed to manage the form e.g. `defaultValues` object
+can be passed to set initial values or to have them reset to those values.
+
+```js highlight-line="2"
+import useForm from "../utils/hooks/useForm";
+import FormInputWrapper from "./FormInputWrapper";
+
+const SomeForm = () => {
+  const formMethods = useForm();
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const handleSubmit = async (formState) => {
+    setIsDisabled(true);
+    try {
+      await SomeService(formState);
+    } finally {
+      setIsDisabled(false);
+    }
+  }
+
+  return (
+    <Form onSubmit={handleSubmit} {...formMethods}>
+      <FormInputWrapper name="uniqueName" as={SomeInput} isDisabled={isDisabled} />
+    </Form>
+  );
+};
+```
