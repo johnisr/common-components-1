@@ -11,7 +11,7 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const SIDEBAR_WIDTH = "280px";
+const SIDEBAR_WIDTH = "220px";
 const MINI_SIDEBAR_WIDTH = "60px";
 
 const Sidebar = ({
