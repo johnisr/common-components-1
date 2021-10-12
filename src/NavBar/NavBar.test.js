@@ -56,12 +56,12 @@ describe("Page", () => {
     wrapper.find(".profileIcon").simulate("click");
 
     // clicking profile button opens a popover where the disabled menu item shows the version
-    expect(wrapper.find(".profilePopover__menuItem--disabled").text()).toEqual(
+    expect(wrapper.find(".menuItem--disabled").text()).toEqual(
       expect.stringContaining(version)
     );
 
     // clicking the signout option (first option) will call the onSignOut function
-    wrapper.find(".profilePopover__menuItem").at(0).simulate("click");
+    wrapper.find(".menuItem").at(0).simulate("click");
     expect(onSignOut).toHaveBeenCalled();
   });
 
