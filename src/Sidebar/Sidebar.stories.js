@@ -98,7 +98,7 @@ Default.args = {
       ],
     },
     {
-      id: "field_labs",
+      id: "field_lab",
       title: "Instruments",
       icon: "cubes",
       nested: [
@@ -138,7 +138,9 @@ Default.args = {
   onPinClick: () => alert("onPinClick"),
   isExpanded: false,
   homeTabText: "Operations",
+  version: "v.1.0.7",
   onBackClick: () => alert("onBackClick"),
+  onProfileClick: () => alert("onProfile clicked"),
 };
 
 export default {

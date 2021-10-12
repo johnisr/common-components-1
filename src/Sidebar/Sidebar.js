@@ -1,41 +1,18 @@
 import React, { useState, useEffect } from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
-import "./Sidebar.scss";
-import SidebarListTab, { SidebarTab } from "./SidebarListTab";
+import styles from "./Sidebar.module.scss";
+import SidebarTabs, { SidebarTabText } from "./SidebarTabs";
 import { Popover } from "react-tiny-popover";
 import { getFirstChar } from "../NavBar/NavBarHelper";
 import ProfilePopover from "../NavBar/ProfilePopover";
 import config from "../../config";
+import classNames from "classnames/bind";
 
-const SIDEBAR_WIDTH = "220px";
+const cx = classNames.bind(styles);
+
+const SIDEBAR_WIDTH = "280px";
 const MINI_SIDEBAR_WIDTH = "60px";
-
-function getGreeting() {
-  const date = new Date();
-  const hour = date.getHours();
-
-  if (hour > 16) {
-    return "Good evening!";
-  }
-  if (hour > 11) {
-    return "Good afternoon!";
-  }
-  return "Good morning!";
-}
-
-const SidebarGreeting = (props) => (
-  <div
-    className={`sidebarGreeting ${
-      props.isSidebarExpanded
-        ? "commonSidebar__visible"
-        : "commonSidebar__invisible"
-    }`}
-  >
-    <div>{getGreeting()}</div>
-    {props?.name && <div className="name">{props.name}</div>}
-  </div>
-);
 
 const Sidebar = ({
   className = "",
@@ -50,6 +27,7 @@ const Sidebar = ({
   isExpanded = false,
   homeTabText,
   onBackClick,
+  onProfileClick,
 }) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -71,127 +49,109 @@ const Sidebar = ({
 
   return (
     <div
-      className={`commonSidebar ${className}`}
+      className={`${cx("sidebar")} ${className || ""}`}
       style={{
         ...style,
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {onBackClick &&
-        (isSidebarExpanded ? (
-          <div
-            className={`commonSidebar__backTab ${"commonSidebar__visible"}`}
-            onClick={() => onBackClick?.()}
-          >
-            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
+      {onBackClick && (
+        <div
+          className={cx("tabContainer", "tabContainer--back", {
+            "tabContainer--back--collapse": !isSidebarExpanded,
+          })}
+          onClick={() => onBackClick?.()}
+        >
+          <FontAwesome className={cx("backIcon")} name="arrow-circle-o-left" />
+
+          <SidebarTabText isVisible={isSidebarExpanded}>
             Back to hubs
-          </div>
-        ) : (
-          <div className="commonSidebar__backTab commonSidebar__backTab--collapse">
-            <FontAwesome className="icon fa-fw" name="arrow-circle-o-left" />
-          </div>
-        ))}
+          </SidebarTabText>
+        </div>
+      )}
 
       {homeTabText && (
-        <div className="commonSidebar__homeTab">
+        <div className={cx("tabContainer", "tabContainer--home")}>
           <img
-            className="validere_icon"
+            className={cx("validereIcon")}
             src={config.VALIDERE_ICON_URL}
             alt="Validere"
           />
 
-          <span
-            className={
-              isSidebarExpanded
-                ? "commonSidebar__visible"
-                : "commonSidebar__invisible"
-            }
-          >
+          <SidebarTabText isVisible={isSidebarExpanded}>
             {homeTabText}
-          </span>
+          </SidebarTabText>
         </div>
       )}
 
       {tabs.map((tab) => {
-        const key = `${tab.id}-${tab.title}`;
-
-        if (Array.isArray(tab.nested)) {
-          return (
-            <SidebarListTab
-              activeTab={activeTab}
-              openListTab={openListTab}
-              setOpenListTab={setOpenListTab}
-              isSidebarExpanded={isSidebarExpanded}
-              key={key}
-              details={tab}
-            />
-          );
-        } else {
-          return (
-            <SidebarTab
-              activeTab={activeTab}
-              openListTab={openListTab}
-              setOpenListTab={setOpenListTab}
-              isSidebarExpanded={isSidebarExpanded}
-              key={key}
-              details={tab}
-            />
-          );
-        }
+        return (
+          <SidebarTabs
+            activeTab={activeTab}
+            openListTab={openListTab}
+            setOpenListTab={setOpenListTab}
+            isSidebarExpanded={isSidebarExpanded}
+            key={tab.id}
+            details={tab}
+          />
+        );
       })}
 
-      <div className="commonSidebar__bottom">
+      <div className={cx("footer")}>
         {onPinClick && (
-          <div className="pinContainer" onClick={onPinClick}>
-            <span
-              className={
-                isSidebarExpanded
-                  ? "commonSidebar__visible"
-                  : "commonSidebar__invisible"
-              }
-            >
+          <div className={cx("pinContainer")} onClick={onPinClick}>
+            <SidebarTabText isVisible={isSidebarExpanded}>
               Lock Sidebar
-            </span>
-            <FontAwesome
-              className={"pinIcon"}
-              name={isPinned ? "toggle-on" : "toggle-off"}
-            />
+            </SidebarTabText>
+            <FontAwesome name={isPinned ? "toggle-on" : "toggle-off"} />
           </div>
         )}
 
-        {name && onSignOut && (
+        <div key="profileButton" className={cx("profileContainer")}>
+          <button className={cx("profileIcon")}>{getFirstChar(name)}</button>
+
+          <div
+            className={cx("greeting", {
+              visible: isSidebarExpanded,
+              invisible: !isSidebarExpanded,
+            })}
+          >
+            {name && <div className={cx("name")}>{name}</div>}
+
+            {onProfileClick && (
+              <div className={cx("profileLabel")} onClick={onProfileClick}>
+                View Profile
+              </div>
+            )}
+          </div>
+
           <Popover
             isOpen={isPopoverOpen}
             positions={["top"]}
-            align="start"
+            align="end"
             padding={10}
             reposition={false}
             onClickOutside={() => setIsPopoverOpen(false)}
-            containerClassName="commonSidebar__popoverContainer"
-            content={<ProfilePopover onSignOut={onSignOut} version={version} />}
+            containerClassName={cx("popoverContainer")}
+            content={
+              <ProfilePopover
+                onSignOut={onSignOut}
+                onProfileClick={onProfileClick}
+                version={version}
+              />
+            }
           >
             <div
-              key="profileButton"
-              className="commonSidebar__bottom__profile"
+              className={cx("settingsIcon")}
               onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
             >
-              <button className="profileIcon">{getFirstChar(name)}</button>
-
-              <SidebarGreeting
-                isSidebarExpanded={isSidebarExpanded}
-                name={name}
-              />
+              <FontAwesome name="cog" />
             </div>
           </Popover>
-        )}
+        </div>
       </div>
     </div>
   );
-};
-
-SidebarGreeting.propTypes = {
-  isSidebarExpanded: PropTypes.bool,
-  name: PropTypes.string,
 };
 
 Sidebar.propTypes = {
@@ -227,6 +187,8 @@ Sidebar.propTypes = {
   homeTabText: PropTypes.string,
   /** The function called when the back link is clicked */
   onBackClick: PropTypes.func,
+  /** The function called when View profile is clicked */
+  onProfileClick: PropTypes.func,
 };
 
 export default Sidebar;

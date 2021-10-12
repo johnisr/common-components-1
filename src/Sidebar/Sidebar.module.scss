@@ -1,0 +1,219 @@
+@import "../constants/index.js";
+@import "../constants//mixins/index.scss";
+
+// original design had 18px text, 12px margin, 10px tab padding
+$textFontSize: 14;
+$marginSize: 9px;
+$tabContainerPadding: 8px 20px 8px 10px;
+
+.sidebar {
+  background: var(--colour-surface-dark);
+  color: var(--colour-text-100);
+  overflow: hidden;
+  padding: 32px 8px 24px;
+  transition: all 0.1s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: var(--zindex-fixed);
+
+  > * + * {
+    margin-top: $marginSize;
+  }
+}
+
+.tabContainer {
+  border-radius: 6px;
+  cursor: pointer;
+  padding: $tabContainerPadding;
+  white-space: nowrap;
+  @include fontStyles(body, $textFontSize);
+
+  &--active {
+    background-color: var(--colour-surface-light);
+    color: var(--colour-white);
+  }
+
+  &--back {
+    background-color: var(--colour-primary-700);
+    color: var(--colour-white);
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+
+    &--collapse {
+      background-color: transparent;
+    }
+  }
+
+  &--home {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--colour-white);
+    cursor: default;
+  }
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.tabIcon {
+  font-size: 19px;
+  margin-right: 12px;
+  color: var(--colour-white);
+}
+
+.tabText {
+  flex-grow: 2;
+  display: flex;
+}
+
+.nestedTabContainer {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-inline-start: 44px;
+
+  > * + * {
+    margin-top: $marginSize;
+  }
+}
+
+.activeTab {
+  color: var(--colour-white);
+  font-weight: 700;
+}
+
+.validereIcon {
+  width: 22px;
+  height: 19px;
+  margin-right: 15px;
+}
+
+.backIcon {
+  font-size: 22px;
+  width: 24px;
+  margin-left: 2px;
+  margin-right: 12px;
+}
+
+.collapseContainer {
+  &--collapse {
+    overflow: hidden;
+    margin-top: 0px;
+  }
+}
+
+.collapsed {
+  height: 0;
+  opacity: 0;
+  transform: translateY(-100);
+  transition: transform 0.15s, opacity 0.1s;
+}
+
+.collapseIcon {
+  margin-left: auto;
+}
+
+.expanded {
+  height: 100%;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.15s, opacity 0.1s;
+}
+
+.backTab--collapse {
+  background-color: transparent;
+  height: 30px;
+}
+
+.visible {
+  transition: opacity 0.1s;
+  opacity: 1;
+}
+
+.invisible {
+  transition: opacity 0.1s;
+  opacity: 0;
+}
+
+.footer {
+  margin: auto 2px 0;
+  width: 256px;
+}
+
+.pinContainer {
+  display: flex;
+  justify-content: space-between;
+  @include fontStyles(body, $textFontSize);
+}
+
+.pinIcon {
+  cursor: pointer;
+  font-size: 19px;
+  text-align: right;
+  margin-left: auto;
+}
+
+.popoverContainer {
+  z-index: $zIndexPopover;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  margin-top: $marginSize;
+}
+
+.profileIcon {
+  font-size: 24px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  color: var(--colour-white);
+  background-color: var(--colour-primary-500);
+  margin-right: 12px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.greeting {
+  align-self: stretch;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: var(--colour-primary-300);
+  @include fontStyles(body, $textFontSize);
+}
+
+.profileLabel {
+  margin-top: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: var(--colour-white);
+  cursor: pointer;
+  @include fontStyles(body, $textFontSize);
+}
+
+.settingsIcon {
+  cursor: pointer;
+  font-size: 26px;
+  text-align: right;
+  margin-left: auto;
+}
