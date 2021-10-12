@@ -32,7 +32,10 @@
     "react-tiny-popover": "^6.0.10"
   },
   "dependencies": {
-    "@reach/dialog": "^0.16.0"
+    "@reach/dialog": "^0.16.0",
+    "classnames": "^2.3.1",
+    "react-hook-form": "^7.16.2",
+    "react-select": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

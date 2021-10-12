@@ -3,7 +3,7 @@
   \***********************************************************************************************************************************************************************************************************/
 /**
  * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
- *        @include fontStyles(body, 2, true); // adds body-2-bold stlye to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
 */
 .font-headline-xl {
   font-weight: 600;
@@ -31,31 +31,47 @@
 
 .font-body-18 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px; }
   .font-body-18-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 26px; }
 
 .font-body-16 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px; }
   .font-body-16-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px; }
 
 .font-body-14 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px; }
   .font-body-14-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px; }
 
 .font-body-12 {
   letter-spacing: 0.01em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px; }
   .font-body-12-bold {
     letter-spacing: 0.01em;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px; }
 
 .font-button {
   font-size: 16px;
@@ -752,4 +768,133 @@ body {
     opacity: 1;
     transform: translateY(0);
     transition: transform 0.15s, opacity 0.1s; }
+
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/SelectInput.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+.SelectInput-module__wrapper {
+  margin-bottom: 15px; }
+
+.SelectInput-module__icon {
+  font-size: 24px;
+  color: #2DBFBE; }
+  .SelectInput-module__icon--error {
+    color: #D83B3E; }
+  .SelectInput-module__icon--disabled {
+    color: #C0CBCC; }
+
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FormInputWrapper.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.FormInputWrapper-module__wrapper {
+  margin-bottom: 15px; }
+
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormLabel.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.FormLabel-module__labelContainer {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 8px; }
+
+.FormLabel-module__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #1B4254;
+  margin: 0;
+  margin-right: 5px;
+  letter-spacing: 0.01em;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 22px; }
+  .FormLabel-module__label--required {
+    margin-left: auto;
+    vertical-align: baseline;
+    color: #4D6670;
+    letter-spacing: 0.01em;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px; }
+  .FormLabel-module__label--disabled {
+    color: #89989E; }
+
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormError.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.FormError-module__formError {
+  margin-top: 8px;
+  min-height: 22px;
+  color: #D83B3E;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px; }
+
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TextInput.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.TextInput-module__wrapper {
+  margin-bottom: 15px;
+  min-width: 120px; }
+
+.TextInput-module__input {
+  width: 100%;
+  border: 1px solid #DEE7E8;
+  border-radius: 6px;
+  padding: 12px 16px;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  caret-color: #1DA29D; }
+  .TextInput-module__input:hover {
+    border: 1px solid #76D2D2;
+    outline: none; }
+  .TextInput-module__input:focus {
+    border: 1px solid #16847E;
+    outline: none; }
+  .TextInput-module__input:active {
+    border: 1px solid #2DBFBE;
+    outline: none; }
+  .TextInput-module__input--error {
+    border: 1px solid #D83B3E;
+    caret-color: #D83B3E; }
+    .TextInput-module__input--error:focus, .TextInput-module__input--error:hover {
+      border: 1px solid #D83B3E; }
+  .TextInput-module__input--disabled {
+    color: #89989E;
+    background-color: #F2F5F6;
+    border: 1px solid #DEE7E8; }
+    .TextInput-module__input--disabled:focus, .TextInput-module__input--disabled:hover {
+      border: 1px solid #DEE7E8; }
+  .TextInput-module__input--truncated {
+    padding-right: 32px; }
+
+.TextInput-module__inputContainer {
+  position: relative; }
+
+.TextInput-module__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  font-size: 24px;
+  color: #2DBFBE; }
+  .TextInput-module__icon--error {
+    color: #D83B3E; }
+  .TextInput-module__icon--disabled {
+    color: #C0CBCC; }
 

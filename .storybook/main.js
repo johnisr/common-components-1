@@ -4,7 +4,7 @@ const jsonImporter = require("node-sass-json-importer");
 const localStylesRegex = /\.module\.(sass|scss|css)$/i;
 
 module.exports = {
-  stories: ["./*.stories.@(js|mdx)", "../src/**/*.stories.@(js|mdx)"],
+  stories: ["./*.stories.@(mdx|js)", "../src/**/*.stories.@(mdx)", "../src/**/*.stories.@(js)"],
   addons: ["@storybook/addon-docs", '@storybook/addon-essentials', 
     {
       name: '@storybook/addon-postcss',

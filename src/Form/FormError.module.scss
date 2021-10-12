@@ -1,0 +1,9 @@
+@import "../constants/mixins/index.scss";
+
+.formError {
+  margin-top: 8px;
+  min-height: 22px;
+
+  color: var(--colour-error);
+  @include fontStyles(body, 14);
+}
