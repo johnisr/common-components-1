@@ -92,7 +92,7 @@ const Sidebar = ({
             setOpenListTab={setOpenListTab}
             isSidebarExpanded={isSidebarExpanded}
             key={tab.id}
-            details={tab}
+            tabDetails={tab}
           />
         );
       })}

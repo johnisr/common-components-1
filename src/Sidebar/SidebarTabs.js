@@ -31,36 +31,36 @@ export const SidebarTabText = ({ isVisible, children }) => (
   </span>
 );
 
-export const SidebarTab = (props) => {
-  const {
-    details,
-    activeTab,
-    isSidebarExpanded,
-    onDropdownClicked,
-    isNestedTabOpen,
-    isTabContainerActive,
-  } = props;
-
+export const SidebarTab = ({
+  tabDetails,
+  activeTab,
+  isSidebarExpanded,
+  onDropdownClicked,
+  isNestedTabOpen,
+  isTabContainerActive,
+}) => {
   return (
     <>
       <div
         className={cx("tabContainer", {
           "tabContainer--active": isTabContainerActive,
         })}
-        onClick={details.nested ? onDropdownClicked : () => details.link?.()}
+        onClick={
+          tabDetails.nested ? onDropdownClicked : () => tabDetails.link?.()
+        }
       >
         <div className={cx("tab")}>
           <div className={cx("tabText")}>
             <FontAwesome
               className={cx("tabIcon", "fa-fw")}
-              name={details.icon}
+              name={tabDetails.icon}
             />
 
             <SidebarTabText isVisible={isSidebarExpanded}>
-              {details.title}
+              {tabDetails.title}
             </SidebarTabText>
 
-            {details.nested && (
+            {tabDetails.nested && (
               <div className={cx("collapseIcon")} onClick={onDropdownClicked}>
                 <FontAwesome
                   className="fa-fw"
@@ -72,10 +72,10 @@ export const SidebarTab = (props) => {
         </div>
       </div>
 
-      {details.nested && (
+      {tabDetails.nested && (
         <Collapse isOpen={isNestedTabOpen && isSidebarExpanded}>
           <ul className={cx("nestedTabContainer")}>
-            {details.nested.map((detail, index) => {
+            {tabDetails.nested.map((detail, index) => {
               return (
                 <li
                   key={index}
@@ -98,29 +98,34 @@ export const SidebarTab = (props) => {
 };
 
 const SidebarListTab = (props) => {
-  const { details, activeTab, openListTab, setOpenListTab, isSidebarExpanded } =
-    props;
+  const {
+    tabDetails,
+    activeTab,
+    openListTab,
+    setOpenListTab,
+    isSidebarExpanded,
+  } = props;
 
   const isNestedTabOpen =
-    openListTab === details.id ||
-    !!details.nested?.find((detail) => detail.id === openListTab);
+    openListTab === tabDetails.id ||
+    !!tabDetails.nested?.find((detail) => detail.id === openListTab);
 
   const isTabContainerActive =
-    activeTab === details.id ||
-    !!details.nested?.find((tab) => tab.id === activeTab);
+    activeTab === tabDetails.id ||
+    !!tabDetails.nested?.find((tab) => tab.id === activeTab);
 
   const onDropdownClicked = () => {
     // Collapse the dropdown when the user click on the dropdown twice
-    if (openListTab === details.id) {
+    if (openListTab === tabDetails.id) {
       setOpenListTab(null);
     } else {
-      setOpenListTab(details.id);
+      setOpenListTab(tabDetails.id);
     }
   };
 
   return (
     <SidebarTab
-      details={details}
+      tabDetails={tabDetails}
       activeTab={activeTab}
       isSidebarExpanded={isSidebarExpanded}
       onDropdownClicked={onDropdownClicked}
@@ -144,7 +149,7 @@ SidebarTabText.propTypes = {
 };
 
 SidebarTab.propTypes = {
-  details: PropTypes.object.isRequired,
+  tabDetails: PropTypes.object.isRequired,
   activeTab: PropTypes.string,
   isSidebarExpanded: PropTypes.bool,
   onDropdownClicked: PropTypes.func,
@@ -153,7 +158,7 @@ SidebarTab.propTypes = {
 };
 
 SidebarListTab.propTypes = {
-  details: PropTypes.object,
+  tabDetails: PropTypes.object,
   activeTab: PropTypes.string,
   openListTab: PropTypes.string,
   setOpenListTab: PropTypes.func,

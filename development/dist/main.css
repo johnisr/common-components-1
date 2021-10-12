@@ -746,8 +746,7 @@ body {
   opacity: 0; }
 
 .Sidebar-module__footer {
-  margin: auto 2px 0;
-  width: 256px; }
+  margin: auto 2px 0; }
 
 .Sidebar-module__pinContainer {
   display: flex;
@@ -772,14 +771,14 @@ body {
   margin-top: 9px; }
 
 .Sidebar-module__profileIcon {
-  font-size: 24px;
-  height: 40px;
-  width: 40px;
+  font-size: 18px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: none;
   color: #FFFFFF;
   background-color: #1DA29D;
-  margin-right: 12px;
+  margin: 0 12px 0 7px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
