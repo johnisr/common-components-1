@@ -22,12 +22,12 @@ const TextInput = ({
 }) => {
   const {
     register,
-    formState: { errors, isSubmitted, isDirty },
+    formState: { errors, isSubmitted, touchedFields },
   } = useFormContext();
 
   const errorMessage = errors[name]?.message;
 
-  const isValidated = isDirty || isSubmitted;
+  const isValidated = !!touchedFields[name] || isSubmitted;
 
   return (
     <div className={`${styles.wrapper} ${className}`} style={style}>
