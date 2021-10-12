@@ -41,8 +41,7 @@ const TextInput = ({
       <div className={styles.inputContainer}>
         <input
           id={name}
-          className={cx({
-            input: true,
+          className={cx("input", {
             "input--error": errorMessage,
             "input--disabled": isDisabled,
             "input--truncated": showIcon,
