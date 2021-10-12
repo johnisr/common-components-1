@@ -1,7 +1,8 @@
 node_modules/
 coverage/
 .DS_Store
-
+dist
+development/dist
 .vscode
 .idea
 
