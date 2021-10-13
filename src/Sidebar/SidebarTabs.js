@@ -97,7 +97,7 @@ export const SidebarTab = ({
   );
 };
 
-const SidebarListTab = (props) => {
+const SidebarTabs = (props) => {
   const {
     tabDetails,
     activeTab,
@@ -157,7 +157,7 @@ SidebarTab.propTypes = {
   isTabContainerActive: PropTypes.bool,
 };
 
-SidebarListTab.propTypes = {
+SidebarTabs.propTypes = {
   tabDetails: PropTypes.object,
   activeTab: PropTypes.string,
   openListTab: PropTypes.string,
@@ -165,4 +165,4 @@ SidebarListTab.propTypes = {
   isSidebarExpanded: PropTypes.bool,
 };
 
-export default SidebarListTab;
+export default SidebarTabs;

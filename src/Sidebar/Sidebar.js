@@ -84,18 +84,26 @@ const Sidebar = ({
         </div>
       )}
 
-      {tabs.map((tab) => {
-        return (
-          <SidebarTabs
-            activeTab={activeTab}
-            openListTab={openListTab}
-            setOpenListTab={setOpenListTab}
-            isSidebarExpanded={isSidebarExpanded}
-            key={tab.id}
-            tabDetails={tab}
-          />
-        );
-      })}
+      <div
+        className={cx("tabsWrapper", {
+          "tabsWrapper--scrollable": isExpanded,
+        })}
+      >
+        <div className={cx("tabsContent")}>
+          {tabs.map((tab) => {
+            return (
+              <SidebarTabs
+                activeTab={activeTab}
+                openListTab={openListTab}
+                setOpenListTab={setOpenListTab}
+                isSidebarExpanded={isSidebarExpanded}
+                key={tab.id}
+                tabDetails={tab}
+              />
+            );
+          })}
+        </div>
+      </div>
 
       <div className={cx("footer")}>
         {onPinClick && (
@@ -103,7 +111,11 @@ const Sidebar = ({
             <SidebarTabText isVisible={isSidebarExpanded}>
               Lock Sidebar
             </SidebarTabText>
-            <FontAwesome name={isPinned ? "toggle-on" : "toggle-off"} />
+
+            <FontAwesome
+              className={cx("pinIcon")}
+              name={isPinned ? "toggle-on" : "toggle-off"}
+            />
           </div>
         )}
 

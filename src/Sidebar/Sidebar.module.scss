@@ -22,11 +22,28 @@ $tabContainerPadding: 8px 20px 8px 10px;
   }
 }
 
+.tabsWrapper {
+  margin: $tabMarginSize 0;
+
+  &--scrollable {
+    overflow-y: auto;
+  }
+}
+
+.tabsContent {
+  overflow-x: hidden;
+  > * + * {
+    margin-top: $tabMarginSize;
+  }
+}
+
 .tabContainer {
   border-radius: 6px;
   cursor: pointer;
   padding: $tabContainerPadding;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @include fontStyles(body, $textFontSize);
 
   &--active {
@@ -146,6 +163,8 @@ $tabContainerPadding: 8px 20px 8px 10px;
 .pinContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
   @include fontStyles(body, $textFontSize);
 }
 
