@@ -652,9 +652,20 @@ body {
     margin-top: 9px; }
 
 .Sidebar-module__tabsWrapper {
-  margin: 9px 0; }
+  margin: 9px 0;
+  overflow-y: auto;
+  /* width */
+  /* Track */ }
+  .Sidebar-module__tabsWrapper::-webkit-scrollbar {
+    width: 5px;
+    height: 5px; }
+  .Sidebar-module__tabsWrapper::-webkit-scrollbar-track {
+    background: transparent; }
   .Sidebar-module__tabsWrapper--scrollable {
-    overflow-y: auto; }
+    /* Handle */ }
+    .Sidebar-module__tabsWrapper--scrollable::-webkit-scrollbar-thumb {
+      background: #DFF4F5;
+      border-radius: 2px; }
 
 .Sidebar-module__tabsContent {
   overflow-x: hidden; }

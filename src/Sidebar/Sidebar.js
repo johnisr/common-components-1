@@ -154,7 +154,10 @@ const Sidebar = ({
             }
           >
             <div
-              className={cx("settingsIcon")}
+              className={cx("settingsIcon", {
+                visible: isSidebarExpanded,
+                invisible: !isSidebarExpanded,
+              })}
               onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
             >
               <FontAwesome name="cog" />
