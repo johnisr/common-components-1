@@ -2,7 +2,6 @@ import path from "path";
 import { Configuration, HotModuleReplacementPlugin, optimize } from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import CaseSensitivePathsWebpackPlugin from "case-sensitive-paths-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
@@ -136,7 +135,6 @@ const config: Configuration = {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-    new CaseSensitivePathsWebpackPlugin(),
     new CleanWebpackPlugin(),
     new optimize.AggressiveMergingPlugin(), //Merge chunks
     new MiniCssExtractPlugin(),
