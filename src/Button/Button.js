@@ -25,7 +25,9 @@ const Button = ({
 
   const sizeClassName = getSizeClassName(size);
 
-  const buttonIcon = icon ? <FontAwesome name={icon} className={`${iconClassName}`} /> : null;
+  const buttonIcon = icon ? (
+    <FontAwesome name={icon} className={`${iconClassName}`} />
+  ) : null;
 
   return (
     <button
