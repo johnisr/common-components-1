@@ -1,40 +1,11 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
+import { getVariantClassName, getSizeClassName } from "./ButtonHelper";
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
-
-const getVariantClassName = (type) => {
-  switch (type) {
-    case "primary":
-      return "button--primary";
-    case "error":
-      return "button--error";
-    default:
-      return "button--outline";
-  }
-};
-
-const getSizeClassName = (size) => {
-  switch (size) {
-    case "large":
-      return "button--large";
-    case "medium":
-      return "button--medium";
-    default:
-      return "button--small";
-  }
-};
-
-const getIcon = (icon, iconClassName) => {
-  if (icon) {
-    return <FontAwesome name={icon} className={`${iconClassName}`} />;
-  }
-
-  return null;
-};
 
 const Button = ({
   className = "",
@@ -54,7 +25,7 @@ const Button = ({
 
   const sizeClassName = getSizeClassName(size);
 
-  const buttonIcon = getIcon(icon, iconClassName);
+  const buttonIcon = icon ? <FontAwesome name={icon} className={`${iconClassName}`} /> : null;
 
   return (
     <button
