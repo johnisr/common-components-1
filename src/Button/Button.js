@@ -1,7 +1,6 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
-// import "./Button.css";
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
 
