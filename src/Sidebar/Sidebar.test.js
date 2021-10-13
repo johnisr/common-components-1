@@ -61,8 +61,8 @@ describe("Sidebar", () => {
     );
 
     // uses style and className props
-    expect(wrapper.find(".commonSidebar").hasClass(className)).toEqual(true);
-    expect(wrapper.find(".commonSidebar").prop("style")).toEqual(
+    expect(wrapper.find(".sidebar").hasClass(className)).toEqual(true);
+    expect(wrapper.find(".sidebar").prop("style")).toEqual(
       expect.objectContaining(style)
     );
 
@@ -70,9 +70,7 @@ describe("Sidebar", () => {
     expect(wrapper.find(".profileIcon").text()).toEqual(getFirstChar(name));
 
     // active tab is Manage workflows
-    expect(wrapper.find(".commonSidebar__activeTab").text()).toEqual(
-      "Manage Workflows"
-    );
+    expect(wrapper.find(".activeTab").text()).toEqual("Manage Workflows");
 
     // all nested links show up
     expect(
@@ -81,19 +79,17 @@ describe("Sidebar", () => {
 
     // all non-nested tabs show up
     expect(
-      wrapper
-        .find(".commonSidebar__tabText")
-        .map((reactwrapper) => reactwrapper.text())
+      wrapper.find(".tabText").map((reactwrapper) => reactwrapper.text())
     ).toEqual(["Workflow", "Samples"]);
 
-    wrapper.find(".profileIcon").simulate("click");
-    // clicking profile button opens a popover where the disabled menu item shows the version
-    expect(wrapper.find(".profilePopover__menuItem--disabled").text()).toEqual(
+    wrapper.find(".settingsIcon").simulate("click");
+    // clicking settings button opens a popover where the disabled menu item shows the version
+    expect(wrapper.find(".menuItem--disabled").text()).toEqual(
       expect.stringContaining(version)
     );
 
     // clicking the signout option (first option) will call the onSignOut function
-    wrapper.find(".profilePopover__menuItem").at(0).simulate("click");
+    wrapper.find(".menuItem").at(0).simulate("click");
     expect(onSignOut).toHaveBeenCalled();
 
     // clicking the pin calls onPinClick
@@ -110,7 +106,7 @@ describe("Sidebar", () => {
     wrapper.find("li").at(0).simulate("click");
     expect(firstLink).toHaveBeenCalled();
 
-    wrapper.find(".commonSidebar__tabText").at(1).simulate("click");
+    wrapper.find(".tabText").at(1).simulate("click");
     expect(secondLink).toHaveBeenCalled();
   });
 });

@@ -1,13 +1,14 @@
 import React from "react";
 import * as PropTypes from "prop-types";
-import "./ProfilePopover.css";
+import styles from "./ProfilePopover.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
 
 const MenuItem = (props) => {
   return (
     <div
-      className={`profilePopover__menuItem ${
-        props.disabled ? "profilePopover__menuItem--disabled" : ""
-      }`}
+      className={cx("menuItem", { "menuItem--disabled": props.disabled })}
       onClick={props.onClick}
     >
       {props.children}
@@ -17,14 +18,18 @@ const MenuItem = (props) => {
 
 const PropfilePopover = (props) => {
   return (
-    <div className="profilePopover">
+    <div className={cx("profilePopover")}>
+      {props.onProfileClick && (
+        <MenuItem onClick={props.onProfileClick}>View Profile</MenuItem>
+      )}
+
       <MenuItem disabled={!props.onSignOut} onClick={props.onSignOut}>
         Sign Out
       </MenuItem>
 
       {props.version && (
         <>
-          <div className="profilePopover__menuDivider"></div>
+          <div className={cx("menuDivider")}></div>
 
           <MenuItem disabled={true}>Version: {props.version}</MenuItem>
         </>
@@ -45,6 +50,7 @@ MenuItem.propTypes = {
 PropfilePopover.propTypes = {
   version: PropTypes.string,
   onSignOut: PropTypes.func.isRequired,
+  onProfileClick: PropTypes.func,
 };
 
 export default PropfilePopover;
