@@ -17,7 +17,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)x?$/,
+        test: /\.(tsx|jsx|js)?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -29,11 +29,6 @@ const config: Configuration = {
             ],
           },
         },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"],
       },
       {
         test: globalStylesRegex,
