@@ -27,7 +27,7 @@ const Modal = ({
   disableInitialFocus = false,
   initialFocusRef = null,
   children,
-  airaLabel = "Modal",
+  ariaLabel = "Modal",
 }) => {
   const dialogRef = useRef(null);
 
@@ -41,7 +41,7 @@ const Modal = ({
         onDismiss={onClose}
         className={`${styles.modal} ${modalSize} ${className}`}
         style={style}
-        aria-label={airaLabel}
+        aria-label={ariaLabel}
         ref={dialogRef}
       >
         {children}
@@ -111,7 +111,7 @@ Modal.propTypes = {
    */
   initialFocusRef: PropTypes.object,
   /** A string that labels the current element for screen readers */
-  airaLabel: PropTypes.string,
+  ariaLabel: PropTypes.string,
 };
 
 Header.propTypes = {

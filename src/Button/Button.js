@@ -34,6 +34,7 @@ const Button = ({
   iconClassName = "",
   isLoading,
   outline,
+  isSubmit,
   children,
 }) => {
   const typeClassName = getTypeClassName(type);
@@ -48,7 +49,7 @@ const Button = ({
       onClick={onClick}
       disabled={isLoading || disabled}
       style={style}
-      type="button"
+      type={isSubmit ? "submit" : "button"}
     >
       <>
         {buttonIcon}
@@ -85,6 +86,7 @@ Button.propTypes = {
   ]),
   /** Shows a loader in the button as well as greying out the button */
   isLoading: PropTypes.bool,
+  isSubmit: PropTypes.bool,
 };
 
 export default Button;

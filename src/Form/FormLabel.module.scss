@@ -1,0 +1,30 @@
+@import "../constants/mixins/index.scss";
+
+.labelContainer {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--colour-text-800);
+  margin: 0;
+  margin-right: 5px;
+
+  @include fontStyles(body, 14, true);
+
+  &--required {
+    margin-left: auto;
+    vertical-align: baseline;
+    color: var(--colour-text-600);
+
+    @include fontStyles(body, 14);
+  }
+
+  &--disabled {
+    color: var(--colour-text-400);
+  }
+}

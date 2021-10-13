@@ -1,24 +1,30 @@
-const path = require("path");
-const webpack = require("webpack");
+import path from "path";
+import { Configuration, HotModuleReplacementPlugin } from "webpack";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
 const jsonImporter = require("node-sass-json-importer");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const globalStylesRegex = /\.(sass|scss|css)$/i;
 const localStylesRegex = /\.module\.(sass|scss|css)$/i;
 
-module.exports = {
-  mode: "production",
-  entry: path.resolve(__dirname, "./src/index.js"),
+const config: Configuration = {
+  entry: "./src/index.js",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(tsx|jsx|js)?$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@babel/preset-typescript",
+            ],
+          },
+        },
       },
       {
         test: globalStylesRegex,
@@ -37,7 +43,7 @@ module.exports = {
               importLoaders: 2,
               modules: {
                 auto: localStylesRegex,
-                localIdentName: "[hash:base64:6]",
+                localIdentName: "[name]__[local]",
               },
             },
           },
@@ -54,6 +60,17 @@ module.exports = {
           },
         ],
         sideEffects: true,
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "file-loader",
+          options: {
+            limit: 10000,
+            mimetype: "image/svg+xml",
+          },
+        },
       },
       {
         test: /\.gif/,
@@ -99,11 +116,11 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"],
+    extensions: ["*", ".ts", ".tsx", ".js", ".jsx"],
   },
   output: {
     publicPath: "/",
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./development/dist"),
     filename: "bundle.js",
     libraryTarget: "umd",
     libraryExport: "default",
@@ -125,10 +142,10 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new CaseSensitivePathsPlugin(),
-    new CleanWebpackPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+    new HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin(),
   ],
   devServer: {
@@ -137,14 +154,6 @@ module.exports = {
     },
     hot: true,
   },
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        extractComments: true,
-        parallel: true,
-      }),
-      new CssMinimizerPlugin(),
-    ],
-  },
 };
+
+export default config;
