@@ -8,7 +8,7 @@
   cursor: pointer;
   display: inline-block;
 
-  @include fontStyles(body, 14);
+  @include fontStyles(button);
 
   text-align: center;
   text-transform: capitalize;

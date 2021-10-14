@@ -74,9 +74,9 @@
     line-height: 20px; }
 
 .font-button {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 22px;
   letter-spacing: 0.01em; }
 
 /*!**********************************************************************************************************************************************************************************************************************************!*\
@@ -501,10 +501,10 @@ body {
   box-shadow: none;
   cursor: pointer;
   display: inline-block;
-  letter-spacing: 0.01em;
-  font-weight: normal;
   font-size: 14px;
+  font-weight: 600;
   line-height: 22px;
+  letter-spacing: 0.01em;
   text-align: center;
   text-transform: capitalize;
   transition: all 0.3s;
