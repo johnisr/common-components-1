@@ -487,61 +487,63 @@ body {
 .commonPanel__clickable {
   cursor: pointer; }
 
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Button/Button.css ***!
-  \******************************************************************************************************************************************************************************************************************/
-.commonButton {
-  border: 1px solid transparent;
-  border-radius: 3px;
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Button/Button.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.Button-module__button {
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 8px;
   box-shadow: none;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
-  line-height: 1.846;
-  letter-spacing: 0.1px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.01em;
   padding: 4px 16px;
   text-align: center;
   text-transform: capitalize;
-  transition: all 0.4s;
+  transition: all 0.3s;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   vertical-align: middle;
   white-space: nowrap; }
-
-.commonButton[disabled] {
-  cursor: not-allowed;
-  opacity: 0.65;
-  box-shadow: none; }
-
-.commonButton .loadingIcon {
-  transition-timing-function: ease-in; }
-
-.commonButton__iconMargin {
-  margin-left: 4px; }
-
-.commonPrimaryButton {
-  background-color: #15aab1;
-  color: #fff; }
-
-.commonPrimaryButton.buttonOutline {
-  color: #15aab1; }
-
-.commonDangerButton {
-  background-color: #e51c23;
-  color: #fff; }
-
-.commonDangerButton.buttonOutline {
-  color: #e51c23; }
-
-.commonDefaultButton {
-  background-color: #f8f9fa;
-  color: #424242; }
-
-.buttonOutline {
-  background-color: #fff;
-  border: 1px solid #d9d9d9; }
+  .Button-module__button--small {
+    padding: 7px 14px; }
+  .Button-module__button--medium {
+    padding: 12px 22px; }
+  .Button-module__button--large {
+    padding: 16px 28px; }
+  .Button-module__button--primary {
+    background-color: #16847E;
+    color: #FFFFFF; }
+    .Button-module__button--primary:hover {
+      background-color: #1DA29D; }
+    .Button-module__button--primary:focus, .Button-module__button--primary:active {
+      background-color: #12736D; }
+  .Button-module__button--outline {
+    border: 1px solid #E6EAEC;
+    color: #4D6670; }
+    .Button-module__button--outline:hover {
+      background-color: #F2F5F6;
+      border: 1px solid #E6EAEC; }
+  .Button-module__button--error {
+    background-color: #D83B3E;
+    color: #FFFFFF; }
+  .Button-module__button[disabled] {
+    cursor: not-allowed;
+    border: 1px solid #E6EAEC;
+    background-color: #E6EAEC;
+    color: #4D6670; }
+  .Button-module__button > * + * {
+    margin-left: 12px; }
 
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/NavBar/NavBar.scss ***!
@@ -932,7 +934,7 @@ body {
 
 .TextInput-module__input {
   width: 100%;
-  border: 1px solid #DEE7E8;
+  border: 1px solid #E6EAEC;
   border-radius: 6px;
   padding: 12px 16px;
   letter-spacing: 0.01em;
@@ -957,9 +959,9 @@ body {
   .TextInput-module__input--disabled {
     color: #89989E;
     background-color: #F2F5F6;
-    border: 1px solid #DEE7E8; }
+    border: 1px solid #E6EAEC; }
     .TextInput-module__input--disabled:focus, .TextInput-module__input--disabled:hover {
-      border: 1px solid #DEE7E8; }
+      border: 1px solid #E6EAEC; }
   .TextInput-module__input--truncated {
     padding-right: 32px; }
 

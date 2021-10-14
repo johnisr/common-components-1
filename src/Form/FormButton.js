@@ -17,7 +17,7 @@ const FormButton = ({ children, ...props }) => {
       {...props}
       isLoading={props.isLoading || formState.isSubmitting}
       isDisabled={props.disabled || formState.isSubmitting}
-      onClick={props.isReset ? onReset : props.onClick}
+      onClick={props.type === "reset" ? onReset : props.onClick}
     >
       {children}
     </Button>
@@ -36,8 +36,8 @@ FormButton.propTypes = {
   ]),
   /** The function called if the button is pressed */
   onClick: PropTypes.func,
-  /** Resets the form and then applies the onClick function */
-  isReset: PropTypes.bool,
+  /** Determines whether it's just a button or has interactions with forms (reset, submit) */
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
 };
 
 export default FormButton;

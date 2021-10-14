@@ -1,0 +1,73 @@
+@import "../constants/mixins/index.scss";
+
+.button {
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 8px;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+
+  @include fontStyles(button);
+
+  padding: 4px 16px;
+  text-align: center;
+  text-transform: capitalize;
+  transition: all 0.3s;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &--small {
+    // height: 38px;
+    padding: 7px 14px;
+  }
+  &--medium {
+    // height: 48px;
+    padding: 12px 22px;
+  }
+  &--large {
+    // height: 56px;
+    padding: 16px 28px;
+  }
+
+  &--primary {
+    background-color: var(--colour-primary-700);
+    color: var(--colour-white);
+
+    &:hover {
+      background-color: var(--colour-primary-500);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--colour-primary-800);
+    }
+  }
+
+  &--outline {
+    border: 1px solid var(--colour-background-dark);
+    color: var(--colour-text-600);
+
+    &:hover {
+      background-color: var(--colour-background);
+      border: 1px solid var(--colour-background-dark);
+    }
+  }
+
+  &--error {
+    background-color: var(--colour-error);
+    color: var(--colour-white);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    border: 1px solid var(--colour-background-dark);
+    background-color: var(--colour-background-dark);
+    color: var(--colour-text-600);
+  }
+
+  > * + * {
+    margin-left: 12px;
+  }
+}

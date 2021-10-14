@@ -43,11 +43,11 @@ const ButtonContainer = (props) => {
         flexWrap: "wrap",
       }}
     >
-      <FormButton type="danger" isReset onClick={props.onReset}>
+      <FormButton variant="error" type="reset" onClick={props.onReset}>
         Reset
       </FormButton>
 
-      <FormButton type="primary" isSubmit onClick={() => {}}>
+      <FormButton variant="primary" type="submit">
         Submit Button
       </FormButton>
     </div>

@@ -45,7 +45,7 @@ const withModalComponentChildren = (
     <Modal.Body>Modal content</Modal.Body>
 
     <Modal.Footer>
-      <Button type="primary" onClick={() => alert("button Clicked")}>
+      <Button variant="primary" onClick={() => alert("button Clicked")}>
         Click here
       </Button>
     </Modal.Footer>

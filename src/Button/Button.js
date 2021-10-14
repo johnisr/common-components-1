@@ -1,62 +1,52 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
-import "./Button.css";
+import { getVariantClassName, getSizeClassName } from "./ButtonHelper";
+import classNames from "classnames/bind";
+import styles from "./Button.module.scss";
 
-const getTypeClassName = (type) => {
-  switch (type) {
-    case "primary":
-      return "commonPrimaryButton";
-    case "danger":
-      return "commonDangerButton";
-    default:
-      return "commonDefaultButton";
-  }
-};
-
-const getIcon = (isLoading, icon, iconClassName) => {
-  if (isLoading) {
-    return <FontAwesome name="spinner" className="loadingIcon fa-pulse" />;
-  } else if (icon) {
-    return <FontAwesome name={icon} className={`${iconClassName}`} />;
-  }
-
-  return null;
-};
+const cx = classNames.bind(styles);
 
 const Button = ({
   className = "",
   style,
-  type,
+  variant = "outline",
+  size = "small",
   onClick,
   disabled,
   icon,
+  iconPosition = "left",
   iconClassName = "",
   isLoading,
-  outline,
-  isSubmit,
+  type = "button",
   children,
 }) => {
-  const typeClassName = getTypeClassName(type);
+  const variantClassName = getVariantClassName(variant);
 
-  const buttonIcon = getIcon(isLoading, icon, iconClassName);
+  const sizeClassName = getSizeClassName(size);
+
+  const buttonIcon = icon ? (
+    <FontAwesome name={icon} className={`${iconClassName}`} />
+  ) : null;
 
   return (
     <button
-      className={`commonButton ${typeClassName} ${
-        outline ? "buttonOutline" : ""
-      } ${className}`}
+      className={`${cx(
+        "button",
+        sizeClassName,
+        variantClassName
+      )} ${className}`}
       onClick={onClick}
       disabled={isLoading || disabled}
       style={style}
-      type={isSubmit ? "submit" : "button"}
+      type={type}
     >
       <>
-        {buttonIcon}
+        {iconPosition === "left" && buttonIcon}
 
-        <span className={buttonIcon ? "commonButton__iconMargin" : ""}>
-          {children}
-        </span>
+        <span>{children}</span>
+
+        {iconPosition === "right" && buttonIcon}
       </>
     </button>
   );
@@ -68,15 +58,19 @@ Button.propTypes = {
   /** The style given to the button */
   style: PropTypes.object,
   /** Gives preset styling options ("primary", "danger", "default") for the color, background-color, and text */
-  type: PropTypes.string,
-  /** If true, adds a border around the button */
-  outline: PropTypes.bool,
+  variant: PropTypes.oneOf(["primary", "error", "outline"]),
+  /** Determines the height of the button */
+  size: PropTypes.oneOf(["large", "medium", "small"]),
+  /** Determines whether it's just a button or has interactions with forms (reset, submit) */
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
   /** The function executed when clicking a button */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   /** If true, the button will become greyed-out and not responsive to actions */
   disabled: PropTypes.bool,
   /** The FontAwesome icon name to show the icon */
   icon: PropTypes.string,
+  /** Where the icon will be shown in relation to the text if present */
+  iconPosition: PropTypes.oneOf(["left", "right"]),
   /** Any styling needed to apply to the icon specifically can be added via className */
   iconClassName: PropTypes.string,
   /** The content of the button */
@@ -84,9 +78,8 @@ Button.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  /** Shows a loader in the button as well as greying out the button */
+  /** Grey out the button while true */
   isLoading: PropTypes.bool,
-  isSubmit: PropTypes.bool,
 };
 
 export default Button;
