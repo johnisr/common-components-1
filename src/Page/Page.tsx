@@ -14,7 +14,7 @@ type Props = {
   /** The given title of the content */
   title: React.ReactNode[] | React.ReactNode | string;
   /** If present, displays a button that executes a function on click */
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
   loaded: boolean;
   /** An array of { title, onClick } objects, with title being what is displayed
