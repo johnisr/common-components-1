@@ -10,24 +10,24 @@ const Template = (args) => {
   const [responseTime, setResponseTime] = useState(1000);
 
   const onClick = async () => {
-    updateState({ disabled: true });
+    updateState({ isLoading: true });
 
     await new Promise((resolve) => setTimeout(resolve, responseTime));
     setCounter((counter) => counter + 1);
 
-    updateState({ disabled: false });
+    updateState({ isLoading: false });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    updateState({ disabled: true });
+    updateState({ isLoading: true });
 
     await new Promise((resolve) => setTimeout(resolve, responseTime));
     alert(`Form submitted with counter value ${counter}`);
     setCounter(0);
 
-    updateState({ disabled: false });
+    updateState({ isLoading: false });
   };
 
   return (
