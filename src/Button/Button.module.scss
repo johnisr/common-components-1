@@ -10,7 +10,6 @@
 
   @include fontStyles(button);
 
-  padding: 4px 16px;
   text-align: center;
   text-transform: capitalize;
   transition: all 0.3s;
@@ -19,15 +18,12 @@
   white-space: nowrap;
 
   &--small {
-    // height: 38px;
     padding: 7px 14px;
   }
   &--medium {
-    // height: 48px;
     padding: 12px 22px;
   }
   &--large {
-    // height: 56px;
     padding: 16px 28px;
   }
 
