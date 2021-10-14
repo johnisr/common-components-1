@@ -1,3 +1,6 @@
+import React from "react";
+import FontAwesome from "react-fontawesome";
+
 export const getVariantClassName = (variant) => {
   switch (variant) {
     case "primary":
@@ -18,4 +21,14 @@ export const getSizeClassName = (size) => {
     default:
       return "button--small";
   }
+};
+
+export const getIcon = (isLoading, icon, iconClassName) => {
+  if (isLoading) {
+    return <FontAwesome name="spinner" className="loadingIcon fa-pulse" />;
+  } else if (icon) {
+    return <FontAwesome name={icon} className={`${iconClassName}`} />;
+  }
+
+  return null;
 };

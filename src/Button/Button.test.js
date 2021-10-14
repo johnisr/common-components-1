@@ -38,4 +38,27 @@ describe("Button", () => {
     wrapper.find("button").simulate("click");
     expect(onClick).toHaveBeenCalled();
   });
+
+  it("should show loading icon instead of regular icon when loading is true", () => {
+    const buttonContent = "Button Text";
+    const icon = "fa-download";
+    const isLoading = true;
+    const onClick = jest.fn();
+
+    const wrapper = mount(
+      <Button icon={icon} isLoading={isLoading} onClick={onClick}>
+        <div className="content">{buttonContent}</div>
+      </Button>
+    );
+
+    // loading icon will show
+    expect(wrapper.find(".loadingIcon").exists()).toEqual(true);
+
+    // regular icon will not
+    expect(wrapper.find(`${icon}`).exists()).toEqual(false);
+
+    // can't click while loading
+    wrapper.find("button").simulate("click");
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });
