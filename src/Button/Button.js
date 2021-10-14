@@ -1,6 +1,5 @@
 import React from "react";
 import * as PropTypes from "prop-types";
-import FontAwesome from "react-fontawesome";
 import { getVariantClassName, getSizeClassName, getIcon } from "./ButtonHelper";
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
