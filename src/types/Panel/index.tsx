@@ -4,7 +4,7 @@ type PanelType = {
   /** The className given to the Panel */
   className: string;
   /** The style given to the Panel */
-  style: Object;
+  style: React.CSSProperties;
   /** The content to be displayed inside the Panel */
   children: React.ReactNode | React.ReactNode[];
   /** The given title for the Panel */
