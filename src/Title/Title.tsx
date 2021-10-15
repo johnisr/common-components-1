@@ -1,5 +1,5 @@
 import React from "react";
-import TitleTypes from "../types/Title";
+import TitleType from "../types/Title";
 
 export const HEADER_STYLE = {
   fontSize: "20px",
@@ -32,7 +32,7 @@ const getFontStyle = (type: string): React.CSSProperties => {
  * section is needed. Enforces the font-size and font-weight guidelines that
  * should be used throughout the app for titles.
  */
-const Title = ({ style, className, type = "header", children }: TitleTypes) => {
+const Title = ({ style, className, type = "header", children }: TitleType) => {
   const fontStyle = getFontStyle(type);
 
   return (

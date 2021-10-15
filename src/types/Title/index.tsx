@@ -1,6 +1,6 @@
 import React from "react";
 
-type TitleProps = {
+type TitleType = {
   /** The inline style object applied to the containing div */
   style: React.CSSProperties;
   /** Determines the default inline style ("header", "subheader", "panelheader") the Title will use */
@@ -11,4 +11,4 @@ type TitleProps = {
   children: React.ReactNode | React.ReactNode[];
 };
 
-export default TitleProps;
+export default TitleType;
