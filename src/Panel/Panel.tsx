@@ -2,7 +2,7 @@ import React from "react";
 import ReactLoader from "../Loader/ReactLoader";
 import Title from "../Title/Title";
 import "./Panel.css";
-import PanelTypes from "../types/Panel";
+import PanelType from "../types/Panel";
 
 const Panel = ({
   className = "",
@@ -11,7 +11,7 @@ const Panel = ({
   loaded,
   onClick,
   children,
-}: PanelTypes) => {
+}: PanelType) => {
   const isClickable = onClick && (loaded === undefined || loaded);
 
   return (

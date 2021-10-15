@@ -1,6 +1,6 @@
 import React from "react";
 
-type PanelTypes = {
+type PanelType = {
   /** The className given to the Panel */
   className: string;
   /** The style given to the Panel */
@@ -15,4 +15,4 @@ type PanelTypes = {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export default PanelTypes;
+export default PanelType;
