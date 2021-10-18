@@ -4,7 +4,7 @@ import FontAwesome from "react-fontawesome";
 import Title from "../Title/Title";
 import "./Page.css";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import PageTypes from "../types/Page";
+import PageType from "../types/Page";
 
 /** The default margins are 15px */
 const Page = ({
@@ -16,7 +16,7 @@ const Page = ({
   loaded,
   breadcrumbs,
   headerClassName = "",
-}: PageTypes) => {
+}: PageType) => {
   return (
     <div className={`page ${className}`} style={style}>
       {breadcrumbs && (
