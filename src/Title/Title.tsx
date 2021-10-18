@@ -1,5 +1,5 @@
 import React from "react";
-import * as PropTypes from "prop-types";
+import TitleType from "../types/Title";
 
 export const HEADER_STYLE = {
   fontSize: "20px",
@@ -16,14 +16,14 @@ export const PANELHEADER_STYLE = {
   fontSize: "16px",
 };
 
-const getFontStyle = (type) => {
+const getFontStyle = (type: string): React.CSSProperties => {
   switch (type) {
     case "subheader":
-      return SUBHEADER_STYLE;
+      return SUBHEADER_STYLE as React.CSSProperties;
     case "panelheader":
-      return PANELHEADER_STYLE;
+      return PANELHEADER_STYLE as React.CSSProperties;
     default:
-      return HEADER_STYLE;
+      return HEADER_STYLE as React.CSSProperties;
   }
 };
 
@@ -32,7 +32,7 @@ const getFontStyle = (type) => {
  * section is needed. Enforces the font-size and font-weight guidelines that
  * should be used throughout the app for titles.
  */
-const Title = ({ style, className, type = "header", children }) => {
+const Title = ({ style, className, type = "header", children }: TitleType) => {
   const fontStyle = getFontStyle(type);
 
   return (
@@ -40,20 +40,6 @@ const Title = ({ style, className, type = "header", children }) => {
       {children}
     </div>
   );
-};
-
-Title.propTypes = {
-  /** The inline style object applied to the containing div */
-  style: PropTypes.object,
-  /** Determines the default inline style ("header", "subheader", "panelheader") the Title will use */
-  type: PropTypes.string,
-  /** The className applied to the containing div, useful for positioning */
-  className: PropTypes.string,
-  /** The content displayed */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
 };
 
 export default Title;
