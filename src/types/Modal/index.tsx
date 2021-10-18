@@ -1,6 +1,6 @@
 import React from "react";
 
-export type ModalTypes = {
+export type ModalType = {
   /** The className given to the Modal Container */
   className: string;
   /** The style given to the Modal Container */
@@ -26,7 +26,7 @@ export type ModalTypes = {
   ariaLabel: string;
 };
 
-export type HeaderTypes = {
+export type HeaderType = {
   /** The className given to the Modal Header */
   className: string;
   /** The style given to the Modal Header */
@@ -37,7 +37,7 @@ export type HeaderTypes = {
   children: React.ReactNode | React.ReactNode[];
 };
 
-export type BodyTypes = {
+export type BodyType = {
   /** The className given to the Modal Body */
   className: string;
   /** The style given to the Modal Body */
@@ -46,7 +46,7 @@ export type BodyTypes = {
   children: React.ReactNode | React.ReactNode[];
 };
 
-export type FooterTypes = {
+export type FooterType = {
   /** The className given to the Modal Footer */
   className: string;
   /** The style given to the Modal footer */

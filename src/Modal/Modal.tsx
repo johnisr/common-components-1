@@ -1,10 +1,10 @@
 import "@reach/dialog/styles.css";
 import React, { useContext, useRef } from "react";
 import {
-  ModalTypes,
-  HeaderTypes,
-  BodyTypes,
-  FooterTypes,
+  ModalType,
+  HeaderType,
+  BodyType,
+  FooterType,
   ModalSize,
 } from "../types/Modal";
 import styles from "./Modal.module.scss";
@@ -34,7 +34,7 @@ const Modal = ({
   initialFocusRef = undefined,
   children,
   ariaLabel = "Modal",
-}: ModalTypes) => {
+}: ModalType) => {
   const dialogRef = useRef(null);
 
   const modalSize = getModalSize(size);
@@ -56,7 +56,7 @@ const Modal = ({
   );
 };
 
-const Header = ({ children, style, className = "", ...props }: HeaderTypes) => {
+const Header = ({ children, style, className = "", ...props }: HeaderType) => {
   const { onClose } = useContext(ModalContext);
   return (
     <div style={style} className={`${styles.header} ${className}`} {...props}>
@@ -71,7 +71,7 @@ const Header = ({ children, style, className = "", ...props }: HeaderTypes) => {
   );
 };
 
-const Body = ({ children, style, className = "", ...props }: BodyTypes) => {
+const Body = ({ children, style, className = "", ...props }: BodyType) => {
   return (
     <div style={style} className={`${styles.content} ${className}`} {...props}>
       {children}
@@ -79,7 +79,7 @@ const Body = ({ children, style, className = "", ...props }: BodyTypes) => {
   );
 };
 
-const Footer = ({ children, style, className = "", ...props }: FooterTypes) => {
+const Footer = ({ children, style, className = "", ...props }: FooterType) => {
   return (
     <div style={style} className={`${styles.footer} ${className}`} {...props}>
       {children}
