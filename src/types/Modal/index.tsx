@@ -4,7 +4,7 @@ export type ModalType = {
   /** The className given to the Modal Container */
   className: string;
   /** The style given to the Modal Container */
-  style: Object;
+  style: React.CSSProperties;
   /** Determines the width of the modal */
   size: ModalSize;
   /** The boolean controlling whether modal is visible or not */
@@ -30,7 +30,7 @@ export type HeaderType = {
   /** The className given to the Modal Header */
   className: string;
   /** The style given to the Modal Header */
-  style: Object;
+  style: React.CSSProperties;
   /** Shows an exit icon for the header if prop is present */
   closeButton: boolean;
   /** The content rendered inside the modal header */
@@ -41,7 +41,7 @@ export type BodyType = {
   /** The className given to the Modal Body */
   className: string;
   /** The style given to the Modal Body */
-  style: Object;
+  style: React.CSSProperties;
   /** The content rendered inside the modal body */
   children: React.ReactNode | React.ReactNode[];
 };
@@ -50,7 +50,7 @@ export type FooterType = {
   /** The className given to the Modal Footer */
   className: string;
   /** The style given to the Modal footer */
-  style: Object;
+  style: React.CSSProperties;
   /** The content rendered inside the modal footer */
   children: React.ReactNode | React.ReactNode[];
 };
