@@ -1,11 +1,11 @@
 import React from "react";
-import * as PropTypes from "prop-types";
+import { PropfilePopoverType, MenuItemType } from "../types/Navbar";
 import styles from "./ProfilePopover.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const MenuItem = (props) => {
+const MenuItem = (props: MenuItemType) => {
   return (
     <div
       className={cx("menuItem", { "menuItem--disabled": props.disabled })}
@@ -16,7 +16,7 @@ const MenuItem = (props) => {
   );
 };
 
-const PropfilePopover = (props) => {
+const PropfilePopover = (props: PropfilePopoverType) => {
   return (
     <div className={cx("profilePopover")}>
       {props.onProfileClick && (
@@ -36,21 +36,6 @@ const PropfilePopover = (props) => {
       )}
     </div>
   );
-};
-
-MenuItem.propTypes = {
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-PropfilePopover.propTypes = {
-  version: PropTypes.string,
-  onSignOut: PropTypes.func.isRequired,
-  onProfileClick: PropTypes.func,
 };
 
 export default PropfilePopover;
