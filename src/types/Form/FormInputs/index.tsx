@@ -1,6 +1,6 @@
 import React from "react";
 
-interface FormInputProps {
+type FormInputProps = {
   /** The class given to the input container */
   className?: string;
   /** The style given to the input container */
@@ -28,6 +28,6 @@ interface FormInputProps {
   isError: boolean;
   /** A ref for the input element */
   inputRef: React.RefCallback<HTMLInputElement>;
-}
+};
 
 export default FormInputProps;
