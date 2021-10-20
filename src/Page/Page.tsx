@@ -35,7 +35,9 @@ const Page = ({
             />
           )}
 
-          <Title className="page__title">{title}</Title>
+          <Title type="header" className="page__title">
+            {title}
+          </Title>
         </div>
       )}
 

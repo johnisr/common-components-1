@@ -12,7 +12,7 @@ export type BreadcrumbsType = {
    */
   breadcrumbs: Array<BreadcrumbType>;
   /** The className applied to the containing div */
-  className: string;
+  className?: string;
   /** Determines the default inline style of the containing div */
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 };
