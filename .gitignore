@@ -5,4 +5,4 @@ dist
 development/dist
 .vscode
 .idea
-
+/**/*.d.ts
