@@ -118,7 +118,7 @@
     "build-prod": "webpack --config ./webpack.production.config.ts --mode production",
     "build": "npm run build-dev && npm run build-prod",
     "linting": "eslint src",
-    "prettier": "prettier --write \"src/**/*.{js,scss}\""
+    "prettier": "prettier --write \"src/**/*.{js,scss,tsx,ts}\""
   },
   "jest": {
     "testEnvironment": "jsdom"
