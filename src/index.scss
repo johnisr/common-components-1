@@ -1,5 +1,9 @@
 @import "constants/mixins/index.scss";
 
+body {
+  color: var(--colour-text-800);
+}
+
 .font-headline {
   &-xl {
     @include fontStyles(headline, xl);

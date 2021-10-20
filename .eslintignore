@@ -1,0 +1,4 @@
+/**/*.d.ts
+dist/*
+development/*
+__mocks__/*

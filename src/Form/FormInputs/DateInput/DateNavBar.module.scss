@@ -1,0 +1,8 @@
+.icon {
+  cursor: pointer;
+  color: var(--colour-surface-light);
+
+  &--right {
+    margin-left: auto;
+  }
+}
