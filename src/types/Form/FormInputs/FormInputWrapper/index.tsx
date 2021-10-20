@@ -2,7 +2,7 @@ import React from "react";
 import { Validate } from "react-hook-form/dist/types/index";
 import FormInputProps from "..";
 
-interface FormInputWrapperProps extends FormInputProps {
+type FormInputWrapperProps = FormInputProps & {
   /** The Form input component to be connected to react hook form */
   as: React.FC<FormInputProps>;
   /** The string to be shown at top left giving context what the input needs */
@@ -16,6 +16,6 @@ interface FormInputWrapperProps extends FormInputProps {
   validate: Validate<any> | Record<string, Validate<any>> | undefined;
   /** Whether or not the input is needed for a valid form submission */
   isRequired: boolean;
-}
+};
 
 export default FormInputWrapperProps;
