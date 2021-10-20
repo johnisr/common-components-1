@@ -1,6 +1,6 @@
 import React from "react";
 import TitleType from "../Title";
-import { BreadcrumbsType } from "../Breadcrumbs";
+import { BreadcrumbType } from "../Breadcrumbs";
 
 // Your types here.
 type PageType = {
@@ -18,7 +18,7 @@ type PageType = {
   /** An array of { title, onClick } objects, with title being what is displayed
    *  and onClick the function called when the breadcrumb is clicked
    */
-  breadcrumbs: Array<BreadcrumbsType>;
+  breadcrumbs: BreadcrumbType[];
   /** The className applied to the breadcrumbs container */
   headerClassName: string;
 };
