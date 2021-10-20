@@ -73,7 +73,7 @@ const NavBar = ({
               <li
                 key={link.id}
                 className={
-                  activeApplication === link.id ? "activeSelection" : undefined
+                  activeApplication === link.id ? "activeSelection" : ""
                 }
               >
                 <a href={`${url}${link.link}`}>{link.name}</a>

@@ -1,4 +1,11 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
+
+export enum ActiveApplication {
+  Dashboard = "dashboard",
+  Operations = "operations",
+  Commercial = "commercial",
+  ESG = "esg",
+}
 
 export type NavbarType = {
   /** The className given to the NavBar */
@@ -6,7 +13,7 @@ export type NavbarType = {
   /** The style given to the NavBar */
   style: React.CSSProperties;
   /** A string indicating the active application */
-  activeApplication: string;
+  activeApplication: ActiveApplication;
   /** The base url of the environment being linked to */
   url: string;
   /** The object containing user's permissions */
@@ -25,7 +32,7 @@ export type MenuItemType = {
   children: React.ReactNode[] | React.ReactNode;
 };
 
-export type PropfilePopoverType = {
+export type ProfilePopoverType = {
   version: string;
   onSignOut: React.MouseEventHandler<HTMLDivElement>;
   onProfileClick?: React.MouseEventHandler<HTMLDivElement>;

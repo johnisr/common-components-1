@@ -1,5 +1,5 @@
 import React from "react";
-import { PropfilePopoverType, MenuItemType } from "../types/Navbar";
+import { ProfilePopoverType, MenuItemType } from "../types/Navbar";
 import styles from "./ProfilePopover.module.scss";
 import classNames from "classnames/bind";
 
@@ -16,7 +16,7 @@ const MenuItem = (props: MenuItemType) => {
   );
 };
 
-const PropfilePopover = (props: PropfilePopoverType) => {
+const ProfilePopover = (props: ProfilePopoverType) => {
   return (
     <div className={cx("profilePopover")}>
       {props.onProfileClick && (
@@ -38,4 +38,4 @@ const PropfilePopover = (props: PropfilePopoverType) => {
   );
 };
 
-export default PropfilePopover;
+export default ProfilePopover;
