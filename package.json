@@ -46,7 +46,7 @@
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
     "@storybook/addon-docs": "^6.3.9",
-    "@storybook/addon-essentials": "^6.3.9",
+    "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-webpack5": "^6.3.12",
     "@storybook/client-api": "^6.3.12",
