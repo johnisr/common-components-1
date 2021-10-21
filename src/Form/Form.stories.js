@@ -7,7 +7,9 @@ import CommonForm from "./Form";
 import FormButton from "./FormButton";
 import FormLabel from "./FormLabel";
 import FormError from "./FormError";
-import ControlledSelectInput, { SelectInput } from "./FormInputs/SelectInput";
+import ControlledSelectInput, {
+  SelectInput,
+} from "./FormInputs/SelectInput/SelectInput";
 import FormInputWrapper from "./FormInputs/FormInputWrapper";
 import useForm from "../utils/hooks/useForm";
 import moment from "moment";
