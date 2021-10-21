@@ -1,3 +1,4 @@
+import "rc-time-picker/assets/index.css";
 import "./index.scss";
 import { styles } from "./constants";
 

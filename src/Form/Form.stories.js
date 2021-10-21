@@ -14,6 +14,12 @@ import moment from "moment";
 import ControlledDateInput, {
   DateInput,
 } from "./FormInputs/DateInput/DateInput";
+import ControlledTimeInput, {
+  TimeInput,
+} from "./FormInputs/TimeInput/TimeInput";
+import ControlledDateTimeInput, {
+  DateTimeInput,
+} from "./FormInputs/DateTimeInput/DateTimeInput";
 
 /* eslint-disable react/prop-types */
 
@@ -195,18 +201,91 @@ DateInputForm.args = {
 };
 DateInputForm.storyName = "Form with DateInput";
 
+export const TimeInputForm = Template.bind({});
+TimeInputForm.args = {
+  name: "timeInput",
+  label: "Enter Time",
+  placeholder: null,
+  validate: {
+    laterThanPresent: (date) => {
+      return (
+        (!!date && moment(date).isSameOrAfter(moment(), "second")) ||
+        "Time must be in the future"
+      );
+    },
+  },
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  format: "HH:mm:ss",
+  className: "",
+  style: {},
+  use12Hours: true,
+  showSecond: false,
+  children: (props) => <ControlledTimeInput {...props} />,
+};
+TimeInputForm.storyName = "Form with TimeInput";
+
+export const DateTimeInputForm = Template.bind({});
+DateTimeInputForm.args = {
+  name: "dateTimeInput",
+  label: "Enter Time",
+  placeholder: null,
+  validate: {
+    laterThanPresentMinute: (date) => {
+      return (
+        (!!date && moment(date).isSameOrAfter(moment(), "minute")) ||
+        "Date and time must be later than the present minute"
+      );
+    },
+  },
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  format: "HH:mm:ss",
+  className: "",
+  style: {},
+  use12Hours: true,
+  showSecond: false,
+  children: (props) => <ControlledDateTimeInput {...props} />,
+};
+DateTimeInputForm.storyName = "Form with DateTimeInput";
+
 const MultipleInputFormChildren = (props) => {
+  const shared = { isDisabled: props.isDisabled };
   return (
     <>
       <div style={{ marginBottom: "20px", textAlign: "right" }}>
         Note: controls only affect Select Input
       </div>
 
-      <TextInput name="firstName" label="First Name" />
+      <TextInput {...shared} name="firstName" label="First Name" />
 
-      <TextInput name="lastName" label="Last Name" isRequired showIcon />
+      <TextInput
+        {...shared}
+        name="lastName"
+        label="Last Name"
+        isRequired
+        showIcon
+      />
 
-      <ControlledDateInput name="birthday" label="Date" isRequired showIcon />
+      <ControlledDateInput
+        {...shared}
+        name="birthday"
+        label="Date"
+        isRequired
+        showIcon
+      />
+
+      <ControlledTimeInput {...shared} name="someTime" label="Time" showIcon />
+
+      <ControlledDateTimeInput
+        {...shared}
+        name="someDateTime"
+        label="DateTime"
+        showIcon
+        isRequired
+      />
 
       <ControlledSelectInput {...props} />
     </>
@@ -253,6 +332,8 @@ export default {
   subcomponents: {
     SelectInput,
     DateInput,
+    TimeInput,
+    DateTimeInput,
     Form: CommonForm,
     FormLabel,
     FormError,

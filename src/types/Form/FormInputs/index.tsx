@@ -27,7 +27,7 @@ type FormInputProps = {
   /** The input validation has failed  */
   isError: boolean;
   /** A ref for the input element */
-  inputRef: React.RefCallback<HTMLInputElement>;
+  inputRef?: React.RefCallback<HTMLInputElement>;
 };
 
 export default FormInputProps;

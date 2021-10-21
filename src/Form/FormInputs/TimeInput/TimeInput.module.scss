@@ -1,10 +1,12 @@
 @import "../../../constants/mixins/index.scss";
 
-.container {
-  min-width: 120px;
+.timeInput.input {
+  display: block;
 
-  > input {
+  & > input {
+    display: block;
     width: 100%;
+    height: 50px;
     border: 1px solid var(--colour-background-dark);
     border-radius: 6px;
     padding: 12px 16px;
@@ -24,34 +26,32 @@
       border: 1px solid var(--colour-primary-300);
       outline: none;
     }
+  }
 
-    &.input--error {
+  &--error {
+    & > input {
       border: 1px solid var(--colour-error);
-      outline: none;
-    }
+      caret-color: var(--colour-error);
 
-    &:disabled {
+      &:focus,
+      &:hover {
+        border: 1px solid var(--colour-error);
+      }
+    }
+  }
+
+  &--disabled {
+    & > input {
       color: var(--colour-text-400);
       background-color: var(--colour-background);
       border: 1px solid var(--colour-background-dark);
+
+      &:focus,
+      &:hover {
+        border: 1px solid var(--colour-background-dark);
+      }
     }
   }
-}
-
-.overlayWrapper {
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 20px;
-  z-index: var(--zindex-layer-first);
-  border-radius: 6px;
-
-  background: var(--colour-white);
-  border: 1px solid var(--colour-background-dark);
-  @include popUpShadows;
 }
 
 .icon {
@@ -61,6 +61,22 @@
   right: 10px;
   font-size: 24px;
   color: var(--colour-primary-300);
+
+  &--clear {
+    font-size: 16px;
+    right: 10px;
+    color: var(--colour-text-400);
+    cursor: pointer;
+    &:hover {
+      color: var(--colour-text-200);
+    }
+  }
+
+  &--bordered {
+    right: 40px;
+    padding-right: 8px;
+    border-right: 1px solid var(--colour-background-lines);
+  }
 
   &--error {
     color: var(--colour-error);
