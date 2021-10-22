@@ -14,7 +14,7 @@ export type SidebarType = TabDetail & {
    *   <p>link: The function called when the tab is clicked</p>
    *   <p>nested: An array of collapsible tabs that have the properties above</p>
    */
-  tabs: SidebarTabType[];
+  tabs: TabDetail[];
   /** The current tab id being displayed in the main page */
   activeTab: string;
   /** If given, the sidebar shows the pinIcon which calls this function when clicked */
@@ -55,7 +55,7 @@ export type TabDetail = {
   nested: TabDetail[];
 };
 
-export type SidebarTabType = TabDetail & {
+export type SidebarTabType = {
   tabDetails: TabDetail;
   activeTab: string;
   isSidebarExpanded: boolean;
