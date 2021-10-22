@@ -14,7 +14,7 @@ import config from "../../../../config";
 import { getTimeStringFromDate } from "../../../utils/timeFormatter";
 import FormInputWrapper from "../FormInputWrapper";
 import ControlledDateInputType, {
-  DateInputProps,
+  DateInputType,
 } from "../../../types/Form/FormInputs/DateInput";
 
 const navCx = classNames.bind(navbarElementStyles);
@@ -64,7 +64,7 @@ const WeekDayElement = ({
 const getIcon = (
   isValidated: boolean,
   isError: boolean,
-  isDisabled: boolean
+  isDisabled?: boolean
 ) => {
   if (!isValidated) {
     return (
@@ -89,19 +89,19 @@ const getIcon = (
   }
 };
 
-export const DateInput: React.FC<DateInputProps> = ({
-  onChange,
-  onBlur,
+export const DateInput: React.FC<DateInputType> = ({
+  name,
+  placeholder,
   value,
+  onBlur,
+  onChange,
   format = config.DATE_FORMAT,
   isDisabled,
   showIcon,
   isValidated = false,
   isError,
   inputRef,
-  name,
-  placeholder,
-}: DateInputProps) => {
+}: DateInputType) => {
   const onDayChange = (value: Date) => {
     const time = getTimeStringFromDate(value, format);
     if (time !== "-") {

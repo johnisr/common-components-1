@@ -14,7 +14,7 @@ import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
 import NavBar from "./NavBar/NavBar";
 import Sidebar from "./Sidebar/Sidebar";
 import Form from "./Form/Form";
-import ControlledSelectInput from "./Form/FormInputs/SelectInput";
+import ControlledSelectInput from "./Form/FormInputs/SelectInput/SelectInput";
 import TextInput from "./Form/FormInputs/TextInput";
 import ControlledDateInput from "./Form/FormInputs/DateInput/DateInput";
 import FormInputWrapper from "./Form/FormInputs/FormInputWrapper";

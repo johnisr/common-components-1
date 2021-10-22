@@ -7,7 +7,9 @@ import CommonForm from "./Form";
 import FormButton from "./FormButton";
 import FormLabel from "./FormLabel";
 import FormError from "./FormError";
-import ControlledSelectInput, { SelectInput } from "./FormInputs/SelectInput";
+import ControlledSelectInput, {
+  SelectInput,
+} from "./FormInputs/SelectInput/SelectInput";
 import FormInputWrapper from "./FormInputs/FormInputWrapper";
 import useForm from "../utils/hooks/useForm";
 import moment from "moment";
@@ -20,6 +22,7 @@ import ControlledTimeInput, {
 import ControlledDateTimeInput, {
   DateTimeInput,
 } from "./FormInputs/DateTimeInput/DateTimeInput";
+import config from "../../config";
 
 /* eslint-disable react/prop-types */
 
@@ -194,7 +197,7 @@ DateInputForm.args = {
   isRequired: true,
   showIcon: true,
   isDisabled: false,
-  format: "YYYY-MM-DD",
+  format: config.DATE_FORMAT,
   className: "",
   style: {},
   children: (props) => <ControlledDateInput {...props} />,
@@ -217,7 +220,7 @@ TimeInputForm.args = {
   isRequired: true,
   showIcon: true,
   isDisabled: false,
-  format: "HH:mm:ss",
+  format: config.TIME_FORMAT,
   className: "",
   style: {},
   use12Hours: true,
@@ -286,6 +289,8 @@ const MultipleInputFormChildren = (props) => {
         showIcon
         isRequired
       />
+
+      <ControlledDateInput name="birthday" label="Date" isRequired showIcon />
 
       <ControlledSelectInput {...props} />
     </>

@@ -22,7 +22,13 @@ const getModalSize = (size: ModalSize) => {
   }
 };
 
-const ModalContext = React.createContext({ onClose: (_: any) => {} });
+type ModalDefaultValueType = {
+  onClose: React.MouseEventHandler;
+};
+
+const ModalContext = React.createContext<ModalDefaultValueType>({
+  onClose: () => undefined,
+});
 
 const Modal = ({
   className = "",
@@ -64,7 +70,7 @@ const Header = ({ children, style, className = "", ...props }: HeaderType) => {
 
       <FontAwesome
         className={styles.closeButton}
-        name="times"
+        name="times fa fa-fw"
         onClick={onClose}
       />
     </div>

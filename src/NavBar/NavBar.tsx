@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import * as PropTypes from "prop-types";
 import "./NavBar.scss";
+import { NavbarType } from "../types/Navbar";
 import { havePermission, getFirstChar } from "./NavBarHelper";
 import { Popover } from "react-tiny-popover";
 import ProfilePopover from "./ProfilePopover";
@@ -41,7 +41,7 @@ const NavBar = ({
   name,
   version,
   onSignOut,
-}) => {
+}: NavbarType) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
@@ -49,7 +49,9 @@ const NavBar = ({
       <div className="validereIcon__container">
         <a
           href={
-            activeApplication !== "dashboard" ? `${url}${LINKS[0].link}` : null
+            activeApplication !== "dashboard"
+              ? `${url}${LINKS[0].link}`
+              : undefined
           }
         >
           <img
@@ -71,7 +73,7 @@ const NavBar = ({
               <li
                 key={link.id}
                 className={
-                  activeApplication === link.id ? "activeSelection" : null
+                  activeApplication === link.id ? "activeSelection" : ""
                 }
               >
                 <a href={`${url}${link.link}`}>{link.name}</a>
@@ -103,25 +105,6 @@ const NavBar = ({
       </div>
     </div>
   );
-};
-
-NavBar.propTypes = {
-  /** The className given to the NavBar */
-  className: PropTypes.string,
-  /** The style given to the NavBar */
-  style: PropTypes.object,
-  /** A string indicating the active application */
-  activeApplication: PropTypes.string,
-  /** The base url of the environment being linked to */
-  url: PropTypes.string.isRequired,
-  /** The object containing user's permissions */
-  permissions: PropTypes.object,
-  /** The user name */
-  name: PropTypes.string,
-  /** app version */
-  version: PropTypes.string,
-  /** sign out function */
-  onSignOut: PropTypes.func.isRequired,
 };
 
 export default NavBar;
