@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import * as PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
 import styles from "./Sidebar.module.scss";
 import SidebarTabs, { SidebarTabText } from "./SidebarTabs";
+import { SidebarType } from "../types/Sidebar";
 import { Popover } from "react-tiny-popover";
 import { getFirstChar } from "../NavBar/NavBarHelper";
 import ProfilePopover from "../NavBar/ProfilePopover";
@@ -28,7 +28,7 @@ const Sidebar = ({
   homeTabText,
   onBackClick,
   onProfileClick,
-}) => {
+}: SidebarType) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -60,7 +60,7 @@ const Sidebar = ({
           className={cx("tabContainer", "tabContainer--back", {
             "tabContainer--back--collapse": !isSidebarExpanded,
           })}
-          onClick={() => onBackClick?.()}
+          onClick={(e) => onBackClick?.(e)}
         >
           <FontAwesome className={cx("backIcon")} name="arrow-circle-o-left" />
 
@@ -167,43 +167,6 @@ const Sidebar = ({
       </div>
     </div>
   );
-};
-
-Sidebar.propTypes = {
-  /** The className given to the Sidebar Container */
-  className: PropTypes.string,
-  /** The style given to the Sidebar Container */
-  style: PropTypes.object,
-  /**
-   * The array of features available to the user given their permission level
-   * has the following properties:
-   *   <p>id: Unique string which is used for identifying if feature is the activeTab</p>
-   *   <p>title: The display string on the sidebar</p>
-   *   <p>icon: The FontAwesome icon name to be used</p>
-   *   <p>link: The function called when the tab is clicked</p>
-   *   <p>nested: An array of collapsible tabs that have the properties above</p>
-   */
-  tabs: PropTypes.array.isRequired,
-  /** The current tab id being displayed in the main page */
-  activeTab: PropTypes.string,
-  /** If given, the sidebar shows the pinIcon which calls this function when clicked */
-  onPinClick: PropTypes.func,
-  /** Boolean determining if sidebar is pinned or not */
-  isPinned: PropTypes.bool,
-  /** Name to be shown in the greeting/profile icon */
-  name: PropTypes.string,
-  /** App version shown in the menu */
-  version: PropTypes.string,
-  /** Sign out function */
-  onSignOut: PropTypes.func,
-  /**  Boolean function determining is sidebar is currently expanded */
-  isExpanded: PropTypes.bool,
-  /** Text describing the current web app */
-  homeTabText: PropTypes.string,
-  /** The function called when the back link is clicked */
-  onBackClick: PropTypes.func,
-  /** The function called when View profile is clicked */
-  onProfileClick: PropTypes.func,
 };
 
 export default Sidebar;
