@@ -16,7 +16,7 @@ export type SidebarType = TabDetail & {
    */
   tabs: TabDetail[];
   /** The current tab id being displayed in the main page */
-  activeTab: string;
+  activeTab: string | null | undefined;
   /** If given, the sidebar shows the pinIcon which calls this function when clicked */
   onPinClick: React.MouseEventHandler<HTMLDivElement>;
   /** Boolean determining if sidebar is pinned or not */
@@ -51,13 +51,13 @@ export type TabDetail = {
   id: string;
   title: string;
   icon: string;
-  link: Function;
+  link: () => void;
   nested: TabDetail[];
 };
 
 export type SidebarTabType = {
   tabDetails: TabDetail;
-  activeTab: string;
+  activeTab: string | null | undefined;
   isSidebarExpanded: boolean;
   onDropdownClicked: React.MouseEventHandler<HTMLDivElement>;
   isNestedTabOpen: boolean;
@@ -66,8 +66,10 @@ export type SidebarTabType = {
 
 export type SidebarTabsType = {
   tabDetails: TabDetail;
-  activeTab: string;
-  openListTab: string;
-  setOpenListTab: Function;
+  activeTab: string | null | undefined;
+  openListTab: string | null | undefined;
+  setOpenListTab: React.Dispatch<
+    React.SetStateAction<string | null | undefined>
+  >;
   isSidebarExpanded: boolean;
 };

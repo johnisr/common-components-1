@@ -70,7 +70,7 @@ const Header = ({ children, style, className = "", ...props }: HeaderType) => {
 
       <FontAwesome
         className={styles.closeButton}
-        name="times"
+        name="times fa fa-fw"
         onClick={onClose}
       />
     </div>
