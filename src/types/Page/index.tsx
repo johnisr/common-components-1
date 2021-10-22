@@ -6,7 +6,7 @@ import { BreadcrumbType } from "../Breadcrumbs";
 type PageType = {
   className: string;
   /** The style given to the Page Container */
-  style: Object;
+  style: React.CSSProperties;
   /** The content to be displayed below the title */
   children: React.ReactNode | React.ReactNode[];
   /** The given title of the content */

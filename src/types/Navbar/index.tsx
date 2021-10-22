@@ -17,7 +17,7 @@ export type NavbarType = {
   /** The base url of the environment being linked to */
   url: string;
   /** The object containing user's permissions */
-  permissions: Object;
+  permissions: Record<string, string[]>;
   /** The user name */
   name: string;
   /** app version */

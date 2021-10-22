@@ -1,0 +1,73 @@
+@import "../../../constants/mixins/index.scss";
+
+.container {
+  margin-bottom: 15px;
+  min-width: 120px;
+
+  > input {
+    width: 100%;
+    border: 1px solid var(--colour-background-dark);
+    border-radius: 6px;
+    padding: 12px 16px;
+    @include fontStyles(body, 16);
+
+    &:hover {
+      border: 1px solid var(--colour-primary-200);
+      outline: none;
+    }
+
+    &:focus {
+      border: 1px solid var(--colour-primary-700);
+      outline: none;
+    }
+
+    &:active {
+      border: 1px solid var(--colour-primary-300);
+      outline: none;
+    }
+
+    &:disabled {
+      color: var(--colour-text-400);
+      background-color: var(--colour-background);
+      border: 1px solid var(--colour-background-dark);
+    }
+
+    &.input--error {
+      border: 1px solid var(--colour-error);
+      outline: none;
+    }
+  }
+}
+
+.overlayWrapper {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  z-index: var(--zindex-layer-first);
+  border-radius: 6px;
+
+  background: var(--colour-white);
+  border: 1px solid var(--colour-background-dark);
+  @include popUpShadows;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  font-size: 24px;
+  color: var(--colour-primary-300);
+
+  &--error {
+    color: var(--colour-error);
+  }
+
+  &--disabled {
+    color: var(--colour-background-lines);
+  }
+}

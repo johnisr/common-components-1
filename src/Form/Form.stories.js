@@ -7,9 +7,16 @@ import CommonForm from "./Form";
 import FormButton from "./FormButton";
 import FormLabel from "./FormLabel";
 import FormError from "./FormError";
-import ControlledSelectInput, { SelectInput } from "./FormInputs/SelectInput";
+import ControlledSelectInput, {
+  SelectInput,
+} from "./FormInputs/SelectInput/SelectInput";
 import FormInputWrapper from "./FormInputs/FormInputWrapper";
 import useForm from "../utils/hooks/useForm";
+import moment from "moment";
+import ControlledDateInput, {
+  DateInput,
+} from "./FormInputs/DateInput/DateInput";
+import config from "../../config";
 
 /* eslint-disable react/prop-types */
 
@@ -168,6 +175,29 @@ SelectInputForm.args = {
 };
 SelectInputForm.storyName = "Form with SelectInput";
 
+export const DateInputForm = Template.bind({});
+DateInputForm.args = {
+  name: "dateInput",
+  label: "Enter Date",
+  placeholder: null,
+  validate: {
+    laterThanToday: (date) => {
+      return (
+        (!!date && moment(date).isSameOrAfter(moment())) ||
+        "Date must be later than today"
+      );
+    },
+  },
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  format: config.DATE_FORMAT,
+  className: "",
+  style: {},
+  children: (props) => <ControlledDateInput {...props} />,
+};
+DateInputForm.storyName = "Form with DateInput";
+
 const MultipleInputFormChildren = (props) => {
   return (
     <>
@@ -178,6 +208,8 @@ const MultipleInputFormChildren = (props) => {
       <TextInput name="firstName" label="First Name" />
 
       <TextInput name="lastName" label="Last Name" isRequired showIcon />
+
+      <ControlledDateInput name="birthday" label="Date" isRequired showIcon />
 
       <ControlledSelectInput {...props} />
     </>
@@ -223,6 +255,7 @@ export default {
   component: TextInput,
   subcomponents: {
     SelectInput,
+    DateInput,
     Form: CommonForm,
     FormLabel,
     FormError,
