@@ -73,9 +73,7 @@ describe("Page", () => {
       "esg:core": [],
     };
 
-    const wrapper = mount(
-      <NavBar permissions={permissions} onSignOut={() => {}} url={URL} />
-    );
+    const wrapper = mount(<NavBar permissions={permissions} url={URL} />);
 
     expect(
       wrapper.find("li").map((reactwrapper) => reactwrapper.text())

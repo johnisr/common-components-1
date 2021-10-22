@@ -22,7 +22,13 @@ const getModalSize = (size: ModalSize) => {
   }
 };
 
-const ModalContext = React.createContext({ onClose: (_: any) => {} });
+type ModalDefaultValueType = {
+  onClose: () => void;
+};
+
+const ModalContext = React.createContext<ModalDefaultValueType>({
+  onClose: () => undefined,
+});
 
 const Modal = ({
   className = "",
