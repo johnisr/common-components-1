@@ -1,12 +1,17 @@
 import React from "react";
-import * as PropTypes from "prop-types";
+import {
+  SidebarTabsType,
+  CollapseType,
+  SidebarTabTextType,
+  SidebarTabType,
+} from "../types/Sidebar";
 import FontAwesome from "react-fontawesome";
 import styles from "./Sidebar.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const Collapse = ({ isOpen, children }) => {
+const Collapse = ({ isOpen, children }: CollapseType) => {
   return (
     <div
       className={cx("collapseContainer", {
@@ -20,7 +25,7 @@ const Collapse = ({ isOpen, children }) => {
   );
 };
 
-export const SidebarTabText = ({ isVisible, children }) => (
+export const SidebarTabText = ({ isVisible, children }: SidebarTabTextType) => (
   <span
     className={cx({
       visible: isVisible,
@@ -38,7 +43,7 @@ export const SidebarTab = ({
   onDropdownClicked,
   isNestedTabOpen,
   isTabContainerActive,
-}) => {
+}: SidebarTabType) => {
   return (
     <>
       <div
@@ -97,7 +102,7 @@ export const SidebarTab = ({
   );
 };
 
-const SidebarTabs = (props) => {
+const SidebarTabs = (props: SidebarTabsType) => {
   const {
     tabDetails,
     activeTab,
@@ -133,36 +138,6 @@ const SidebarTabs = (props) => {
       isTabContainerActive={isTabContainerActive}
     />
   );
-};
-
-Collapse.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-
-SidebarTabText.propTypes = {
-  isVisible: PropTypes.bool,
-  children: PropTypes.elementType,
-};
-
-SidebarTab.propTypes = {
-  tabDetails: PropTypes.object.isRequired,
-  activeTab: PropTypes.string,
-  isSidebarExpanded: PropTypes.bool,
-  onDropdownClicked: PropTypes.func,
-  isNestedTabOpen: PropTypes.bool,
-  isTabContainerActive: PropTypes.bool,
-};
-
-SidebarTabs.propTypes = {
-  tabDetails: PropTypes.object,
-  activeTab: PropTypes.string,
-  openListTab: PropTypes.string,
-  setOpenListTab: PropTypes.func,
-  isSidebarExpanded: PropTypes.bool,
 };
 
 export default SidebarTabs;
