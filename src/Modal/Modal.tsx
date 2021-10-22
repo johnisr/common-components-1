@@ -23,7 +23,7 @@ const getModalSize = (size: ModalSize) => {
 };
 
 type ModalDefaultValueType = {
-  onClose: () => void;
+  onClose: React.MouseEventHandler;
 };
 
 const ModalContext = React.createContext<ModalDefaultValueType>({

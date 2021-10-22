@@ -16,6 +16,7 @@ import moment from "moment";
 import ControlledDateInput, {
   DateInput,
 } from "./FormInputs/DateInput/DateInput";
+import config from "../../config";
 
 /* eslint-disable react/prop-types */
 
@@ -190,7 +191,7 @@ DateInputForm.args = {
   isRequired: true,
   showIcon: true,
   isDisabled: false,
-  format: "YYYY-MM-DD",
+  format: config.DATE_FORMAT,
   className: "",
   style: {},
   children: (props) => <ControlledDateInput {...props} />,
