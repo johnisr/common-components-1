@@ -1,11 +1,13 @@
-import FormInputProps from "..";
+import FormInputType from "..";
 import FormInputWrapperProps from "../FormInputWrapper";
 
-export type TimeInputProps = Omit<FormInputProps, "value" | "onChange"> & {
+export type TimeInputType = FormInputType & {
   /** The Date value of the input */
   value: Date;
   /** The function called with the value(s) returned as arguments after input is changed */
   onChange: (newValue: Date | undefined) => void;
+  /** The function called after the input is blurred */
+  onBlur?: () => void | React.FocusEvent;
   /** The moment string format used to show the date in text form */
   format?: string;
   /** Does the am/pm column in the overlay get shown */
@@ -14,6 +16,6 @@ export type TimeInputProps = Omit<FormInputProps, "value" | "onChange"> & {
   showSecond?: boolean;
 };
 
-type ControlledTimeInputProps = TimeInputProps & FormInputWrapperProps;
+type ControlledTimeInputType = TimeInputType & FormInputWrapperProps;
 
-export default ControlledTimeInputProps;
+export default ControlledTimeInputType;

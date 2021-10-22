@@ -7,8 +7,8 @@ import classNames from "classnames/bind";
 import config from "../../../../config";
 import moment, { Moment } from "moment";
 import FormInputWrapper from "../FormInputWrapper";
-import ControlledTimeInputProps, {
-  TimeInputProps,
+import ControlledTimeInputType, {
+  TimeInputType,
 } from "../../../types/Form/FormInputs/TimeInput";
 
 const inputCx = classNames.bind(inputStyles);
@@ -42,7 +42,7 @@ const getIcon = (
   }
 };
 
-export const TimeInput: React.FC<TimeInputProps> = ({
+export const TimeInput: React.FC<TimeInputType> = ({
   onChange,
   onBlur,
   value,
@@ -56,7 +56,7 @@ export const TimeInput: React.FC<TimeInputProps> = ({
   placeholder,
   use12Hours = false,
   showSecond = true,
-}: TimeInputProps) => {
+}: TimeInputType) => {
   useEffect(() => {
     const input = document.querySelector<HTMLInputElement>(
       `.${inputCx("input")} input`
@@ -105,7 +105,7 @@ export const TimeInput: React.FC<TimeInputProps> = ({
   );
 };
 
-const ControlledTimeInput = (props: ControlledTimeInputProps) => {
+const ControlledTimeInput = (props: ControlledTimeInputType) => {
   return <FormInputWrapper {...props} as={TimeInput} />;
 };
 

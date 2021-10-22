@@ -25,7 +25,7 @@ export type FormInputType = {
   /** The input validation has failed  */
   isError: boolean;
   /** A ref for the input element */
-  inputRef: React.RefCallback<HTMLInputElement> | any;
+  inputRef?: React.RefCallback<HTMLInputElement> | any;
 };
 
 export default FormInputType;

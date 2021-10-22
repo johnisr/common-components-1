@@ -4,14 +4,14 @@ import config from "../../../../config";
 import { TimeInput } from "../TimeInput/TimeInput";
 import { DateInput } from "../DateInput/DateInput";
 import styles from "./DateTimeInput.module.scss";
-import ControlledDateTimeInputProps, {
-  DateTimeInputProps,
+import ControlledDateTimeInputType, {
+  DateTimeInputType,
 } from "../../../types/Form/FormInputs/DateTimeInput";
 import FormInputWrapper from "../FormInputWrapper";
 
 const cx = classNames.bind(styles);
 
-export const DateTimeInput: React.FC<DateTimeInputProps> = ({
+export const DateTimeInput: React.FC<DateTimeInputType> = ({
   onChange,
   onBlur,
   value,
@@ -27,7 +27,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
   timePlaceholder = "Time",
   use12Hours,
   showSecond,
-}: DateTimeInputProps) => {
+}: DateTimeInputType) => {
   return (
     <div className={cx("wrapper")}>
       <DateInput
@@ -61,7 +61,7 @@ export const DateTimeInput: React.FC<DateTimeInputProps> = ({
   );
 };
 
-const ControlledDateTimeInput = (props: ControlledDateTimeInputProps) => {
+const ControlledDateTimeInput = (props: ControlledDateTimeInputType) => {
   return <FormInputWrapper {...props} as={DateTimeInput} />;
 };
 
