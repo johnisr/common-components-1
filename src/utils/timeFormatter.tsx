@@ -1,7 +1,7 @@
 import moment from "moment";
 import "moment-timezone";
 
-export const DEFAULT_TIMEZONE: string = "Etc/UTC";
+export const DEFAULT_TIMEZONE = "Etc/UTC";
 
 export const TIMEZONE: string = moment.tz.guess()
   ? moment.tz.guess()

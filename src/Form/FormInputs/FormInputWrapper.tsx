@@ -4,7 +4,8 @@ import classNames from "classnames/bind";
 import styles from "./FormInputWrapper.module.scss";
 import FormLabel from "../FormLabel";
 import FormError from "../FormError";
-import FormInputWrapperProps from "../../types/Form/FormInputs/FormInputWrapper";
+import FormInputWrapperType from "../../types/Form/FormInputs/FormInputWrapper";
+import FormInputType, { FormActionType } from "../../types/Form/FormInputs";
 
 const cx = classNames.bind(styles);
 
@@ -12,13 +13,19 @@ const cx = classNames.bind(styles);
  * Adds extra props or updates current props to connect an input to be managed
  * by react hook form.
  */
-export const FormInputWrapper = ({ as, ...props }: FormInputWrapperProps) => {
+export const FormInputWrapper = ({
+  as,
+  ...props
+}: FormInputWrapperType & FormInputType & FormActionType) => {
+  const { name, isRequired, label, validate, className, style, isDisabled } =
+    props;
+
   return (
     <Controller
-      name={props.name}
+      name={name}
       rules={{
-        validate: props.validate || undefined,
-        required: props.isRequired && `${props.label} is required`,
+        validate: validate || undefined,
+        required: isRequired && `${label} is required`,
       }}
       render={({
         field: { onChange, onBlur, value, ref },
@@ -39,12 +46,12 @@ export const FormInputWrapper = ({ as, ...props }: FormInputWrapperProps) => {
         };
 
         return (
-          <div className={cx("wrapper", props.className)} style={props.style}>
+          <div className={cx("wrapper", className)} style={style}>
             <FormLabel
-              name={props.name}
-              label={props.label}
-              isRequired={props.isRequired}
-              isDisabled={props.isDisabled}
+              name={name}
+              label={label}
+              isRequired={isRequired}
+              isDisabled={isDisabled}
             />
 
             {as({
@@ -57,7 +64,7 @@ export const FormInputWrapper = ({ as, ...props }: FormInputWrapperProps) => {
               isError: !!errorMessage,
             })}
 
-            <FormError message={!props.isDisabled ? errorMessage : null} />
+            <FormError message={!isDisabled ? errorMessage : null} />
           </div>
         );
       }}

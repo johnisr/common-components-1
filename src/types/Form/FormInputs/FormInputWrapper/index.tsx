@@ -1,10 +1,18 @@
 import React from "react";
-import { Validate } from "react-hook-form/dist/types/index";
-import FormInputProps from "..";
+import { Validate } from "react-hook-form";
+import FormInputType from "..";
+import { DateInputType } from "../DateInput";
+import { SelectInputType } from "../SelectInput";
+import { TextInputType } from "../TextInput";
 
-type FormInputWrapperProps = FormInputProps & {
+type FormInputWrapperType = {
   /** The Form input component to be connected to react hook form */
-  as: React.FC<FormInputProps>;
+  as:
+    | React.FC<DateInputType>
+    | React.FC<TextInputType>
+    | React.FC<FormInputType>
+    | React.FC<SelectInputType>
+    | any;
   /** The string to be shown at top left giving context what the input needs */
   label: string;
   /**
@@ -18,4 +26,4 @@ type FormInputWrapperProps = FormInputProps & {
   isRequired: boolean;
 };
 
-export default FormInputWrapperProps;
+export default FormInputWrapperType;
