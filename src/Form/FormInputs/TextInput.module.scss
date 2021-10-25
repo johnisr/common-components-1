@@ -58,20 +58,3 @@
 .inputContainer {
   position: relative;
 }
-
-.icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-  font-size: 24px;
-  color: var(--colour-primary-300);
-
-  &--error {
-    color: var(--colour-error);
-  }
-
-  &--disabled {
-    color: var(--colour-background-lines);
-  }
-}

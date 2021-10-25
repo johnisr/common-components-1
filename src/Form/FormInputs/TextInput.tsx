@@ -1,11 +1,11 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./TextInput.module.scss";
-import FontAwesome from "react-fontawesome";
 import ControlledTextInputType, {
   TextInputType,
 } from "../../types/Form/FormInputs/TextInput";
 import FormInputWrapper from "./FormInputWrapper";
+import FormIcon from "./FormIcon";
 
 const cx = classNames.bind(styles);
 
@@ -38,17 +38,13 @@ const TextInput: React.FC<TextInputType> = ({
           onBlur={onBlur}
         />
 
-        {showIcon &&
-          isValidated &&
-          (isError ? (
-            <div className={cx("icon", "icon--error")}>
-              <FontAwesome name="exclamation-circle" />
-            </div>
-          ) : (
-            <div className={cx("icon", { "icon--disabled": isDisabled })}>
-              <FontAwesome name="check" />
-            </div>
-          ))}
+        {showIcon && (
+          <FormIcon
+            isValidated={isValidated}
+            isError={isError}
+            isDisabled={isDisabled}
+          />
+        )}
       </div>
     </div>
   );

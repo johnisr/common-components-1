@@ -53,36 +53,3 @@
     }
   }
 }
-
-.icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-  font-size: 24px;
-  color: var(--colour-primary-300);
-
-  &--clear {
-    font-size: 16px;
-    right: 10px;
-    color: var(--colour-text-400);
-    cursor: pointer;
-    &:hover {
-      color: var(--colour-text-200);
-    }
-  }
-
-  &--bordered {
-    right: 40px;
-    padding-right: 8px;
-    border-right: 1px solid var(--colour-background-lines);
-  }
-
-  &--error {
-    color: var(--colour-error);
-  }
-
-  &--disabled {
-    color: var(--colour-background-lines);
-  }
-}

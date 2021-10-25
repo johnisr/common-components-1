@@ -3,6 +3,7 @@ import TimePicker from "rc-time-picker";
 import FontAwesome from "react-fontawesome";
 import inputStyles from "./TimeInput.module.scss";
 import overlayStyles from "./TimeOverlay.module.scss";
+import formIconStyles from "../FormIcon.module.scss";
 import classNames from "classnames/bind";
 import config from "../../../../config";
 import moment, { Moment } from "moment";
@@ -10,37 +11,11 @@ import FormInputWrapper from "../FormInputWrapper";
 import ControlledTimeInputType, {
   TimeInputType,
 } from "../../../types/Form/FormInputs/TimeInput";
+import FormIcon from "../FormIcon";
 
 const inputCx = classNames.bind(inputStyles);
 const overlayCx = classNames.bind(overlayStyles);
-
-const getIcon = (
-  isValidated: boolean,
-  isError: boolean,
-  isDisabled: boolean
-) => {
-  if (!isValidated) {
-    return (
-      <div className={inputCx("icon")}>
-        <FontAwesome name="clock-o" />
-      </div>
-    );
-  } else {
-    if (isError) {
-      return (
-        <div className={inputCx("icon", "icon--error")}>
-          <FontAwesome name="exclamation-circle" />
-        </div>
-      );
-    } else {
-      return (
-        <div className={inputCx("icon", { "icon--disabled": isDisabled })}>
-          <FontAwesome name="check" />
-        </div>
-      );
-    }
-  }
-};
+const formIconCx = classNames.bind(formIconStyles);
 
 export const TimeInput: React.FC<TimeInputType> = ({
   onChange,
@@ -73,7 +48,7 @@ export const TimeInput: React.FC<TimeInputType> = ({
 
   const clearIcon = (
     <div
-      className={inputCx("icon", "icon--clear", {
+      className={formIconCx("icon", "icon--clear", {
         "icon--bordered": showIcon,
       })}
     >
@@ -93,7 +68,16 @@ export const TimeInput: React.FC<TimeInputType> = ({
       id={name}
       placeholder={placeholder}
       disabled={isDisabled}
-      inputIcon={showIcon && getIcon(isValidated, isError, isDisabled)}
+      inputIcon={
+        showIcon && (
+          <FormIcon
+            isValidated={isValidated}
+            isError={isError}
+            isDisabled={isDisabled}
+            name="clock-o"
+          />
+        )
+      }
       clearIcon={clearIcon}
       onChange={onTimeChange}
       onClose={onBlur}
