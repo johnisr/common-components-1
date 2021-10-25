@@ -28,30 +28,26 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
   use12Hours,
   showSecond,
 }: DateTimeInputType) => {
+  const sharedProps = {
+    name,
+    onChange,
+    onBlur,
+    value,
+    isDisabled,
+    isValidated,
+    isError,
+    showIcon,
+  };
   return (
     <div className={cx("wrapper")}>
       <DateInput
-        name={name}
-        onChange={onChange}
-        onBlur={onBlur}
-        value={value}
-        isDisabled={isDisabled}
-        isValidated={isValidated}
-        isError={isError}
-        showIcon={showIcon}
+        {...sharedProps}
         inputRef={inputRef}
         format={dateFormat}
         placeholder={datePlaceholder}
       />
       <TimeInput
-        name={name}
-        onChange={onChange}
-        onBlur={onBlur}
-        value={value}
-        isDisabled={isDisabled}
-        isValidated={isValidated}
-        isError={isError}
-        showIcon={showIcon}
+        {...sharedProps}
         format={timeFormat}
         use12Hours={use12Hours}
         showSecond={showSecond}
