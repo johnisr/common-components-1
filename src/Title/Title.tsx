@@ -1,19 +1,25 @@
 import React from "react";
 import TitleType from "../types/Title";
+import styles from "../constants/index";
 
 export const HEADER_STYLE = {
   fontSize: "20px",
+  lineHeight: "26px",
+  letterSpacing: "0.01em",
   fontWeight: "bold",
+  color: styles.text["800"],
 };
 
 export const SUBHEADER_STYLE = {
   ...HEADER_STYLE,
-  fontSize: "14px",
+  fontSize: "16px",
+  lineHeight: "24px",
 };
 
 export const PANELHEADER_STYLE = {
   ...HEADER_STYLE,
-  fontSize: "16px",
+  fontSize: "18px",
+  lineHeight: "26px",
 };
 
 const getFontStyle = (type: string): React.CSSProperties => {
