@@ -142,6 +142,8 @@ TextInputForm.args = {
   isDisabled: false,
   className: "",
   style: {},
+  unit: "m/s",
+  type: "string",
   children: (props) => <TextInput {...props} />,
 };
 TextInputForm.storyName = "Form with TextInput";
