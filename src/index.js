@@ -1,6 +1,6 @@
 import "rc-time-picker/assets/index.css";
 import "./index.scss";
-import { styles } from "./constants";
+import styles from "./constants/index";
 
 import Modal from "./Modal/Modal";
 import CustomTable from "./Table/CustomTable";

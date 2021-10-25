@@ -1,7 +1,9 @@
-@import "constants/mixins/index.scss";
+@import "constants/mixins";
+@import "constants/index.js";
 
 body {
-  color: var(--colour-text-800);
+  @include fontStyles(body, 14);
+  color: map-get($text, 800);
 }
 
 .font-headline {
