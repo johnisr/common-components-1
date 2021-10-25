@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLInputTypeAttribute } from "react";
 import classNames from "classnames/bind";
 import styles from "./TextInput.module.scss";
 import ControlledTextInputType, {
@@ -21,7 +21,17 @@ const TextInput: React.FC<TextInputType> = ({
   inputRef,
   onChange,
   onBlur,
+  unit,
+  type = "string",
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (type === "number") {
+      onChange(parseFloat(e.target.value));
+    } else {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <div className={`${styles.wrapper} ${className}`} style={style}>
       <div className={styles.inputContainer}>
@@ -34,8 +44,10 @@ const TextInput: React.FC<TextInputType> = ({
           })}
           placeholder={placeholder}
           ref={inputRef}
-          onChange={onChange}
+          onChange={handleChange}
           onBlur={onBlur}
+          type={type as HTMLInputTypeAttribute}
+          step={type === "number" ? "any" : undefined}
         />
 
         {showIcon && (
@@ -46,6 +58,8 @@ const TextInput: React.FC<TextInputType> = ({
           />
         )}
       </div>
+
+      {unit && <div className={styles.unit}>{unit}</div>}
     </div>
   );
 };
