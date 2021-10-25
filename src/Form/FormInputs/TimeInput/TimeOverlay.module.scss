@@ -1,0 +1,46 @@
+@import "../../../constants/mixins/index.scss";
+
+.timeOverlay.overlay {
+  & > :global(.rc-time-picker-panel-inner) {
+    color: var(--colour-text-800);
+
+    :global(.rc-time-picker-panel-input-wrap) {
+      border: 1px solid var(--colour-background-dark);
+      padding: 12px 16px;
+      @include fontStyles(body, 16);
+
+      :global(.rc-time-picker-panel-input-invalid) {
+        border: 1px solid var(--colour-error);
+
+        &:focus,
+        &:hover {
+          border: 1px solid var(--colour-error);
+        }
+      }
+    }
+
+    :global(.rc-time-picker-panel-select) {
+      @include fontStyles(body, 14);
+
+      li {
+        &:hover {
+          background-color: var(--colour-primary-200);
+          color: var(--colour-white);
+        }
+        &:global(.rc-time-picker-panel-select-option-selected) {
+          background-color: var(--colour-primary-300);
+          color: var(--colour-white);
+          font-weight: 700;
+
+          &:hover {
+            background-color: var(--colour-primary-200);
+          }
+        }
+      }
+    }
+  }
+
+  &--wide {
+    width: 225px;
+  }
+}

@@ -16,6 +16,7 @@ import FormInputWrapper from "../FormInputWrapper";
 import ControlledDateInputType, {
   DateInputType,
 } from "../../../types/Form/FormInputs/DateInput";
+import FormIcon from "../FormIcon";
 
 const navCx = classNames.bind(navbarElementStyles);
 const inputCx = classNames.bind(inputStyles);
@@ -59,34 +60,6 @@ const WeekDayElement = ({
       {weekdayName.slice(0, 1)}
     </div>
   );
-};
-
-const getIcon = (
-  isValidated: boolean,
-  isError: boolean,
-  isDisabled?: boolean
-) => {
-  if (!isValidated) {
-    return (
-      <div className={inputCx("icon")}>
-        <FontAwesome name="calendar" />
-      </div>
-    );
-  } else {
-    if (isError) {
-      return (
-        <div className={inputCx("icon", "icon--error")}>
-          <FontAwesome name="exclamation-circle" />
-        </div>
-      );
-    } else {
-      return (
-        <div className={inputCx("icon", { "icon--disabled": isDisabled })}>
-          <FontAwesome name="check" />
-        </div>
-      );
-    }
-  }
 };
 
 export const DateInput: React.FC<DateInputType> = ({
@@ -135,7 +108,14 @@ export const DateInput: React.FC<DateInputType> = ({
         formatDate={MomentLocaleUtils.formatDate}
       />
 
-      {showIcon && getIcon(isValidated, isError, isDisabled)}
+      {showIcon && (
+        <FormIcon
+          isValidated={isValidated}
+          isError={isError}
+          isDisabled={isDisabled}
+          name="calendar"
+        />
+      )}
     </div>
   );
 };
