@@ -13,7 +13,7 @@ export type TextInputType = FormInputType & {
   /** The function called after the input is blurred*/
   onBlur?: () => void | React.FocusEvent;
   unit?: string;
-  type: InputTypeOptions;
+  type?: InputTypeOptions;
 };
 
 type ControlledTextInputType = TextInputType & FormInputWrapperType;
