@@ -1,0 +1,69 @@
+$borderSize: 1.5px;
+
+.wrapper {
+  position: relative;
+  border: $borderSize solid var(--colour-background-dark);
+  border-radius: 6px;
+  overflow: hidden;
+
+  &:hover {
+    border: $borderSize solid var(--colour-primary-200);
+    outline: none;
+  }
+
+  &:focus {
+    border: $borderSize solid var(--colour-primary-700);
+    outline: none;
+  }
+
+  &:active {
+    border: $borderSize solid var(--colour-primary-300);
+    outline: none;
+  }
+
+  &--error {
+    border: $borderSize solid var(--colour-error);
+    caret-color: var(--colour-error);
+
+    &:focus,
+    &:hover {
+      border: $borderSize solid var(--colour-error);
+    }
+  }
+
+  &--disabled {
+    color: var(--colour-text-400);
+    background-color: var(--colour-background);
+    border: $borderSize solid var(--colour-background-dark);
+
+    &:focus,
+    &:hover {
+      border: $borderSize solid var(--colour-background-dark);
+    }
+  }
+
+  & > div.textArea > textArea {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      border: none;
+      border-radius: 0px;
+    }
+  }
+
+  & > div.fileInput {
+    border: none;
+    border-radius: 0px;
+  }
+
+  &.draggingOver {
+    background-color: var(--colour-primary-50);
+    border: $borderSize dashed var(--colour-primary-200);
+  }
+
+  .disablePointerEvents,
+  .disablePointerEvents > * {
+    pointer-events: none;
+  }
+}

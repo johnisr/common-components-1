@@ -16,7 +16,7 @@ const FormButton = ({ children, ...props }) => {
     <Button
       {...props}
       isLoading={props.isLoading || formState.isSubmitting}
-      isDisabled={props.disabled || formState.isSubmitting}
+      disabled={props.disabled || formState.isSubmitting}
       onClick={props.type === "reset" ? onReset : props.onClick}
     >
       {children}

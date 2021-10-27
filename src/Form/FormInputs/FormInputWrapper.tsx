@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
  * by react hook form.
  */
 export const FormInputWrapper = ({
-  as,
+  as: Component,
   ...props
 }: FormInputWrapperType & FormInputType & FormActionType) => {
   const { name, isRequired, label, validate, className, style, isDisabled } =
@@ -25,7 +25,7 @@ export const FormInputWrapper = ({
       name={name}
       rules={{
         validate: validate || undefined,
-        required: isRequired && `${label} is required`,
+        required: isRequired && `${label ?? "Input"} is required`,
       }}
       render={({
         field: { onChange, onBlur, value, ref },
@@ -54,15 +54,15 @@ export const FormInputWrapper = ({
               isDisabled={isDisabled}
             />
 
-            {as({
-              ...props,
-              onChange: handleChange,
-              onBlur: handleBlur,
-              value,
-              inputRef: ref,
-              isValidated,
-              isError: !!errorMessage,
-            })}
+            <Component
+              {...props}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={value}
+              inputRef={ref}
+              isValidated={isValidated}
+              isError={!!errorMessage}
+            />
 
             <FormError message={!isDisabled ? errorMessage : null} />
           </div>
