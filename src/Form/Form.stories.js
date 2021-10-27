@@ -23,6 +23,9 @@ import ControlledDateTimeInput, {
   DateTimeInput,
 } from "./FormInputs/DateTimeInput/DateTimeInput";
 import config from "../../config";
+import ControlledTextAreaInput, {
+  TextAreaInput,
+} from "./FormInputs/TextAreaInput/TextAreaInput";
 
 /* eslint-disable react/prop-types */
 
@@ -152,7 +155,7 @@ TextInputForm.args = {
   type: "string",
   children: (props) => <TextInput {...props} />,
 };
-TextInputForm.storyName = "Form with TextInput";
+TextInputForm.storyName = "TextInput";
 
 export const SelectInputForm = Template.bind({});
 SelectInputForm.args = {
@@ -181,7 +184,7 @@ SelectInputForm.args = {
     </div>
   ),
 };
-SelectInputForm.storyName = "Form with SelectInput";
+SelectInputForm.storyName = "SelectInput";
 
 export const DateInputForm = Template.bind({});
 DateInputForm.args = {
@@ -204,7 +207,7 @@ DateInputForm.args = {
   style: {},
   children: (props) => <ControlledDateInput {...props} />,
 };
-DateInputForm.storyName = "Form with DateInput";
+DateInputForm.storyName = "DateInput";
 
 export const TimeInputForm = Template.bind({});
 TimeInputForm.args = {
@@ -229,7 +232,7 @@ TimeInputForm.args = {
   showSecond: false,
   children: (props) => <ControlledTimeInput {...props} />,
 };
-TimeInputForm.storyName = "Form with TimeInput";
+TimeInputForm.storyName = "TimeInput";
 
 export const DateTimeInputForm = Template.bind({});
 DateTimeInputForm.args = {
@@ -254,7 +257,22 @@ DateTimeInputForm.args = {
   showSecond: false,
   children: (props) => <ControlledDateTimeInput {...props} />,
 };
-DateTimeInputForm.storyName = "Form with DateTimeInput";
+DateTimeInputForm.storyName = "DateTimeInput";
+
+export const TextAreaInputForm = Template.bind({});
+TextAreaInputForm.args = {
+  name: "textAreaInput",
+  label: "Description",
+  placeholder: "Enter Text here",
+  validate: {},
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  className: "",
+  style: {},
+  children: (props) => <ControlledTextAreaInput {...props} />,
+};
+TextAreaInputForm.storyName = "TextAreaInput";
 
 const MultipleInputFormChildren = (props) => {
   const shared = { isDisabled: props.isDisabled };
@@ -292,7 +310,13 @@ const MultipleInputFormChildren = (props) => {
         isRequired
       />
 
-      <ControlledDateInput name="birthday" label="Date" isRequired showIcon />
+      <ControlledTextAreaInput
+        {...shared}
+        name="description"
+        label="Description"
+        showIcon
+        isRequired
+      />
 
       <ControlledSelectInput {...props} />
     </>
@@ -331,7 +355,7 @@ MultipleInputForm.args = {
   ],
   children: (props) => <MultipleInputFormChildren {...props} />,
 };
-MultipleInputForm.storyName = "Form with Multiple Inputs";
+MultipleInputForm.storyName = "Multiple Inputs";
 
 export default {
   title: "Form/FormInputs",
@@ -341,6 +365,7 @@ export default {
     DateInput,
     TimeInput,
     DateTimeInput,
+    TextAreaInput,
     Form: CommonForm,
     FormLabel,
     FormError,
