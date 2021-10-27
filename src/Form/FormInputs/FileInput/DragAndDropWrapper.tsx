@@ -17,8 +17,6 @@ const useDragAndDrop = (
       setDragState("enter");
     }
 
-    console.log("onDragEnter");
-
     event.preventDefault();
     event.stopPropagation();
   };
@@ -28,8 +26,6 @@ const useDragAndDrop = (
       setDragState("enter");
     }
 
-    console.log("onDragOver");
-
     event.preventDefault();
     event.stopPropagation();
   };
@@ -38,8 +34,6 @@ const useDragAndDrop = (
     if (dragState !== "") {
       setDragState("");
     }
-
-    console.log("onDragLeave");
 
     event.preventDefault();
     event.stopPropagation();

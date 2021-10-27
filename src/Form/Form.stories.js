@@ -23,9 +23,15 @@ import ControlledDateTimeInput, {
   DateTimeInput,
 } from "./FormInputs/DateTimeInput/DateTimeInput";
 import config from "../../config";
-import FileInput from "./FormInputs/FileInput/FileInput";
-import ControlledTextAreaInput from "./FormInputs/TextAreaInput/TextAreaInput";
-import ControlledTextWithFileInput from "./FormInputs/TextWithFileInput/TextWithFileInput";
+import ControlledFileInput, {
+  FileInput,
+} from "./FormInputs/FileInput/FileInput";
+import ControlledTextAreaInput, {
+  TextAreaInput,
+} from "./FormInputs/TextAreaInput/TextAreaInput";
+import ControlledTextWithFileInput, {
+  TextWithFileInput,
+} from "./FormInputs/TextWithFileInput/TextWithFileInput";
 
 /* eslint-disable react/prop-types */
 
@@ -270,7 +276,7 @@ FileInputForm.args = {
   isDisabled: false,
   className: "",
   style: {},
-  children: (props) => <FileInput {...props} />,
+  children: (props) => <ControlledFileInput {...props} />,
 };
 FileInputForm.storyName = "FileInput";
 
@@ -387,6 +393,9 @@ export default {
     DateInput,
     TimeInput,
     DateTimeInput,
+    FileInput,
+    TextAreaInput,
+    TextWithFileInput,
     Form: CommonForm,
     FormLabel,
     FormError,
