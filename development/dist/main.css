@@ -1291,45 +1291,60 @@ body {
   display: flex;
 }
 
-.TextInput-module__input {
+.TextInput-module__input,
+input[type=number].TextInput-module__input {
   border: 1px solid #E6EAEC;
   border-radius: 6px;
   padding: 12px 16px;
   flex-grow: 1;
+  box-shadow: none;
   letter-spacing: 0.01em;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   caret-color: #1DA29D;
 }
-.TextInput-module__input:hover {
+.TextInput-module__input:hover,
+input[type=number].TextInput-module__input:hover {
   border: 1px solid #76D2D2;
   outline: none;
+  box-shadow: none;
 }
-.TextInput-module__input:focus {
+.TextInput-module__input:focus,
+input[type=number].TextInput-module__input:focus {
   border: 1px solid #16847E;
   outline: none;
+  box-shadow: none;
 }
-.TextInput-module__input:active {
+.TextInput-module__input:active,
+input[type=number].TextInput-module__input:active {
   border: 1px solid #2DBFBE;
   outline: none;
+  box-shadow: none;
 }
-.TextInput-module__input--error {
+.TextInput-module__input--error,
+input[type=number].TextInput-module__input--error {
   border: 1px solid #D83B3E;
   caret-color: #D83B3E;
 }
-.TextInput-module__input--error:focus, .TextInput-module__input--error:hover {
+.TextInput-module__input--error:focus, .TextInput-module__input--error:hover,
+input[type=number].TextInput-module__input--error:focus,
+input[type=number].TextInput-module__input--error:hover {
   border: 1px solid #D83B3E;
 }
-.TextInput-module__input--disabled {
+.TextInput-module__input--disabled,
+input[type=number].TextInput-module__input--disabled {
   color: #89989E;
   background-color: #F2F5F6;
   border: 1px solid #E6EAEC;
 }
-.TextInput-module__input--disabled:focus, .TextInput-module__input--disabled:hover {
+.TextInput-module__input--disabled:focus, .TextInput-module__input--disabled:hover,
+input[type=number].TextInput-module__input--disabled:focus,
+input[type=number].TextInput-module__input--disabled:hover {
   border: 1px solid #E6EAEC;
 }
-.TextInput-module__input--truncated {
+.TextInput-module__input--truncated,
+input[type=number].TextInput-module__input--truncated {
   padding-right: 32px;
 }
 
@@ -1750,6 +1765,7 @@ body {
   resize: vertical;
   min-height: 100px;
   max-height: 200px;
+  box-shadow: none;
   letter-spacing: 0.01em;
   font-weight: normal;
   font-size: 16px;
@@ -1759,14 +1775,17 @@ body {
 .TextAreaInput-module__input:hover {
   border: 1px solid #76D2D2;
   outline: none;
+  box-shadow: none;
 }
 .TextAreaInput-module__input:focus {
   border: 1px solid #16847E;
   outline: none;
+  box-shadow: none;
 }
 .TextAreaInput-module__input:active {
   border: 1px solid #2DBFBE;
   outline: none;
+  box-shadow: none;
 }
 .TextAreaInput-module__input--error {
   border: 1px solid #D83B3E;
