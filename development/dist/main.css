@@ -1641,3 +1641,167 @@ input[type=number].TextInput-module__input--truncated {
 .DateNavBar-module__icon--right {
   margin-left: auto;
 }
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TimeInput/TimeInput.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.TimeInput-module__timeInput.TimeInput-module__input {
+  display: block;
+}
+.TimeInput-module__timeInput.TimeInput-module__input > input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #E6EAEC;
+  border-radius: 6px;
+  padding: 12px 16px;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.TimeInput-module__timeInput.TimeInput-module__input > input:hover {
+  border: 1px solid #76D2D2;
+  outline: none;
+}
+.TimeInput-module__timeInput.TimeInput-module__input > input:focus {
+  border: 1px solid #16847E;
+  outline: none;
+}
+.TimeInput-module__timeInput.TimeInput-module__input > input:active {
+  border: 1px solid #2DBFBE;
+  outline: none;
+}
+.TimeInput-module__timeInput.TimeInput-module__input--error > input {
+  border: 1px solid #D83B3E;
+  caret-color: #D83B3E;
+}
+.TimeInput-module__timeInput.TimeInput-module__input--error > input:focus, .TimeInput-module__timeInput.TimeInput-module__input--error > input:hover {
+  border: 1px solid #D83B3E;
+}
+.TimeInput-module__timeInput.TimeInput-module__input--disabled > input {
+  color: #89989E;
+  background-color: #F2F5F6;
+  border: 1px solid #E6EAEC;
+}
+.TimeInput-module__timeInput.TimeInput-module__input--disabled > input:focus, .TimeInput-module__timeInput.TimeInput-module__input--disabled > input:hover {
+  border: 1px solid #E6EAEC;
+}
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TimeInput/TimeOverlay.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner {
+  color: #1B4254;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-input-wrap {
+  border: 1px solid #E6EAEC;
+  padding: 12px 16px;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-input-wrap .rc-time-picker-panel-input-invalid {
+  border: 1px solid #D83B3E;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-input-wrap .rc-time-picker-panel-input-invalid:focus, .TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-input-wrap .rc-time-picker-panel-input-invalid:hover {
+  border: 1px solid #D83B3E;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-select {
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-select li:hover {
+  background-color: #76D2D2;
+  color: #FFFFFF;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-select li.rc-time-picker-panel-select-option-selected {
+  background-color: #2DBFBE;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay > .rc-time-picker-panel-inner .rc-time-picker-panel-select li.rc-time-picker-panel-select-option-selected:hover {
+  background-color: #76D2D2;
+}
+.TimeOverlay-module__timeOverlay.TimeOverlay-module__overlay--wide {
+  width: 225px;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/DateTimeInput/DateTimeInput.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+.DateTimeInput-module__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px 10px;
+  min-width: 120px;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TextAreaInput/TextAreaInput.module.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.TextAreaInput-module__inputContainer {
+  min-width: 120px;
+  position: relative;
+  display: flex;
+}
+
+.TextAreaInput-module__input {
+  border: 1px solid #E6EAEC;
+  border-radius: 6px;
+  padding: 12px 16px;
+  flex-grow: 1;
+  resize: vertical;
+  min-height: 100px;
+  max-height: 200px;
+  box-shadow: none;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  caret-color: #1DA29D;
+}
+.TextAreaInput-module__input:hover {
+  border: 1px solid #76D2D2;
+  outline: none;
+  box-shadow: none;
+}
+.TextAreaInput-module__input:focus {
+  border: 1px solid #16847E;
+  outline: none;
+  box-shadow: none;
+}
+.TextAreaInput-module__input:active {
+  border: 1px solid #2DBFBE;
+  outline: none;
+  box-shadow: none;
+}
+.TextAreaInput-module__input--error {
+  border: 1px solid #D83B3E;
+  caret-color: #D83B3E;
+}
+.TextAreaInput-module__input--error:focus, .TextAreaInput-module__input--error:hover {
+  border: 1px solid #D83B3E;
+}
+.TextAreaInput-module__input--disabled {
+  color: #89989E;
+  background-color: #F2F5F6;
+  border: 1px solid #E6EAEC;
+}
+.TextAreaInput-module__input--disabled:focus, .TextAreaInput-module__input--disabled:hover {
+  border: 1px solid #E6EAEC;
+}
+.TextAreaInput-module__input--truncated {
+  padding-right: 40px;
+}
