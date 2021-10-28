@@ -3,7 +3,7 @@ import TitleType from "../types/Title";
 import styles from "../constants/index";
 
 export const HEADER_STYLE = {
-  fontSize: "20px",
+  fontSize: styles.headerFontSize,
   lineHeight: "26px",
   letterSpacing: "0.01em",
   fontWeight: "bold",
@@ -12,13 +12,13 @@ export const HEADER_STYLE = {
 
 export const SUBHEADER_STYLE = {
   ...HEADER_STYLE,
-  fontSize: "16px",
+  fontSize: styles.subheaderFontSize,
   lineHeight: "24px",
 };
 
 export const PANELHEADER_STYLE = {
   ...HEADER_STYLE,
-  fontSize: "18px",
+  fontSize: styles.panelheaderFontSize,
   lineHeight: "26px",
 };
 
