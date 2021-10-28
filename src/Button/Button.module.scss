@@ -52,8 +52,33 @@
   }
 
   &--error {
-    background-color: var(--colour-error);
+    background-color: var(--colour-error-500);
     color: var(--colour-white);
+
+    &:hover {
+      background-color: var(--colour-error-300);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--colour-error-800);
+    }
+  }
+
+  &--error-outline {
+    border: 1px solid var(--colour-error-500);
+    color: var(--colour-error-500);
+
+    &:hover {
+      background-color: var(--colour-error-300);
+      color: var(--colour-white);
+    }
+
+    &:focus,
+    &:active {
+      border: 1px solid var(--colour-error-800);
+      background-color: var(--colour-error-800);
+    }
   }
 
   &[disabled] {

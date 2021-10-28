@@ -7,6 +7,8 @@ export const getVariantClassName = (variant) => {
       return "button--primary";
     case "error":
       return "button--error";
+    case "error-outline":
+      return "button--error-outline";
     default:
       return "button--outline";
   }
