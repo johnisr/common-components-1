@@ -4,7 +4,6 @@
   min-width: 120px;
   position: relative;
   display: flex;
-  pointer-events: none;
 }
 
 .input {
@@ -15,25 +14,27 @@
   resize: vertical;
   min-height: 100px;
   max-height: 200px;
-  pointer-events: none;
+  box-shadow: none;
   
-
   @include fontStyles(body, 16);
   caret-color: var(--colour-primary-500);
 
   &:hover {
     border: 1px solid var(--colour-primary-200);
     outline: none;
+    box-shadow: none;
   }
 
   &:focus {
     border: 1px solid var(--colour-primary-700);
     outline: none;
+    box-shadow: none;
   }
 
   &:active {
     border: 1px solid var(--colour-primary-300);
     outline: none;
+    box-shadow: none;
   }
 
   &--error {
@@ -58,6 +59,6 @@
   }
 
   &--truncated {
-    padding-right: 32px;
+    padding-right: 40px;
   }
 }

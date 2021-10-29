@@ -346,6 +346,14 @@ const MultipleInputFormChildren = (props) => {
         isRequired
       />
 
+      <ControlledTextAreaInput
+        {...shared}
+        name="description"
+        label="Description"
+        showIcon
+        isRequired
+      />
+
       <ControlledSelectInput {...props} />
     </>
   );

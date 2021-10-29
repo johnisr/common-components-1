@@ -23,6 +23,7 @@ const TextInput: React.FC<TextInputType> = ({
   onBlur,
   unit,
   type = "string",
+  value = "",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (type === "number") {
@@ -46,6 +47,7 @@ const TextInput: React.FC<TextInputType> = ({
           ref={inputRef}
           onChange={handleChange}
           onBlur={onBlur}
+          value={value}
           type={type as HTMLInputTypeAttribute}
           step={type === "number" ? "any" : undefined}
         />

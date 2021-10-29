@@ -33,6 +33,10 @@ module.exports = {
     "--colour-primary-800": colours.primary["800"],
     "--colour-primary-900": colours.primary["900"],
 
+    "--colour-error-300": colours.error["300"],
+    "--colour-error-500": colours.error["500"],
+    "--colour-error-800": colours.error["800"],
+
     "--colour-white": "#FFFFFF",
 
     "--colour-text-0": colours.text["000"],

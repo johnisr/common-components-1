@@ -57,8 +57,8 @@ Button.propTypes = {
   className: PropTypes.string,
   /** The style given to the button */
   style: PropTypes.object,
-  /** Gives preset styling options ("primary", "danger", "default") for the color, background-color, and text */
-  variant: PropTypes.oneOf(["primary", "error", "outline"]),
+  /** Gives preset styling options ("primary", "error", "outline", "error-outline") for the color, background-color, and text */
+  variant: PropTypes.oneOf(["primary", "error", "outline", "error-outline"]),
   /** Determines the height of the button */
   size: PropTypes.oneOf(["large", "medium", "small"]),
   /** Determines whether it's just a button or has interactions with forms (reset, submit) */
