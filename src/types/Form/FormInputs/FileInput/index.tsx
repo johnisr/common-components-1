@@ -1,4 +1,4 @@
-import { ReactElement, DragEvent } from "react";
+import { ReactElement, DragEvent, RefObject } from "react";
 import FormInputType from "..";
 import FormInputWrapperType from "../FormInputWrapper";
 import { DragAndDropHookType } from "./DragAndDropWrapper";
@@ -22,6 +22,8 @@ export type FileInputType = FormInputType & {
   onDrop?: (event: DragEvent) => void;
   /** The className given to the wrapper that changes as a function of the above event handlers */
   dragClassName?: string;
+  /** A ref given to the root element where all the dragEvents will be attached  */
+  wrapperRef?: RefObject<HTMLDivElement>;
 };
 
 type ControlledFileInputType = FileInputType & FormInputWrapperType;

@@ -1,4 +1,4 @@
-import { ReactElement, DragEvent } from "react";
+import { ReactElement, DragEvent, RefObject } from "react";
 import { FileInputType } from "..";
 import FormInputType from "../..";
 
@@ -13,6 +13,7 @@ export type DragAndDropHookType = {
   onDrop: (event: DragEvent) => void;
   /** The className given to the wrapper that changes as a function of the above event handlers */
   dragClassName: string;
+  wrapperRef: RefObject<HTMLElement>;
 };
 
 type DragAndDropWrapperType = {

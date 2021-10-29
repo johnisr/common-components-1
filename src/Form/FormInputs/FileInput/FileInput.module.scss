@@ -52,6 +52,10 @@ $borderSize: 1.5px;
   &.draggingOver {
     background-color: var(--colour-primary-50);
     border: $borderSize dashed var(--colour-primary-200);
+
+    & * {
+      pointer-events: none;
+    }
   }
 
   &--truncated {
@@ -107,8 +111,4 @@ $borderSize: 1.5px;
     color: var(--colour-background-lines);
     cursor: revert;
   }
-}
-
-.disablePointerEvents {
-  pointer-events: none;
 }

@@ -60,10 +60,9 @@ $borderSize: 1.5px;
   &.draggingOver {
     background-color: var(--colour-primary-50);
     border: $borderSize dashed var(--colour-primary-200);
-  }
 
-  .disablePointerEvents,
-  .disablePointerEvents > * {
-    pointer-events: none;
+    & * {
+      pointer-events: none;
+    }
   }
 }

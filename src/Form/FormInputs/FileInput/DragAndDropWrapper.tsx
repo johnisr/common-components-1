@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, RefObject } from "react";
 import DragAndDropWrapperType from "../../../types/Form/FormInputs/FileInput/DragAndDropWrapper";
 import FontAwesome from "react-fontawesome";
 import classNames from "classnames/bind";
@@ -8,7 +8,8 @@ const cx = classNames.bind(styles);
 
 const useDragAndDrop = (
   onChange: (files: FileList | undefined | null) => void,
-  disabled: boolean
+  disabled: boolean,
+  ref: RefObject<HTMLElement>
 ) => {
   const [dragState, setDragState] = useState("");
 
@@ -31,7 +32,7 @@ const useDragAndDrop = (
   };
 
   const onDragLeave = (event: React.DragEvent) => {
-    if (dragState !== "") {
+    if (dragState !== "" && ref?.current?.isEqualNode(event.target as Node)) {
       setDragState("");
     }
 
@@ -75,12 +76,19 @@ const DragAndDropWrapper: React.FC<DragAndDropWrapperType> = ({
   render,
   ...props
 }) => {
-  const { dragClassName, ...dragProps } = useDragAndDrop(onChange, isDisabled);
+  const wrapperRef = useRef(null);
+
+  const { dragClassName, ...dragProps } = useDragAndDrop(
+    onChange,
+    isDisabled,
+    wrapperRef
+  );
 
   return render({
     ...props,
     onChange,
     isDisabled,
+    wrapperRef,
     dragClassName,
     ...dragProps,
   });

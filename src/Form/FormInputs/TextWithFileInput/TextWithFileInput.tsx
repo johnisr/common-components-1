@@ -59,6 +59,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
         onDragOver,
         onDragLeave,
         onDrop,
+        wrapperRef,
       }) => (
         <div
           className={cx("wrapper", dragClassName, {
@@ -69,6 +70,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
+          ref={wrapperRef}
         >
           {dragClassName && dragOverlayText}
 
@@ -78,7 +80,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             placeholder={textAreaPlaceholder}
             value={value?.text}
             onChange={onTextChange}
-            className={cx("textArea", { disablePointerEvents: dragClassName })}
+            className={cx("textArea")}
           />
           <FileInput
             {...sharedProps}
@@ -86,7 +88,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             name={`${name}-fileInput`}
             value={value?.files}
             onChange={onFileChange}
-            className={cx("fileInput", { disablePointerEvents: dragClassName })}
+            className={cx("fileInput")}
             multiple={multiple}
           />
         </div>

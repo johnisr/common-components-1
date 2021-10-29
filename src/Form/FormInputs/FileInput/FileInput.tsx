@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import classNames from "classnames/bind";
 import styles from "./FileInput.module.scss";
 import FormInputWrapper from "../FormInputWrapper";
@@ -36,6 +36,7 @@ export const FileInput: React.FC<FileInputType> = ({
   onDragOver,
   onDragLeave,
   onDrop,
+  wrapperRef,
 }) => {
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.files);
@@ -86,6 +87,7 @@ export const FileInput: React.FC<FileInputType> = ({
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onFileDrop}
+      ref={wrapperRef}
     >
       {dragClassName && dragOverlayText}
 
@@ -97,18 +99,11 @@ export const FileInput: React.FC<FileInputType> = ({
           isDisabled={isDisabled}
           validatedIconName={fileIconName}
           errorIconName="exclamation-triangle"
-          className={cx("icon", {
-            disablePointerEvents: dragClassName,
-          })}
+          className={cx("icon")}
         />
       )}
 
-      <label
-        className={cx("status", {
-          disablePointerEvents: dragClassName,
-        })}
-        htmlFor={name}
-      >
+      <label className={cx("status")} htmlFor={name}>
         <div className={cx("fileName", "truncated")}>{fileInputText}</div>
         {fileSizeString && (
           <div className={cx("fileSize")}>{fileSizeString}</div>
@@ -117,9 +112,7 @@ export const FileInput: React.FC<FileInputType> = ({
 
       <input
         id={name}
-        className={cx("input", {
-          disablePointerEvents: dragClassName,
-        })}
+        className={cx("input")}
         placeholder={placeholder}
         onBlur={onBlur}
         ref={inputRef}
@@ -135,7 +128,6 @@ export const FileInput: React.FC<FileInputType> = ({
             name="times-circle-o"
             className={`fa fa-fw ${cx("closeIcon", {
               "closeIcon--disabled": isDisabled,
-              disablePointerEvents: dragClassName,
             })}`}
             onClick={!isDisabled ? () => onChange(undefined) : undefined}
           />
@@ -144,9 +136,7 @@ export const FileInput: React.FC<FileInputType> = ({
         <Button
           as="label"
           htmlFor={name}
-          className={cx("button", {
-            disablePointerEvents: dragClassName,
-          })}
+          className={cx("button")}
           variant="primary"
           disabled={isDisabled}
         >
