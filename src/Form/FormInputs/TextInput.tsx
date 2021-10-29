@@ -27,7 +27,11 @@ const TextInput: React.FC<TextInputType> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (type === "number") {
-      onChange(parseFloat(e.target.value));
+      if (e.target.value) {
+        onChange(parseFloat(e.target.value));
+      } else {
+        onChange(undefined);
+      }
     } else {
       onChange(e.target.value);
     }
