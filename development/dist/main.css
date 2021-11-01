@@ -766,7 +766,7 @@ body {
 */
 .Button-module__button {
   background-color: transparent;
-  border: 1px solid;
+  border: 1px solid transparent;
   border-radius: 8px;
   box-shadow: none;
   cursor: pointer;
@@ -1804,4 +1804,201 @@ input[type=number].TextInput-module__input--truncated {
 }
 .TextAreaInput-module__input--truncated {
   padding-right: 40px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FileInput/FileInput.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.FileInput-module__wrapper {
+  width: 100%;
+  min-width: 120px;
+  padding: 24px;
+  position: relative;
+  background-color: #F2F5F6;
+  border: 1.5px dashed #E6EAEC;
+  border-radius: 6px;
+  display: flex;
+}
+.FileInput-module__wrapper:hover, .FileInput-module__wrapper:focus, .FileInput-module__wrapper:active {
+  outline: none;
+}
+.FileInput-module__wrapper--attached {
+  padding: 16px;
+}
+.FileInput-module__wrapper--fileInfo {
+  padding: 20px 24px;
+}
+.FileInput-module__wrapper--fileInfo.FileInput-module__wrapper--attached {
+  padding: 12px 16px;
+}
+.FileInput-module__wrapper--validated {
+  background-color: rgba(223, 244, 245, 0.5);
+  border: 1.5px dashed #76D2D2;
+}
+.FileInput-module__wrapper--error {
+  background-color: #FFE4E5;
+  border: 1.5px dashed #D83B3E;
+}
+.FileInput-module__wrapper--error:focus, .FileInput-module__wrapper--error:hover {
+  border: 1.5px dashed #D83B3E;
+}
+.FileInput-module__wrapper--disabled {
+  color: #89989E;
+  background-color: #F2F5F6;
+  border: 1.5px dashed #E6EAEC;
+}
+.FileInput-module__wrapper--disabled:focus, .FileInput-module__wrapper--disabled:hover {
+  border: 1.5px dashed #E6EAEC;
+}
+.FileInput-module__wrapper.FileInput-module__draggingOver {
+  background-color: #DFF4F5;
+  border: 1.5px dashed #76D2D2;
+}
+.FileInput-module__wrapper.FileInput-module__draggingOver * {
+  pointer-events: none;
+}
+.FileInput-module__wrapper--truncated {
+  padding-left: 64px;
+}
+.FileInput-module__wrapper--truncated.FileInput-module__wrapper--attached {
+  padding-left: 56px;
+}
+
+.FileInput-module__icon {
+  left: 24px;
+  right: revert;
+}
+
+.FileInput-module__input {
+  width: 0;
+  height: 0;
+}
+
+.FileInput-module__status {
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: auto 0;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.FileInput-module__fileName {
+  cursor: revert;
+}
+
+.FileInput-module__fileSize {
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.FileInput-module__truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.FileInput-module__button {
+  margin: auto 0;
+}
+
+.FileInput-module__closeIconContainer {
+  margin: auto 0;
+}
+
+.FileInput-module__closeIcon {
+  font-size: 32px;
+  color: #1B4B63;
+  cursor: pointer;
+}
+.FileInput-module__closeIcon--disabled {
+  color: #C0CBCC;
+  cursor: revert;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FileInput/DragAndDropWrapper.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.DragAndDropWrapper-module__overlay {
+  background-color: #DFF4F5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.DragAndDropWrapper-module__overlayText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.DragAndDropWrapper-module__overlayIcon {
+  color: white;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TextWithFileInput/TextWithFileInput.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+.TextWithFileInput-module__wrapper {
+  position: relative;
+  border: 1.5px solid #E6EAEC;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.TextWithFileInput-module__wrapper:hover {
+  border: 1.5px solid #76D2D2;
+  outline: none;
+}
+.TextWithFileInput-module__wrapper:focus {
+  border: 1.5px solid #16847E;
+  outline: none;
+}
+.TextWithFileInput-module__wrapper:active {
+  border: 1.5px solid #2DBFBE;
+  outline: none;
+}
+.TextWithFileInput-module__wrapper--error {
+  border: 1.5px solid #D83B3E;
+  caret-color: #D83B3E;
+}
+.TextWithFileInput-module__wrapper--error:focus, .TextWithFileInput-module__wrapper--error:hover {
+  border: 1.5px solid #D83B3E;
+}
+.TextWithFileInput-module__wrapper--disabled {
+  color: #89989E;
+  background-color: #F2F5F6;
+  border: 1.5px solid #E6EAEC;
+}
+.TextWithFileInput-module__wrapper--disabled:focus, .TextWithFileInput-module__wrapper--disabled:hover {
+  border: 1.5px solid #E6EAEC;
+}
+.TextWithFileInput-module__wrapper > div.TextWithFileInput-module__textArea > textArea, .TextWithFileInput-module__wrapper > div.TextWithFileInput-module__textArea > textArea:hover, .TextWithFileInput-module__wrapper > div.TextWithFileInput-module__textArea > textArea:focus, .TextWithFileInput-module__wrapper > div.TextWithFileInput-module__textArea > textArea:active {
+  border: none;
+  border-radius: 0px;
+}
+.TextWithFileInput-module__wrapper > div.TextWithFileInput-module__fileInput {
+  border: none;
+  border-radius: 0px;
+}
+.TextWithFileInput-module__wrapper.TextWithFileInput-module__draggingOver {
+  background-color: #DFF4F5;
+  border: 1.5px dashed #76D2D2;
+}
+.TextWithFileInput-module__wrapper.TextWithFileInput-module__draggingOver * {
+  pointer-events: none;
 }
