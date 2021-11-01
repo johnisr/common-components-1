@@ -20,6 +20,8 @@ import ControlledDateInput from "./Form/FormInputs/DateInput/DateInput";
 import ControlledTimeInput from "./Form/FormInputs/TimeInput/TimeInput";
 import ControlledDateTimeInput from "./Form/FormInputs/DateTimeInput/DateTimeInput";
 import ControlledTextAreaInput from "./Form/FormInputs/TextAreaInput/TextAreaInput";
+import ControlledFileInput from "./Form/FormInputs/FileInput/FileInput";
+import ControlledTextWithFileInput from "./Form/FormInputs/TextWithFileInput/TextWithFileInput";
 import FormInputWrapper from "./Form/FormInputs/FormInputWrapper";
 import FormButton from "./Form/FormButton";
 
@@ -48,6 +50,8 @@ export {
   ControlledTimeInput as TimeInput,
   ControlledDateTimeInput as DateTimeInput,
   ControlledTextAreaInput as TextAreaInput,
+  ControlledFileInput as FileInput,
+  ControlledTextWithFileInput as TextWithFileInput,
   FormInputWrapper,
   useForm,
 };
@@ -74,6 +78,8 @@ export default {
   TimeInput: ControlledTimeInput,
   DateTimeInput: ControlledDateTimeInput,
   TextAreaInput: ControlledTextAreaInput,
+  FileInput: ControlledFileInput,
+  TextWithFileInput: ControlledTextWithFileInput,
   useForm,
   FormInputWrapper,
 };
