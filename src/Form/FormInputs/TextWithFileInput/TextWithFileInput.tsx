@@ -35,7 +35,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
     });
   };
 
-  const onFileChange = (files: FileList | null | undefined) => {
+  const onFileChange = (files: FileList | File[] | null | undefined) => {
     onChange({
       text: value?.text,
       files,
@@ -53,6 +53,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
     <DragAndDropWrapper
       onChange={onFileChange}
       isDisabled={isDisabled}
+      multiple={multiple}
       render={({
         dragClassName,
         onDragEnter,
@@ -88,7 +89,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             // a unique name so its labels' `htmlFor` link to FileInput, not TextAreaInput
             name={`${name}-fileInput`}
             placeholder={fileInputPlaceholder}
-            value={value?.files}
+            value={value?.files as FileList}
             showIcon={false}
             onChange={onFileChange}
             className={cx("fileInput")}

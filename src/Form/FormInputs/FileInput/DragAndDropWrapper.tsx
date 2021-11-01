@@ -7,8 +7,9 @@ import styles from "./DragAndDropWrapper.module.scss";
 const cx = classNames.bind(styles);
 
 const useDragAndDrop = (
-  onChange: (files: FileList | undefined | null) => void,
+  onChange: (files: FileList | File[] | undefined | null) => void,
   disabled: boolean,
+  multiple: boolean,
   ref: RefObject<HTMLElement>
 ) => {
   const [dragState, setDragState] = useState("");
@@ -46,7 +47,12 @@ const useDragAndDrop = (
 
     setDragState("");
     if (!disabled) {
-      onChange(event.dataTransfer.files);
+      let files: FileList | File[] = event.dataTransfer.files;
+
+      if (!multiple && files.length > 1) {
+        files = Array.from(files).slice(0, 1);
+      }
+      onChange(files);
     }
   };
 
@@ -73,6 +79,7 @@ export const dragOverlayText = (
 const DragAndDropWrapper: React.FC<DragAndDropWrapperType> = ({
   onChange,
   isDisabled,
+  multiple,
   render,
   ...props
 }) => {
@@ -81,6 +88,7 @@ const DragAndDropWrapper: React.FC<DragAndDropWrapperType> = ({
   const { dragClassName, ...dragProps } = useDragAndDrop(
     onChange,
     isDisabled,
+    multiple,
     wrapperRef
   );
 
