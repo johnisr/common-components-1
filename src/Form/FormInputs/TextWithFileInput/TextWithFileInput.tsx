@@ -48,7 +48,6 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
     isDisabled,
     isValidated,
     isError,
-    showIcon,
   };
   return (
     <DragAndDropWrapper
@@ -77,6 +76,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
 
           <TextAreaInput
             {...sharedProps}
+            showIcon={showIcon}
             inputRef={inputRef}
             placeholder={textAreaPlaceholder}
             value={value?.text}
@@ -89,6 +89,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             name={`${name}-fileInput`}
             placeholder={fileInputPlaceholder}
             value={value?.files}
+            showIcon={false}
             onChange={onFileChange}
             className={cx("fileInput")}
             multiple={multiple}
