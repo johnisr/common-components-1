@@ -152,12 +152,12 @@ TextInputForm.args = {
       return v.length > 2 || "Text length must be greater than 2";
     },
   },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
   className: "",
   style: {},
-  unit: "m/s",
+  unit: "",
   type: "string",
   children: (props) => <TextInput {...props} />,
 };
@@ -173,13 +173,13 @@ SelectInputForm.args = {
       return v !== "one" || "Don't select one";
     },
   },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
-  isClearable: false,
+  isClearable: true,
   isMulti: false,
   isLoading: false,
-  closeMenuOnSelect: false,
+  closeMenuOnSelect: true,
   className: "",
   style: null,
   options: ["one", "two", "three"],
@@ -270,6 +270,7 @@ FileInputForm.args = {
   name: "fileInput",
   label: "Upload File",
   placeholder: "Drag files here (max. 20 MB)",
+  multiple: true,
   validate: {},
   isRequired: true,
   showIcon: true,
@@ -301,6 +302,7 @@ TextWithFileInputForm.args = {
   label: "Upload File",
   placeholder: "Drag files here (max. 20 MB)",
   validate: {},
+  multiple: true,
   isRequired: true,
   showIcon: true,
   isDisabled: false,
@@ -318,7 +320,7 @@ const MultipleInputFormChildren = (props) => {
         Note: controls only affect Select Input
       </div>
 
-      <TextInput {...shared} name="firstName" label="First Name" />
+      <TextInput {...shared} name="firstName" label="First Name" showIcon />
 
       <TextInput
         {...shared}
@@ -330,7 +332,7 @@ const MultipleInputFormChildren = (props) => {
 
       <ControlledDateInput
         {...shared}
-        name="birthday"
+        name="date"
         label="Date"
         isRequired
         showIcon
@@ -364,13 +366,13 @@ MultipleInputForm.args = {
   label: "Select Option",
   placeholder: "Select an Option",
   defaultValues: { firstName: "Bob" },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
   isClearable: false,
   isMulti: false,
   isLoading: false,
-  closeMenuOnSelect: false,
+  closeMenuOnSelect: true,
   className: "",
   style: null,
   validate: {
