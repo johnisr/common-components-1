@@ -1,5 +1,6 @@
 import FormInputType from "..";
 import FormInputWrapperProps from "../FormInputWrapper";
+import { DayPickerProps } from "react-day-picker/types";
 
 export type DateTimeInputType = FormInputType & {
   /** The Date value of the input */
@@ -20,6 +21,8 @@ export type DateTimeInputType = FormInputType & {
   use12Hours?: boolean;
   /** Does the seconds column section in the overlay get shown */
   showSecond?: boolean;
+  /** modifiers to adjust dayPicker behaviour */
+  dayPickerProps?: DayPickerProps;
 };
 
 type ControlledDateTimeInputType = DateTimeInputType & FormInputWrapperProps;

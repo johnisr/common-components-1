@@ -209,6 +209,7 @@ DateInputForm.args = {
   showIcon: true,
   isDisabled: false,
   format: config.DATE_FORMAT,
+  dayPickerProps: { disabledDays: { before: new Date() } },
   className: "",
   style: {},
   children: (props) => <ControlledDateInput {...props} />,
@@ -253,6 +254,7 @@ DateTimeInputForm.args = {
       );
     },
   },
+  dayPickerProps: { disabledDays: { before: new Date() } },
   isRequired: true,
   showIcon: true,
   isDisabled: false,

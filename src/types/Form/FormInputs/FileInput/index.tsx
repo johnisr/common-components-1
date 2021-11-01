@@ -1,13 +1,12 @@
-import { ReactElement, DragEvent, RefObject } from "react";
+import { DragEvent, RefObject } from "react";
 import FormInputType from "..";
 import FormInputWrapperType from "../FormInputWrapper";
-import { DragAndDropHookType } from "./DragAndDropWrapper";
 
 export type FileInputType = FormInputType & {
   /** The current value of the FileInput */
   value: FileList | null | undefined;
   /** The function called after the input is changed */
-  onChange: (files: FileList | null | undefined) => void;
+  onChange: (files: FileList | File[] | null | undefined) => void;
   /** The function called after the input is blurred */
   onBlur: () => void;
   /** Does the file input accept more than one file or not */
