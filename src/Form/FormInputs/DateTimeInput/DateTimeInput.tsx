@@ -27,6 +27,7 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
   timePlaceholder = "Time",
   use12Hours,
   showSecond,
+  dayPickerProps,
 }: DateTimeInputType) => {
   const sharedProps = {
     name,
@@ -45,6 +46,7 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
         inputRef={inputRef}
         format={dateFormat}
         placeholder={datePlaceholder}
+        dayPickerProps={dayPickerProps}
       />
       <TimeInput
         {...sharedProps}

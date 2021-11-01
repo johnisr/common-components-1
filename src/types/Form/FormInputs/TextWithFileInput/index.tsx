@@ -4,7 +4,7 @@ import FormInputWrapperType from "../FormInputWrapper";
 
 export type TextWithFileInputValueType = {
   text: string | undefined;
-  files: FileList | null | undefined;
+  files: FileList | File[] | null | undefined;
 };
 
 export type TextWithFileInputType = FormInputType & {

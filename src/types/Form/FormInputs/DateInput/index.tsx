@@ -1,6 +1,6 @@
 import FormInputType from "..";
 import DayPickerInput from "react-day-picker/types/DayPickerInput";
-import { DayModifiers } from "react-day-picker/types";
+import { DayModifiers, DayPickerProps } from "react-day-picker/types";
 import FormInputWrapperType from "../FormInputWrapper";
 
 export type DateInputType = FormInputType & {
@@ -16,6 +16,8 @@ export type DateInputType = FormInputType & {
   onBlur?: () => void | React.FocusEvent;
   /** The moment string format used to show the date in text form */
   format?: string;
+  /** modifiers to adjust dayPicker behaviour */
+  dayPickerProps?: DayPickerProps;
 };
 
 type ControlledDateInputType = DateInputType & FormInputWrapperType;

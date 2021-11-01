@@ -4,6 +4,7 @@ import MomentLocaleUtils from "react-day-picker/moment";
 import {
   NavbarElementProps,
   WeekdayElementProps,
+  DayPickerProps,
 } from "react-day-picker/types";
 import classNames from "classnames/bind";
 import FontAwesome from "react-fontawesome";
@@ -74,6 +75,7 @@ export const DateInput: React.FC<DateInputType> = ({
   isValidated = false,
   isError,
   inputRef,
+  dayPickerProps,
 }: DateInputType) => {
   const onDayChange = (value: Date) => {
     const time = getTimeStringFromDate(value, format);
@@ -91,6 +93,7 @@ export const DateInput: React.FC<DateInputType> = ({
           classNames: overlayStyles,
           navbarElement: NavBarElement,
           weekdayElement: WeekDayElement,
+          ...dayPickerProps,
         }}
         onDayPickerHide={onBlur}
         inputProps={{
