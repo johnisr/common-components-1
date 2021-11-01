@@ -301,7 +301,8 @@ export const TextWithFileInputForm = Template.bind({});
 TextWithFileInputForm.args = {
   name: "textAreaWithFileInput",
   label: "Upload File",
-  placeholder: "Drag files here (max. 20 MB)",
+  textAreaPlaceholder: "Type your note here",
+  fileInputPlaceholder: "Drag files here (max. 20 MB)",
   validate: {},
   multiple: true,
   isRequired: true,

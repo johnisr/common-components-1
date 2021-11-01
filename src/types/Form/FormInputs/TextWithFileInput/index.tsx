@@ -18,6 +18,8 @@ export type TextWithFileInputType = FormInputType & {
   multiple: boolean;
   /** The placeholder text for the text area input */
   textAreaPlaceholder: string | undefined;
+  /** The placeholder text for the file input */
+  fileInputPlaceholder: string | undefined;
 };
 
 type ControlledTextWithFileInputType = TextWithFileInputType &

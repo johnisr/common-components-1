@@ -26,6 +26,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
   name,
   multiple = false,
   textAreaPlaceholder = "Type your note here",
+  fileInputPlaceholder = "Drag files here (max. 20 MB)",
 }) => {
   const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange({
@@ -86,6 +87,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             {...sharedProps}
             // a unique name so its labels' `htmlFor` link to FileInput, not TextAreaInput
             name={`${name}-fileInput`}
+            placeholder={fileInputPlaceholder}
             value={value?.files}
             onChange={onFileChange}
             className={cx("fileInput")}
