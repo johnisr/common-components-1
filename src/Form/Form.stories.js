@@ -271,6 +271,7 @@ FileInputForm.args = {
   label: "Upload File",
   placeholder: "Drag files here (max. 20 MB)",
   multiple: true,
+  attached: false,
   validate: {},
   isRequired: true,
   showIcon: true,

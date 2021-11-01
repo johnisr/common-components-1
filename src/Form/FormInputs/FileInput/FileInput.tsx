@@ -31,6 +31,7 @@ export const FileInput: React.FC<FileInputType> = ({
   onChange,
   onBlur,
   multiple = false,
+  attached = false,
   dragClassName,
   onDragEnter,
   onDragOver,
@@ -77,6 +78,7 @@ export const FileInput: React.FC<FileInputType> = ({
     <div
       className={`${cx("wrapper", dragClassName, {
         "wrapper--truncated": showIcon,
+        "wrapper--attached": attached,
         "wrapper--fileInfo": files?.length,
         "wrapper--validated": isValidated,
         "wrapper--error": isError,

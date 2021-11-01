@@ -90,6 +90,7 @@ export const TextWithFileInput: React.FC<TextWithFileInputType> = ({
             onChange={onFileChange}
             className={cx("fileInput")}
             multiple={multiple}
+            attached={true}
           />
         </div>
       )}

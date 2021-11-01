@@ -12,6 +12,8 @@ export type FileInputType = FormInputType & {
   onBlur: () => void;
   /** Does the file input accept more than one file or not */
   multiple: boolean;
+  /** Is the input attached to another file should lower padding */
+  attached: boolean;
   /** The function called when a onDragEnter event is called */
   onDragEnter?: (event: DragEvent) => void;
   /** The function called when a onDragOver event is called */

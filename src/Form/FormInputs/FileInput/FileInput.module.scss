@@ -5,7 +5,7 @@ $borderSize: 1.5px;
 .wrapper {
   width: 100%;
   min-width: 120px;
-  padding: 16px 24px;
+  padding: 24px;
   position: relative;
   background-color: var(--colour-background);
   border: $borderSize dashed var(--colour-background-dark);
@@ -18,8 +18,16 @@ $borderSize: 1.5px;
     outline: none;
   }
 
+  &--attached {
+    padding: 16px;
+  }
+
   &--fileInfo {
-    padding: 12px 24px;
+    padding: 20px 24px;
+
+    &.wrapper--attached {
+      padding: 12px 16px;
+    }
   }
 
   &--validated {
@@ -59,6 +67,10 @@ $borderSize: 1.5px;
 
   &--truncated {
     padding-left: 64px;
+
+    &.wrapper--attached {
+      padding-left: 56px;
+    }
   }
 }
 
