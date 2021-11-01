@@ -23,9 +23,15 @@ import ControlledDateTimeInput, {
   DateTimeInput,
 } from "./FormInputs/DateTimeInput/DateTimeInput";
 import config from "../../config";
+import ControlledFileInput, {
+  FileInput,
+} from "./FormInputs/FileInput/FileInput";
 import ControlledTextAreaInput, {
   TextAreaInput,
 } from "./FormInputs/TextAreaInput/TextAreaInput";
+import ControlledTextWithFileInput, {
+  TextWithFileInput,
+} from "./FormInputs/TextWithFileInput/TextWithFileInput";
 
 /* eslint-disable react/prop-types */
 
@@ -146,12 +152,12 @@ TextInputForm.args = {
       return v.length > 2 || "Text length must be greater than 2";
     },
   },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
   className: "",
   style: {},
-  unit: "m/s",
+  unit: "",
   type: "string",
   children: (props) => <TextInput {...props} />,
 };
@@ -167,13 +173,13 @@ SelectInputForm.args = {
       return v !== "one" || "Don't select one";
     },
   },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
-  isClearable: false,
+  isClearable: true,
   isMulti: false,
   isLoading: false,
-  closeMenuOnSelect: false,
+  closeMenuOnSelect: true,
   className: "",
   style: null,
   options: ["one", "two", "three"],
@@ -259,6 +265,23 @@ DateTimeInputForm.args = {
 };
 DateTimeInputForm.storyName = "DateTimeInput";
 
+export const FileInputForm = Template.bind({});
+FileInputForm.args = {
+  name: "fileInput",
+  label: "Upload File",
+  placeholder: "Drag files here (max. 20 MB)",
+  multiple: true,
+  attached: false,
+  validate: {},
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  className: "",
+  style: {},
+  children: (props) => <ControlledFileInput {...props} />,
+};
+FileInputForm.storyName = "FileInput";
+
 export const TextAreaInputForm = Template.bind({});
 TextAreaInputForm.args = {
   name: "textAreaInput",
@@ -274,6 +297,23 @@ TextAreaInputForm.args = {
 };
 TextAreaInputForm.storyName = "TextAreaInput";
 
+export const TextWithFileInputForm = Template.bind({});
+TextWithFileInputForm.args = {
+  name: "textAreaWithFileInput",
+  label: "Upload File",
+  textAreaPlaceholder: "Type your note here",
+  fileInputPlaceholder: "Drag files here (max. 20 MB)",
+  validate: {},
+  multiple: true,
+  isRequired: true,
+  showIcon: true,
+  isDisabled: false,
+  className: "",
+  style: {},
+  children: (props) => <ControlledTextWithFileInput {...props} />,
+};
+TextWithFileInputForm.storyName = "TextWithFileInput";
+
 const MultipleInputFormChildren = (props) => {
   const shared = { isDisabled: props.isDisabled };
   return (
@@ -282,7 +322,7 @@ const MultipleInputFormChildren = (props) => {
         Note: controls only affect Select Input
       </div>
 
-      <TextInput {...shared} name="firstName" label="First Name" />
+      <TextInput {...shared} name="firstName" label="First Name" showIcon />
 
       <TextInput
         {...shared}
@@ -294,7 +334,7 @@ const MultipleInputFormChildren = (props) => {
 
       <ControlledDateInput
         {...shared}
-        name="birthday"
+        name="date"
         label="Date"
         isRequired
         showIcon
@@ -328,13 +368,13 @@ MultipleInputForm.args = {
   label: "Select Option",
   placeholder: "Select an Option",
   defaultValues: { firstName: "Bob" },
-  isRequired: false,
-  showIcon: false,
+  isRequired: true,
+  showIcon: true,
   isDisabled: false,
   isClearable: false,
   isMulti: false,
   isLoading: false,
-  closeMenuOnSelect: false,
+  closeMenuOnSelect: true,
   className: "",
   style: null,
   validate: {
@@ -365,7 +405,9 @@ export default {
     DateInput,
     TimeInput,
     DateTimeInput,
+    FileInput,
     TextAreaInput,
+    TextWithFileInput,
     Form: CommonForm,
     FormLabel,
     FormError,

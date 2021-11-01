@@ -8,17 +8,19 @@ const cx = classNames.bind(styles);
 
 const Button = ({
   className = "",
-  style,
+  style = undefined,
   variant = "outline",
   size = "small",
-  onClick,
+  onClick = undefined,
   disabled,
-  icon,
+  icon = undefined,
   iconPosition = "left",
   iconClassName = "",
-  isLoading,
+  isLoading = false,
   type = "button",
+  as: Component = "button",
   children,
+  ...props
 }) => {
   const variantClassName = getVariantClassName(variant);
 
@@ -27,7 +29,7 @@ const Button = ({
   const buttonIcon = getIcon(isLoading, icon, iconClassName);
 
   return (
-    <button
+    <Component
       className={`${cx(
         "button",
         sizeClassName,
@@ -37,6 +39,7 @@ const Button = ({
       disabled={isLoading || disabled}
       style={style}
       type={type}
+      {...props}
     >
       <>
         {iconPosition === "left" && buttonIcon}
@@ -45,7 +48,7 @@ const Button = ({
 
         {iconPosition === "right" && buttonIcon}
       </>
-    </button>
+    </Component>
   );
 };
 
@@ -75,6 +78,7 @@ Button.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  as: PropTypes.elementType,
   /** Grey out the button while true */
   isLoading: PropTypes.bool,
 };

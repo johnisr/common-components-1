@@ -1,0 +1,125 @@
+@import "../../../constants/mixins";
+
+$borderSize: 1.5px;
+
+.wrapper {
+  width: 100%;
+  min-width: 120px;
+  padding: 24px;
+  position: relative;
+  background-color: var(--colour-background);
+  border: $borderSize dashed var(--colour-background-dark);
+  border-radius: 6px;
+  display: flex;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &--attached {
+    padding: 16px;
+  }
+
+  &--fileInfo {
+    padding: 20px 24px;
+
+    &.wrapper--attached {
+      padding: 12px 16px;
+    }
+  }
+
+  &--validated {
+    background-color: rgba(223, 244, 245, 0.5);
+    border: $borderSize dashed var(--colour-primary-200);
+  }
+
+  &--error {
+    background-color: var(--colour-error-light);
+    border: $borderSize dashed var(--colour-error);
+
+    &:focus,
+    &:hover {
+      border: $borderSize dashed var(--colour-error);
+    }
+  }
+
+  &--disabled {
+    color: var(--colour-text-400);
+    background-color: var(--colour-background);
+    border: $borderSize dashed var(--colour-background-dark);
+
+    &:focus,
+    &:hover {
+      border: $borderSize dashed var(--colour-background-dark);
+    }
+  }
+
+  &.draggingOver {
+    background-color: var(--colour-primary-50);
+    border: $borderSize dashed var(--colour-primary-200);
+
+    & * {
+      pointer-events: none;
+    }
+  }
+
+  &--truncated {
+    padding-left: 64px;
+
+    &.wrapper--attached {
+      padding-left: 56px;
+    }
+  }
+}
+
+.icon {
+  left: 24px;
+  right: revert;
+}
+
+.input {
+  width: 0;
+  height: 0;
+}
+
+.status {
+  @include fontStyles(body, 16);
+  margin: auto 0;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.fileName {
+  cursor: revert;
+}
+
+.fileSize {
+  @include fontStyles(body, 14);
+}
+
+.truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button {
+  margin: auto 0;
+}
+
+.closeIconContainer {
+  margin: auto 0;
+}
+
+.closeIcon {
+  font-size: 32px;
+  color: var(--colour-surface-light);
+  cursor: pointer;
+
+  &--disabled {
+    color: var(--colour-background-lines);
+    cursor: revert;
+  }
+}

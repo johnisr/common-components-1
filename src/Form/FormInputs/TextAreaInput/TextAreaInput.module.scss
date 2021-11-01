@@ -15,7 +15,7 @@
   min-height: 100px;
   max-height: 200px;
   box-shadow: none;
-  
+
   @include fontStyles(body, 16);
   caret-color: var(--colour-primary-500);
 

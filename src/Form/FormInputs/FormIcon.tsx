@@ -11,24 +11,31 @@ const FormIcon: React.FC<FormIconType> = ({
   isError,
   isDisabled,
   name,
+  className,
+  validatedIconName = "check",
+  errorIconName = "exclamation-circle",
 }) => {
   if (!isValidated) {
     return name ? (
-      <div className={inputCx("icon")}>
+      <div className={`${inputCx("icon")} ${className}`}>
         <FontAwesome name={name} />
       </div>
     ) : null;
   } else {
     if (isError) {
       return (
-        <div className={inputCx("icon", "icon--error")}>
-          <FontAwesome name="exclamation-circle" />
+        <div className={`${inputCx("icon", "icon--error")} ${className}`}>
+          <FontAwesome name={errorIconName} />
         </div>
       );
     } else {
       return (
-        <div className={inputCx("icon", { "icon--disabled": isDisabled })}>
-          <FontAwesome name="check" />
+        <div
+          className={`${inputCx("icon", {
+            "icon--disabled": isDisabled,
+          })} ${className}`}
+        >
+          <FontAwesome name={validatedIconName} />
         </div>
       );
     }
