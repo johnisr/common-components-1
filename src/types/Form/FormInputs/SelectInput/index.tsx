@@ -22,7 +22,7 @@ export type DropdownIndicatorType = DropdownIndicatorProps<
 };
 
 export type OptionType = {
-  label: string;
+  label: React.ReactNode;
   value: string;
   isError: boolean;
 };
