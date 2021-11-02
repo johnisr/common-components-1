@@ -21,6 +21,7 @@ export const TextAreaInput: React.FC<TextAreaInputType> = ({
   inputRef,
   onChange,
   onBlur,
+  value = "",
 }) => {
   return (
     <div className={`${cx("inputContainer")} ${className}`} style={style}>
@@ -31,6 +32,7 @@ export const TextAreaInput: React.FC<TextAreaInputType> = ({
           "input--disabled": isDisabled,
           "input--truncated": showIcon,
         })}
+        value={value}
         placeholder={placeholder}
         ref={inputRef}
         onChange={onChange}
