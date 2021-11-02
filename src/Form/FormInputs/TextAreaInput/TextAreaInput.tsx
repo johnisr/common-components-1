@@ -37,6 +37,7 @@ export const TextAreaInput: React.FC<TextAreaInputType> = ({
         ref={inputRef}
         onChange={onChange}
         onBlur={onBlur}
+        disabled={isDisabled}
       />
 
       {showIcon && (

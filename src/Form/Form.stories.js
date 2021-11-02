@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import TextInput from "./FormInputs/TextInput";
 import { useArgs } from "@storybook/client-api";
 import Page from "../Page/Page";
 import Panel from "../Panel/Panel";
 import CommonForm from "./Form";
 import FormButton from "./FormHelpers/FormButton";
-import FormLabel from "./FormLabel";
-import FormError from "./FormError";
+import FormLabel from "./FormHelpers/FormLabel";
+import FormError from "./FormHelpers/FormError";
 import ControlledSelectInput, {
   SelectInput,
 } from "./FormInputs/SelectInput/SelectInput";
 import FormInputWrapper from "./FormInputs/FormInputWrapper";
 import useForm from "../utils/hooks/useForm";
 import moment from "moment";
+import TextInput from "./FormInputs/TextInput/TextInput";
 import ControlledDateInput, {
   DateInput,
 } from "./FormInputs/DateInput/DateInput";
@@ -158,7 +158,8 @@ TextInputForm.args = {
   className: "",
   style: {},
   unit: "",
-  type: "string",
+  type: "number",
+  step: 1,
   children: (props) => <TextInput {...props} />,
 };
 TextInputForm.storyName = "TextInput";

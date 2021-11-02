@@ -2,7 +2,7 @@ import FormInputType from "..";
 import FormInputWrapperType from "../FormInputWrapper";
 
 enum InputTypeOptions {
-  "string",
+  "text",
   "number",
 }
 
@@ -14,6 +14,8 @@ export type TextInputType = FormInputType & {
   onBlur?: () => void | React.FocusEvent;
   unit?: string;
   type?: InputTypeOptions;
+  /** Set attribute specifies the interval between each legal numbers */
+  step?: number | "any";
 };
 
 type ControlledTextInputType = TextInputType & FormInputWrapperType;

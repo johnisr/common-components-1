@@ -3,9 +3,9 @@ import classNames from "classnames/bind";
 import styles from "./TextInput.module.scss";
 import ControlledTextInputType, {
   TextInputType,
-} from "../../types/Form/FormInputs/TextInput";
-import FormInputWrapper from "./FormInputWrapper";
-import FormIcon from "./FormIcon";
+} from "../../../types/Form/FormInputs/TextInput";
+import FormInputWrapper from "../FormInputWrapper";
+import FormIcon from "../FormIcon";
 
 const cx = classNames.bind(styles);
 
@@ -22,13 +22,18 @@ const TextInput: React.FC<TextInputType> = ({
   onChange,
   onBlur,
   unit,
-  type = "string",
+  type = "text",
   value = "",
+  step = "any",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (type === "number") {
       if (e.target.value) {
-        onChange(parseFloat(e.target.value));
+        if (typeof step === "number" && step % 1 === 0) {
+          onChange(parseInt(e.target.value));
+        } else {
+          onChange(parseFloat(e.target.value));
+        }
       } else {
         onChange(undefined);
       }
@@ -53,7 +58,8 @@ const TextInput: React.FC<TextInputType> = ({
           onBlur={onBlur}
           value={value}
           type={type as HTMLInputTypeAttribute}
-          step={type === "number" ? "any" : undefined}
+          step={type === "number" ? step : undefined}
+          disabled={isDisabled}
         />
 
         {showIcon && (
