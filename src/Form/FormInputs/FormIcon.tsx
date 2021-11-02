@@ -2,7 +2,7 @@ import React from "react";
 import FontAwesome from "react-fontawesome";
 import classNames from "classnames/bind";
 import styles from "./FormIcon.module.scss";
-import FormIconType from "../../types/Form/FormIcon";
+import FormIconType from "../../types/Form/FormHelpers/FormIcon";
 
 const inputCx = classNames.bind(styles);
 

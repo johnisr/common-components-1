@@ -23,7 +23,7 @@ import ControlledTextAreaInput from "./Form/FormInputs/TextAreaInput/TextAreaInp
 import ControlledFileInput from "./Form/FormInputs/FileInput/FileInput";
 import ControlledTextWithFileInput from "./Form/FormInputs/TextWithFileInput/TextWithFileInput";
 import FormInputWrapper from "./Form/FormInputs/FormInputWrapper";
-import FormButton from "./Form/FormButton";
+import FormButton from "./Form/FormHelpers/FormButton";
 
 import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";

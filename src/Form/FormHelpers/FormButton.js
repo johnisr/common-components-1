@@ -1,7 +1,7 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import { useFormContext } from "react-hook-form";
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 
 /** An extension of the Button component to work with Forms (submission and reset) */
 const FormButton = ({ children, ...props }) => {

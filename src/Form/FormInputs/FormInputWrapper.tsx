@@ -2,8 +2,8 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./FormInputWrapper.module.scss";
-import FormLabel from "../FormLabel";
-import FormError from "../FormError";
+import FormLabel from "../FormHelpers/FormLabel";
+import FormError from "../FormHelpers/FormError";
 import FormInputWrapperType from "../../types/Form/FormInputs/FormInputWrapper";
 import FormInputType, { FormActionType } from "../../types/Form/FormInputs";
 
