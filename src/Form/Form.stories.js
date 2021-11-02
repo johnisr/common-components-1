@@ -329,7 +329,7 @@ const MultipleInputFormChildren = (props) => {
       <TextInput
         {...shared}
         name="lastName"
-        label={<div>hi</div>}
+        label="Last Name"
         isRequired
         showIcon
       />
