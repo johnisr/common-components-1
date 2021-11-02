@@ -4,7 +4,7 @@ import { useArgs } from "@storybook/client-api";
 import Page from "../Page/Page";
 import Panel from "../Panel/Panel";
 import CommonForm from "./Form";
-import FormButton from "./FormButton";
+import FormButton from "./FormHelpers/FormButton";
 import FormLabel from "./FormLabel";
 import FormError from "./FormError";
 import ControlledSelectInput, {
@@ -329,7 +329,7 @@ const MultipleInputFormChildren = (props) => {
       <TextInput
         {...shared}
         name="lastName"
-        label="Last Name"
+        label={<div>hi</div>}
         isRequired
         showIcon
       />

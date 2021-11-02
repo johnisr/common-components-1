@@ -14,7 +14,7 @@ type FormInputWrapperType = {
     | React.FC<SelectInputType>
     | any;
   /** The string to be shown at top left giving context what the input needs */
-  label: string;
+  label: React.ReactNode;
   /**
    * An object with property values as functions that validate the input.
    * Each function is of the form `(value: any): boolean || string` where
