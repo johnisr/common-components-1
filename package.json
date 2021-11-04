@@ -39,7 +39,9 @@
     "rc-time-picker": "^3.7.3",
     "react-day-picker": "^7.4.10",
     "react-hook-form": "^7.16.2",
-    "react-select": "^5.0.0"
+    "react-select": "^5.0.0",
+    "react-transition-group": "^4.4.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -69,6 +71,7 @@
     "@types/react-fontawesome": "^1.6.5",
     "@types/react-loader": "^2.4.5",
     "@types/react-select": "^5.0.1",
+    "@types/uuid": "^8.3.1",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.3.1",
     "@typescript-eslint/eslint-plugin": "^5.1.0",

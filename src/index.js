@@ -24,6 +24,7 @@ import ControlledFileInput from "./Form/FormInputs/FileInput/FileInput";
 import ControlledTextWithFileInput from "./Form/FormInputs/TextWithFileInput/TextWithFileInput";
 import FormInputWrapper from "./Form/FormInputs/FormInputWrapper";
 import FormButton from "./Form/FormHelpers/FormButton";
+import AlertProvider, { useAlert } from "./Alert/AlertProvider";
 
 import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
@@ -54,6 +55,8 @@ export {
   ControlledTextWithFileInput as TextWithFileInput,
   FormInputWrapper,
   useForm,
+  AlertProvider,
+  useAlert,
 };
 
 export default {
@@ -82,4 +85,6 @@ export default {
   TextWithFileInput: ControlledTextWithFileInput,
   useForm,
   FormInputWrapper,
+  AlertProvider,
+  useAlert,
 };
