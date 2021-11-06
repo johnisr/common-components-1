@@ -1,35 +1,31 @@
-import { AlertVariants, AlertPosition } from "../types/Alert";
+import { AlertPositionType, AlertVariantsType } from "../types/Alert";
 
-export const getVariantClassName = (variant: string | undefined): string => {
+export const getVariantClassName = (variant?: AlertVariantsType): string => {
   switch (variant) {
-    case AlertVariants.Success:
+    case "success":
       return "alert--success";
-    case AlertVariants.Warning:
+    case "warning":
       return "alert--warning";
-    case AlertVariants.Notification:
+    case "notification":
       return "alert--notification";
     default:
       return "alert--normal";
   }
 };
 
-export const getIcon = (variant: string | undefined): string => {
+export const getIcon = (variant?: AlertVariantsType): string => {
   switch (variant) {
-    case AlertVariants.Success:
+    case "success":
       return "check-circle-o";
-    case AlertVariants.Warning:
+    case "warning":
       return "exclamation-circle";
-    case AlertVariants.Notification:
+    case "notification":
       return "info-circle";
     default:
       return "question-circle-o";
   }
 };
 
-export const isPositionTop = (position: AlertPosition) => {
-  return [
-    AlertPosition.Top,
-    AlertPosition.Topleft,
-    AlertPosition.Topright,
-  ].includes(position);
+export const isPositionTop = (position: AlertPositionType) => {
+  return ["top", "topLeft", "topRight"].includes(position);
 };

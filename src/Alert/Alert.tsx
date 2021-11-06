@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Alert.module.scss";
-import AlertType, { AlertVariants } from "../types/Alert";
+import AlertType from "../types/Alert";
 import { getVariantClassName, getIcon } from "./AlertHelper";
 import FontAwesome from "react-fontawesome";
 
@@ -33,7 +33,7 @@ const Alert: React.FC<AlertType> = ({
       {onClose && (
         <FontAwesome
           className={cx("closeButton", {
-            "closeButton--success": variant === AlertVariants.Success,
+            "closeButton--success": variant === "success",
           })}
           name="times fa fa-fw"
           onClick={onClose}

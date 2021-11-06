@@ -1,20 +1,18 @@
 import { ReactNode } from "react";
 
-export enum AlertVariants {
-  Success = "success",
-  Warning = "warning",
-  Notification = "notification",
-  Normal = "normal",
-}
+export type AlertVariantsType =
+  | "success"
+  | "warning"
+  | "notification"
+  | "normal";
 
-export enum AlertPosition {
-  Topleft = "topLeft",
-  Top = "top",
-  Topright = "topRight",
-  Bottomleft = "bottomLeft",
-  Bottom = "bottom",
-  Bottomright = "bottomRight",
-}
+export type AlertPositionType =
+  | "topLeft"
+  | "top"
+  | "topRight"
+  | "bottomLeft"
+  | "bottom"
+  | "bottomRight";
 
 type AlertType = {
   /** The classname given to the Alert */
@@ -22,7 +20,7 @@ type AlertType = {
   /** The style given to the Alert */
   style?: React.CSSProperties;
   /** decides the background color, color, and icon of the Alert */
-  variant?: AlertVariants;
+  variant?: AlertVariantsType;
   /** Show associated icon or not */
   showIcon?: boolean;
   /** The element to be displayed, usually a string */
@@ -37,20 +35,31 @@ export type AlertProviderType = {
   /** The maximum number of alerts that can appear at one time */
   maxAlerts?: number;
   /** THe position the <Alerts> will appear in */
-  position?: AlertPosition;
+  position?: AlertPositionType;
   /** The components where useAlert() will be available in */
   children: React.ReactNode | React.ReactNode[];
+};
+
+export type AlertContextType = {
+  addAlert: (messageObject: addAlertType) => void;
+  removeAlert: () => void;
 };
 
 export type addAlertType = {
   /** unique identifier used for removeById */
   id?: string;
   /** The style the Alert will be, defaults to success */
-  variant?: AlertVariants | undefined;
+  variant?: AlertVariantsType;
   /** Show variant-specific icon if true, defaults to success */
   showIcon?: boolean;
   /** The element displayed to the user */
   message: ReactNode;
+};
+
+export type useManageAlertsArgumentsType = {
+  maxAlerts: number;
+  timeout: number;
+  position: AlertPositionType;
 };
 
 export type useManageAlertsType = {

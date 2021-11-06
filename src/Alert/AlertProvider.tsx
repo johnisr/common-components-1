@@ -2,17 +2,14 @@ import React, { createContext, useContext } from "react";
 import classNames from "classnames/bind";
 import useManageAlerts from "./useManageAlerts";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { addAlertType, AlertPosition, AlertProviderType } from "../types/Alert";
+import { AlertContextType, AlertProviderType } from "../types/Alert";
 import Alert from "./Alert";
 import { isPositionTop } from "./AlertHelper";
 import styles from "./AlertTransitions.module.scss";
 
 const cx = classNames.bind(styles);
 
-export const AlertContext = createContext<{
-  addAlert: (messageObject: addAlertType) => void;
-  removeAlert: () => void;
-} | null>(null);
+export const AlertContext = createContext<Partial<AlertContextType>>({});
 
 /**
  * We can freely add and remove items in `alertList` and those will be animated by
@@ -24,7 +21,7 @@ const AlertProvider: React.FC<AlertProviderType> = ({
   children,
   timeout = 5000,
   maxAlerts = 3,
-  position = AlertPosition.Bottomleft,
+  position = "bottomLeft",
 }) => {
   const { alertList, addAlert, removeAlert, removeById } = useManageAlerts({
     timeout,

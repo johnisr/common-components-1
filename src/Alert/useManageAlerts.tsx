@@ -2,23 +2,27 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import {
   addAlertType,
-  AlertVariants,
-  AlertPosition,
   useManageAlertsType,
+  useManageAlertsArgumentsType,
+  AlertVariantsType,
 } from "../types/Alert";
 import { isPositionTop } from "./AlertHelper";
 
-export const defaultAlert = {
+export const defaultAlert: {
+  id: null;
+  variant: AlertVariantsType;
+  showIcon: boolean;
+} = {
   id: null,
-  variant: AlertVariants.Normal,
+  variant: "normal",
   showIcon: true,
 };
 
 const useManageAlerts = ({
   maxAlerts = 5,
   timeout = 5000,
-  position = AlertPosition.Bottomleft,
-}): useManageAlertsType => {
+  position = "bottomLeft",
+}: useManageAlertsArgumentsType): useManageAlertsType => {
   const [alertList, setAlertList] = useState<addAlertType[]>([]);
 
   const isTop = isPositionTop(position);

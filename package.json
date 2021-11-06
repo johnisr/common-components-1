@@ -5,7 +5,8 @@
   "main": "./dist/bundle.js",
   "files": [
     "dist",
-    "src/constants"
+    "src/constants",
+    "src/types"
   ],
   "browserslist": [
     "defaults",
