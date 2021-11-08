@@ -61,7 +61,7 @@
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.176",
-    "@types/mini-css-extract-plugin": "^2.3.0",
+    "@types/mini-css-extract-plugin": "^2.4.0",
     "@types/node": "^16.11.1",
     "@types/react": "^17.0.29",
     "@types/react-day-picker": "^5.3.0",
