@@ -76,7 +76,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "autoprefixer": "^10.3.4",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.3",
     "classnames": "^2.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.3.0",
