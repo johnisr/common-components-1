@@ -9,7 +9,7 @@
   width: 412px;
   min-height: 48px;
   border-radius: 6px;
-  @include fontStyles(body, 16);  
+  @include fontStyles(body, 16);
 
   &--success {
     background-color: var(--colour-success);
@@ -34,7 +34,7 @@
 .message {
   flex-grow: 1;
   display: -webkit-box;
-  // truncates after 4 lines, no IE support
+  // truncates after 3 lines, no IE support
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;

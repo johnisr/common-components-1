@@ -2,22 +2,20 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./Alert.module.scss";
 import AlertType from "../types/Alert";
-import { getVariantClassName, getIcon } from "./AlertHelper";
+import { getAlertStyling } from "./AlertHelper";
 import FontAwesome from "react-fontawesome";
 
 const cx = classNames.bind(styles);
 
-const Alert: React.FC<AlertType> = ({
+const Alert = ({
   className = "",
   style,
   variant = "notification",
   showIcon = true,
   message,
   onClose,
-}) => {
-  const variantClassName = getVariantClassName(variant);
-
-  const icon = getIcon(variant);
+}: AlertType) => {
+  const { className: variantClassName, icon } = getAlertStyling(variant);
 
   return (
     <div

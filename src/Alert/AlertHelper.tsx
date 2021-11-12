@@ -1,28 +1,21 @@
-import { AlertPositionType, AlertVariantsType } from "../types/Alert";
+import {
+  AlertPositionType,
+  AlertVariantsType,
+  AlertStylingType,
+} from "../types/Alert";
 
-export const getVariantClassName = (variant?: AlertVariantsType): string => {
+export const getAlertStyling = (
+  variant?: AlertVariantsType
+): AlertStylingType => {
   switch (variant) {
     case "success":
-      return "alert--success";
+      return { className: "alert--success", icon: "check-circle-o" };
     case "warning":
-      return "alert--warning";
+      return { className: "alert--warning", icon: "exclamation-circle" };
     case "notification":
-      return "alert--notification";
+      return { className: "alert--notification", icon: "info-circle" };
     default:
-      return "alert--normal";
-  }
-};
-
-export const getIcon = (variant?: AlertVariantsType): string => {
-  switch (variant) {
-    case "success":
-      return "check-circle-o";
-    case "warning":
-      return "exclamation-circle";
-    case "notification":
-      return "info-circle";
-    default:
-      return "question-circle-o";
+      return { className: "alert--normal", icon: "question-circle-o" };
   }
 };
 

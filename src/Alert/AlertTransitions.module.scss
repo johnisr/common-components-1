@@ -25,7 +25,7 @@
   transform: translateX(-50%);
 }
 
-.bottomLeft{
+.bottomLeft {
   bottom: 20px;
   left: 20px;
 }
@@ -55,7 +55,8 @@
   max-height: 200px;
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: opacity 200ms, transform 200ms, max-height 300ms, margin-top 300ms 50ms;
+  transition: opacity 200ms, transform 200ms, max-height 300ms,
+    margin-top 300ms 50ms;
 }
 
 .exit {
@@ -70,7 +71,8 @@
   max-height: 0;
   opacity: 0;
   transform: translateY(-100%) scale(0.75);
-  transition: opacity 200ms, transform 200ms, max-height 300ms, margin-top 300ms 200ms;
+  transition: opacity 200ms, transform 200ms, max-height 300ms,
+    margin-top 300ms 200ms;
 
   &--top {
     transform: translateY(100%) scale(0.75);

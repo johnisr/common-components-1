@@ -73,4 +73,9 @@ export type useManageAlertsType = {
   removeById: (id?: string) => void;
 };
 
+export type AlertStylingType = {
+  className: string;
+  icon: string;
+};
+
 export default AlertType;
