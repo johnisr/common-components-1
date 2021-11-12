@@ -43,7 +43,7 @@ const useManageAlerts = ({
     }
   };
 
-  const addAlert = (messageProps: addAlertType) => {
+  const addAlert = (newAlert: addAlertType) => {
     const id = uuidv4();
     if (alertList.length + 1 > maxAlerts) {
       removeAlert();
@@ -51,7 +51,7 @@ const useManageAlerts = ({
 
     const newAlertMessage = {
       ...defaultAlert,
-      ...messageProps,
+      ...newAlert,
       id,
     };
 
