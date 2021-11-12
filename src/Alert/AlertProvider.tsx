@@ -17,12 +17,12 @@ export const AlertContext = createContext<Partial<AlertContextType>>({});
  * by keeping it `timeout` ms after removal and applying the exit and exitActive
  * classes to it. Only then is the element unmounted.
  */
-const AlertProvider: React.FC<AlertProviderType> = ({
+const AlertProvider = ({
   children,
   timeout = 5000,
   maxAlerts = 3,
   position = "bottomLeft",
-}) => {
+}: AlertProviderType) => {
   const { alertList, addAlert, removeAlert, removeById } = useManageAlerts({
     timeout,
     maxAlerts,
