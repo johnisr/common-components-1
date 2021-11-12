@@ -14,17 +14,20 @@ export type AlertPositionType =
   | "bottom"
   | "bottomRight";
 
-type AlertType = {
-  /** The classname given to the Alert */
-  className?: string;
-  /** The style given to the Alert */
-  style?: React.CSSProperties;
+type AlertBaseType = {
   /** decides the background color, color, and icon of the Alert */
   variant?: AlertVariantsType;
   /** Show associated icon or not */
   showIcon?: boolean;
   /** The element to be displayed, usually a string */
   message: ReactNode;
+};
+
+type AlertType = AlertBaseType & {
+  /** The classname given to the Alert */
+  className?: string;
+  /** The style given to the Alert */
+  style?: React.CSSProperties;
   /** Function called when clicking the close icon. Close icon won't appear if undefined. */
   onClose: () => void;
 };
@@ -45,15 +48,9 @@ export type AlertContextType = {
   removeAlert: () => void;
 };
 
-export type addAlertType = {
+export type addAlertType = AlertBaseType & {
   /** unique identifier used for removeById */
   id?: string;
-  /** The style the Alert will be, defaults to success */
-  variant?: AlertVariantsType;
-  /** Show variant-specific icon if true, defaults to success */
-  showIcon?: boolean;
-  /** The element displayed to the user */
-  message: ReactNode;
 };
 
 export type useManageAlertsArgumentsType = {
