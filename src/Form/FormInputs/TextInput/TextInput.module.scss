@@ -6,6 +6,7 @@
 }
 
 .input,
+input[type="text"].input,
 input[type="number"].input {
   border: 1px solid var(--colour-background-dark);
   border-radius: 6px;
