@@ -4,18 +4,14 @@ import {
   addAlertType,
   useManageAlertsType,
   useManageAlertsArgumentsType,
-  AlertVariantsType,
 } from "../types/Alert";
 import { isPositionTop } from "./AlertHelper";
 
-export const defaultAlert: {
-  id: null;
-  variant: AlertVariantsType;
-  showIcon: boolean;
-} = {
-  id: null,
+export const defaultAlert: addAlertType = {
+  id: undefined,
   variant: "normal",
   showIcon: true,
+  message: undefined,
 };
 
 const useManageAlerts = ({

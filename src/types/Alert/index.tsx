@@ -14,7 +14,7 @@ export type AlertPositionType =
   | "bottom"
   | "bottomRight";
 
-type AlertBaseType = {
+export type AlertBaseType = {
   /** decides the background color, color, and icon of the Alert */
   variant?: AlertVariantsType;
   /** Show associated icon or not */
