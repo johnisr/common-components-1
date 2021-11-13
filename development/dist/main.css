@@ -1224,7 +1224,7 @@ body {
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FormInputWrapper.module.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************/
 .FormInputWrapper-module__wrapper {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/FormLabel.module.scss ***!
@@ -1292,6 +1292,7 @@ body {
 }
 
 .TextInput-module__input,
+input[type=text].TextInput-module__input,
 input[type=number].TextInput-module__input {
   border: 1px solid #E6EAEC;
   border-radius: 6px;
@@ -1305,45 +1306,55 @@ input[type=number].TextInput-module__input {
   caret-color: #1DA29D;
 }
 .TextInput-module__input:hover,
+input[type=text].TextInput-module__input:hover,
 input[type=number].TextInput-module__input:hover {
   border: 1px solid #76D2D2;
   outline: none;
   box-shadow: none;
 }
 .TextInput-module__input:focus,
+input[type=text].TextInput-module__input:focus,
 input[type=number].TextInput-module__input:focus {
   border: 1px solid #16847E;
   outline: none;
   box-shadow: none;
 }
 .TextInput-module__input:active,
+input[type=text].TextInput-module__input:active,
 input[type=number].TextInput-module__input:active {
   border: 1px solid #2DBFBE;
   outline: none;
   box-shadow: none;
 }
 .TextInput-module__input--error,
+input[type=text].TextInput-module__input--error,
 input[type=number].TextInput-module__input--error {
   border: 1px solid #D83B3E;
   caret-color: #D83B3E;
 }
 .TextInput-module__input--error:focus, .TextInput-module__input--error:hover,
+input[type=text].TextInput-module__input--error:focus,
+input[type=text].TextInput-module__input--error:hover,
 input[type=number].TextInput-module__input--error:focus,
 input[type=number].TextInput-module__input--error:hover {
   border: 1px solid #D83B3E;
 }
 .TextInput-module__input--disabled,
+input[type=text].TextInput-module__input--disabled,
 input[type=number].TextInput-module__input--disabled {
   color: #89989E;
   background-color: #F2F5F6;
   border: 1px solid #E6EAEC;
 }
 .TextInput-module__input--disabled:focus, .TextInput-module__input--disabled:hover,
+input[type=text].TextInput-module__input--disabled:focus,
+input[type=text].TextInput-module__input--disabled:hover,
 input[type=number].TextInput-module__input--disabled:focus,
 input[type=number].TextInput-module__input--disabled:hover {
   border: 1px solid #E6EAEC;
 }
 .TextInput-module__input--truncated,
+input[type=text].TextInput-module__input--truncated,
 input[type=number].TextInput-module__input--truncated {
   padding-right: 32px;
 }
@@ -2001,4 +2012,134 @@ input[type=number].TextInput-module__input--truncated {
 }
 .TextWithFileInput-module__wrapper.TextWithFileInput-module__draggingOver * {
   pointer-events: none;
+}
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Alert/Alert.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.Alert-module__alert {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #16847E;
+  color: #FFFFFF;
+  width: 412px;
+  min-height: 48px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.Alert-module__alert--success {
+  background-color: #3AE894;
+  color: #0E2A36;
+}
+.Alert-module__alert--notification {
+  background-color: #3179E4;
+}
+.Alert-module__alert--warning {
+  background-color: #D83B3E;
+}
+
+.Alert-module__icon {
+  margin-right: 8px;
+  font-size: 19px;
+  display: inline-block;
+}
+
+.Alert-module__message {
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.Alert-module__closeButton {
+  color: #FFFFFF;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 19px;
+}
+.Alert-module__closeButton--success {
+  color: #1B4254;
+}
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Alert/AlertTransitions.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+.AlertTransitions-module__list {
+  position: fixed;
+  z-index: 1090;
+}
+
+.AlertTransitions-module__top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.AlertTransitions-module__topLeft {
+  top: 20px;
+  left: 20px;
+}
+
+.AlertTransitions-module__topRight {
+  top: 20px;
+  right: 20px;
+}
+
+.AlertTransitions-module__bottom {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.AlertTransitions-module__bottomLeft {
+  bottom: 20px;
+  left: 20px;
+}
+
+.AlertTransitions-module__bottomRight {
+  bottom: 20px;
+  right: 20px;
+}
+
+.AlertTransitions-module__enter {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(100%) scale(0.75);
+}
+.AlertTransitions-module__enter--top {
+  transform: translateY(-100%) scale(0.75);
+}
+
+.AlertTransitions-module__enterActive {
+  margin-top: 10px;
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 200ms, transform 200ms, max-height 300ms, margin-top 300ms 50ms;
+}
+
+.AlertTransitions-module__exit {
+  margin-top: 10px;
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.AlertTransitions-module__exitActive {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-100%) scale(0.75);
+  transition: opacity 200ms, transform 200ms, max-height 300ms, margin-top 300ms 200ms;
+}
+.AlertTransitions-module__exitActive--top {
+  transform: translateY(100%) scale(0.75);
 }
