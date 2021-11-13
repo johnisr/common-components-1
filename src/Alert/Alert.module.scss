@@ -1,0 +1,52 @@
+@import "../constants/mixins/";
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--colour-primary-700);
+  color: var(--colour-white);
+  width: 412px;
+  min-height: 48px;
+  border-radius: 6px;
+  @include fontStyles(body, 16);
+
+  &--success {
+    background-color: var(--colour-success);
+    color: var(--colour-text-900);
+  }
+
+  &--notification {
+    background-color: var(--colour-default);
+  }
+
+  &--warning {
+    background-color: var(--colour-error);
+  }
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 19px;
+  display: inline-block;
+}
+
+.message {
+  flex-grow: 1;
+  display: -webkit-box;
+  // truncates after 3 lines, no IE support
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.closeButton {
+  color: var(--colour-white);
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 19px;
+
+  &--success {
+    color: var(--colour-text-800);
+  }
+}

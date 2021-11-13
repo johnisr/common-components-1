@@ -1,0 +1,80 @@
+.list {
+  position: fixed;
+  z-index: var(--zindex-alert);
+}
+
+.top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.topLeft {
+  top: 20px;
+  left: 20px;
+}
+
+.topRight {
+  top: 20px;
+  right: 20px;
+}
+
+.bottom {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottomLeft {
+  bottom: 20px;
+  left: 20px;
+}
+
+.bottomRight {
+  bottom: 20px;
+  right: 20px;
+}
+
+// opacity, translateY, and scale handle Alerts going in and out
+// margin-top handles spacing between Alerts (giving a push action)
+// max-height also contribtues to the push action by having the incoming
+// alert not take up its full space right away
+.enter {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(100%) scale(0.75);
+
+  &--top {
+    transform: translateY(-100%) scale(0.75);
+  }
+}
+
+.enterActive {
+  margin-top: 10px;
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 200ms, transform 200ms, max-height 300ms,
+    margin-top 300ms 50ms;
+}
+
+.exit {
+  margin-top: 10px;
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.exitActive {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-100%) scale(0.75);
+  transition: opacity 200ms, transform 200ms, max-height 300ms,
+    margin-top 300ms 200ms;
+
+  &--top {
+    transform: translateY(100%) scale(0.75);
+  }
+}
