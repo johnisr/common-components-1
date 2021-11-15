@@ -94,7 +94,7 @@
     "fork-ts-checker-webpack-plugin": "^6.4.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
-    "jsdom": "18.0.0",
+    "jsdom": "18.1.0",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "^2.4.4",
     "moment": "^2.29.1",
