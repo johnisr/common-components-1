@@ -65,7 +65,7 @@
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.177",
     "@types/mini-css-extract-plugin": "^2.4.0",
-    "@types/node": "^16.11.7",
+    "@types/node": "^16.11.9",
     "@types/react": "^17.0.35",
     "@types/react-day-picker": "^5.3.0",
     "@types/react-dom": "^17.0.11",
