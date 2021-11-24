@@ -25,7 +25,9 @@ export const FormInputWrapper = ({
       name={name}
       rules={{
         validate: validate || undefined,
-        required: isRequired && `${label ?? "Input"} is required`,
+        required:
+          isRequired &&
+          `${typeof label === "string" ? label : "Input"} is required`,
       }}
       render={({
         field: { onChange, onBlur, value, ref },

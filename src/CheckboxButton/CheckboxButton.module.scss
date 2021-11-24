@@ -1,0 +1,98 @@
+@import "../constants/index.js";
+@import "../constants/mixins";
+
+.container {
+  background-color: var(--colour-white);
+  border: 1px solid var(--colour-background-dark);
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: fit-content;
+  margin-bottom: 0;
+  padding: 10px;
+  padding-right: 18px;
+
+  &--small {
+    padding: 4px;
+    padding-right: 12px;
+  }
+
+  &--large {
+    padding: 14px;
+    padding-right: 20px;
+  }
+
+  &:hover {
+    background-color: var(--colour-background);
+    border: 1px solid var(--colour-background-dark);
+  }
+
+  &--checked {
+    background-color: var(--colour-primary-700);
+
+    &:hover {
+      background-color: var(--colour-primary-500);
+    }
+  }
+
+  &--disabled {
+    background-color: var(--colour-background);
+    border: 1px solid var(--colour-background);
+    cursor: default;
+
+    &:hover {
+      border: 1px solid var(--colour-background);
+    }
+  }
+}
+
+.checkbox,
+input[type="checkbox"].checkbox {
+  appearance: none;
+
+  &::before,
+  &::after {
+    content: none;
+  }
+}
+
+.iconCircle {
+  color: var(--colour-background-lines);
+
+  &--checked {
+    color: var(--colour-white);
+  }
+
+  &--outline {
+    color: var(--colour-primary-700);
+  }
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--colour-primary-700);
+
+  &--outline {
+    color: var(--colour-white);
+  }
+}
+
+.label {
+  @include fontStyles(button);
+  color: var(--colour-text-600);
+  vertical-align: middle;
+  margin-left: 8px;
+  cursor: pointer;
+  user-select: none;
+
+  &--checked {
+    color: var(--colour-white);
+  }
+
+  &--disabled {
+    cursor: default;
+    color: var(--colour-text-300);
+  }
+}
