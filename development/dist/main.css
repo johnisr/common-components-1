@@ -1203,28 +1203,20 @@ body {
   text-align: right;
   margin-left: auto;
 }
-/*!****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/SelectInput/SelectInput.module.scss ***!
-  \****************************************************************************************************************************************************************************************************************************************************/
-.SelectInput-module__wrapper {
-  margin-bottom: 15px;
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/InputStack.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+.InputStack-module__stack {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
-
-.SelectInput-module__icon {
-  font-size: 24px;
-  color: #2DBFBE;
+.InputStack-module__stack > div {
+  flex: 1;
 }
-.SelectInput-module__icon--error {
-  color: #D83B3E;
-}
-.SelectInput-module__icon--disabled {
-  color: #C0CBCC;
-}
-/*!*********************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FormInputWrapper.module.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************/
-.FormInputWrapper-module__wrapper {
-  margin-bottom: 8px;
+.InputStack-module__stack > * + * {
+  margin-left: 24px;
 }
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/FormLabel.module.scss ***!
@@ -1262,6 +1254,29 @@ body {
 }
 .FormLabel-module__label--disabled {
   color: #89989E;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/SelectInput/SelectInput.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+.SelectInput-module__wrapper {
+  margin-bottom: 15px;
+}
+
+.SelectInput-module__icon {
+  font-size: 24px;
+  color: #2DBFBE;
+}
+.SelectInput-module__icon--error {
+  color: #D83B3E;
+}
+.SelectInput-module__icon--disabled {
+  color: #C0CBCC;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/FormInputWrapper.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.FormInputWrapper-module__wrapper {
+  margin-bottom: 8px;
 }
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/FormError.module.scss ***!
