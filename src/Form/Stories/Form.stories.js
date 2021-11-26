@@ -1,105 +1,40 @@
 import React, { useState } from "react";
 import { useArgs } from "@storybook/client-api";
-import Page from "../Page/Page";
-import Panel from "../Panel/Panel";
-import CommonForm from "./Form";
-import FormButton from "./FormHelpers/FormButton";
-import FormLabel from "./FormHelpers/FormLabel";
-import FormError from "./FormHelpers/FormError";
-import InputStack from "./FormHelpers/InputStack";
+import Page from "../../Page/Page";
+import Panel from "../../Panel/Panel";
+import { Form, ButtonContainer, ExtraControls } from "./FormStoryHelpers";
+import CommonForm from "../Form";
+import FormButton from "../FormHelpers/FormButton";
+import FormLabel from "../FormHelpers/FormLabel";
+import FormError from "../FormHelpers/FormError";
+import InputStack from "../FormHelpers/InputStack";
 import ControlledSelectInput, {
   SelectInput,
-} from "./FormInputs/SelectInput/SelectInput";
-import FormInputWrapper from "./FormInputs/FormInputWrapper";
-import useForm from "../utils/hooks/useForm";
+} from "../FormInputs/SelectInput/SelectInput";
+import FormInputWrapper from "../FormInputs/FormInputWrapper";
 import moment from "moment";
-import TextInput from "./FormInputs/TextInput/TextInput";
+import TextInput from "../FormInputs/TextInput/TextInput";
 import ControlledDateInput, {
   DateInput,
-} from "./FormInputs/DateInput/DateInput";
+} from "../FormInputs/DateInput/DateInput";
 import ControlledTimeInput, {
   TimeInput,
-} from "./FormInputs/TimeInput/TimeInput";
+} from "../FormInputs/TimeInput/TimeInput";
 import ControlledDateTimeInput, {
   DateTimeInput,
-} from "./FormInputs/DateTimeInput/DateTimeInput";
-import config from "../../config";
+} from "../FormInputs/DateTimeInput/DateTimeInput";
+import config from "../../../config";
 import ControlledFileInput, {
   FileInput,
-} from "./FormInputs/FileInput/FileInput";
+} from "../FormInputs/FileInput/FileInput";
 import ControlledTextAreaInput, {
   TextAreaInput,
-} from "./FormInputs/TextAreaInput/TextAreaInput";
+} from "../FormInputs/TextAreaInput/TextAreaInput";
 import ControlledTextWithFileInput, {
   TextWithFileInput,
-} from "./FormInputs/TextWithFileInput/TextWithFileInput";
+} from "../FormInputs/TextWithFileInput/TextWithFileInput";
 
 /* eslint-disable react/prop-types */
-
-const PrintJson = ({ data }) => (
-  <div style={{ marginTop: "20px" }}>
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-  </div>
-);
-
-// Putting the useForm declaration inside the Template function causes
-// error (Storybook related)
-const Form = (props) => {
-  const formMethods = useForm({
-    mode: "onTouched",
-    defaultValues: props.defaultValues,
-  });
-
-  return (
-    <CommonForm onSubmit={props.onSubmit} {...formMethods}>
-      {props.children}
-    </CommonForm>
-  );
-};
-
-const ButtonContainer = (props) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-      }}
-    >
-      <FormButton variant="error" type="reset" onClick={props.onReset}>
-        Reset
-      </FormButton>
-
-      <FormButton variant="primary" type="submit">
-        Submit Button
-      </FormButton>
-    </div>
-  );
-};
-
-const ExtraControls = (props) => {
-  return (
-    <>
-      <div className="font-headline-sm">Extra Controls / Results</div>
-
-      <div style={{ textAlign: "right" }}>
-        <label style={{ marginRight: "10px" }} htmlFor="responseTime">
-          Response Time
-        </label>
-        <input
-          id="responseTime"
-          style={{ marginTop: "20px" }}
-          type="number"
-          value={props.responseTime}
-          onChange={(e) => props.setResponseTime(e.target.value)}
-          step={500}
-        />
-      </div>
-
-      {props.submittedArgs && <PrintJson data={props.submittedArgs} />}
-    </>
-  );
-};
 
 const Template = (args) => {
   const [state, updateState] = useArgs();
