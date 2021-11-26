@@ -6,6 +6,7 @@ import CommonForm from "./Form";
 import FormButton from "./FormHelpers/FormButton";
 import FormLabel from "./FormHelpers/FormLabel";
 import FormError from "./FormHelpers/FormError";
+import InputStack from "./FormHelpers/InputStack";
 import ControlledSelectInput, {
   SelectInput,
 } from "./FormInputs/SelectInput/SelectInput";
@@ -422,3 +423,37 @@ export default {
       "A wrapper component that controls form state and passes it down to its children",
   },
 };
+
+const InputStackFormChildren = ({
+  name,
+  label,
+  className,
+  style,
+  isDisabled,
+}) => {
+  const shared = { isDisabled: isDisabled };
+
+  return (
+    <InputStack
+      {...shared}
+      name={name}
+      label={label}
+      className={className}
+      style={style}
+    >
+      <TextInput {...shared} name="firstName" label="First" showIcon />
+      <TextInput {...shared} name="lastName" label="Last" showIcon />
+    </InputStack>
+  );
+};
+
+export const InputStackForm = Template.bind({});
+InputStackForm.args = {
+  name: "fullName",
+  label: "Full Name",
+  className: "",
+  style: null,
+  isDisabled: false,
+  children: (props) => <InputStackFormChildren {...props} />,
+};
+InputStackForm.storyName = "Input Stack";

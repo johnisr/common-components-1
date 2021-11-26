@@ -14,6 +14,7 @@ import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
 import NavBar from "./NavBar/NavBar";
 import Sidebar from "./Sidebar/Sidebar";
 import Form from "./Form/Form";
+import InputStack from "./Form/FormHelpers/InputStack";
 import ControlledSelectInput from "./Form/FormInputs/SelectInput/SelectInput";
 import TextInput from "./Form/FormInputs/TextInput/TextInput";
 import ControlledDateInput from "./Form/FormInputs/DateInput/DateInput";
@@ -45,6 +46,7 @@ export {
   styles,
   Form,
   FormButton,
+  InputStack,
   ControlledSelectInput as SelectInput,
   ControlledDateInput as DateInput,
   TextInput,
@@ -75,6 +77,7 @@ export default {
   styles,
   Form,
   FormButton,
+  InputStack,
   SelectInput: ControlledSelectInput,
   DateInput: ControlledDateInput,
   TextInput,
