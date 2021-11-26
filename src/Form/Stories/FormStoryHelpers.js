@@ -1,7 +1,7 @@
 import React from "react";
-import useForm from "../utils/hooks/useForm";
-import CommonForm from "./Form";
-import FormButton from "./FormHelpers/FormButton";
+import useForm from "../../utils/hooks/useForm";
+import CommonForm from "../Form";
+import FormButton from "../FormHelpers/FormButton";
 
 /* eslint-disable react/prop-types */
 

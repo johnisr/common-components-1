@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import Page from "../Page/Page";
+import Page from "../../Page/Page";
 import { useArgs } from "@storybook/client-api";
-import { FormInputWrapper, Panel } from "..";
-import CheckboxButton from "./CheckboxButton";
-import { Form, ButtonContainer, ExtraControls } from "../Form/FormStoryHelpers";
+import { FormInputWrapper, Panel } from "../..";
+import CheckboxButton from "../CheckboxButton";
+import {
+  Form,
+  ButtonContainer,
+  ExtraControls,
+} from "../../Form/Stories/FormStoryHelpers";
 import { MultipleCheckbox } from "./CheckboxButtonStoryHelper";
 
 /* eslint-disable react/prop-types */

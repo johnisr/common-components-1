@@ -1,38 +1,38 @@
 import React, { useState } from "react";
 import { useArgs } from "@storybook/client-api";
-import Page from "../Page/Page";
-import Panel from "../Panel/Panel";
+import Page from "../../Page/Page";
+import Panel from "../../Panel/Panel";
 import { Form, ButtonContainer, ExtraControls } from "./FormStoryHelpers";
-import CommonForm from "./Form";
-import FormButton from "./FormHelpers/FormButton";
-import FormLabel from "./FormHelpers/FormLabel";
-import FormError from "./FormHelpers/FormError";
-import InputStack from "./FormHelpers/InputStack";
+import CommonForm from "../Form";
+import FormButton from "../FormHelpers/FormButton";
+import FormLabel from "../FormHelpers/FormLabel";
+import FormError from "../FormHelpers/FormError";
+import InputStack from "../FormHelpers/InputStack";
 import ControlledSelectInput, {
   SelectInput,
-} from "./FormInputs/SelectInput/SelectInput";
-import FormInputWrapper from "./FormInputs/FormInputWrapper";
+} from "../FormInputs/SelectInput/SelectInput";
+import FormInputWrapper from "../FormInputs/FormInputWrapper";
 import moment from "moment";
-import TextInput from "./FormInputs/TextInput/TextInput";
+import TextInput from "../FormInputs/TextInput/TextInput";
 import ControlledDateInput, {
   DateInput,
-} from "./FormInputs/DateInput/DateInput";
+} from "../FormInputs/DateInput/DateInput";
 import ControlledTimeInput, {
   TimeInput,
-} from "./FormInputs/TimeInput/TimeInput";
+} from "../FormInputs/TimeInput/TimeInput";
 import ControlledDateTimeInput, {
   DateTimeInput,
-} from "./FormInputs/DateTimeInput/DateTimeInput";
-import config from "../../config";
+} from "../FormInputs/DateTimeInput/DateTimeInput";
+import config from "../../../config";
 import ControlledFileInput, {
   FileInput,
-} from "./FormInputs/FileInput/FileInput";
+} from "../FormInputs/FileInput/FileInput";
 import ControlledTextAreaInput, {
   TextAreaInput,
-} from "./FormInputs/TextAreaInput/TextAreaInput";
+} from "../FormInputs/TextAreaInput/TextAreaInput";
 import ControlledTextWithFileInput, {
   TextWithFileInput,
-} from "./FormInputs/TextWithFileInput/TextWithFileInput";
+} from "../FormInputs/TextWithFileInput/TextWithFileInput";
 
 /* eslint-disable react/prop-types */
 

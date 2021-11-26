@@ -1,6 +1,6 @@
 import React from "react";
-import { CheckboxButton } from "..";
-import { checkboxSizeOptions } from "../types/CheckboxButton";
+import { CheckboxButton } from "../..";
+import { checkboxSizeOptions } from "../../types/CheckboxButton";
 
 type MultipleCheckboxType = {
   onChange: (newValue: Record<string, boolean>) => void;
