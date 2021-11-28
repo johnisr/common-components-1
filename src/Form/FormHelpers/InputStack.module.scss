@@ -1,14 +1,6 @@
 .stack {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
   align-items: baseline;
-  flex-wrap: wrap;
-    
-  > div {
-    flex: 1;
-  }
-
-  > * + * {
-    margin-left: 24px;
-  }
 }
