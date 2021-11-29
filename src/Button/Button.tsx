@@ -2,7 +2,7 @@ import React from "react";
 import { getVariantClassName, getSizeClassName, getIcon } from "./ButtonHelper";
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
-import { ButtonProps } from "../types/Button";
+import { ButtonTypes } from "../types/Button";
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,7 @@ const Button = ({
   as: Component = "button",
   children,
   ...props
-}: ButtonProps) => {
+}: ButtonTypes) => {
   const variantClassName = getVariantClassName(variant);
 
   const sizeClassName = getSizeClassName(size);

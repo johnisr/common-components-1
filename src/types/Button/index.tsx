@@ -1,4 +1,4 @@
-export type ButtonProps = {
+export type ButtonTypes = {
   /** The className given to the button */
   className?: string;
   /** The style given to the button */
@@ -12,7 +12,7 @@ export type ButtonProps = {
   /** The FontAwesome icon name to show the icon */
   icon?: string;
   /** The function executed when clicking a button */
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** If true, the button will become greyed-out and not responsive to actions */
   disabled: boolean;
   /** Where the icon will be shown in relation to the text if present */
@@ -25,4 +25,6 @@ export type ButtonProps = {
   as: React.ElementType;
   /** The content of the button */
   children: React.ReactNode[] | React.ReactNode;
+  /** Button Tags */
+  htmlFor?: string;
 };
