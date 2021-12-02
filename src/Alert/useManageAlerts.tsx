@@ -44,7 +44,6 @@ const useManageAlerts = ({
     if (alertList.length + 1 > maxAlerts) {
       removeAlert();
     }
-
     const newAlertMessage = {
       ...defaultAlert,
       ...newAlert,

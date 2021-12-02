@@ -29,29 +29,30 @@ const AlertProvider = ({
     position,
   });
 
-  const isTop = isPositionTop(position);
-
   return (
     <AlertContext.Provider value={{ addAlert, removeAlert }}>
       <>
         <TransitionGroup className={cx("list", position)}>
-          {alertList.map((alert) => (
-            <CSSTransition
-              timeout={timeout}
-              classNames={{
-                enter: cx("enter", { "enter--top": isTop }),
-                enterActive: cx("enterActive"),
-                exit: cx("exit"),
-                exitActive: cx("exitActive", { "exitActive--top": isTop }),
-              }}
-              unmountOnExit
-              key={alert.id}
-            >
-              <div>
-                <Alert {...alert} onClose={() => removeById(alert.id)} />
-              </div>
-            </CSSTransition>
-          ))}
+          {alertList.map((alert) => {
+            const isTop = isPositionTop(position);
+            return (
+              <CSSTransition
+                timeout={timeout}
+                classNames={{
+                  enter: cx("enter", { "enter--top": isTop }),
+                  enterActive: cx("enterActive"),
+                  exit: cx("exit"),
+                  exitActive: cx("exitActive", { "exitActive--top": isTop }),
+                }}
+                unmountOnExit
+                key={alert.id}
+              >
+                <div>
+                  <Alert {...alert} onClose={() => removeById(alert.id)} />
+                </div>
+              </CSSTransition>
+            );
+          })}
         </TransitionGroup>
 
         {children}

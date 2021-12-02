@@ -45,8 +45,18 @@
   margin-left: auto;
   cursor: pointer;
   font-size: 19px;
-
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  
   &--success {
     color: var(--colour-text-800);
   }
+  &:hover {
+    background-color: transparent;
+  }
+  &:focus,
+  &:active {
+    background-color: transparent;
+    }
 }

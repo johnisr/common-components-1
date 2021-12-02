@@ -23,19 +23,24 @@ const Alert = ({
         "alert--truncated": showIcon,
       })} ${className}`}
       style={style}
+      role="alert"
     >
       {showIcon && <FontAwesome name={icon} className={`${cx("icon")}`} />}
 
-      <span className={cx("message")}>{message}</span>
+      <span className={cx("message")} role="text" aria-label="message">
+        {message}
+      </span>
 
       {onClose && (
-        <FontAwesome
+        <button
           className={cx("closeButton", {
             "closeButton--success": variant === "success",
           })}
-          name="times fa fa-fw"
+          aria-label="close"
           onClick={onClose}
-        />
+        >
+          <FontAwesome name="times fa fa-fw" />
+        </button>
       )}
     </div>
   );
