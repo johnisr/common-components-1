@@ -14,7 +14,7 @@ export type ButtonTypes = {
   /** The function executed when clicking a button */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** If true, the button will become greyed-out and not responsive to actions */
-  disabled: boolean;
+  disabled?: boolean;
   /** Where the icon will be shown in relation to the text if present */
   iconPosition?: "left" | "right";
   /** Any styling needed to apply to the icon specifically can be added via className */
@@ -22,7 +22,7 @@ export type ButtonTypes = {
   /** Grey out the button while true */
   isLoading?: boolean;
   /** Change the wrapper component to be another html element instead of a div for semantic/functional purposes e.g. a link element to allow middle click, a label component to trigger onFocus for other elements like */
-  as: React.ElementType;
+  as?: React.ElementType;
   /** The content of the button */
   children: React.ReactNode[] | React.ReactNode;
   /** Button Tags */

@@ -37,7 +37,7 @@ describe("DatatableHelper test", () => {
   it("getFilteredList", () => {
     const list = [{ name: "abc" }, { name: "aab" }, { name: "aabc" }];
 
-    const filteredList = getFilteredList(list, "name", "aa");
+    const filteredList = getFilteredList(list, "aa", "name");
     expect(filteredList).toEqual(
       expect.arrayContaining([{ name: "aab" }, { name: "aabc" }])
     );
@@ -46,7 +46,7 @@ describe("DatatableHelper test", () => {
 
     // if given a customSearch function, uses that instead
     const customSearch = jest.fn();
-    getFilteredList(list, "name", "aa", customSearch);
+    getFilteredList(list, "aa", "name", customSearch);
     expect(customSearch).toHaveBeenLastCalledWith(list, "aa");
   });
 
@@ -54,14 +54,14 @@ describe("DatatableHelper test", () => {
     let header = [];
     let isLoading = false;
 
-    expect(getErrorMessage(isLoading, header)).toEqual("No data is available");
+    expect(getErrorMessage(header, isLoading)).toEqual("No data is available");
 
     header = [{ label: "Name", key: "name", width: 75 }];
     isLoading = true;
-    expect(getErrorMessage(isLoading, header)).toEqual("Loading...");
+    expect(getErrorMessage(header, isLoading)).toEqual("Loading...");
 
     isLoading = false;
-    expect(getErrorMessage(isLoading, header)).toEqual(null);
+    expect(getErrorMessage(header, isLoading)).toEqual(null);
   });
 
   it("getSortedList", () => {

@@ -1,19 +1,15 @@
 .customTable .customTable__titleContainer {
   width: 100%;
-  margin-bottom: 5px;
-}
-
-.customTable .customTable__title {
-  font-size: 18px;
   margin-bottom: 10px;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
 }
 
 .customTable .ReactVirtualized__Table__headerRow {
   font-weight: 500;
   border-bottom: 1px solid #e4e4e4;
-  color: #808080;
-  background-color: #fff0;
+  color: var(--colour-text-800);
+  background-color: var(--colour-white)
 }
 
 .customTable
@@ -28,13 +24,13 @@
   .ReactVirtualized__Table__headerRow
   .ReactVirtualized__Table__headerColumn
   .icon {
-  color: #2196f3;
+  color: var(--link-colour);
   float: right;
   margin: 5px 15px 0 0;
 }
 
 .customTable .ReactVirtualized__Table__row {
-  color: #3b3b3b;
+  color: var(--colour-text-800);
   border-bottom: 1px solid #e4e4e4;
   outline: none;
 }
@@ -60,6 +56,26 @@
   display: inline-block;
   margin-right: 10px;
   vertical-align: top;
+}
+
+.datatable__actionRow .csvDownloadButton {
+  float: right;
+  height: 100%;
+  padding: 0px 15px;
+}
+
+.customTable__titleContainer .addButton {
+  margin-left: auto;
+}
+
+.customTable__titleContainer .customTable__buttonRow {
+  margin-left: auto;
+}
+
+.customTable__actionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .noDataRow {
@@ -99,13 +115,14 @@
 }
 
 .filterRow .dateRangeSelectorContainer {
-  color: #555555;
-  border: 1px solid #ddd;
+  color: var(--colour-text-800);
+  border: 1px solid var(--borderColour);
   border-radius: 3px;
   display: inline-block;
-  height: 31px;
-  padding: 2px 6px;
+  height: 33px;
+  padding: 5px 6px;
   vertical-align: top;
+  white-space: nowrap;
 }
 
 .filterRow .link {

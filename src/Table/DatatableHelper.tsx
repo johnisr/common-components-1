@@ -1,4 +1,9 @@
 import differenceBy from "lodash/differenceBy";
+import filter from "lodash/filter";
+import {
+  DatatableHeaderType,
+  DatatableSortDirection,
+} from "../types/Table/Datatable";
 import { InputIsMatched } from "../utils/filters";
 import { SortListByType } from "../utils/sorters";
 
@@ -10,21 +15,31 @@ export const CHARACTER_WIDTH_IN_PIXELS = 8;
  * label width but roughly the same width in cell values (e.g. Mole Percentage
  * measurement columns)
  */
-export function getColumnWidth(label, minColumnWidth) {
+export function getColumnWidth(label: string, minColumnWidth: number) {
   const labelLength = label?.length ?? 0;
 
   return Math.max(minColumnWidth, labelLength * CHARACTER_WIDTH_IN_PIXELS);
 }
 
-export function getFilteredList(list, filterBy, value, customSearch) {
+export function getFilteredList<T>(
+  list: T[],
+  value: string,
+  filterBy?: keyof T,
+  customSearch?: (list: T[], searchValue: string) => T[]
+) {
   if (customSearch) {
     return customSearch(list, value);
   }
 
+  if (!filterBy) return list;
+
   return list.filter((row) => InputIsMatched(value, row[filterBy]));
 }
 
-export function getErrorMessage(isLoading, headers) {
+export function getErrorMessage<T>(
+  headers: DatatableHeaderType<T>[],
+  isLoading?: boolean
+) {
   if (headers.length === 0) {
     return "No data is available";
   }
@@ -36,7 +51,12 @@ export function getErrorMessage(isLoading, headers) {
   return null;
 }
 
-export function getSortedList(headers, list, sortBy, sortDirection) {
+export function getSortedList<T>(
+  headers: DatatableHeaderType<T>[],
+  list: T[],
+  sortBy: string,
+  sortDirection: typeof DatatableSortDirection[number]
+) {
   const sortByColumn = sortBy
     ? headers.find((header) => header.key === sortBy)
     : null;
@@ -52,10 +72,30 @@ export function getSortedList(headers, list, sortBy, sortDirection) {
   }
 }
 
-// Only need to check the row that is filtered
-export function isAllRowChecked(filteredList, checkedList) {
+export function getAllEnabledItem<T>(
+  filteredList: T[],
+  getCheckboxDisabledState?: (rowData: T) => boolean
+) {
+  if (getCheckboxDisabledState) {
+    return filter(filteredList, (row) => !getCheckboxDisabledState(row));
+  }
+
+  return filteredList;
+}
+
+// Only need to check the row that is filtered and enabled
+export function isAllRowChecked<T>(
+  filteredList: T[],
+  checkedList: T[],
+  getCheckboxDisabledState?: (rowData: T) => boolean
+) {
+  const allFilteredAndEnabledList = getAllEnabledItem(
+    filteredList,
+    getCheckboxDisabledState
+  );
+
   return (
     !!filteredList.length &&
-    differenceBy(filteredList, checkedList, "id").length === 0
+    differenceBy(allFilteredAndEnabledList, checkedList, "id").length === 0
   );
 }

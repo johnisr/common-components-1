@@ -1,46 +1,103 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import * as PropTypes from "prop-types";
-import { ScrollSync, Grid, AutoSizer } from "react-virtualized";
-import "./Datatable.css";
+import { ScrollSync, Grid, AutoSizer, GridCellProps } from "react-virtualized";
+import "./Datatable.scss";
 import FontAwesome from "react-fontawesome";
 import filter from "lodash/filter";
 import isEmpty from "lodash/isEmpty";
+import get from "lodash/get";
+import DatatablePopover from "./DatatablePopover/DatatablePopover";
+import { Popover } from "react-tiny-popover";
+import DatatableGridType, {
+  getColumnWidthProps,
+} from "../types/Table/DatatableGrid";
+import {
+  actionDropdownType,
+  DatatableHeaderType,
+} from "../types/Table/Datatable";
 
 const DEFAULT_HEADER_ROW_HEIGHT = 40;
 
-const SCROLL_BAR_SIZE = 15;
+// IE and Edge have 17 width scrollbars while the rest have 15. Use the higher
+// of the two (and have slightly smaller tables) but have consistent styling
+const SCROLL_BAR_SIZE = 17;
+
+// The above will cause problems for right justified columns. Placing them at
+// `right: 0` will leave 2 pixels that will show what's underneath. Instead
+// place at `right: -2` to not have any gap (tradeoff of slightly covering the
+// larger IE and edge scrollbars)
+const SCROLL_BAR_BORDER = 2;
+
+const ACTION_COLUMN_WIDTH = 30;
+
+const ACTION_COLUMN_HEADER = {
+  label: "",
+  width: ACTION_COLUMN_WIDTH,
+  key: "action_column_header",
+  cellRenderer: () => "",
+};
 
 const HIGHLIGHT_COLOR = "rgba(69, 192, 193, 0.2)";
 
-function getNumFixedColumn(headers) {
+function getNumFixedColumn<T>(headers: DatatableHeaderType<T>[]) {
   return filter(headers, "fixed").length;
 }
 
-const DatatableGrid = React.forwardRef((props, ref) => {
+const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
   const {
     height,
     width,
-    headers,
+    headers: defaultHeaders,
     list,
     collapseBorder,
     sortBy,
     sortDirection,
     rowHeight,
     highlightSelected,
+    actionDropdown,
+    innerRef,
   } = props;
 
-  const numFixedColumn = getNumFixedColumn(headers);
-  const tableHeight = height - DEFAULT_HEADER_ROW_HEIGHT - SCROLL_BAR_SIZE;
+  const headers = useMemo(() => {
+    return actionDropdown
+      ? [...defaultHeaders, ACTION_COLUMN_HEADER as DatatableHeaderType<T>]
+      : defaultHeaders;
+  }, [defaultHeaders]);
 
-  const [hoverRowIndex, setHoverRowIndex] = useState(null);
+  const [tableResized, setTableResized] = useState(new Date());
+
+  const visibleHorizontalScrollbar = useMemo(() => {
+    const totalColumnWidth = headers.reduce(
+      (totalWidth, value) => totalWidth + value.width,
+      0
+    );
+
+    return width - totalColumnWidth - SCROLL_BAR_SIZE < 0;
+  }, [width, headers, tableResized]);
+
+  const headerHeight = props.headerHeight ?? DEFAULT_HEADER_ROW_HEIGHT;
+  const tableHeight = visibleHorizontalScrollbar
+    ? height - headerHeight - SCROLL_BAR_SIZE
+    : height - headerHeight;
+
+  const visibleVerticalScrollbar = useMemo(() => {
+    return tableHeight < list.length * rowHeight;
+  }, [tableHeight, list, rowHeight, tableResized]);
+
+  const numFixedColumn = getNumFixedColumn(headers);
+
+  const [hoverRowIndex, setHoverRowIndex] = useState<number | null>(null);
   const [forceScroll, setForceScroll] = useState(false);
 
-  const bodyRef = useRef(null);
+  const [openActionDropdownIndex, setOpenActionDropdownIndex] = useState<
+    number | null
+  >(null);
+
+  const bodyRef = useRef<Grid>(null);
 
   const columnCount = headers.length;
   const rowCount = list.length;
 
-  const rowBorder = collapseBorder ? null : "1px solid #ddd";
+  const rowBorder = collapseBorder ? undefined : "1px solid #ddd";
 
   const highlightIndex = useMemo(() => {
     let index = -1;
@@ -49,7 +106,7 @@ const DatatableGrid = React.forwardRef((props, ref) => {
         index = !isEmpty(highlightSelected)
           ? list.findIndex((item) => item === highlightSelected)
           : -1;
-      } else {
+      } else if (typeof highlightSelected === "function") {
         index = highlightSelected(list);
       }
     }
@@ -60,26 +117,25 @@ const DatatableGrid = React.forwardRef((props, ref) => {
     setForceScroll(true);
   }, [highlightIndex]);
 
-  const onCellClick = (rowValue) => {
-    props.onCellClick(rowValue);
+  const onCellClick = (rowValue: T) => {
+    props.onCellClick?.(rowValue);
   };
 
-  const onMouseEnter = (rowValue) => {
-    setHoverRowIndex(rowValue);
+  const onMouseEnter = (rowIndex: number, columnIndex: number) => {
+    setHoverRowIndex(rowIndex);
   };
 
-  // eslint-disable-next-line react/prop-types
-  const headerRenderer = ({ columnIndex, key, style }) => {
+  const headerRenderer = ({ columnIndex, key, style }: GridCellProps) => {
     const column = headers[columnIndex];
 
     style = {
       ...style,
-      justifyContent: column.rightAlign ? "flex-end" : null,
+      justifyContent: column.rightAlign ? "flex-end" : undefined,
       width: `${column.width}px`,
     };
 
     const contentStyle = {
-      textAlign: column.rightAlign ? "right" : null,
+      textAlign: column.rightAlign ? ("right" as const) : undefined,
     };
 
     const headerClassName = [
@@ -106,7 +162,9 @@ const DatatableGrid = React.forwardRef((props, ref) => {
           }}
         >
           <div
-            className="clipText datatable__headerContent"
+            className={`${
+              column.wrap ? "datatable__wrapHeader" : "clipText"
+            } datatable__headerContent`}
             style={contentStyle}
           >
             {column.label}
@@ -123,16 +181,20 @@ const DatatableGrid = React.forwardRef((props, ref) => {
     }
   };
 
-  /* eslint-disable react/prop-types */
-  const rowRenderer = ({ columnIndex, key, rowIndex, style }) => {
-    let columnKey = headers[columnIndex].key;
-    let rowValue = list[rowIndex];
+  const rowRenderer = ({
+    columnIndex,
+    key,
+    rowIndex,
+    style,
+  }: GridCellProps) => {
+    const columnKey = headers[columnIndex].key;
+    const rowValue = list[rowIndex];
 
     style = {
       ...style,
       borderBottom: rowBorder,
       paddingTop: "8px",
-      textAlign: headers[columnIndex].rightAlign ? "right" : null,
+      textAlign: headers[columnIndex].rightAlign ? "right" : undefined,
     };
 
     // Set highlight color
@@ -155,6 +217,8 @@ const DatatableGrid = React.forwardRef((props, ref) => {
       columnClassName,
     ].join(" ");
 
+    const cellRenderer = headers[columnIndex]?.cellRenderer;
+
     return (
       <div
         className={cellClassName}
@@ -172,30 +236,93 @@ const DatatableGrid = React.forwardRef((props, ref) => {
           className={`clipText datatable__rightPadding ${columnClassName}`}
           style={{ width: `${headers[columnIndex].width}px` }}
         >
-          {headers[columnIndex].cellRenderer
-            ? headers[columnIndex].cellRenderer(rowValue, columnKey)
-            : rowValue[columnKey] ?? "-"}
+          {cellRenderer
+            ? cellRenderer(rowValue, columnKey)
+            : get(rowValue, columnKey) ?? "-"}
         </div>
       </div>
     );
   };
-  /* eslint-enable react/prop-types */
 
   const noContentRenderer = () => {
     return <div className="datatable__errorMessage">No data available</div>;
   };
 
-  const setSortingOrder = (columnKey) => {
+  const actionDropdownRenderer = ({
+    key,
+    rowIndex,
+    columnIndex,
+    style,
+    isVisible,
+  }: GridCellProps) => {
+    style = {
+      ...style,
+      borderBottom: rowBorder,
+    };
+
+    const rowData = list[rowIndex];
+    const availableActions =
+      actionDropdown?.filter((action) => !action.disabled?.(list[rowIndex])) ??
+      [];
+
+    // Set highlight color
+    if (rowIndex === hoverRowIndex || rowIndex === highlightIndex) {
+      style.background = HIGHLIGHT_COLOR;
+    }
+
+    const actionDropdownPopover = (
+      <DatatablePopover
+        rowData={rowData}
+        availableActions={availableActions as actionDropdownType<unknown>[]}
+        closePopover={() => setOpenActionDropdownIndex(null)}
+      />
+    );
+
+    return (
+      <div key={key} style={style}>
+        {availableActions.length ? (
+          <Popover
+            isOpen={openActionDropdownIndex === rowIndex && isVisible}
+            positions={["bottom"]}
+            align="end"
+            containerClassName="datatablePopover__container"
+            content={actionDropdownPopover}
+          >
+            <div
+              className="datatablePopover__cell"
+              onClick={() =>
+                setOpenActionDropdownIndex((openActionDropdownIndex) => {
+                  return openActionDropdownIndex !== rowIndex ? rowIndex : null;
+                })
+              }
+              onMouseEnter={() =>
+                props.highlightRow ? onMouseEnter(rowIndex, columnIndex) : null
+              }
+              onMouseLeave={() =>
+                props.highlightRow ? setHoverRowIndex(null) : null
+              }
+            >
+              <FontAwesome
+                name="ellipsis-h"
+                className="datatablePopover__cell__icon"
+              />
+            </div>
+          </Popover>
+        ) : null}
+      </div>
+    );
+  };
+
+  const setSortingOrder = (columnKey: string) => {
     if (columnKey !== sortBy) {
       props.setSortBy(columnKey);
-      props.setSortDirection("desc");
     } else {
       const nextSortDirection = sortDirection === "asc" ? "desc" : "asc";
       props.setSortDirection(nextSortDirection);
     }
   };
 
-  const getColumnWidth = ({ index }) => {
+  const getColumnWidth = ({ index }: getColumnWidthProps) => {
     const isLastColumn = index === headers.length - 1;
     const remainderWidth = getRemainderWidth();
 
@@ -207,7 +334,7 @@ const DatatableGrid = React.forwardRef((props, ref) => {
   };
 
   const getLeftGridColumnWidth = () => {
-    let firstColumnIndex = 0;
+    const firstColumnIndex = 0;
 
     let columnWidth = headers[firstColumnIndex].width;
 
@@ -221,17 +348,20 @@ const DatatableGrid = React.forwardRef((props, ref) => {
   };
 
   function getRemainderWidth() {
-    let totalColumnWidth = headers.reduce(
+    const totalColumnWidth = headers.reduce(
       (totalWidth, value) => totalWidth + value.width,
       0
     );
 
-    return width - totalColumnWidth;
+    return visibleVerticalScrollbar
+      ? width - totalColumnWidth - SCROLL_BAR_SIZE
+      : width - totalColumnWidth;
   }
 
   function recomputeColumnWidth() {
-    if (bodyRef) {
+    if (bodyRef && bodyRef.current) {
       bodyRef.current.recomputeGridSize();
+      setTableResized(new Date());
     }
   }
 
@@ -263,7 +393,7 @@ const DatatableGrid = React.forwardRef((props, ref) => {
           }
 
           return (
-            <div className="datatable" ref={ref}>
+            <div className="datatable" ref={innerRef}>
               {headers && (
                 <>
                   {numFixedColumn > 0 && (
@@ -280,9 +410,9 @@ const DatatableGrid = React.forwardRef((props, ref) => {
                         <Grid
                           className="datatable__headerGrid"
                           width={leftGridWidth}
-                          height={DEFAULT_HEADER_ROW_HEIGHT}
+                          height={headerHeight}
                           cellRenderer={headerRenderer}
-                          rowHeight={DEFAULT_HEADER_ROW_HEIGHT}
+                          rowHeight={headerHeight}
                           columnWidth={getColumnWidth}
                           rowCount={1}
                           columnCount={numFixedColumn}
@@ -295,13 +425,17 @@ const DatatableGrid = React.forwardRef((props, ref) => {
                         }`}
                         style={{
                           left: 0,
-                          top: DEFAULT_HEADER_ROW_HEIGHT,
+                          top: headerHeight,
                         }}
                       >
                         <Grid
-                          className="LeftSideGrid"
+                          className="datatable__sideBodyGrid"
                           width={leftGridWidth}
-                          height={tableHeight - SCROLL_BAR_SIZE}
+                          height={
+                            visibleHorizontalScrollbar
+                              ? tableHeight - SCROLL_BAR_SIZE
+                              : tableHeight
+                          }
                           cellRenderer={rowRenderer}
                           rowHeight={rowHeight}
                           columnWidth={getColumnWidth}
@@ -324,16 +458,18 @@ const DatatableGrid = React.forwardRef((props, ref) => {
                         <div>
                           <div
                             style={{
-                              height: DEFAULT_HEADER_ROW_HEIGHT,
-                              width: width - SCROLL_BAR_SIZE,
+                              height: headerHeight,
+                              width: visibleVerticalScrollbar
+                                ? width - SCROLL_BAR_SIZE
+                                : width,
                             }}
                           >
                             <Grid
                               className="datatable__headerGrid"
                               width={width - SCROLL_BAR_SIZE}
-                              height={DEFAULT_HEADER_ROW_HEIGHT}
+                              height={headerHeight}
                               cellRenderer={headerRenderer}
-                              rowHeight={DEFAULT_HEADER_ROW_HEIGHT}
+                              rowHeight={headerHeight}
                               columnWidth={getColumnWidth}
                               rowCount={1}
                               columnCount={columnCount}
@@ -362,6 +498,49 @@ const DatatableGrid = React.forwardRef((props, ref) => {
                       )}
                     </AutoSizer>
                   </div>
+
+                  {actionDropdown && (
+                    <>
+                      <div
+                        className="datatable__rightSideGridContainer datatable__rightSideGridContainer__header"
+                        style={{
+                          right: visibleVerticalScrollbar
+                            ? SCROLL_BAR_SIZE - SCROLL_BAR_BORDER
+                            : -SCROLL_BAR_BORDER,
+                          top: 0,
+                          backgroundColor: "#fff",
+                          height: headerHeight,
+                          width: ACTION_COLUMN_WIDTH,
+                        }}
+                      />
+
+                      <div
+                        className="datatable__rightSideGridContainer"
+                        style={{
+                          right: visibleVerticalScrollbar
+                            ? SCROLL_BAR_SIZE - SCROLL_BAR_BORDER
+                            : -SCROLL_BAR_BORDER,
+                          top: headerHeight,
+                        }}
+                      >
+                        <Grid
+                          className="datatable__sideBodyGrid"
+                          width={ACTION_COLUMN_WIDTH}
+                          height={
+                            visibleHorizontalScrollbar
+                              ? tableHeight - SCROLL_BAR_SIZE
+                              : tableHeight
+                          }
+                          cellRenderer={actionDropdownRenderer}
+                          rowHeight={rowHeight}
+                          columnWidth={ACTION_COLUMN_WIDTH}
+                          rowCount={rowCount}
+                          columnCount={1}
+                          scrollTop={scrollTop}
+                        />
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -372,26 +551,6 @@ const DatatableGrid = React.forwardRef((props, ref) => {
       }}
     </ScrollSync>
   );
-});
-
-// Used for debugging, React.forwardRef messes with automatic naming
-DatatableGrid.displayName = "DatatableGrid";
-
-DatatableGrid.propTypes = {
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  rowHeight: PropTypes.number.isRequired,
-  headers: PropTypes.array.isRequired,
-  list: PropTypes.array.isRequired,
-  onCellClick: PropTypes.func,
-  fixedColumn: PropTypes.number,
-  sortBy: PropTypes.string,
-  sortDirection: PropTypes.string,
-  setSortBy: PropTypes.func,
-  setSortDirection: PropTypes.func,
-  highlightRow: PropTypes.bool,
-  collapseBorder: PropTypes.bool,
-  highlightSelected: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
 
 export default DatatableGrid;

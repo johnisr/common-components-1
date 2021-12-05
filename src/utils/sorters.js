@@ -1,4 +1,5 @@
 import orderBy from "lodash/orderBy";
+import get from "lodash/get";
 
 const lodash = { orderBy };
 
@@ -12,5 +13,9 @@ function getValue(value) {
 }
 
 export function SortListByType(array, sortBy, sortType) {
-  return lodash.orderBy(array, [(row) => getValue(row[sortBy])], [sortType]);
+  return lodash.orderBy(
+    array,
+    [(row) => getValue(get(row, sortBy))],
+    [sortType]
+  );
 }

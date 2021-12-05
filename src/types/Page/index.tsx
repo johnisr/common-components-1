@@ -4,23 +4,23 @@ import { BreadcrumbType } from "../Breadcrumbs";
 
 // Your types here.
 type PageType = {
-  className: string;
+  className?: string;
   /** The style given to the Page Container */
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   /** The content to be displayed below the title */
   children: React.ReactNode | React.ReactNode[];
   /** The given title of the content */
-  title: TitleType;
+  title?: TitleType;
   /** If present, displays a button that executes a function on click */
-  onClick: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
-  loaded: boolean;
+  loaded?: boolean;
   /** An array of { title, onClick } objects, with title being what is displayed
    *  and onClick the function called when the breadcrumb is clicked
    */
-  breadcrumbs: BreadcrumbType[];
+  breadcrumbs?: BreadcrumbType[];
   /** The className applied to the breadcrumbs container */
-  headerClassName: string;
+  headerClassName?: string;
 };
 
 export default PageType;
