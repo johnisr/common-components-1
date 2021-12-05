@@ -162,7 +162,7 @@ const MultiDropdownInputWithSearch = <T,>({
   };
 
   const onMenuClose = () => {
-    if (!selectLimit || interimValue.length <= selectLimit) {
+    if (!selectLimit || interimValue?.length <= selectLimit) {
       onChange(interimValue, dropdownKey);
     }
 
