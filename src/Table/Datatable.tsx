@@ -14,14 +14,16 @@ import {
 import { Button, Title } from "..";
 import OverlayLoader from "../OverlayLoader/OverlayLoader";
 import MultiDropdownInputWithSearch from "../MultiDropdownInputWithSearch/MultiDropdownInputWithSearch";
+import PaginationController from "./PaginationController/PaginationController";
 import DatatableType, {
   DatatableHeaderType,
   DatatableSortDirection,
 } from "../types/Table/Datatable";
+import { PaginationDetailType } from "../types/Table/PaginationController";
 
 const DEFAULT_ROW_HEIGHT = 40;
 
-const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
+const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
   const [filterValue, setFilterValue] = useState<string>("");
   const [checkedList, setCheckedList] = useState<T[]>([]);
   const [selectedHeaders, setSelectedHeaders] = useState(props.headers || []);
@@ -29,6 +31,9 @@ const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
   const [sortDirection, setSortDirection] = useState(
     props.defaultSortDirection || "asc"
   );
+
+  const isPaginationEnabled =
+    !!props.paginationDetail && !!props.onPaginationChange;
 
   useEffect(() => {
     if (props.headers) {
@@ -46,6 +51,9 @@ const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
     const value = event.target.value;
 
     setFilterValue(value);
+
+    // ToDo: If Pagination API starts to include text search
+    // onPaginationChange();
   };
 
   const onSelect = (selectedHeaders: DatatableHeaderType<T>[]) => {
@@ -109,12 +117,37 @@ const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
   const handleSetSortBy = (sortBy: string) => {
     setSortBy(sortBy);
     setSortDirection("desc");
+
+    if (props.paginationDetail) {
+      onPaginationChange({
+        ...props.paginationDetail,
+        sort: { [sortBy]: "desc" },
+      });
+    }
   };
 
   const handleSetSortDirection = (
     sortDirection: typeof DatatableSortDirection[number]
   ) => {
     setSortDirection(sortDirection);
+
+    if (props.paginationDetail) {
+      onPaginationChange({
+        ...props.paginationDetail,
+        sort: { [sortBy]: sortDirection },
+      });
+    }
+  };
+
+  const onPaginationChange = (paginationDetail: PaginationDetailType) => {
+    if (props.onPaginationChange) {
+      props.onPaginationChange({
+        ...paginationDetail,
+        filter: {
+          [props.filterKey as string]: filterValue,
+        },
+      });
+    }
   };
 
   const checkboxRenderer = (rowData: T) => {
@@ -147,14 +180,16 @@ const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
     props.list,
     filterValue,
     props.filterKey,
-    props.customSearch
+    props.customSearch,
+    isPaginationEnabled
   );
 
   const sortedFilteredList = getSortedList(
     selectedHeaders,
     filteredList,
     sortBy,
-    sortDirection
+    sortDirection,
+    isPaginationEnabled
   );
 
   const errorMessage = getErrorMessage(selectedHeaders, props.isLoading);
@@ -294,6 +329,16 @@ const Datatable = <T extends { id: string }>(props: DatatableType<T>) => {
               </>
             )}
           </AutoSizer>
+        </div>
+      )}
+
+      {props.paginationDetail && (
+        <div className="datatable__footer">
+          <PaginationController
+            paginationDetail={props.paginationDetail}
+            onPaginationChange={onPaginationChange}
+            disabled={props.showOverlayLoader || props.isLoading}
+          />
         </div>
       )}
     </div>

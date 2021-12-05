@@ -25,9 +25,13 @@ export function getFilteredList<T>(
   list: T[],
   value: string,
   filterBy?: keyof T,
-  customSearch?: (list: T[], searchValue: string) => T[]
+  customSearch?: (list: T[], searchValue: string) => T[],
+  isPaginationEnabled?: boolean
 ) {
-  if (customSearch) {
+  if (isPaginationEnabled) {
+    // filtering is handled by backend
+    return list;
+  } else if (customSearch) {
     return customSearch(list, value);
   }
 
@@ -55,8 +59,12 @@ export function getSortedList<T>(
   headers: DatatableHeaderType<T>[],
   list: T[],
   sortBy: string,
-  sortDirection: typeof DatatableSortDirection[number]
+  sortDirection: typeof DatatableSortDirection[number],
+  isPaginationEnabled: boolean
 ) {
+  // backend handles sorting when pagination enabled
+  if (isPaginationEnabled) return list;
+
   const sortByColumn = sortBy
     ? headers.find((header) => header.key === sortBy)
     : null;
