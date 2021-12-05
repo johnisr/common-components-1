@@ -2,6 +2,11 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./FilterPillbox.module.scss";
 import FontAwesome from "react-fontawesome";
+import {
+  FilterPillboxType,
+  FilterType,
+  PillboxType,
+} from "../../types/FilterPillbox";
 
 const cx = classNames.bind(styles);
 
@@ -85,23 +90,6 @@ const FilterPillbox = ({
   } else {
     return null;
   }
-};
-
-type FilterType = {
-  filterKey: string;
-  name?: string;
-};
-
-type PillboxType = {
-  filter: FilterType;
-  onClearFilterClick: (filter?: FilterType) => void;
-};
-
-type FilterPillboxType = {
-  filterBy: Record<string, string[] | object[]>;
-  onClearFilterClick: (filter?: FilterType) => void;
-  filteredListCount: number;
-  noFilterListCount: number;
 };
 
 export default FilterPillbox;
