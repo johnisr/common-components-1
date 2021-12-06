@@ -1207,16 +1207,10 @@ body {
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/InputStack.module.scss ***!
   \****************************************************************************************************************************************************************************************************************************************/
 .InputStack-module__stack {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
   align-items: baseline;
-  flex-wrap: wrap;
-}
-.InputStack-module__stack > div {
-  flex: 1;
-}
-.InputStack-module__stack > * + * {
-  margin-left: 24px;
 }
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/FormLabel.module.scss ***!
@@ -2079,9 +2073,18 @@ input[type=number].TextInput-module__input--truncated {
   margin-left: auto;
   cursor: pointer;
   font-size: 19px;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
 }
 .Alert-module__closeButton--success {
   color: #1B4254;
+}
+.Alert-module__closeButton:hover {
+  background-color: transparent;
+}
+.Alert-module__closeButton:focus, .Alert-module__closeButton:active {
+  background-color: transparent;
 }
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Alert/AlertTransitions.module.scss ***!
@@ -2157,4 +2160,104 @@ input[type=number].TextInput-module__input--truncated {
 }
 .AlertTransitions-module__exitActive--top {
   transform: translateY(100%) scale(0.75);
+}
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/CheckboxButton/CheckboxButton.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.CheckboxButton-module__container {
+  background-color: #FFFFFF;
+  border: 1px solid #E6EAEC;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin-bottom: 0;
+  padding: 10px;
+  padding-right: 18px;
+}
+.CheckboxButton-module__container--small {
+  padding: 4px;
+  padding-right: 12px;
+}
+.CheckboxButton-module__container--large {
+  padding: 14px;
+  padding-right: 20px;
+}
+.CheckboxButton-module__container:hover {
+  background-color: #F2F5F6;
+  border: 1px solid #E6EAEC;
+}
+.CheckboxButton-module__container--checked {
+  background-color: #16847E;
+}
+.CheckboxButton-module__container--checked:hover {
+  background-color: #1DA29D;
+}
+.CheckboxButton-module__container--disabled {
+  background-color: #F2F5F6;
+  border: 1px solid #F2F5F6;
+  cursor: default;
+}
+.CheckboxButton-module__container--disabled:hover {
+  border: 1px solid #F2F5F6;
+}
+
+.CheckboxButton-module__checkbox,
+input[type=checkbox].CheckboxButton-module__checkbox {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.CheckboxButton-module__checkbox::before, .CheckboxButton-module__checkbox::after,
+input[type=checkbox].CheckboxButton-module__checkbox::before,
+input[type=checkbox].CheckboxButton-module__checkbox::after {
+  content: none;
+}
+
+.CheckboxButton-module__iconCircle {
+  color: #C0CBCC;
+}
+.CheckboxButton-module__iconCircle--checked {
+  color: #FFFFFF;
+}
+.CheckboxButton-module__iconCircle--outline {
+  color: #16847E;
+}
+
+.CheckboxButton-module__icon {
+  display: inline-block;
+  vertical-align: middle;
+  color: #16847E;
+}
+.CheckboxButton-module__icon--outline {
+  color: #FFFFFF;
+}
+
+.CheckboxButton-module__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  color: #4D6670;
+  vertical-align: middle;
+  margin-left: 8px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.CheckboxButton-module__label--checked {
+  color: #FFFFFF;
+}
+.CheckboxButton-module__label--disabled {
+  cursor: default;
+  color: #A0ACB2;
 }
