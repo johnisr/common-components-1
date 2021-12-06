@@ -2,15 +2,15 @@ import React from "react";
 
 type PanelType = {
   /** The className given to the Panel */
-  className: string;
+  className?: string;
   /** The style given to the Panel */
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
   /** The content to be displayed inside the Panel */
   children: React.ReactNode | React.ReactNode[];
   /** The given title for the Panel */
-  title: React.ReactNode[] | React.ReactNode | string;
+  title?: React.ReactNode[] | React.ReactNode | string;
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
-  loaded: boolean;
+  loaded?: boolean;
   /** If present, executes the given function when the panel is clicked */
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
