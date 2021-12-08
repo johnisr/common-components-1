@@ -1,77 +1,90 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { render, fireEvent } from "@testing-library/react";
 import Breadcrumbs from "./Breadcrumbs";
+import userEvent from "@testing-library/user-event";
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe("Breadcrumbs", () => {
-  it("should render one breadcrumb", () => {
+describe("Breadcrumbs tests", () => {
+  test("one breadcrumb should be displayed when given as input ", () => {
     const title = "A title";
     const onClick = jest.fn();
-    const breadcrumbs = [{ title, onClick }];
+    const islastCrumb = true;
 
     const style = { background: "red" };
-    const className = "A className";
+    const className = "TestClassName";
 
-    const wrapper = mount(
+    const breadcrumbs = [{ title, onClick, islastCrumb }];
+    const { getByRole } = render(
       <Breadcrumbs
-        style={style}
-        className={className}
         breadcrumbs={breadcrumbs}
+        className={className}
+        style={style}
       />
     );
 
-    expect(wrapper.find(".common__breadcrumbs").prop("style")).toEqual(
-      expect.objectContaining(style)
-    );
-    expect(wrapper.find(".common__breadcrumbs").prop("className")).toContain(
-      className
-    );
-
-    expect(wrapper.find(".breadcrumb__item").text()).toEqual(title);
-
-    // If only 1 breadcrumb, not clickable (current page open)
-    wrapper.find(".breadcrumb__item").simulate("click");
-    expect(onClick).not.toHaveBeenCalled();
+    const breadcrumb = getByRole("breadcrumbs");
+    expect(breadcrumb.textContent).toEqual("A title");
+    expect(breadcrumb.className).toMatch(/breadcrumb__item/);
+    expect(breadcrumb.children[0]).toBeFalsy();
   });
 
-  it("should render multiple breadcrumbs", () => {
-    const firstTitle = "A title";
-    const firstOnClick = jest.fn();
+  test("More than one clickable breadcrumb should be displayed when given as input", () => {
+    const previousBreadcrumbFunction = jest.fn();
+    const navigatedBreadcrumbFunction = jest.fn();
+    const pageBreadcrumbFunction = jest.fn();
 
-    const secondTitle = "A title too";
-    const secondOnClick = jest.fn();
+    const style = { background: "red" };
+    const className = "TestClassName";
     const breadcrumbs = [
-      { title: firstTitle, onClick: firstOnClick },
-      { title: secondTitle, onClick: secondOnClick },
+      {
+        key: "1",
+        title: "Previously",
+        onClick: previousBreadcrumbFunction,
+        isLastBreadcrumb: false,
+      },
+      {
+        key: "2",
+        title: "Navigated",
+        onClick: navigatedBreadcrumbFunction,
+        isLastBreadcrumb: false,
+      },
+      {
+        key: "3",
+        title: "Pages",
+        onClick: pageBreadcrumbFunction,
+        isLastBreadcrumb: true,
+      },
+      {
+        key: "4",
+        title: "Current Pages",
+        isLastBreadcrumb: true,
+      },
     ];
+    const { getAllByRole } = render(
+      <Breadcrumbs
+        breadcrumbs={breadcrumbs}
+        className={className}
+        style={style}
+      />
+    );
 
-    const wrapper = mount(<Breadcrumbs breadcrumbs={breadcrumbs} />);
-
-    const firstBreadcrumb = wrapper.find(".breadcrumb__link");
-
-    expect(firstBreadcrumb.text()).toEqual(firstTitle);
-
-    firstBreadcrumb.simulate("click");
-    expect(firstOnClick).toHaveBeenCalled();
-
-    const secondBreadcrumb = wrapper.find(".breadcrumb__item").at(1);
-
-    expect(secondBreadcrumb.text()).toEqual(secondTitle);
-
-    secondBreadcrumb.simulate("click");
-    expect(secondOnClick).not.toHaveBeenCalled();
-    expect(firstOnClick).toHaveBeenCalledTimes(1);
+    const totalBreadcrumbs = getAllByRole("breadcrumbs");
+    let i = 0;
+    for (i = 0; i < totalBreadcrumbs.length - 1; i++) {
+      expect(totalBreadcrumbs[i].children[0]).toBeTruthy();
+      expect(totalBreadcrumbs[i].children[0].textContent).toEqual(
+        breadcrumbs[i].title
+      );
+      userEvent.click(totalBreadcrumbs[i].children[0]);
+    }
+    expect(totalBreadcrumbs[i].textContent).toEqual(breadcrumbs[i].title);
+    expect(previousBreadcrumbFunction).toHaveBeenCalledTimes(1);
+    expect(navigatedBreadcrumbFunction).toHaveBeenCalledTimes(1);
+    expect(pageBreadcrumbFunction).toHaveBeenCalledTimes(1);
   });
 
-  it("should render no breadcrumbs", () => {
-    const breadcrumbs = [];
-
-    const wrapper = mount(<Breadcrumbs breadcrumbs={breadcrumbs} />);
-
-    expect(wrapper.find(".breadcrumb__item").exists()).toEqual(false);
+  test("Empty div tag is returned when no breadcrumb is given as an input", () => {
+    const breadCrumbs = [];
+    const { container } = render(<Breadcrumbs breadcrumbs={breadCrumbs} />);
+    expect(container.firstChild).toBeFalsy();
   });
 });
