@@ -3,7 +3,6 @@ import {
   render,
   fireEvent,
   waitForElementToBeRemoved,
-  waitFor,
 } from "@testing-library/react";
 import AlertProvider, { useAlert } from "./AlertProvider";
 import PropTypes from "prop-types";
@@ -53,7 +52,6 @@ describe("Alert Provider tests", () => {
 
     const addAlertButton = queryByText("Add Alert");
     fireEvent.click(addAlertButton);
-    //expect(getByRole("alert")).toEqual(message);
     expect(queryByRole("alert").textContent).toEqual(message);
     expect(queryByLabelText("close")).toBeTruthy();
 
