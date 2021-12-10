@@ -1,36 +1,37 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import ReactLoader from "../Loader/ReactLoader";
+import { render } from "@testing-library/react";
+import ReactLoader from "./ReactLoader";
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe("ReactLoader", () => {
-  it("should render the loader only when loaded is false", () => {
-    const wrapper = mount(
-      <div style={{ position: "relative", height: "500px" }}>
-        <ReactLoader loaded={false}>
-          <div className="content">content</div>
-        </ReactLoader>
-      </div>
+describe("ReactLoader tests", () => {
+  test("Children does not get rendered when loading is in progress", () => {
+    const { queryByRole, queryByText } = render(
+      <ReactLoader loaded={false}>
+        <div>Loaded Test</div>
+      </ReactLoader>
     );
-
-    expect(wrapper.find(".loader").exists()).toEqual(true);
-    expect(wrapper.find(".content").exists()).toEqual(false);
+    expect(queryByText("Loaded Test")).toBeFalsy();
+    expect(queryByRole("progressbar").style.top).toBe("0px");
   });
 
-  it("should render the content when loaded is true", () => {
-    const wrapper = mount(
-      <div style={{ position: "relative", height: "500px" }}>
-        <ReactLoader loaded={true}>
-          <div className="content">content</div>
-        </ReactLoader>
-      </div>
+  test("Children does not get rendered and progress bar is shown when loading is in progress", () => {
+    const { queryByRole, queryByText } = render(
+      <ReactLoader loaded={false} position="70">
+        <div>Loaded Test</div>
+      </ReactLoader>
+    );
+    expect(queryByText("Loaded Test")).toBeFalsy();
+    expect(queryByRole("progressbar").style.top).toBe("70%");
+  });
+
+  test("Children gets rendered and progresss bar disappears when component is fully loaded", () => {
+    const { queryByRole, container, getByText } = render(
+      <ReactLoader loaded={true} position="50">
+        <div>Loaded Test</div>
+      </ReactLoader>
     );
 
-    expect(wrapper.find(".loader").exists()).toEqual(false);
-    expect(wrapper.find(".content").exists()).toEqual(true);
+    expect(getByText("Loaded Test").textContent).toMatch(/Loaded Test/);
+    expect(container.firstChild.className).toMatch(/loadedContent/);
+    expect(queryByRole("progressbar")).toBeFalsy();
   });
 });
