@@ -133,7 +133,7 @@ const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
     width: "max-content",
     maxWidth: "350px",
     marginTop: "12px",
-    zIndex: styles.layer.second,
+    zIndex: styles.layer.third,
   }),
 };
 
@@ -148,8 +148,7 @@ const MultiDropdownInputWithSearch = <T,>({
   width = 50,
   selectLimit,
 }: MultiDropdownInputWithSearchType<T>) => {
-  const [interimValue, setInterimValue] = useState<T[]>(value);
-  const [shouldUseInterimValue, setShouldUseInterimValue] = useState(false);
+  const [interimValue, setInterimValue] = useState<T[] | undefined>(undefined);
 
   const option = useMemo(
     () => getOptionsWithLabels(options, labelKey),
@@ -157,17 +156,15 @@ const MultiDropdownInputWithSearch = <T,>({
   );
 
   const onMenuOpen = () => {
-    setShouldUseInterimValue(true);
     setInterimValue(value);
   };
 
   const onMenuClose = () => {
-    if (!selectLimit || interimValue?.length <= selectLimit) {
+    if (interimValue && (!selectLimit || interimValue?.length <= selectLimit)) {
       onChange(interimValue, dropdownKey);
     }
 
-    setShouldUseInterimValue(false);
-    setInterimValue([]);
+    setInterimValue(undefined);
   };
 
   const onMultipleSelectChange = (selectedValues: any) => {
@@ -176,10 +173,10 @@ const MultiDropdownInputWithSearch = <T,>({
         selectedValues?.map((value: OptionType) => value.label) ?? [];
     }
 
-    setInterimValue(selectedValues ?? []);
+    setInterimValue(selectedValues);
   };
 
-  const selectValue = shouldUseInterimValue ? interimValue : value ?? [];
+  const selectValue = interimValue ?? value ?? [];
 
   return (
     <Select
