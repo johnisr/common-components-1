@@ -109,9 +109,11 @@ const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
     fill: styles.surface.dark,
     stroke: styles.surface.dark,
   }),
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: (provided, state) => ({
     ...provided,
     padding: "0px 5px",
+    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : undefined,
+    transition: "transform 0.3s",
   }),
   option: (provided, state) => ({
     ...provided,
