@@ -56,6 +56,7 @@ const NavBar = ({
         >
           <img
             className="validereIcon"
+            aria-label="validere-icon-image"
             src="https://validere.com/wp-content/uploads/logo_validere_full.png"
             alt="Validere Icon"
           />
@@ -76,7 +77,14 @@ const NavBar = ({
                   activeApplication === link.id ? "activeSelection" : ""
                 }
               >
-                <a href={`${url}${link.link}`}>{link.name}</a>
+                <a
+                  aria-selected={
+                    activeApplication === link.id ? "true" : "false"
+                  }
+                  href={`${url}${link.link}`}
+                >
+                  {link.name}
+                </a>
                 {activeApplication === link.id && (
                   <div className="activeSelectionLine"></div>
                 )}

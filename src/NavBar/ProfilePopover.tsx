@@ -10,6 +10,7 @@ const MenuItem = (props: MenuItemType) => {
     <div
       className={cx("menuItem", { "menuItem--disabled": props.disabled })}
       onClick={props.onClick}
+      role="menuItem"
     >
       {props.children}
     </div>
