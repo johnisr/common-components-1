@@ -1,43 +1,37 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import Title, { HEADER_STYLE, SUBHEADER_STYLE } from "./Title";
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import { render } from "@testing-library/react";
+import Title from "./Title";
 
-describe("Title", () => {
-  it("should render a title with default header style", () => {
+describe("Title tests", () => {
+  test("Should render header title", () => {
     const headerText = "Header title";
     const style = { backgroundColor: "green" };
     const className = "titleClassName";
 
-    const wrapper = mount(
+    const { getByRole } = render(
       <Title style={style} className={className}>
         {headerText}
       </Title>
     );
 
-    const title = wrapper.find(`.${className}`).at(1);
-
-    // enforces header style as default
-    expect(title.prop("style")).toEqual(expect.objectContaining(HEADER_STYLE));
-
-    expect(title.prop("style")).toEqual(expect.objectContaining(style));
-    expect(title.prop("className")).toEqual(className);
-    expect(title.text()).toEqual(headerText);
+    const title = getByRole("text");
+    expect(title.textContent).toEqual("Header title");
   });
 
-  it("should use subheader styling", () => {
-    const headerText = "Header title";
+  test("Should render sub header title", () => {
+    const headerText = "Sub header";
+    const { getByRole } = render(<Title type="subheader">{headerText}</Title>);
+    const title = getByRole("text");
 
-    const wrapper = mount(<Title type="subheader">{headerText}</Title>);
+    expect(title.textContent).toEqual("Sub header");
+  });
 
-    const title = wrapper.find("div");
+  test("Should render panel header title", () => {
+    const panelText = "Panel header";
 
-    // enforces subheader style
-    expect(title.prop("style")).toEqual(
-      expect.objectContaining(SUBHEADER_STYLE)
-    );
+    const { getByRole } = render(<Title type="panelheader">{panelText}</Title>);
+    const title = getByRole("text");
+
+    expect(title.textContent).toEqual("Panel header");
   });
 });
