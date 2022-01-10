@@ -1,0 +1,36 @@
+@import "../../constants/index.js";
+
+.datatablePopover {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: -3px 5px 10px 0px rgba(0, 0, 0, 0.3);
+
+  &__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    &__icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__container {
+    z-index: var(--zindex-popover);
+  }
+
+  &__menuitem {
+    cursor: pointer;
+    padding: 3px 20px;
+
+    &:hover {
+      background-color: $menuHighlightColour;
+    }
+  }
+
+  &__noActions {
+    padding: 3px 20px;
+  }
+}

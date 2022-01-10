@@ -1,5 +1,9 @@
 import React from "react";
 import { Datatable } from "../index";
+import tableData from "./DatatableStories/tableData";
+import DatatableWithFilterTemplate, {
+  Headers,
+} from "./DatatableStories/DatatableWithFilter";
 
 const headers = [
   {
@@ -124,6 +128,29 @@ WithCustomHeaders.parameters = {
   },
 };
 
+export const WithFilter = DatatableWithFilterTemplate.bind({});
+WithFilter.args = {
+  list: tableData,
+  headers: Headers,
+  height: 700,
+  width: null,
+  title: "Chain Of Custody",
+  customizableColumns: true,
+  collapseBorder: false,
+  isLoading: false,
+  showOverlayLoader: false,
+  highlightRow: true,
+  rowHeight: 40,
+  headerHeight: 40,
+  defaultSortBy: "issued_at",
+  defaultSortDirection: "desc",
+  filterKey: "name",
+  filterTitle: "Search Name",
+  addButtonName: "CoC",
+  disableCheckbox: false,
+};
+WithFilter.storyName = "Datatable with filters";
+
 export default {
   title: "Table/Datatable",
   component: Datatable,
@@ -163,12 +190,22 @@ export default {
         category: "Table Properties",
       },
     },
+    showOverlayLoader: {
+      table: {
+        category: "Table Properties",
+      },
+    },
+    customizableColumns: {
+      table: {
+        category: "Table Properties",
+      },
+    },
     highlightRow: {
       table: {
         category: "Row Properties",
       },
     },
-    onCellClick: {
+    headerHeight: {
       table: {
         category: "Row Properties",
       },
@@ -189,6 +226,31 @@ export default {
         category: "Row Properties",
       },
     },
+    onCellClick: {
+      table: {
+        category: "Actions",
+      },
+    },
+    csvDownload: {
+      table: {
+        category: "Actions",
+      },
+    },
+    onAddClick: {
+      table: {
+        category: "Actions",
+      },
+    },
+    addButtonName: {
+      table: {
+        category: "Actions",
+      },
+    },
+    actionDropdown: {
+      table: {
+        category: "Actions",
+      },
+    },
     onCheckboxClick: {
       table: {
         category: "Checkbox",
@@ -205,6 +267,11 @@ export default {
       },
     },
     disableCheckbox: {
+      table: {
+        category: "Checkbox",
+      },
+    },
+    getCheckboxDisabledState: {
       table: {
         category: "Checkbox",
       },
@@ -234,13 +301,11 @@ export default {
       },
     },
     defaultSortBy: {
-      control: { type: "none" },
       table: {
         category: "Sorting",
       },
     },
     defaultSortDirection: {
-      control: { type: "none" },
       table: {
         category: "Sorting",
       },

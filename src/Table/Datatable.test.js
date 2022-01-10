@@ -101,7 +101,7 @@ describe("Datatable", () => {
     // no error message
     expect(wrapper.find(".datatable__errorMessage").exists()).toEqual(false);
 
-    const titleNode = wrapper.find(".customTable__title");
+    const titleNode = wrapper.find("div.customTable__title");
     expect(titleNode.exists()).toEqual(true);
     expect(titleNode.text()).toEqual(title);
 

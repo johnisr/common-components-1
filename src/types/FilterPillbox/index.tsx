@@ -11,6 +11,6 @@ export type PillboxType = {
 export type FilterPillboxType = {
   filterBy: Record<string, string[] | object[]>;
   onClearFilterClick: (filter?: FilterType) => void;
-  filteredListCount: number;
-  noFilterListCount: number;
+  filteredListCount?: number;
+  noFilterListCount?: number;
 };
