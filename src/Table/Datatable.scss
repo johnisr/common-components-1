@@ -31,13 +31,13 @@
 
   &__leftSideGridContainer {
     flex: 0 0 60px;
-    background-color: #fff;
+    background-color: var(--colour-white);
     position: absolute;
     z-index: var(--zindex-layer-first);
   }
 
   &__rightSideGridContainer {
-    background-color: #fff;
+    background-color: var(--colour-white);
     position: absolute;
     z-index: var(--zindex-layer-first);
 
@@ -68,7 +68,7 @@
   }
 
   &__sortIcon {
-    color: #2196f3;
+    color: var(--link-colour);
     margin-left: 10px;
   }
 
