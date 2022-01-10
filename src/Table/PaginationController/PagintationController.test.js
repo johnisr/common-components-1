@@ -49,24 +49,6 @@ describe("PaginationController", () => {
     ).toEqual(1);
   });
 
-  it("should render pagination row count correctly", () => {
-    const wrapper = mount(
-      <PaginationController
-        paginationDetail={PAGINATION_DETAIL}
-        onPaginationChange={onPaginationChange}
-      />
-    );
-
-    expect(
-      wrapper
-        .find(
-          ".paginationController .rowPerPageSelector .rowPerPageSelector__button"
-        )
-        .first()
-        .props().title
-    ).toEqual(PAGINATION_DETAIL.rowPerPage);
-  });
-
   it("should return pagination count correctly on page change", () => {
     const paginationDetail = { ...PAGINATION_DETAIL, page: 2 };
 
