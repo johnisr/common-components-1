@@ -5,9 +5,20 @@ import "./Breadcrumbs.css";
 
 const Breadcrumb = ({ title, onClick, isLastBreadcrumb }: BreadcrumbType) => {
   return isLastBreadcrumb ? (
-    <div className="breadcrumb__item">{title}</div>
+    <div
+      className="breadcrumb__item"
+      aria-label="breadcrumbs-label"
+      aria-current="location"
+      role="breadcrumbs"
+    >
+      {title}
+    </div>
   ) : (
-    <div className="breadcrumb__item">
+    <div
+      className="breadcrumb__item"
+      role="breadcrumbs"
+      aria-label="breadcrumbs-label"
+    >
       <a className="breadcrumb__link" onClick={onClick}>
         {title}
       </a>

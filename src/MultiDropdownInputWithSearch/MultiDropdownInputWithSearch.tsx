@@ -109,9 +109,11 @@ const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
     fill: styles.surface.dark,
     stroke: styles.surface.dark,
   }),
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: (provided, state) => ({
     ...provided,
     padding: "0px 5px",
+    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : undefined,
+    transition: "transform 0.3s",
   }),
   option: (provided, state) => ({
     ...provided,
@@ -133,7 +135,7 @@ const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
     width: "max-content",
     maxWidth: "350px",
     marginTop: "12px",
-    zIndex: styles.layer.second,
+    zIndex: styles.layer.third,
   }),
 };
 
@@ -141,15 +143,14 @@ const MultiDropdownInputWithSearch = <T,>({
   options,
   label,
   labelKey,
-  dropdownKey = "",
+  dropdownKey,
   onChange,
   value,
   isDisabled,
   width = 50,
   selectLimit,
 }: MultiDropdownInputWithSearchType<T>) => {
-  const [interimValue, setInterimValue] = useState<T[]>(value);
-  const [shouldUseInterimValue, setShouldUseInterimValue] = useState(false);
+  const [interimValue, setInterimValue] = useState<T[] | undefined>(undefined);
 
   const option = useMemo(
     () => getOptionsWithLabels(options, labelKey),
@@ -157,17 +158,15 @@ const MultiDropdownInputWithSearch = <T,>({
   );
 
   const onMenuOpen = () => {
-    setShouldUseInterimValue(true);
     setInterimValue(value);
   };
 
   const onMenuClose = () => {
-    if (!selectLimit || interimValue.length <= selectLimit) {
+    if (interimValue && (!selectLimit || interimValue?.length <= selectLimit)) {
       onChange(interimValue, dropdownKey);
     }
 
-    setShouldUseInterimValue(false);
-    setInterimValue([]);
+    setInterimValue(undefined);
   };
 
   const onMultipleSelectChange = (selectedValues: any) => {
@@ -176,10 +175,10 @@ const MultiDropdownInputWithSearch = <T,>({
         selectedValues?.map((value: OptionType) => value.label) ?? [];
     }
 
-    setInterimValue(selectedValues ?? []);
+    setInterimValue(selectedValues);
   };
 
-  const selectValue = shouldUseInterimValue ? interimValue : value ?? [];
+  const selectValue = interimValue ?? value ?? [];
 
   return (
     <Select

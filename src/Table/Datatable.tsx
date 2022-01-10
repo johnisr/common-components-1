@@ -23,29 +23,65 @@ import { PaginationDetailType } from "../types/Table/PaginationController";
 
 const DEFAULT_ROW_HEIGHT = 40;
 
-const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
+const Datatable = <T extends { id: string }>({
+  headers,
+  defaultSortBy,
+  defaultSortDirection,
+  checkedList,
+  onCheckboxClick,
+  customizableColumns,
+  getCheckboxDisabledState,
+  disableCheckbox,
+  list,
+  filterKey,
+  customSearch,
+  isLoading,
+  disableSelectAll,
+  filterPillbox,
+  noFilterListCount,
+  width,
+  height,
+  title,
+  onAddClick,
+  addButtonName,
+  actionRow,
+  filterTitle,
+  filterRow,
+  csvDownload,
+  showOverlayLoader,
+  rowHeight,
+  highlightRow,
+  onCellClick,
+  getRowClassName,
+  collapseBorder,
+  forwardedRef,
+  highlightSelected,
+  headerHeight,
+  actionDropdown,
+  paginationDetail,
+  onPaginationChange,
+}: DatatableType<T>) => {
   const [filterValue, setFilterValue] = useState<string>("");
-  const [checkedList, setCheckedList] = useState<T[]>([]);
-  const [selectedHeaders, setSelectedHeaders] = useState(props.headers || []);
-  const [sortBy, setSortBy] = useState(props.defaultSortBy || "");
+  const [checkedValues, setCheckedValues] = useState<T[]>([]);
+  const [selectedHeaders, setSelectedHeaders] = useState(headers || []);
+  const [sortBy, setSortBy] = useState(defaultSortBy || "");
   const [sortDirection, setSortDirection] = useState(
-    props.defaultSortDirection || "asc"
+    defaultSortDirection || "asc"
   );
 
-  const isPaginationEnabled =
-    !!props.paginationDetail && !!props.onPaginationChange;
+  const isPaginationEnabled = !!paginationDetail && !!onPaginationChange;
 
   useEffect(() => {
-    if (props.headers) {
-      updateHeaders(props.headers, selectedHeaders);
+    if (headers) {
+      updateHeaders(headers, selectedHeaders);
     }
-  }, [props.headers]);
+  }, [headers]);
 
   useEffect(() => {
-    if (props.checkedList) {
-      setCheckedList(props.checkedList);
+    if (checkedList) {
+      setCheckedValues(checkedList);
     }
-  }, [props.checkedList]);
+  }, [checkedList]);
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -57,7 +93,7 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
   };
 
   const onSelect = (selectedHeaders: DatatableHeaderType<T>[]) => {
-    updateHeaders(props.headers, selectedHeaders);
+    updateHeaders(headers, selectedHeaders);
   };
 
   const onCheckboxClicked = (
@@ -65,9 +101,9 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
     isChecked: boolean,
     checkedListIndex: number
   ) => {
-    if (!props.onCheckboxClick) return;
+    if (!onCheckboxClick) return;
 
-    const newCheckedList: T[] = [...checkedList];
+    const newCheckedList: T[] = [...checkedValues];
 
     if (isChecked) {
       newCheckedList.splice(checkedListIndex, 1);
@@ -75,12 +111,12 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
       newCheckedList.push(rowData);
     }
 
-    if (props.checkedList) {
-      props.onCheckboxClick(newCheckedList, rowData);
+    if (checkedList) {
+      onCheckboxClick(newCheckedList, rowData);
     } else {
-      props.onCheckboxClick(newCheckedList);
+      onCheckboxClick(newCheckedList);
 
-      setCheckedList(newCheckedList);
+      setCheckedValues(newCheckedList);
     }
   };
 
@@ -89,17 +125,17 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
     const nextCheckedAllState = !checkAllState;
 
     if (nextCheckedAllState) {
-      newCheckedList = unionBy(checkedList, filteredList, "id");
+      newCheckedList = unionBy(checkedValues, filteredList, "id");
     } else {
-      newCheckedList = differenceBy(checkedList, filteredList, "id");
+      newCheckedList = differenceBy(checkedValues, filteredList, "id");
     }
 
     // Return all the checked list to the parent
-    props.onCheckboxClick?.(newCheckedList);
+    onCheckboxClick?.(newCheckedList);
 
     // set checked list if not controlled by parent
-    if (!props.checkedList) {
-      setCheckedList(newCheckedList);
+    if (!checkedList) {
+      setCheckedValues(newCheckedList);
     }
   };
 
@@ -107,7 +143,7 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
     headers: DatatableHeaderType<T>[],
     selectedHeader: DatatableHeaderType<T>[]
   ) => {
-    if (props.customizableColumns) {
+    if (customizableColumns) {
       setSelectedHeaders(intersectionBy(headers, selectedHeader, "key"));
     } else {
       setSelectedHeaders(headers);
@@ -118,9 +154,9 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
     setSortBy(sortBy);
     setSortDirection("desc");
 
-    if (props.paginationDetail) {
-      onPaginationChange({
-        ...props.paginationDetail,
+    if (paginationDetail) {
+      handlePaginationChange({
+        ...paginationDetail,
         sort: { [sortBy]: "desc" },
       });
     }
@@ -131,33 +167,32 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
   ) => {
     setSortDirection(sortDirection);
 
-    if (props.paginationDetail) {
-      onPaginationChange({
-        ...props.paginationDetail,
+    if (paginationDetail) {
+      handlePaginationChange({
+        ...paginationDetail,
         sort: { [sortBy]: sortDirection },
       });
     }
   };
 
-  const onPaginationChange = (paginationDetail: PaginationDetailType) => {
-    if (props.onPaginationChange) {
-      props.onPaginationChange({
+  const handlePaginationChange = (paginationDetail: PaginationDetailType) => {
+    if (onPaginationChange) {
+      onPaginationChange({
         ...paginationDetail,
         filter: {
-          [props.filterKey as string]: filterValue,
+          [filterKey as string]: filterValue,
         },
       });
     }
   };
 
   const checkboxRenderer = (rowData: T) => {
-    const checkedListIndex = checkedList.findIndex(
+    const checkedListIndex = checkedValues.findIndex(
       (listItem) => listItem.id === rowData.id
     );
     const isChecked = checkedListIndex !== -1;
 
-    const isDisabled =
-      props.getCheckboxDisabledState?.(rowData) ?? props.disableCheckbox;
+    const isDisabled = getCheckboxDisabledState?.(rowData) ?? disableCheckbox;
 
     return (
       <div
@@ -177,10 +212,10 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
   };
 
   const filteredList = getFilteredList(
-    props.list,
+    list,
     filterValue,
-    props.filterKey,
-    props.customSearch,
+    filterKey,
+    customSearch,
     isPaginationEnabled
   );
 
@@ -192,21 +227,21 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
     isPaginationEnabled
   );
 
-  const errorMessage = getErrorMessage(selectedHeaders, props.isLoading);
+  const errorMessage = getErrorMessage(selectedHeaders, isLoading);
 
   const checkAllState = isAllRowChecked(
     sortedFilteredList,
-    checkedList,
-    props.getCheckboxDisabledState
+    checkedValues,
+    getCheckboxDisabledState
   );
 
   const checkboxColumn = {
-    label: !props.disableSelectAll ? (
+    label: !disableSelectAll ? (
       <input
         type="checkbox"
         checked={checkAllState}
         onChange={() => onCheckAllClick(sortedFilteredList, checkAllState)}
-        disabled={props.disableCheckbox}
+        disabled={disableCheckbox}
       />
     ) : null,
     key: "checkbox",
@@ -216,73 +251,69 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
   };
 
   let filterPillBoxWithCount = null;
-  if (props.filterPillbox) {
-    filterPillBoxWithCount = props.noFilterListCount
-      ? React.cloneElement(props.filterPillbox, {
+  if (filterPillbox) {
+    filterPillBoxWithCount = noFilterListCount
+      ? React.cloneElement(filterPillbox, {
           filteredListCount: sortedFilteredList.length,
-          noFilterListCount: props.noFilterListCount,
+          noFilterListCount: noFilterListCount,
         })
-      : props.filterPillbox;
+      : filterPillbox;
   }
 
   return (
     <div
       className="customTable"
       style={{
-        width: props.width,
+        width,
         display: "flex",
         flexDirection: "column",
-        height: props.height,
+        height,
       }}
     >
       <div className="customTable__titleContainer">
-        {props.title ? (
-          <Title className="customTable__title">{props.title}</Title>
-        ) : null}
+        {title ? <Title className="customTable__title">{title}</Title> : null}
 
         <div className="datatable__buttonRow">
-          {props.onAddClick ? (
-            <Button variant="primary" onClick={props.onAddClick}>
-              add {`${props.addButtonName || props.title}`}
+          {onAddClick ? (
+            <Button variant="primary" onClick={onAddClick}>
+              add {`${addButtonName || title}`}
             </Button>
           ) : null}
 
-          {props.actionRow ? (
-            <div className="customTable__actionRow">{props.actionRow}</div>
+          {actionRow ? (
+            <div className="customTable__actionRow">{actionRow}</div>
           ) : null}
         </div>
       </div>
 
       <div className="datatable__actionContainer">
         <div className="datatable__filterRow">
-          {(props.filterKey || props.customSearch) && (
+          {(filterKey || customSearch) && (
             <input
               className="inputbox-compress"
-              placeholder={` ${
-                props.filterTitle ? props.filterTitle : "Search"
-              }`}
+              placeholder={` ${filterTitle ? filterTitle : "Search"}`}
               onChange={handleSearch}
             />
           )}
 
-          {props.filterRow}
+          {filterRow}
         </div>
 
         <div className="datatable__actionRow">
-          {props.customizableColumns && (
+          {customizableColumns && (
             <MultiDropdownInputWithSearch
               label="columns"
               value={selectedHeaders}
-              options={props.headers}
+              options={headers}
               labelKey="label"
               onChange={onSelect}
             />
           )}
 
-          {props.csvDownload && (
+          {csvDownload && (
             <Button
               className="csvDownloadButton"
-              onClick={() => props.csvDownload?.(filteredList)}
+              onClick={() => csvDownload?.(filteredList)}
               disabled={filteredList.length === 0}
               style={{ textTransform: "uppercase" }}
             >
@@ -301,30 +332,30 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
           <AutoSizer disableWidth>
             {({ height }) => (
               <>
-                {props.showOverlayLoader && <OverlayLoader text="Loading..." />}
+                {showOverlayLoader && <OverlayLoader text="Loading..." />}
 
                 <DatatableGrid
                   headers={
-                    props.onCheckboxClick
+                    onCheckboxClick
                       ? [checkboxColumn, ...selectedHeaders]
                       : selectedHeaders
                   }
                   list={sortedFilteredList}
                   height={height}
-                  width={props.width}
-                  rowHeight={props.rowHeight || DEFAULT_ROW_HEIGHT}
+                  width={width}
+                  rowHeight={rowHeight || DEFAULT_ROW_HEIGHT}
                   sortBy={sortBy}
                   sortDirection={sortDirection}
                   setSortBy={handleSetSortBy}
                   setSortDirection={handleSetSortDirection}
-                  highlightRow={props.highlightRow}
-                  onCellClick={props.onCellClick}
-                  getRowClassName={props.getRowClassName}
-                  collapseBorder={props.collapseBorder}
-                  innerRef={props.forwardedRef}
-                  highlightSelected={props.highlightSelected}
-                  headerHeight={props.headerHeight}
-                  actionDropdown={props.actionDropdown}
+                  highlightRow={highlightRow}
+                  onCellClick={onCellClick}
+                  getRowClassName={getRowClassName}
+                  collapseBorder={collapseBorder}
+                  innerRef={forwardedRef}
+                  highlightSelected={highlightSelected}
+                  headerHeight={headerHeight}
+                  actionDropdown={actionDropdown}
                 />
               </>
             )}
@@ -332,12 +363,12 @@ const Datatable = <T extends Record<string, any>>(props: DatatableType<T>) => {
         </div>
       )}
 
-      {props.paginationDetail && (
+      {paginationDetail && (
         <div className="datatable__footer">
           <PaginationController
-            paginationDetail={props.paginationDetail}
-            onPaginationChange={onPaginationChange}
-            disabled={props.showOverlayLoader || props.isLoading}
+            paginationDetail={paginationDetail}
+            onPaginationChange={handlePaginationChange}
+            disabled={showOverlayLoader || isLoading}
           />
         </div>
       )}

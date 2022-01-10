@@ -1,5 +1,5 @@
 .container {
-  border: 1px solid #ddd;
+  border: 1px solid var(--borderColour);
   border-radius: 5px;
   min-height: 35px;
   margin-top: 10px;
@@ -20,12 +20,12 @@
   padding: 0;
   color: var(--link-colour);
   display: inline-block;
-  background: #fff;
+  background: var(--colour-white);
   cursor: pointer;
 }
 
 .pillbox {
-  background: #e9e9e9;
+  background: var(--colour-background-dark);
   padding-left: 6px;
   margin: 0 8px 5px 0;
   border-radius: 3px;

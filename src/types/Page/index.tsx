@@ -2,8 +2,8 @@ import React from "react";
 import TitleType from "../Title";
 import { BreadcrumbType } from "../Breadcrumbs";
 
-// Your types here.
 type PageType = {
+  /** The className given to the Page Container */
   className?: string;
   /** The style given to the Page Container */
   style?: React.CSSProperties;
@@ -12,7 +12,7 @@ type PageType = {
   /** The given title of the content */
   title?: TitleType;
   /** If present, displays a button that executes a function on click */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** If present, shows uses the ReactLoader component to show a loading image while content is loading */
   loaded?: boolean;
   /** An array of { title, onClick } objects, with title being what is displayed

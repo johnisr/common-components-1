@@ -127,7 +127,7 @@ const useDatatableFilter = (
     }
   }, [list]);
 
-  const onDropdownSelect = (selectedValue: any[], key: string) => {
+  const onDropdownSelect = (selectedValue: any[], key = "") => {
     const filterDropdown = { ...filterDropdowns[key] };
     if (filterDropdown) {
       filterDropdown.inputs = selectedValue;
