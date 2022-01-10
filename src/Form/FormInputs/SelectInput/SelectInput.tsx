@@ -52,7 +52,7 @@ function getOptionsWithLabels(options: any, labelKey: string) {
   }
 }
 
-const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
+const customStyles: StylesConfig<OptionType, boolean, GroupBase<any>> = {
   control: (provided, state) => {
     // @ts-expect-error unreachable type
     const hasError = state?.selectProps?.isError;
@@ -145,11 +145,15 @@ const customStyles: StylesConfig<OptionType, true, GroupBase<any>> = {
   }),
   option: (provided, state) => ({
     ...provided,
+    cursor: "pointer",
     backgroundColor: state.isSelected
       ? styles.primary["200"]
       : state.isFocused
       ? styles.primary["50"]
       : "#fff",
+    ":active": {
+      backgroundColor: styles.primary["200"],
+    },
     padding: "8px 12px",
   }),
   menu: (provided) => ({
