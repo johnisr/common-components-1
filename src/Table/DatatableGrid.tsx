@@ -42,21 +42,25 @@ function getNumFixedColumn<T>(headers: DatatableHeaderType<T>[]) {
   return filter(headers, "fixed").length;
 }
 
-const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
-  const {
-    height,
-    width,
-    headers: defaultHeaders,
-    list,
-    collapseBorder,
-    sortBy,
-    sortDirection,
-    rowHeight,
-    highlightSelected,
-    actionDropdown,
-    innerRef,
-  } = props;
-
+const DatatableGrid = <T,>({
+  height,
+  width,
+  headers: defaultHeaders,
+  list,
+  collapseBorder,
+  sortBy,
+  sortDirection,
+  rowHeight,
+  highlightSelected,
+  actionDropdown,
+  innerRef,
+  headerHeight: defaultHeaderHeight,
+  onCellClick,
+  getRowClassName,
+  highlightRow,
+  setSortBy,
+  setSortDirection,
+}: DatatableGridType<T>) => {
   const headers = useMemo(() => {
     return actionDropdown
       ? [...defaultHeaders, ACTION_COLUMN_HEADER as DatatableHeaderType<T>]
@@ -74,7 +78,7 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
     return width - totalColumnWidth - SCROLL_BAR_SIZE < 0;
   }, [width, headers, tableResized]);
 
-  const headerHeight = props.headerHeight ?? DEFAULT_HEADER_ROW_HEIGHT;
+  const headerHeight = defaultHeaderHeight ?? DEFAULT_HEADER_ROW_HEIGHT;
   const tableHeight = visibleHorizontalScrollbar
     ? height - headerHeight - SCROLL_BAR_SIZE
     : height - headerHeight;
@@ -117,8 +121,8 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
     setForceScroll(true);
   }, [highlightIndex]);
 
-  const onCellClick = (rowValue: T) => {
-    props.onCellClick?.(rowValue);
+  const handleCellClick = (rowValue: T) => {
+    onCellClick?.(rowValue);
   };
 
   const onMouseEnter = (rowIndex: number, columnIndex: number) => {
@@ -203,7 +207,7 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
     }
 
     // Set cursor style to be pointer if the cell is actionable
-    if (props.onCellClick) {
+    if (onCellClick) {
       style.cursor = "pointer";
     }
 
@@ -213,7 +217,7 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
       "datatable__row",
       "clipText",
       "datatable__rightPadding",
-      `${props?.getRowClassName?.(rowValue) ?? ""}`,
+      `${getRowClassName?.(rowValue) ?? ""}`,
       columnClassName,
     ].join(" ");
 
@@ -224,13 +228,11 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
         className={cellClassName}
         key={key}
         style={style}
-        onClick={() => (props.onCellClick ? onCellClick(rowValue) : null)}
+        onClick={() => (onCellClick ? handleCellClick(rowValue) : null)}
         onMouseEnter={() =>
-          props.highlightRow ? onMouseEnter(rowIndex, columnIndex) : null
+          highlightRow ? onMouseEnter(rowIndex, columnIndex) : null
         }
-        onMouseLeave={() =>
-          props.highlightRow ? setHoverRowIndex(null) : null
-        }
+        onMouseLeave={() => (highlightRow ? setHoverRowIndex(null) : null)}
       >
         <div
           className={`clipText datatable__rightPadding ${columnClassName}`}
@@ -296,10 +298,10 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
                 })
               }
               onMouseEnter={() =>
-                props.highlightRow ? onMouseEnter(rowIndex, columnIndex) : null
+                highlightRow ? onMouseEnter(rowIndex, columnIndex) : null
               }
               onMouseLeave={() =>
-                props.highlightRow ? setHoverRowIndex(null) : null
+                highlightRow ? setHoverRowIndex(null) : null
               }
             >
               <FontAwesome
@@ -315,10 +317,10 @@ const DatatableGrid = <T,>(props: DatatableGridType<T>) => {
 
   const setSortingOrder = (columnKey: string) => {
     if (columnKey !== sortBy) {
-      props.setSortBy(columnKey);
+      setSortBy(columnKey);
     } else {
       const nextSortDirection = sortDirection === "asc" ? "desc" : "asc";
-      props.setSortDirection(nextSortDirection);
+      setSortDirection(nextSortDirection);
     }
   };
 
