@@ -67,12 +67,13 @@ const Header = ({ children, style, className = "", ...props }: HeaderType) => {
   return (
     <div style={style} className={`${styles.header} ${className}`} {...props}>
       {children}
-
-      <FontAwesome
+      <button
         className={styles.closeButton}
-        name="times fa fa-fw"
+        aria-label="close"
         onClick={onClose}
-      />
+      >
+        <FontAwesome name="times fa fa-fw" />
+      </button>
     </div>
   );
 };

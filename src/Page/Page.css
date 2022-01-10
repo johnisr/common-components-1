@@ -10,6 +10,10 @@
   margin-right: 20px;
   cursor: pointer;
   display: inline-block;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0px
 }
 
 .page__title {

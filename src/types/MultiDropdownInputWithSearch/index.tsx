@@ -10,7 +10,7 @@ type MultiDropdownInputWithSearchType<T> = {
   label: string;
   labelKey?: string;
   dropdownKey?: string;
-  onChange: (newValues: T[], dropdownKey: string) => void;
+  onChange: (newValues: T[], dropdownKey?: string) => void;
   value: T[];
   isDisabled?: boolean;
   width?: number;

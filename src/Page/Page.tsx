@@ -28,11 +28,13 @@ const Page = ({
       {title && (
         <div className="page__titleContainer">
           {onClick && (
-            <FontAwesome
-              name="arrow-left"
-              onClick={onClick}
+            <button
+              aria-label="arrow-left-label"
               className="page__link"
-            />
+              onClick={onClick}
+            >
+              <FontAwesome name="arrow-left" />
+            </button>
           )}
 
           <Title type="header" className="page__title">

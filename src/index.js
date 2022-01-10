@@ -28,6 +28,7 @@ import FormButton from "./Form/FormHelpers/FormButton";
 import AlertProvider, { useAlert } from "./Alert/AlertProvider";
 import CheckboxButton from "./CheckboxButton/CheckboxButton";
 import MultiDropdownInputWithSearch from "./MultiDropdownInputWithSearch/MultiDropdownInputWithSearch";
+import FilterPillbox from "./Table/FilterPillbox/FilterPillbox";
 
 import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
@@ -63,6 +64,7 @@ export {
   useAlert,
   CheckboxButton,
   MultiDropdownInputWithSearch,
+  FilterPillbox,
 };
 
 export default {
@@ -96,4 +98,5 @@ export default {
   useAlert,
   CheckboxButton,
   MultiDropdownInputWithSearch,
+  FilterPillbox,
 };

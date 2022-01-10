@@ -159,6 +159,7 @@ const customStyles: StylesConfig<OptionType, boolean, GroupBase<any>> = {
   menu: (provided) => ({
     ...provided,
     marginTop: "12px",
+    zIndex: styles.layer.third,
   }),
 };
 

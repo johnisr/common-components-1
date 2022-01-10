@@ -1,15 +1,10 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { render, fireEvent } from "@testing-library/react";
+import Button from "./Button";
 import FontAwesome from "react-fontawesome";
-import Button from "../Button/Button";
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe("Button", () => {
-  it("should render", () => {
+describe("Button tests", () => {
+  test("Button should be returned with specific label and classname", () => {
     const buttonContent = "Button Text";
     const className = "a ClassName";
     const icon = "fa-download";
@@ -17,7 +12,7 @@ describe("Button", () => {
     const variant = "primary";
     const onClick = jest.fn();
 
-    const wrapper = mount(
+    const { queryByText, container } = render(
       <Button
         className={className}
         icon={icon}
@@ -29,36 +24,30 @@ describe("Button", () => {
       </Button>
     );
 
-    expect(wrapper.find("button").text()).toEqual(buttonContent);
-    expect(wrapper.find("button").hasClass(className)).toEqual(true);
-    expect(wrapper.find("button").hasClass("button--primary")).toEqual(true);
-    expect(wrapper.find(FontAwesome).hasClass(iconClassName)).toEqual(true);
-    expect(wrapper.find(".content").text()).toEqual(buttonContent);
-
-    wrapper.find("button").simulate("click");
-    expect(onClick).toHaveBeenCalled();
+    const result = queryByText("Button Text");
+    expect(result.textContent).toMatch(buttonContent);
   });
 
-  it("should show loading icon instead of regular icon when loading is true", () => {
+  test("onClick method should be called when button is clicked", () => {
     const buttonContent = "Button Text";
+    const className = "a ClassName";
     const icon = "fa-download";
-    const isLoading = true;
+    const iconClassName = "iconClassName";
+    const variant = "primary";
     const onClick = jest.fn();
 
-    const wrapper = mount(
-      <Button icon={icon} isLoading={isLoading} onClick={onClick}>
+    const { getByRole } = render(
+      <Button
+        className={className}
+        icon={icon}
+        variant={variant}
+        onClick={onClick}
+        iconClassName={iconClassName}
+      >
         <div className="content">{buttonContent}</div>
       </Button>
     );
-
-    // loading icon will show
-    expect(wrapper.find(".loadingIcon").exists()).toEqual(true);
-
-    // regular icon will not
-    expect(wrapper.find(`${icon}`).exists()).toEqual(false);
-
-    // can't click while loading
-    wrapper.find("button").simulate("click");
-    expect(onClick).not.toHaveBeenCalled();
+    fireEvent.click(getByRole("button"));
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

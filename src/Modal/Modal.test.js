@@ -1,47 +1,75 @@
 import React from "react";
-import Enzyme, { mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import FontAwesome from "react-fontawesome";
+import { render } from "@testing-library/react";
 import Modal from "./Modal";
+import { ModalSize } from "../types/Modal";
+import userEvent from "@testing-library/user-event";
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe("Modal", () => {
-  it("should render", () => {
+describe("Modal  tests", () => {
+  test("Modal component should be rendered", () => {
     const open = true;
     const onClose = jest.fn();
     const style = { backgroundColor: "white" };
     const className = "aClassName";
 
-    const wrapper = mount(
-      <div>
-        <Modal
-          open={open}
-          onClose={onClose}
-          style={style}
-          className={className}
-        >
-          <Modal.Header>Title</Modal.Header>
-          <Modal.Body>Content</Modal.Body>
-          <Modal.Footer>Footer</Modal.Footer>
-        </Modal>
-      </div>
+    const { getByRole } = render(
+      <Modal
+        open={open}
+        onClose={onClose}
+        style={style}
+        className={className}
+        aria-hidden={false}
+        size={ModalSize.Large}
+      >
+        <Modal.Header>Title Test</Modal.Header>
+        <Modal.Body>Content Test</Modal.Body>
+        <Modal.Footer>Footer Test</Modal.Footer>
+      </Modal>
     );
+    expect(getByRole("dialog").children[0].textContent).toEqual("Title Test");
+    expect(getByRole("dialog").children[1].textContent).toEqual("Content Test");
+    expect(getByRole("dialog").children[2].textContent).toEqual("Footer Test");
+  });
 
-    expect(wrapper.find("div.modal").prop("className")).toContain(className);
-    expect(wrapper.find("div.modal").prop("style")).toEqual(style);
+  test("Initial focus should be disabled when Modal component is rendered", () => {
+    const open = true;
+    const onClose = jest.fn();
+    const style = { backgroundColor: "white" };
+    const className = "aClassName";
 
-    expect(wrapper.find(Modal.Header).text()).toEqual("Title");
+    const { getByRole } = render(
+      <Modal
+        open={open}
+        onClose={onClose}
+        style={style}
+        className={className}
+        aria-hidden={false}
+        disableInitialFocus={true}
+        size={ModalSize.Small}
+      >
+        <Modal.Header>Title Test</Modal.Header>
+        <Modal.Body>Content Test</Modal.Body>
+        <Modal.Footer>Footer Test</Modal.Footer>
+      </Modal>
+    );
+    expect(getByRole("dialog").children[0].textContent).toEqual("Title Test");
+    expect(getByRole("dialog").children[1].textContent).toEqual("Content Test");
+    expect(getByRole("dialog").children[2].textContent).toEqual("Footer Test");
+  });
 
-    const closeButton = wrapper.find(FontAwesome);
-    expect(closeButton.exists()).toEqual(true);
-    closeButton.simulate("click");
-    expect(onClose).toHaveBeenCalled();
+  test("Dialog gets closed when close button gets clicked", () => {
+    const open = true;
+    const onClose = jest.fn();
+    const style = { backgroundColor: "white" };
 
-    expect(wrapper.find(Modal.Body).text()).toEqual("Content");
-
-    expect(wrapper.find(Modal.Footer).text()).toEqual("Footer");
+    const { getByRole } = render(
+      <Modal open={open} onClose={onClose} style={style} aria-hidden={false}>
+        <Modal.Header>Title Test</Modal.Header>
+        <Modal.Body>Content Test</Modal.Body>
+        <Modal.Footer>Footer Test</Modal.Footer>
+      </Modal>
+    );
+    const closeButton = getByRole("button");
+    userEvent.click(closeButton);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 });
