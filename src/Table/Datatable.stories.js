@@ -148,6 +148,7 @@ WithFilter.args = {
   filterTitle: "Search Name",
   addButtonName: "CoC",
   disableCheckbox: false,
+  paginationDetail: undefined,
 };
 WithFilter.storyName = "Datatable with filters";
 
@@ -308,6 +309,18 @@ export default {
     defaultSortDirection: {
       table: {
         category: "Sorting",
+      },
+    },
+    paginationDetail: {
+      control: { type: "none" },
+      table: {
+        category: "Pagination",
+      },
+    },
+    onPaginationChange: {
+      control: { type: "none" },
+      table: {
+        category: "Pagination",
       },
     },
     filterRow: {

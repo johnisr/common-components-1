@@ -14,10 +14,12 @@ import {
 import { Button, Title } from "..";
 import OverlayLoader from "../OverlayLoader/OverlayLoader";
 import MultiDropdownInputWithSearch from "../MultiDropdownInputWithSearch/MultiDropdownInputWithSearch";
+import PaginationController from "./PaginationController/PaginationController";
 import DatatableType, {
   DatatableHeaderType,
   DatatableSortDirection,
 } from "../types/Table/Datatable";
+import { PaginationDetailType } from "../types/Table/PaginationController";
 
 const DEFAULT_ROW_HEIGHT = 40;
 
@@ -56,6 +58,8 @@ const Datatable = <T extends { id: string }>({
   highlightSelected,
   headerHeight,
   actionDropdown,
+  paginationDetail,
+  onPaginationChange,
 }: DatatableType<T>) => {
   const [filterValue, setFilterValue] = useState<string>("");
   const [checkedValues, setCheckedValues] = useState<T[]>([]);
@@ -64,6 +68,8 @@ const Datatable = <T extends { id: string }>({
   const [sortDirection, setSortDirection] = useState(
     defaultSortDirection || "asc"
   );
+
+  const isPaginationEnabled = !!paginationDetail && !!onPaginationChange;
 
   useEffect(() => {
     if (headers) {
@@ -81,6 +87,9 @@ const Datatable = <T extends { id: string }>({
     const value = event.target.value;
 
     setFilterValue(value);
+
+    // ToDo: If Pagination API starts to include text search
+    // onPaginationChange();
   };
 
   const onSelect = (selectedHeaders: DatatableHeaderType<T>[]) => {
@@ -144,12 +153,37 @@ const Datatable = <T extends { id: string }>({
   const handleSetSortBy = (sortBy: string) => {
     setSortBy(sortBy);
     setSortDirection("desc");
+
+    if (paginationDetail) {
+      handlePaginationChange({
+        ...paginationDetail,
+        sort: { [sortBy]: "desc" },
+      });
+    }
   };
 
   const handleSetSortDirection = (
     sortDirection: typeof DatatableSortDirection[number]
   ) => {
     setSortDirection(sortDirection);
+
+    if (paginationDetail) {
+      handlePaginationChange({
+        ...paginationDetail,
+        sort: { [sortBy]: sortDirection },
+      });
+    }
+  };
+
+  const handlePaginationChange = (paginationDetail: PaginationDetailType) => {
+    if (onPaginationChange) {
+      onPaginationChange({
+        ...paginationDetail,
+        filter: {
+          [filterKey as string]: filterValue,
+        },
+      });
+    }
   };
 
   const checkboxRenderer = (rowData: T) => {
@@ -181,14 +215,16 @@ const Datatable = <T extends { id: string }>({
     list,
     filterValue,
     filterKey,
-    customSearch
+    customSearch,
+    isPaginationEnabled
   );
 
   const sortedFilteredList = getSortedList(
     selectedHeaders,
     filteredList,
     sortBy,
-    sortDirection
+    sortDirection,
+    isPaginationEnabled
   );
 
   const errorMessage = getErrorMessage(selectedHeaders, isLoading);
@@ -324,6 +360,16 @@ const Datatable = <T extends { id: string }>({
               </>
             )}
           </AutoSizer>
+        </div>
+      )}
+
+      {paginationDetail && (
+        <div className="datatable__footer">
+          <PaginationController
+            paginationDetail={paginationDetail}
+            onPaginationChange={handlePaginationChange}
+            disabled={showOverlayLoader || isLoading}
+          />
         </div>
       )}
     </div>

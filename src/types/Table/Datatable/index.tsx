@@ -1,4 +1,5 @@
 import { ReactNode, Ref } from "react";
+import { PaginationDetailType } from "../PaginationController";
 
 export type actionDropdownType<T> = {
   title: string;
@@ -114,6 +115,10 @@ type DatatableType<T> = {
   headerHeight?: number;
   /** Enables a right fixed column whose dropdown will be populated by these actions */
   actionDropdown: actionDropdownType<T>[];
+  /** Provides all the information related to the current page and page options of a request */
+  paginationDetail?: PaginationDetailType;
+  /** Function called to change pagination detail values */
+  onPaginationChange?: (newValue: PaginationDetailType) => void;
 };
 
 export default DatatableType;
