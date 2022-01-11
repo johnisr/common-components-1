@@ -363,6 +363,9 @@ body {
   align-items: center;
   cursor: pointer;
   font-size: 25px;
+  border: none;
+  outline: none;
+  background: none;
   overflow: revert;
 }
 
@@ -422,20 +425,16 @@ body {
   \**********************************************************************************************************************************************************************************************************************/
 .customTable .customTable__titleContainer {
   width: 100%;
-  margin-bottom: 5px;
-}
-
-.customTable .customTable__title {
-  font-size: 18px;
   margin-bottom: 10px;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
 }
 
 .customTable .ReactVirtualized__Table__headerRow {
   font-weight: 500;
   border-bottom: 1px solid #e4e4e4;
-  color: #808080;
-  background-color: #fff0;
+  color: #1B4254;
+  background-color: #FFFFFF;
 }
 
 .customTable .ReactVirtualized__Table__headerRow .ReactVirtualized__Table__headerColumn {
@@ -451,7 +450,7 @@ body {
 }
 
 .customTable .ReactVirtualized__Table__row {
-  color: #3b3b3b;
+  color: #1B4254;
   border-bottom: 1px solid #e4e4e4;
   outline: none;
 }
@@ -477,6 +476,26 @@ body {
   display: inline-block;
   margin-right: 10px;
   vertical-align: top;
+}
+
+.datatable__actionRow .csvDownloadButton {
+  float: right;
+  height: 100%;
+  padding: 0px 15px;
+}
+
+.customTable__titleContainer .addButton {
+  margin-left: auto;
+}
+
+.customTable__titleContainer .customTable__buttonRow {
+  margin-left: auto;
+}
+
+.customTable__actionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .noDataRow {
@@ -516,13 +535,14 @@ body {
 }
 
 .filterRow .dateRangeSelectorContainer {
-  color: #555555;
+  color: #1B4254;
   border: 1px solid #ddd;
   border-radius: 3px;
   display: inline-block;
-  height: 31px;
-  padding: 2px 6px;
+  height: 33px;
+  padding: 5px 6px;
   vertical-align: top;
+  white-space: nowrap;
 }
 
 .filterRow .link {
@@ -539,13 +559,18 @@ body {
   background: #f6f6f6 !important;
   border-bottom: 1px solid #ddd;
 }
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Table/Datatable.css ***!
-  \********************************************************************************************************************************************************************************************************************/
-.LeftSideGrid {
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Table/Datatable.scss ***!
+  \*********************************************************************************************************************************************************************************************************************/
+.datatable {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+}
+.datatable__sideBodyGrid {
   overflow: hidden !important;
 }
-
 .datatable__headerGrid {
   border-bottom: 1px solid #ddd;
   font-weight: bold;
@@ -557,37 +582,33 @@ body {
       -ms-user-select: none;
           user-select: none;
 }
-
 .datatable__headerGrid .checkbox {
   margin-top: 5px;
 }
-
-.datatable {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  background: #fff;
-}
-
 .datatable__gridColumn {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
 }
-
 .datatable__leftSideGridContainer {
   flex: 0 0 60px;
-  background-color: #fff;
+  background-color: #FFFFFF;
   position: absolute;
   z-index: 1;
 }
-
+.datatable__rightSideGridContainer {
+  background-color: #FFFFFF;
+  position: absolute;
+  z-index: 1;
+}
+.datatable__rightSideGridContainer__header {
+  border-bottom: 1px solid #ddd;
+}
 .datatable__headerContainer {
   width: 100%;
   overflow: hidden !important;
 }
-
-.datatable__header {
+.datatable > .cell, .datatable__header {
   width: 100%;
   height: 100%;
   display: flex;
@@ -597,97 +618,211 @@ body {
   text-align: center;
   padding: 0 0.5em;
 }
-
-.datatable > .cell,
-.datatable__header {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 0.5em;
-}
-
 .datatable__overlayShadow {
   box-shadow: 3px 0px 11px 0px rgba(0, 0, 0, 0.08);
 }
-
 .datatable__sortIcon {
-  color: #2196F3;
+  color: #2196f3;
   margin-left: 10px;
 }
-
 .datatable__errorMessage {
   margin-top: 10px;
   text-align: center;
   font-style: normal;
 }
-
+.datatable__buttonRow {
+  margin-left: auto;
+}
 .datatable__actionContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
+.datatable__actionContainer > * {
+  flex-shrink: 0;
+}
 .datatable__filterRow {
-  max-height: 30px;
   display: flex;
 }
-
+.datatable__filterRow > * + * {
+  margin-left: 10px;
+}
 .datatable__filterRow .filterRow {
   display: flex;
   flex-direction: row;
 }
-
-.datatable__filterRow .validereInputBox {
-  display: inline-block;
-  margin-right: 10px;
-  vertical-align: top;
+.datatable__filterRow .filterRow > * + * {
+  margin-left: 10px;
 }
-
+.datatable__filterRow .inputbox-compress {
+  border: 1px solid #E6EAEC;
+  border-radius: 6px;
+  box-shadow: none;
+  font-family: "Roboto", sans-serif, FontAwesome;
+  height: 38px;
+  padding-left: 5px;
+  width: 125px;
+}
+.datatable__filterRow .inputbox-compress:focus {
+  outline: 0;
+  border: 1px solid #2DBFBE;
+}
+.datatable__actionRow {
+  margin-left: 10px;
+}
+.datatable__actionRow > * + * {
+  margin-left: 10px;
+}
 .datatable .checkbox {
   margin-top: 0;
 }
-
-.ReactVirtualized__Grid {
+.datatable .ReactVirtualized__Grid {
   outline: 0;
 }
-
 .datatable__headerCell {
   display: flex;
   justify-content: space-between;
 }
-
+.datatable .datatable__wrapHeader {
+  white-space: normal;
+  line-height: 1.4;
+  margin-top: 3px;
+}
 .datatable .datatable__headerContent {
   padding-right: 0px;
 }
-
 .datatable .datatable__rightPadding {
   padding-right: 20px;
 }
-
 .datatable__footer {
   border-top: 1px solid #ddd;
   padding-top: 10px;
   height: 25px;
   margin: 10px 0;
 }
-
-.datatable__filterRow .inputbox-compress {
-  border: 1px solid #ddd;
-  border-radius: 3px !important;
-  box-shadow: none;
-  font-family: "Roboto", sans-serif, FontAwesome;
-  height: 30px;
-  padding-left: 5px;
-  width: 125px;
+.datatable__popover {
+  transform: translate(-30%, 0px);
+}
+.datatable__popover .arrow {
+  display: none;
+}
+.datatable .clipText {
+  padding-right: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Table/DatatablePopover/DatatablePopover.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.datatablePopover {
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: -3px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.datatablePopover__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+.datatablePopover__cell__icon {
+  transform: rotate(90deg);
+}
+.datatablePopover__container {
+  z-index: 1070;
+}
+.datatablePopover__menuitem {
+  cursor: pointer;
+  padding: 3px 20px;
+}
+.datatablePopover__menuitem:hover {
+  background-color: #eee;
+}
+.datatablePopover__noActions {
+  padding: 3px 20px;
+}
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/OverlayLoader/OverlayLoader.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+.OverlayLoader-module__overlayLoader {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-.datatable__filterRow .inputbox-compress:focus {
-  outline: 0;
-  box-shadow: inset 0 -2px 0 #2196f3;
+.OverlayLoader-module__message {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  position: relative;
+  font-size: 18px;
+}
+
+.OverlayLoader-module__icon {
+  color: #45c0c1;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/MultiDropdownInputWithSearch/MultipleDropdownInputWithsearch.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+.MultipleDropdownInputWithsearch-module__icon {
+  font-size: 20px;
+  color: #2DBFBE;
+  padding: 0px 7px;
+}
+.MultipleDropdownInputWithsearch-module__icon--error {
+  color: #D83B3E;
+}
+
+.MultipleDropdownInputWithsearch-module__optionHint {
+  background-color: #FFFFFF;
+  padding: 3px 5px;
+  border: 1px solid #E6EAEC;
+  border-radius: 6px;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Table/PaginationController/PaginationController.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+.paginationController {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.paginationController .rowPerPageSelector {
+  display: flex;
+  align-items: center;
+}
+.paginationController .rowPerPageSelector .dropup {
+  margin: 0 10px;
+}
+.paginationController .rowPerPageSelector__button {
+  border: 1px solid #ddd;
+  box-shadow: none;
+  height: 25px;
+  padding: 0;
+  width: 55px;
+}
+.paginationController .paginationPage {
+  display: flex;
+  flex-direction: row;
+}
+.paginationController .paginationPage__input {
+  height: 25px;
+  width: 35px;
+  text-align: center;
+  box-shadow: none;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 13px;
+}
+.paginationController .paginationPage__button {
+  box-shadow: none;
+  height: 25px;
+  padding: 0 15px;
 }
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Page/Page.css ***!
@@ -704,6 +839,10 @@ body {
   margin-right: 20px;
   cursor: pointer;
   display: inline-block;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0px;
 }
 
 .page__title {
@@ -2260,4 +2399,61 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
 .CheckboxButton-module__label--disabled {
   cursor: default;
   color: #A0ACB2;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Table/FilterPillbox/FilterPillbox.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+.FilterPillbox-module__container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 35px;
+  margin-top: 10px;
+  padding: 5px 5px 0 5px;
+}
+.FilterPillbox-module__container > * + * {
+  margin-right: 10px;
+}
+
+.FilterPillbox-module__containerTitle {
+  font-weight: bold;
+  margin: 5px 5px 0 0;
+}
+
+.FilterPillbox-module__clearLink {
+  box-shadow: none;
+  padding: 0;
+  color: #2196f3;
+  display: inline-block;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+.FilterPillbox-module__pillbox {
+  background: #E6EAEC;
+  padding-left: 6px;
+  margin: 0 8px 5px 0;
+  border-radius: 3px;
+  white-space: nowrap;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.FilterPillbox-module__pillbox b {
+  margin-right: 5px;
+}
+.FilterPillbox-module__pillbox__text {
+  display: inline-block;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.FilterPillbox-module__pillbox__icon {
+  cursor: pointer;
+  border-radius: 0 3px 3px 0;
+  margin-left: 5px;
+  padding: 5px;
+}
+.FilterPillbox-module__pillbox__icon:hover {
+  background-color: #E06162;
 }
