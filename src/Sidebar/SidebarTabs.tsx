@@ -31,6 +31,7 @@ export const SidebarTabText = ({ isVisible, children }: SidebarTabTextType) => (
       visible: isVisible,
       invisible: !isVisible,
     })}
+    role="tabTitle"
   >
     {children}
   </span>
@@ -66,7 +67,11 @@ export const SidebarTab = ({
             </SidebarTabText>
 
             {tabDetails.nested && (
-              <div className={cx("collapseIcon")} onClick={onDropdownClicked}>
+              <div
+                className={cx("collapseIcon")}
+                onClick={onDropdownClicked}
+                role="listdropdown"
+              >
                 <FontAwesome
                   className="fa-fw"
                   name={isNestedTabOpen ? "angle-up" : "angle-down"}

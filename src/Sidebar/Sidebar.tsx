@@ -56,18 +56,19 @@ const Sidebar = ({
       }}
     >
       {onBackClick && (
-        <div
+        <button
           className={cx("tabContainer", "tabContainer--back", {
             "tabContainer--back--collapse": !isSidebarExpanded,
           })}
           onClick={(e) => onBackClick?.(e)}
+          aria-label="backtohub"
         >
           <FontAwesome className={cx("backIcon")} name="arrow-circle-o-left" />
 
           <SidebarTabText isVisible={isSidebarExpanded}>
             Back to hubs
           </SidebarTabText>
-        </div>
+        </button>
       )}
 
       {homeTabText && (
@@ -153,15 +154,16 @@ const Sidebar = ({
               />
             }
           >
-            <div
+            <button
               className={cx("settingsIcon", {
                 visible: isSidebarExpanded,
                 invisible: !isSidebarExpanded,
               })}
+              aria-label="settings"
               onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
             >
               <FontAwesome name="cog" />
-            </div>
+            </button>
           </Popover>
         </div>
       </div>

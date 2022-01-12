@@ -26,7 +26,7 @@ export type SidebarType = TabDetail & {
   /** App version shown in the menu */
   version: string;
   /** Sign out function */
-  onSignOut: React.MouseEventHandler<HTMLDivElement>;
+  onSignOut: React.MouseEventHandler<HTMLButtonElement>;
   /**  Boolean function determining is sidebar is currently expanded */
   isExpanded: boolean;
   /** Text describing the current web app */
