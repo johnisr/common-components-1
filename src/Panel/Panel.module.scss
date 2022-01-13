@@ -1,0 +1,33 @@
+.commonPanel {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: none;
+  margin-bottom: 20px;
+  min-height: 100px;
+  padding: 15px 20px;
+  position: relative;
+
+  .titleContainer {
+    display: flex;
+    flex-direction: row;
+ }
+
+  .title {
+      margin-bottom: 15px;
+  }
+
+  .icon {
+    font-size: 18px;
+    width: 11px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: 12px;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+

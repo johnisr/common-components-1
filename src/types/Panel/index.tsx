@@ -13,6 +13,8 @@ type PanelType = {
   loaded?: boolean;
   /** If present, executes the given function when the panel is clicked */
   onClick?: React.MouseEventHandler<HTMLDivElement>;
+  /** Available font icon name can be found here https://fontawesome.com/v4.7/icons/ */
+  iconName?: string;
 };
 
 export default PanelType;

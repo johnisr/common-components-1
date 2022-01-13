@@ -18,7 +18,7 @@ describe("Panel", () => {
       </Panel>
     );
 
-    expect(wrapper.find("div.commonPanel__title").text()).toEqual(title);
+    expect(wrapper.find("div.title").text()).toEqual(title);
     expect(wrapper.find(".content").text()).toEqual(panelContent);
   });
 
@@ -32,7 +32,7 @@ describe("Panel", () => {
       </Panel>
     );
 
-    expect(wrapper.find("div.commonPanel__title").text()).toEqual(title);
+    expect(wrapper.find("div.title").text()).toEqual(title);
     expect(wrapper.find(".content").exists()).toEqual(false);
     expect(wrapper.find(".loader").exists()).toEqual(true);
   });

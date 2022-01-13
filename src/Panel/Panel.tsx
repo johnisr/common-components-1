@@ -1,9 +1,12 @@
 import React from "react";
 import ReactLoader from "../Loader/ReactLoader";
 import Title from "../Title/Title";
-import "./Panel.css";
+import styles from "./Panel.module.scss";
 import PanelType from "../types/Panel";
+import FontAwesome from "react-fontawesome";
+import classNames from "classnames/bind";
 
+const cx = classNames.bind(styles);
 const Panel = ({
   className = "",
   style,
@@ -11,23 +14,26 @@ const Panel = ({
   loaded,
   onClick,
   children,
+  iconName,
 }: PanelType) => {
   const isClickable = onClick && (loaded === undefined || loaded);
 
   return (
     <div
-      className={`commonPanel ${
-        isClickable ? "commonPanel__clickable" : ""
-      } ${className}`}
+      className={`${className} ${cx("commonPanel", {
+        clickable: isClickable,
+      })}`}
       style={style}
       onClick={isClickable ? onClick : () => null}
     >
-      {title && (
-        <Title type="panelheader" className="commonPanel__title">
-          {title}
-        </Title>
-      )}
-
+      <div className={cx("titleContainer")}>
+        {iconName && <FontAwesome className={cx("icon")} name={iconName} />}
+        {title && (
+          <Title type="panelheader" className={cx("title")}>
+            {title}
+          </Title>
+        )}
+      </div>
       {loaded !== undefined ? (
         <ReactLoader loaded={loaded} position={50}>
           {children}
