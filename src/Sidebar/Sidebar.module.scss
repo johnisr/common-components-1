@@ -180,11 +180,16 @@ $tabContainerPadding: 8px 20px 8px 10px;
 }
 
 .pinContainer {
+  padding: $tabContainerPadding;
   display: flex;
   justify-content: space-between;
   align-items: center;
   white-space: nowrap;
   @include fontStyles(body, $textFontSize);
+}
+
+.collapseLockSidebar {
+  cursor: pointer;
 }
 
 .pinIcon {
@@ -194,6 +199,14 @@ $tabContainerPadding: 8px 20px 8px 10px;
   margin-left: auto;
 }
 
+.sideBarCollapseIcon {
+  font-size: 19px;
+  margin-right: 12px;
+  color: var(--colour-white);
+  border: 1px solid var(--colour-white);
+  border-radius: 5px;
+  cursor: pointer
+}
 .popoverContainer {
   z-index: $zIndexPopover;
 }

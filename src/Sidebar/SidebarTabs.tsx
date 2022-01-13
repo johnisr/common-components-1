@@ -27,7 +27,7 @@ const Collapse = ({ isOpen, children }: CollapseType) => {
 
 export const SidebarTabText = ({ isVisible, children }: SidebarTabTextType) => (
   <span
-    className={cx({
+    className={cx("collapseLockSidebar", {
       visible: isVisible,
       invisible: !isVisible,
     })}

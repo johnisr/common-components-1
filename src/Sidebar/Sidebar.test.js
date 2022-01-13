@@ -57,6 +57,7 @@ describe("Sidebar tests", () => {
       link: sampleLink,
     },
   ];
+
   test("Should render Sidebar", () => {
     const activeTab = "manage_workflows";
     const name = "Validere";
@@ -140,6 +141,43 @@ describe("Sidebar tests", () => {
     expect(tabTitles[3].textContent).toEqual("Instruments");
     expect(tabTitles[4].textContent).toEqual("Samples");
     expect(tabTitles[5].textContent).toEqual("Lock Sidebar");
+  });
+
+  test("Should render Collapse sidebar text when Sidebar is pinned", () => {
+    const activeTab = "manage_workflows";
+    const name = "Validere";
+    const className = "aClassName";
+    const style = { background: "red" };
+    const version = "a version";
+    const onSignOut = jest.fn();
+    const onPinClick = jest.fn();
+    const onProfileClick = jest.fn();
+    const onBackClick = jest.fn();
+
+    const { getAllByRole } = render(
+      <Sidebar
+        activeTab={activeTab}
+        tabs={tabs}
+        name={name}
+        onSignOut={onSignOut}
+        className={className}
+        style={style}
+        onPinClick={onPinClick}
+        version={version}
+        onProfileClick={onProfileClick}
+        onBackClick={onBackClick}
+        homeTabText="Operations"
+        isPinned={true}
+      />
+    );
+
+    const tabTitles = getAllByRole("tabTitle");
+    expect(tabTitles[0].textContent).toEqual("Back to hubs");
+    expect(tabTitles[1].textContent).toEqual("Operations");
+    expect(tabTitles[2].textContent).toEqual("Workflow");
+    expect(tabTitles[3].textContent).toEqual("Instruments");
+    expect(tabTitles[4].textContent).toEqual("Samples");
+    expect(tabTitles[5].textContent).toEqual("Collapse Sidebar");
   });
 
   test("Should expand and collapse dropdown ", () => {
