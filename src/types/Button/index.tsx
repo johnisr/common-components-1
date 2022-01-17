@@ -12,7 +12,7 @@ export type ButtonTypes = {
   /** The FontAwesome icon name to show the icon */
   icon?: string;
   /** The function executed when clicking a button */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   /** If true, the button will become greyed-out and not responsive to actions */
   disabled?: boolean;
   /** Where the icon will be shown in relation to the text if present */

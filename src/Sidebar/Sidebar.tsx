@@ -60,7 +60,7 @@ const Sidebar = ({
           className={cx("tabContainer", "tabContainer--back", {
             "tabContainer--back--collapse": !isSidebarExpanded,
           })}
-          onClick={(e) => onBackClick?.(e)}
+          onClick={onBackClick}
           aria-label="backtohub"
         >
           <FontAwesome className={cx("backIcon")} name="arrow-circle-o-left" />

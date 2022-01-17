@@ -26,13 +26,13 @@ export type SidebarType = TabDetail & {
   /** App version shown in the menu */
   version: string;
   /** Sign out function */
-  onSignOut: React.MouseEventHandler<HTMLButtonElement>;
+  onSignOut: React.MouseEventHandler<HTMLDivElement>;
   /**  Boolean function determining is sidebar is currently expanded */
   isExpanded: boolean;
   /** Text describing the current web app */
   homeTabText: string;
   /** The function called when the back link is clicked */
-  onBackClick: React.MouseEventHandler<HTMLDivElement>;
+  onBackClick: React.MouseEventHandler<HTMLButtonElement>;
   /** The function called when View profile is clicked */
   onProfileClick: React.MouseEventHandler<HTMLDivElement>;
 };
