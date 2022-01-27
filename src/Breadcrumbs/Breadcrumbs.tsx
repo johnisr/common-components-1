@@ -1,12 +1,15 @@
 import React from "react";
 import FontAwesome from "react-fontawesome";
 import { BreadcrumbType, BreadcrumbsType } from "../types/Breadcrumbs";
-import "./Breadcrumbs.css";
+import styles from "./Breadcrumbs.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
 
 const Breadcrumb = ({ title, onClick, isLastBreadcrumb }: BreadcrumbType) => {
   return isLastBreadcrumb ? (
     <div
-      className="breadcrumb__item"
+      className={cx("item", "item--last")}
       aria-label="breadcrumbs-label"
       aria-current="location"
       role="breadcrumbs"
@@ -15,22 +18,22 @@ const Breadcrumb = ({ title, onClick, isLastBreadcrumb }: BreadcrumbType) => {
     </div>
   ) : (
     <div
-      className="breadcrumb__item"
+      className={cx("item")}
       role="breadcrumbs"
       aria-label="breadcrumbs-label"
     >
-      <a className="breadcrumb__link" onClick={onClick}>
+      <a className={cx("link")} onClick={onClick}>
         {title}
       </a>
 
-      <FontAwesome className="icon" name="angle-right" />
+      <FontAwesome className={`${cx("icon")} fa fa-fw`} name="angle-right" />
     </div>
   );
 };
 
 const Breadcrumbs = ({ breadcrumbs, className, style }: BreadcrumbsType) => {
   return breadcrumbs?.length ? (
-    <div className={`common__breadcrumbs ${className || ""}`} style={style}>
+    <div className={`${cx("breadcrumbs")} ${className || ""}`} style={style}>
       {breadcrumbs.map(({ title, onClick }, index) => {
         const isLastBreadcrumb = index === breadcrumbs.length - 1;
 

@@ -23,7 +23,7 @@ describe("Breadcrumbs tests", () => {
 
     const breadcrumb = getByRole("breadcrumbs");
     expect(breadcrumb.textContent).toEqual("A title");
-    expect(breadcrumb.className).toMatch(/breadcrumb__item/);
+    expect(breadcrumb.className).toMatch("item item--last");
     expect(breadcrumb.children[0]).toBeFalsy();
   });
 

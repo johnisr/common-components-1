@@ -1,0 +1,37 @@
+@import "../constants/mixins";
+
+.breadcrumbs {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  background: none;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  @include fontStyles(body, 16);
+
+  &--last {
+    color: var(--colour-text-400);
+  }
+}
+
+.link {
+  cursor: pointer;
+  color: var(--colour-text-800);
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--colour-primary-700);
+  }
+}
+
+.icon {
+  margin: 0px 10px;
+  font-size: 24px;
+  color: var(--colour-surface-dark);
+}

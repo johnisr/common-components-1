@@ -1,9 +1,18 @@
 .page {
   margin: 15px;
+  margin-top: 32px;
   position: relative;
+
+  & > :global(.col-xs-12) {
+    padding: 0;
+  }
+  
+  & :global(.loadedContent > .col-xs-12) {
+    padding: 0;
+  }
 }
 
-.page__link {
+.link {
   color: #45c0c1;
   box-shadow: none;
   font-size: 20px;
@@ -13,13 +22,13 @@
   border: none;
   outline: none;
   background: none;
-  padding: 0px
+  padding: 0px;
 }
 
-.page__title {
+.title {
   display: inline;
 }
 
-.page__titleContainer {
+.titleContainer {
   margin-bottom: 15px;
 }
