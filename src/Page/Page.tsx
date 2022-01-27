@@ -9,7 +9,7 @@ import PageType from "../types/Page";
 
 const cx = classNames.bind(styles);
 
-/** The default margins are 15px, margin-top being 32px */
+/** The default margins are 15px */
 const Page = ({
   className = "",
   style,

@@ -26,7 +26,7 @@ const Breadcrumb = ({ title, onClick, isLastBreadcrumb }: BreadcrumbType) => {
         {title}
       </a>
 
-      <FontAwesome className={`${cx("icon")} fa fa-fw`} name="angle-right" />
+      <FontAwesome className={`${cx("icon")} fa-fw`} name="angle-right" />
     </div>
   );
 };
