@@ -12,7 +12,6 @@
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  @include fontStyles(body, 16);
 
   &--last {
     color: var(--colour-text-400);
