@@ -23,7 +23,7 @@ const Page = ({
   return (
     <div className={`${cx("page")} ${className}`} style={style}>
       {breadcrumbs && (
-        <div className={headerClassName}>
+        <div className={`${cx("breadcrumbsContainer")} ${headerClassName}`}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </div>
       )}
