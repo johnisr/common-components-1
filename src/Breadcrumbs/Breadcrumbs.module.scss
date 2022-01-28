@@ -1,0 +1,35 @@
+@import "../constants/mixins";
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  background: none;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+
+  &--last {
+    color: var(--colour-text-400);
+  }
+}
+
+.link {
+  cursor: pointer;
+  color: var(--colour-text-800);
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--colour-primary-700);
+  }
+}
+
+.icon {
+  margin: 0px 10px;
+  font-size: 24px;
+  color: var(--colour-surface-dark);
+}

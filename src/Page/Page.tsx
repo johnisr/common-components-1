@@ -2,9 +2,12 @@ import React from "react";
 import ReactLoader from "../Loader/ReactLoader";
 import FontAwesome from "react-fontawesome";
 import Title from "../Title/Title";
-import "./Page.css";
+import styles from "./Page.module.scss";
+import classNames from "classnames/bind";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import PageType from "../types/Page";
+
+const cx = classNames.bind(styles);
 
 /** The default margins are 15px */
 const Page = ({
@@ -18,26 +21,26 @@ const Page = ({
   headerClassName = "",
 }: PageType) => {
   return (
-    <div className={`page ${className}`} style={style}>
+    <div className={`${cx("page")} ${className}`} style={style}>
       {breadcrumbs && (
-        <div className={`${headerClassName}`}>
+        <div className={`${cx("breadcrumbsContainer")} ${headerClassName}`}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </div>
       )}
 
       {title && (
-        <div className="page__titleContainer">
+        <div className={cx("titleContainer")}>
           {onClick && (
             <button
               aria-label="arrow-left-label"
-              className="page__link"
+              className={cx("link")}
               onClick={onClick}
             >
               <FontAwesome name="arrow-left" />
             </button>
           )}
 
-          <Title type="header" className="page__title">
+          <Title type="header" className={cx("title")}>
             {title}
           </Title>
         </div>
