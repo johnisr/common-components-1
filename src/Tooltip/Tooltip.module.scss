@@ -1,0 +1,68 @@
+.tooltip {
+  border-radius: 6px;
+  padding: 15px;
+ 
+  background-color: var(--colour-surface-light);
+  color: var(--colour-background-light);
+
+  &--white {
+    background-color: var(--colour-background-white);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    color: var(--colour-text-900);
+  }
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;  
+}
+
+.title {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--colour-background-light);
+
+  &--white {
+    color: var(--colour-primary-600);
+  }
+}
+
+.container {
+  display: inline-block;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.triggerButton {
+  height: 40px;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 19px;
+  display: inline-block;
+}
+.closeButton {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background: none;
+  overflow: revert;
+
+  color: var(--colour-background-light);
+
+  &--white {
+    color: var(--colour-primary-600);
+  }
+}
