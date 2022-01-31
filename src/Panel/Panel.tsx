@@ -20,7 +20,7 @@ const Panel = ({
 
   return (
     <div
-      className={`${className} ${cx("commonPanel", {
+      className={`commonPanel ${className} ${cx("commonPanel", {
         clickable: isClickable,
       })}`}
       style={style}

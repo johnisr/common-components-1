@@ -20,7 +20,7 @@ $tabContainerPadding: 8px 20px 8px 10px;
   > * + * {
     margin-top: $tabMarginSize;
   }
-  left:0;
+  left: 0;
 }
 
 .tabsWrapper {
@@ -205,7 +205,7 @@ $tabContainerPadding: 8px 20px 8px 10px;
   color: var(--colour-white);
   border: 1px solid var(--colour-white);
   border-radius: 5px;
-  cursor: pointer
+  cursor: pointer;
 }
 .popoverContainer {
   z-index: $zIndexPopover;
