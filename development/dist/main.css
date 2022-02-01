@@ -824,15 +824,25 @@ body {
   height: 25px;
   padding: 0 15px;
 }
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Page/Page.css ***!
-  \**************************************************************************************************************************************************************************************************************/
-.page {
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Page/Page.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************/
+.Page-module__page {
   margin: 15px;
   position: relative;
 }
+.Page-module__page > .col-xs-12 {
+  padding: 0;
+}
+.Page-module__page .loadedContent > .col-xs-12 {
+  padding: 0;
+}
 
-.page__link {
+.Page-module__breadcrumbsContainer {
+  margin-bottom: 10px;
+}
+
+.Page-module__link {
   color: #45c0c1;
   box-shadow: none;
   font-size: 20px;
@@ -845,55 +855,81 @@ body {
   padding: 0px;
 }
 
-.page__title {
+.Page-module__title {
   display: inline;
 }
 
-.page__titleContainer {
+.Page-module__titleContainer {
   margin-bottom: 15px;
 }
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Breadcrumbs/Breadcrumbs.css ***!
-  \****************************************************************************************************************************************************************************************************************************/
-.common__breadcrumbs {
-  margin-bottom: 10px;
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Breadcrumbs/Breadcrumbs.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.Breadcrumbs-module__breadcrumbs {
+  display: flex;
+  align-items: center;
 }
 
-.common__breadcrumbs .breadcrumb__item {
+.Breadcrumbs-module__item {
   background: none;
   border: none;
-  display: inline-block;
   outline: none;
   text-transform: capitalize;
+  display: flex;
+  align-items: center;
+}
+.Breadcrumbs-module__item--last {
+  color: #89989E;
 }
 
-.breadcrumb__link {
+.Breadcrumbs-module__link {
   cursor: pointer;
-  color: #2196f3;
+  color: #1B4254;
+}
+.Breadcrumbs-module__link:hover {
+  text-decoration: underline;
+  color: #16847E;
 }
 
-.breadcrumb__item .icon {
+.Breadcrumbs-module__icon {
   margin: 0px 10px;
+  font-size: 24px;
+  color: #0C2836;
 }
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Panel/Panel.css ***!
-  \****************************************************************************************************************************************************************************************************************/
-.commonPanel {
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Panel/Panel.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************/
+.Panel-module__commonPanel {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: none;
   margin-bottom: 20px;
   min-height: 100px;
   padding: 15px 20px;
   position: relative;
 }
-
-.commonPanel__title {
+.Panel-module__commonPanel .Panel-module__titleContainer {
+  display: flex;
+  flex-direction: row;
+}
+.Panel-module__commonPanel .Panel-module__title {
   margin-bottom: 15px;
+  flex-grow: 1;
+}
+.Panel-module__commonPanel .Panel-module__icon {
+  font-size: 18px;
+  width: 11px;
+  margin-top: 5px;
+  margin-left: 0px;
+  margin-right: 12px;
 }
 
-.commonPanel__clickable {
+.Panel-module__clickable {
   cursor: pointer;
 }
 /*!**************************************************************************************************************************************************************************************************************************!*\
@@ -1103,6 +1139,7 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 1030;
+  left: 0;
 }
 .Sidebar-module__sidebar > * + * {
   margin-top: 9px;
@@ -1143,6 +1180,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: none;
   letter-spacing: 0.01em;
   font-weight: normal;
   font-size: 14px;
@@ -1209,8 +1247,9 @@ body {
 .Sidebar-module__backIcon {
   font-size: 22px;
   width: 24px;
-  margin-left: 2px;
+  margin-left: 1px;
   margin-right: 12px;
+  padding: 0;
 }
 
 .Sidebar-module__collapseContainer--collapse {
@@ -1256,6 +1295,7 @@ body {
 }
 
 .Sidebar-module__pinContainer {
+  padding: 8px 20px 8px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1266,11 +1306,24 @@ body {
   line-height: 22px;
 }
 
+.Sidebar-module__collapseLockSidebar {
+  cursor: pointer;
+}
+
 .Sidebar-module__pinIcon {
   cursor: pointer;
   font-size: 19px;
   text-align: right;
   margin-left: auto;
+}
+
+.Sidebar-module__sideBarCollapseIcon {
+  font-size: 19px;
+  margin-right: 12px;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .Sidebar-module__popoverContainer {
@@ -1341,6 +1394,10 @@ body {
   font-size: 26px;
   text-align: right;
   margin-left: auto;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
 }
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormHelpers/InputStack.module.scss ***!
