@@ -28,6 +28,8 @@ export type DatatableHeaderType<T> = {
   wrap?: boolean;
   /** The className applied to each cell */
   className?: string;
+  /** Will the cell contents be recordable in hotjar */
+  suppress?: boolean;
 };
 
 export const DatatableSortDirection = ["asc", "desc"] as const;
