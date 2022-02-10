@@ -134,7 +134,11 @@ const Sidebar = ({
               invisible: !isSidebarExpanded,
             })}
           >
-            {name && <div className={cx("name")}>{name}</div>}
+            {name && (
+              <div className={cx("name")} data-hj-suppress>
+                {name}
+              </div>
+            )}
 
             {onProfileClick && (
               <div className={cx("profileLabel")} onClick={onProfileClick}>

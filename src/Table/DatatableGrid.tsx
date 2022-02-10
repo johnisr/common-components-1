@@ -237,6 +237,7 @@ const DatatableGrid = <T,>({
         <div
           className={`clipText datatable__rightPadding ${columnClassName}`}
           style={{ width: `${headers[columnIndex].width}px` }}
+          data-hj-suppress={headers[columnIndex].suppress}
         >
           {cellRenderer
             ? cellRenderer(rowValue, columnKey)
