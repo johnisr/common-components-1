@@ -2508,3 +2508,76 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
 .FilterPillbox-module__pillbox__icon:hover {
   background-color: #E06162;
 }
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Tooltip/Tooltip.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************/
+.Tooltip-module__tooltip {
+  border-radius: 6px;
+  padding: 15px;
+  background-color: #1B4B63;
+  color: #FFFFFF;
+}
+.Tooltip-module__tooltip--white {
+  background-color: var(--colour-background-white);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  color: #0E2A36;
+}
+
+.Tooltip-module__tooltipContainer {
+  z-index: 1080;
+}
+
+.Tooltip-module__titleContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.Tooltip-module__title {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+.Tooltip-module__title--white {
+  color: #1A948F;
+}
+
+.Tooltip-module__buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.Tooltip-module__triggerButton {
+  height: 40px;
+}
+
+.Tooltip-module__container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Tooltip-module__icon {
+  margin-right: 8px;
+  font-size: 19px;
+  display: inline-block;
+}
+
+.Tooltip-module__closeButton {
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background: none;
+  overflow: revert;
+  color: #FFFFFF;
+}
+.Tooltip-module__closeButton--white {
+  color: #1A948F;
+}
