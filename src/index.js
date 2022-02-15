@@ -32,6 +32,7 @@ import FilterPillbox from "./Table/FilterPillbox/FilterPillbox";
 
 import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
+import Tooltip from "./Tooltip/Tooltip";
 
 export {
   CustomTable,
@@ -65,6 +66,7 @@ export {
   CheckboxButton,
   MultiDropdownInputWithSearch,
   FilterPillbox,
+  Tooltip,
 };
 
 export default {
@@ -99,4 +101,5 @@ export default {
   CheckboxButton,
   MultiDropdownInputWithSearch,
   FilterPillbox,
+  Tooltip,
 };

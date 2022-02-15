@@ -8,17 +8,19 @@ import colors from "../constants/index";
 import { Title } from "..";
 
 const cx = classNames.bind(styles);
+const DEFAULT_MAX_WIDTH = 300;
 const Tooltip = ({
   show = false,
-  position = ["top", "right", "left", "bottom"],
-  shouldShowCloseButton,
+  position = ["top", "left"],
+  shouldShowCloseButton = false,
   title,
   content,
-  width = 350,
+  width,
   isWhiteTheme = false,
   trigger = "hover",
-  align = "end",
+  align = "center",
   children,
+  className,
 }: TooltipType) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(show);
 
@@ -48,6 +50,7 @@ const Tooltip = ({
       align={align}
       padding={10}
       onClickOutside={() => setIsPopoverOpen(false)}
+      containerClassName={cx("tooltipContainer")}
       content={({ position, childRect, popoverRect }) => (
         <ArrowContainer
           position={position}
@@ -60,7 +63,9 @@ const Tooltip = ({
           arrowClassName="popover-arrow"
         >
           <div
-            style={{ width }}
+            style={
+              width ? { maxWidth: width } : { maxWidth: DEFAULT_MAX_WIDTH }
+            }
             className={cx("tooltip", isWhiteTheme ? "tooltip--white" : null)}
             role="tooltip"
           >
@@ -91,7 +96,9 @@ const Tooltip = ({
                 </div>
               )}
             </div>
-            <div role="content">{content}</div>
+            <div role="content" className={className ?? ""}>
+              {content}
+            </div>
           </div>
         </ArrowContainer>
       )}

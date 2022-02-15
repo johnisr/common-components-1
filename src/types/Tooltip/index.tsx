@@ -23,6 +23,8 @@ type TooltipType = {
   trigger: triggerType;
   // Align tooltip with respect to the target
   align: alignType;
+  //Adding style to tooltip content
+  className: string;
   /** Element/Entity around which tooltip has to be displayed */
   children: React.ReactNode | React.ReactNode[];
 };

@@ -1,10 +1,8 @@
 .tooltip {
   border-radius: 6px;
   padding: 15px;
- 
   background-color: var(--colour-surface-light);
   color: var(--colour-background-light);
-
   &--white {
     background-color: var(--colour-background-white);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
@@ -12,9 +10,13 @@
   }
 }
 
+.tooltipContainer {
+  z-index: var(--zindex-tooltip);
+}
+
 .titleContainer {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
 }
 
 .title {
@@ -31,9 +33,6 @@
   }
 }
 
-.container {
-  display: inline-block;
-}
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -41,6 +40,11 @@
 
 .triggerButton {
   height: 40px;
+}
+
+.container {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .icon {
