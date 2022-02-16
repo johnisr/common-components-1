@@ -38,10 +38,13 @@ const Tooltip = ({
 
   const displayTooltipOnClick = (
     togglePopover: boolean,
-    trigger: triggerType
+    trigger: triggerType,
+    event: React.MouseEvent<HTMLDivElement>
   ) => {
     if (trigger === "click") {
       setIsPopoverOpen(togglePopover);
+
+      event.stopPropagation();
     }
   };
 
@@ -108,7 +111,7 @@ const Tooltip = ({
       <div
         onMouseOver={() => togglePopover(true, trigger)}
         onMouseLeave={() => togglePopover(false, trigger)}
-        onClick={() => displayTooltipOnClick(true, trigger)}
+        onClick={(event) => displayTooltipOnClick(true, trigger, event)}
         className={cx("container")}
         role="target"
       >
