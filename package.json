@@ -1,6 +1,6 @@
 {
   "name": "validere-common-components",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "This package will hold commonly used component by Validere Inc.",
   "main": "./dist/bundle.js",
   "files": [
