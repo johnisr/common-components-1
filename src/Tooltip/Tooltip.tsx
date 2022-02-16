@@ -8,7 +8,9 @@ import colors from "../constants/index";
 import { Title } from "..";
 
 const cx = classNames.bind(styles);
+
 const DEFAULT_MAX_WIDTH = 300;
+
 const Tooltip = ({
   show = false,
   position = ["top", "left"],
@@ -77,7 +79,7 @@ const Tooltip = ({
                     : { color: colors.background.white }
                 }
                 className={cx("title")}
-                type="panelheader"
+                type="subheader"
               >
                 {title}
               </Title>
