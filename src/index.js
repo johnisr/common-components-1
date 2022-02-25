@@ -33,6 +33,7 @@ import FilterPillbox from "./Table/FilterPillbox/FilterPillbox";
 import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
 import Tooltip from "./Tooltip/Tooltip";
+import AlertMessage from "./AlertMessage/AlertMessage";
 
 export {
   CustomTable,
@@ -67,6 +68,7 @@ export {
   MultiDropdownInputWithSearch,
   FilterPillbox,
   Tooltip,
+  AlertMessage,
 };
 
 export default {
@@ -102,4 +104,5 @@ export default {
   MultiDropdownInputWithSearch,
   FilterPillbox,
   Tooltip,
+  AlertMessage,
 };

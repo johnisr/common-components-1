@@ -3,9 +3,9 @@ import { Controller } from "react-hook-form";
 import classNames from "classnames/bind";
 import styles from "./FormInputWrapper.module.scss";
 import FormLabel from "../FormHelpers/FormLabel";
-import FormError from "../FormHelpers/FormError";
 import FormInputWrapperType from "../../types/Form/FormInputs/FormInputWrapper";
 import FormInputType, { FormActionType } from "../../types/Form/FormInputs";
+import { AlertMessage } from "../..";
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +66,11 @@ export const FormInputWrapper = ({
               isError={!!errorMessage}
             />
 
-            <FormError message={!isDisabled ? errorMessage : null} />
+            {!isDisabled && !!errorMessage ? (
+              <AlertMessage type="alert" simplified>
+                {errorMessage}
+              </AlertMessage>
+            ) : null}
           </div>
         );
       }}

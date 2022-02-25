@@ -6,7 +6,6 @@ import { Form, ButtonContainer, ExtraControls } from "./FormStoryHelpers";
 import CommonForm from "../Form";
 import FormButton from "../FormHelpers/FormButton";
 import FormLabel from "../FormHelpers/FormLabel";
-import FormError from "../FormHelpers/FormError";
 import InputStack from "../FormHelpers/InputStack";
 import ControlledSelectInput, {
   SelectInput,
@@ -349,7 +348,6 @@ export default {
     TextWithFileInput,
     Form: CommonForm,
     FormLabel,
-    FormError,
     FormButton,
     FormInputWrapper,
   },
