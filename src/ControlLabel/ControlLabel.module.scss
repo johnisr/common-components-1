@@ -1,0 +1,11 @@
+@import "../constants/mixins";
+
+.container {
+  > * + * {
+    margin-top: 6px;
+  }
+}
+
+.label {
+  @include fontStyles(body, 14);
+}
