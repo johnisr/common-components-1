@@ -47,10 +47,16 @@ const DropdownIndicator = ({
   );
 };
 
-function getOptionsWithLabels(options: any, labelKey?: string) {
+function getOptionsWithLabels(
+  options: any,
+  labelKey?: string,
+  customLabelFormat?: (value: string | Record<string, any>) => string
+) {
   if (labelKey) {
     return options.map((option: any) => {
-      option.label = option[labelKey];
+      option.label = customLabelFormat
+        ? customLabelFormat(option[labelKey])
+        : option[labelKey];
       option.value = option[labelKey];
       return option;
     });
@@ -149,16 +155,20 @@ const MultiDropdownInputWithSearch = <T,>({
   isDisabled,
   width = 50,
   selectLimit,
+  customLabelFormat,
+  isMulti = true,
 }: MultiDropdownInputWithSearchType<T>) => {
   const [interimValue, setInterimValue] = useState<T[] | undefined>(undefined);
 
   const option = useMemo(
-    () => getOptionsWithLabels(options, labelKey),
-    [options, labelKey]
+    () => getOptionsWithLabels(options, labelKey, customLabelFormat),
+    [options, labelKey, customLabelFormat]
   );
 
   const onMenuOpen = () => {
-    setInterimValue(value);
+    if (isMulti) {
+      setInterimValue(value);
+    }
   };
 
   const onMenuClose = () => {
@@ -178,6 +188,14 @@ const MultiDropdownInputWithSearch = <T,>({
     setInterimValue(selectedValues);
   };
 
+  const onSelectChange = (selectedValue: any) => {
+    if (!labelKey) {
+      selectedValue = selectedValue?.value;
+    }
+
+    onChange(selectedValue);
+  };
+
   const selectValue = interimValue ?? value ?? [];
 
   return (
@@ -187,22 +205,22 @@ const MultiDropdownInputWithSearch = <T,>({
       options={option}
       onMenuOpen={onMenuOpen}
       onMenuClose={onMenuClose}
-      onChange={onMultipleSelectChange}
+      onChange={isMulti ? onMultipleSelectChange : onSelectChange}
       filterOption={createFilter({
         ignoreAccents: false,
         ignoreCase: true,
       })}
       isDisabled={isDisabled}
-      closeMenuOnSelect={false}
-      isMulti={true}
-      controlShouldRenderValue={false}
+      closeMenuOnSelect={isMulti ? false : true}
+      isMulti={isMulti}
+      controlShouldRenderValue={isMulti ? false : true}
       backspaceRemovesValue={false}
       placeholder={label}
       hideSelectedOptions={false}
       isClearable={false}
       // @ts-expect-error unreachable type
       components={
-        selectLimit && selectValue?.length > selectLimit
+        isMulti && selectLimit && selectValue?.length > selectLimit
           ? { DropdownIndicator }
           : undefined
       }
