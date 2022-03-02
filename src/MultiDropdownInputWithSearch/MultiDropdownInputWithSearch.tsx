@@ -211,9 +211,9 @@ const MultiDropdownInputWithSearch = <T,>({
         ignoreCase: true,
       })}
       isDisabled={isDisabled}
-      closeMenuOnSelect={isMulti ? false : true}
+      closeMenuOnSelect={!isMulti}
       isMulti={isMulti}
-      controlShouldRenderValue={isMulti ? false : true}
+      controlShouldRenderValue={!isMulti}
       backspaceRemovesValue={false}
       placeholder={label}
       hideSelectedOptions={false}
