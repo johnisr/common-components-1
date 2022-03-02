@@ -34,6 +34,7 @@ import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
 import Tooltip from "./Tooltip/Tooltip";
 import AlertMessage from "./AlertMessage/AlertMessage";
+import Status from "./Status/Status";
 import ControlLabel from "./ControlLabel/ControlLabel";
 
 export {
@@ -70,6 +71,7 @@ export {
   FilterPillbox,
   Tooltip,
   AlertMessage,
+  Status,
   ControlLabel,
 };
 
@@ -107,5 +109,6 @@ export default {
   FilterPillbox,
   Tooltip,
   AlertMessage,
+  Status,
   ControlLabel,
 };

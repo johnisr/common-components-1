@@ -1,6 +1,6 @@
 @import "../constants/mixins";
 
 .label {
-  @include fontStyles(body, 14, true);
+  font-weight: bold;
   margin-bottom: 6px;
 }
