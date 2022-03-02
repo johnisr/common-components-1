@@ -12,9 +12,11 @@ const AlertMessage = ({
   simplified = false,
   children,
   onClose,
+  style,
 }: AlertMessageType) => {
   return (
     <div
+      style={style}
       className={cx(
         "alertMessageContainer",
         simplified
