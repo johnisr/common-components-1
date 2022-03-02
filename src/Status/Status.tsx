@@ -5,7 +5,12 @@ import StatusType from "../types/Status";
 
 const cx = classNames.bind(styles);
 
-const Status = ({ type, children, className, style }: StatusType) => {
+const Status = ({
+  type = "warning",
+  children,
+  className,
+  style,
+}: StatusType) => {
   return (
     <div
       className={`${cx("container", type)} ${className ?? ""}`}
