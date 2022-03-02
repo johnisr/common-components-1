@@ -1,8 +1,9 @@
 import React from "react";
 
-const typeOptions = ["warning", "pending", "success"] as const;
+const typeOptions = ["info", "warning", "error", "success"] as const;
 
 type StatusType = {
+  /** The semantics that best represents the object */
   type: typeof typeOptions[number];
   /** The className given to the Status Container */
   className?: string;
