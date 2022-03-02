@@ -13,6 +13,8 @@ type AlertMessageType = {
   children: string;
   /** Describes a function that will be executed when close button gets clicked*/
   onClose?: () => void;
+  // To add extra style to Alert container
+  style?: React.CSSProperties;
 };
 
 export default AlertMessageType;

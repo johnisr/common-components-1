@@ -35,6 +35,7 @@ import useForm from "./utils/hooks/useForm";
 import Tooltip from "./Tooltip/Tooltip";
 import AlertMessage from "./AlertMessage/AlertMessage";
 import Status from "./Status/Status";
+import ControlLabel from "./ControlLabel/ControlLabel";
 
 export {
   CustomTable,
@@ -71,6 +72,7 @@ export {
   Tooltip,
   AlertMessage,
   Status,
+  ControlLabel,
 };
 
 export default {
@@ -108,4 +110,5 @@ export default {
   Tooltip,
   AlertMessage,
   Status,
+  ControlLabel,
 };
