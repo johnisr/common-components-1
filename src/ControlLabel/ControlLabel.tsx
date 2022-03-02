@@ -13,7 +13,7 @@ const ControlLabel = ({
   style,
 }: ControlLabelType) => {
   return (
-    <div className={`${cx("container")} ${className ?? ""}`} style={style}>
+    <div className={className ?? ""} style={style}>
       <div className={cx("label")}>{label}</div>
 
       {children}
