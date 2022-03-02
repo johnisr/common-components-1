@@ -34,6 +34,7 @@ import useSidebar from "./Sidebar/useSidebar";
 import useForm from "./utils/hooks/useForm";
 import Tooltip from "./Tooltip/Tooltip";
 import AlertMessage from "./AlertMessage/AlertMessage";
+import Status from "./Status/Status";
 
 export {
   CustomTable,
@@ -69,6 +70,7 @@ export {
   FilterPillbox,
   Tooltip,
   AlertMessage,
+  Status,
 };
 
 export default {
@@ -105,4 +107,5 @@ export default {
   FilterPillbox,
   Tooltip,
   AlertMessage,
+  Status,
 };
