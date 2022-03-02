@@ -19,6 +19,7 @@ const Page = ({
   loaded,
   breadcrumbs,
   headerClassName = "",
+  actionRow,
 }: PageType) => {
   return (
     <div className={`${cx("page")} ${className}`} style={style}>
@@ -30,19 +31,23 @@ const Page = ({
 
       {title && (
         <div className={cx("titleContainer")}>
-          {onClick && (
-            <button
-              aria-label="arrow-left-label"
-              className={cx("link")}
-              onClick={onClick}
-            >
-              <FontAwesome name="arrow-left" />
-            </button>
-          )}
+          <div>
+            {onClick && (
+              <button
+                aria-label="arrow-left-label"
+                className={cx("link")}
+                onClick={onClick}
+              >
+                <FontAwesome name="arrow-left" />
+              </button>
+            )}
 
-          <Title type="header" className={cx("title")}>
-            {title}
-          </Title>
+            <Title type="header" className={cx("title")}>
+              {title}
+            </Title>
+          </div>
+
+          {actionRow ?? null}
         </div>
       )}
 

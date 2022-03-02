@@ -21,6 +21,8 @@ type PageType = {
   breadcrumbs?: BreadcrumbType[];
   /** The className applied to the breadcrumbs container */
   headerClassName?: string;
+  /** The elements, normally buttons, that are aligned with the title and are meant for page level actions */
+  actionRow?: React.ReactNode | React.ReactNode[];
 };
 
 export default PageType;
