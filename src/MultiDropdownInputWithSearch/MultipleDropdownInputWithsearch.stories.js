@@ -6,7 +6,11 @@ const Template = (args) => {
   const [state, setState] = useArgs();
 
   const onChange = (value) => {
-    setState({ value });
+    if (args.isMulti) {
+      setState({ value });
+    } else {
+      setState({ value: [value] });
+    }
   };
 
   return <MultiDropdownInputWithSearch {...args} onChange={onChange} />;
@@ -22,6 +26,7 @@ Default.args = {
   label: "Sites",
   width: 100,
   selectLimit: 2,
+  isMulti: true,
 };
 
 export const WithObjectOptions = Template.bind({});
@@ -34,6 +39,7 @@ WithObjectOptions.args = {
   label: "Sites",
   labelKey: "name",
   width: 100,
+  isMulti: true,
 };
 WithObjectOptions.storyName = "With object options";
 

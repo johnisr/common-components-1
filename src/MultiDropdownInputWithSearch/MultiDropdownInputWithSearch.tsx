@@ -3,6 +3,7 @@ import Select, { createFilter, StylesConfig, GroupBase } from "react-select";
 import { OptionType } from "../types/Form/FormInputs/SelectInput";
 import styles from "../constants/index";
 import filter from "lodash/filter";
+import get from "lodash/get";
 import FontAwesome from "react-fontawesome";
 import classNames from "classnames/bind";
 import cssStyles from "./MultipleDropdownInputWithsearch.module.scss";
@@ -47,11 +48,17 @@ const DropdownIndicator = ({
   );
 };
 
-function getOptionsWithLabels(options: any, labelKey?: string) {
+function getOptionsWithLabels(
+  options: any,
+  labelKey?: string,
+  customLabelFormat?: (value: string | Record<string, any>) => string
+) {
   if (labelKey) {
     return options.map((option: any) => {
-      option.label = option[labelKey];
-      option.value = option[labelKey];
+      const label = get(option, labelKey);
+
+      option.label = customLabelFormat ? customLabelFormat(label) : label;
+      option.value = label;
       return option;
     });
   } else {
@@ -149,16 +156,20 @@ const MultiDropdownInputWithSearch = <T,>({
   isDisabled,
   width = 50,
   selectLimit,
+  customLabelFormat,
+  isMulti = true,
 }: MultiDropdownInputWithSearchType<T>) => {
   const [interimValue, setInterimValue] = useState<T[] | undefined>(undefined);
 
   const option = useMemo(
-    () => getOptionsWithLabels(options, labelKey),
-    [options, labelKey]
+    () => getOptionsWithLabels(options, labelKey, customLabelFormat),
+    [options, labelKey, customLabelFormat]
   );
 
   const onMenuOpen = () => {
-    setInterimValue(value);
+    if (isMulti) {
+      setInterimValue(value);
+    }
   };
 
   const onMenuClose = () => {
@@ -178,6 +189,14 @@ const MultiDropdownInputWithSearch = <T,>({
     setInterimValue(selectedValues);
   };
 
+  const onSelectChange = (selectedValue: any) => {
+    if (!labelKey) {
+      selectedValue = selectedValue?.value;
+    }
+
+    onChange(selectedValue);
+  };
+
   const selectValue = interimValue ?? value ?? [];
 
   return (
@@ -187,22 +206,22 @@ const MultiDropdownInputWithSearch = <T,>({
       options={option}
       onMenuOpen={onMenuOpen}
       onMenuClose={onMenuClose}
-      onChange={onMultipleSelectChange}
+      onChange={isMulti ? onMultipleSelectChange : onSelectChange}
       filterOption={createFilter({
         ignoreAccents: false,
         ignoreCase: true,
       })}
       isDisabled={isDisabled}
-      closeMenuOnSelect={false}
-      isMulti={true}
-      controlShouldRenderValue={false}
+      closeMenuOnSelect={!isMulti}
+      isMulti={isMulti}
+      controlShouldRenderValue={!isMulti}
       backspaceRemovesValue={false}
       placeholder={label}
       hideSelectedOptions={false}
       isClearable={false}
       // @ts-expect-error unreachable type
       components={
-        selectLimit && selectValue?.length > selectLimit
+        isMulti && selectLimit && selectValue?.length > selectLimit
           ? { DropdownIndicator }
           : undefined
       }

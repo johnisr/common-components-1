@@ -15,6 +15,8 @@ type MultiDropdownInputWithSearchType<T> = {
   isDisabled?: boolean;
   width?: number;
   selectLimit?: number;
+  customLabelFormat?: (value: string | Record<string, any>) => string;
+  isMulti?: true | undefined;
 };
 
 export type MultiDropdownInputWithSearchHintType = {
