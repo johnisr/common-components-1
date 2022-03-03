@@ -3,6 +3,7 @@ import Select, { createFilter, StylesConfig, GroupBase } from "react-select";
 import { OptionType } from "../types/Form/FormInputs/SelectInput";
 import styles from "../constants/index";
 import filter from "lodash/filter";
+import get from "lodash/get";
 import FontAwesome from "react-fontawesome";
 import classNames from "classnames/bind";
 import cssStyles from "./MultipleDropdownInputWithsearch.module.scss";
@@ -54,10 +55,10 @@ function getOptionsWithLabels(
 ) {
   if (labelKey) {
     return options.map((option: any) => {
-      option.label = customLabelFormat
-        ? customLabelFormat(option[labelKey])
-        : option[labelKey];
-      option.value = option[labelKey];
+      const label = get(option, labelKey);
+
+      option.label = customLabelFormat ? customLabelFormat(label) : label;
+      option.value = label;
       return option;
     });
   } else {
