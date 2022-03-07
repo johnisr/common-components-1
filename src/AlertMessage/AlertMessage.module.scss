@@ -1,6 +1,6 @@
 .alertMessageContainer {
   border-radius: 6px;
-  padding: 16px 8px;
+  padding: 16px 16px;
   color: var(--colour-text-800);
   display: flex;
   &--alert {
@@ -16,7 +16,7 @@
   }
 
   &--simplified {
-    padding: 0px;
+    padding: 0;
   }
 }
 
@@ -36,7 +36,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 8px;
 }
 
 .text {

@@ -29,7 +29,9 @@ const AlertMessage = ({
         <div className={cx("icon")}>
           <AlertMessageIcon type={type} />
         </div>
+
         <div className={cx("text")}>{children}</div>
+
         {onClose && (
           <button
             aria-label="close"

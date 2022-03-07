@@ -66,11 +66,13 @@ export const FormInputWrapper = ({
               isError={!!errorMessage}
             />
 
-            {!isDisabled && !!errorMessage ? (
-              <AlertMessage type="alert" simplified>
-                {errorMessage}
-              </AlertMessage>
-            ) : null}
+            <div className={cx("errorMessageContainer")}>
+              {!isDisabled && !!errorMessage ? (
+                <AlertMessage type="alert" simplified>
+                  {errorMessage}
+                </AlertMessage>
+              ) : null}
+            </div>
           </div>
         );
       }}

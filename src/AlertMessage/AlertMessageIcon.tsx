@@ -11,17 +11,12 @@ export const AlertMessageIcon = ({ type }: AlertMessageIconType) => {
     case "alert":
       return (
         <FontAwesome
-          name="far fa-exclamation-triangle"
+          name="exclamation-circle"
           className={`${cx("alerticon")}`}
         />
       );
     case "info":
-      return (
-        <FontAwesome
-          name="fal fa-exclamation-circle"
-          className={`${cx("infoicon")}`}
-        />
-      );
+      return <FontAwesome name="info-circle" className={`${cx("infoicon")}`} />;
     case "warning":
       return (
         <FontAwesome
