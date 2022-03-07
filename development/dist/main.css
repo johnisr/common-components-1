@@ -855,6 +855,9 @@ body {
 
 .Page-module__titleContainer {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Breadcrumbs/Breadcrumbs.module.scss ***!
@@ -921,6 +924,9 @@ body {
   margin-top: 5px;
   margin-left: 0px;
   margin-right: 12px;
+}
+.Panel-module__commonPanel .loadedContent {
+  height: 100%;
 }
 
 .Panel-module__clickable {
@@ -1461,6 +1467,11 @@ body {
   \*********************************************************************************************************************************************************************************************************************************************/
 .FormInputWrapper-module__wrapper {
   margin-bottom: 8px;
+}
+
+.FormInputWrapper-module__errorMessageContainer {
+  min-height: 30px;
+  padding: 8px 0 0 3px;
 }
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Form/FormInputs/TextInput/TextInput.module.scss ***!
@@ -2570,7 +2581,7 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
   \**************************************************************************************************************************************************************************************************************************************/
 .AlertMessage-module__alertMessageContainer {
   border-radius: 6px;
-  padding: 16px 8px;
+  padding: 16px 16px;
   color: #1B4254;
   display: flex;
 }
@@ -2584,7 +2595,7 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
   background-color: #E0EEFB;
 }
 .AlertMessage-module__alertMessageContainer--simplified {
-  padding: 0px;
+  padding: 0;
 }
 
 .AlertMessage-module__alerticon {
@@ -2603,7 +2614,6 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 8px;
 }
 
 .AlertMessage-module__text {
@@ -2631,4 +2641,44 @@ input[type=checkbox].CheckboxButton-module__checkbox::after {
   border: none;
   outline: none;
   background: none;
+}
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/Status/Status.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.Status-module__container {
+  letter-spacing: 0.01em;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  display: inline-block;
+  padding: 5px 16px;
+  border-radius: 20px;
+  background-color: #E0EEFB;
+}
+
+.Status-module__success {
+  background-color: #E1FCEF;
+}
+
+.Status-module__error {
+  background-color: #FFE4E5;
+}
+
+.Status-module__warning {
+  background-color: #FFEEDF;
+}
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[3]!./src/ControlLabel/ControlLabel.module.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/**
+ * Usage: @include fontStyles(headline, xl); // adds the headline-xl style to rule
+ *        @include fontStyles(body, 14, true); // adds body-2-bold stlye to rule
+*/
+.ControlLabel-module__label {
+  font-weight: bold;
+  margin-bottom: 6px;
 }
