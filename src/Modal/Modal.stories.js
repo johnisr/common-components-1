@@ -42,7 +42,9 @@ const withModalComponentChildren = (
       <Title>This is the Header</Title>
     </Modal.Header>
 
-    <Modal.Body>Modal content</Modal.Body>
+    <Modal.Body>
+      <div>Modal content</div>
+    </Modal.Body>
 
     <Modal.Footer>
       <Button variant="primary" onClick={() => alert("button Clicked")}>
