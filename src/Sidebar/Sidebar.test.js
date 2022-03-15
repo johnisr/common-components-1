@@ -67,7 +67,6 @@ describe("Sidebar tests", () => {
     const isPinned = true;
     const onPinClick = jest.fn();
     const onProfileClick = jest.fn();
-    const onBackClick = jest.fn();
 
     const { container, getByRole, getAllByRole, queryAllByRole } = render(
       <Sidebar
@@ -80,13 +79,10 @@ describe("Sidebar tests", () => {
         onPinClick={onPinClick}
         version={version}
         onProfileClick={onProfileClick}
-        onBackClick={onBackClick}
       />
     );
 
-    const backToHubsButton = getByRole("button", { name: /backtohub/i });
     const settingButton = getByRole("button", { name: /settings/i });
-    userEvent.click(backToHubsButton);
 
     expect(queryAllByRole("menuItem")[0]).toBeFalsy();
     expect(queryAllByRole("menuItem")[1]).toBeFalsy();
@@ -104,7 +100,6 @@ describe("Sidebar tests", () => {
 
     expect(queryAllByRole("menuItem")[0]).toBeFalsy();
     expect(queryAllByRole("menuItem")[1]).toBeFalsy();
-    expect(onBackClick).toHaveBeenCalledTimes(1);
   });
 
   test("Should render sidebar features even though sidebar not pinned", () => {
@@ -116,7 +111,6 @@ describe("Sidebar tests", () => {
     const onSignOut = jest.fn();
     const onPinClick = jest.fn();
     const onProfileClick = jest.fn();
-    const onBackClick = jest.fn();
 
     const { getAllByRole } = render(
       <Sidebar
@@ -129,18 +123,16 @@ describe("Sidebar tests", () => {
         onPinClick={onPinClick}
         version={version}
         onProfileClick={onProfileClick}
-        onBackClick={onBackClick}
-        homeTabText="Operations"
       />
     );
 
     const tabTitles = getAllByRole("tabTitle");
-    expect(tabTitles[0].textContent).toEqual("Back to hubs");
-    expect(tabTitles[1].textContent).toEqual("Operations");
-    expect(tabTitles[2].textContent).toEqual("Workflow");
-    expect(tabTitles[3].textContent).toEqual("Instruments");
-    expect(tabTitles[4].textContent).toEqual("Samples");
-    expect(tabTitles[5].textContent).toEqual("Lock Sidebar");
+    expect(tabTitles.map((reactNode) => reactNode.textContent)).toEqual([
+      "Workflow",
+      "Instruments",
+      "Samples",
+      "Lock Sidebar",
+    ]);
   });
 
   test("Should render Collapse sidebar text when Sidebar is pinned", () => {
@@ -152,7 +144,6 @@ describe("Sidebar tests", () => {
     const onSignOut = jest.fn();
     const onPinClick = jest.fn();
     const onProfileClick = jest.fn();
-    const onBackClick = jest.fn();
 
     const { getAllByRole } = render(
       <Sidebar
@@ -165,19 +156,17 @@ describe("Sidebar tests", () => {
         onPinClick={onPinClick}
         version={version}
         onProfileClick={onProfileClick}
-        onBackClick={onBackClick}
-        homeTabText="Operations"
         isPinned={true}
       />
     );
 
     const tabTitles = getAllByRole("tabTitle");
-    expect(tabTitles[0].textContent).toEqual("Back to hubs");
-    expect(tabTitles[1].textContent).toEqual("Operations");
-    expect(tabTitles[2].textContent).toEqual("Workflow");
-    expect(tabTitles[3].textContent).toEqual("Instruments");
-    expect(tabTitles[4].textContent).toEqual("Samples");
-    expect(tabTitles[5].textContent).toEqual("Collapse Sidebar");
+    expect(tabTitles.map((reactNode) => reactNode.textContent)).toEqual([
+      "Workflow",
+      "Instruments",
+      "Samples",
+      "Collapse Sidebar",
+    ]);
   });
 
   test("Should expand and collapse dropdown ", () => {
