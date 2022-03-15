@@ -25,8 +25,6 @@ const Sidebar = ({
   isPinned = false,
   onPinClick,
   isExpanded = false,
-  homeTabText,
-  onBackClick,
   onProfileClick,
 }: SidebarType) => {
   const [openListTab, setOpenListTab] = useState(activeTab);
@@ -55,35 +53,19 @@ const Sidebar = ({
         width: isSidebarExpanded ? SIDEBAR_WIDTH : MINI_SIDEBAR_WIDTH,
       }}
     >
-      {onBackClick && (
-        <button
-          className={cx("tabContainer", "tabContainer--back", {
-            "tabContainer--back--collapse": !isSidebarExpanded,
-          })}
-          onClick={onBackClick}
-          aria-label="backtohub"
-        >
-          <FontAwesome className={cx("backIcon")} name="arrow-circle-o-left" />
+      <div className={cx("tabContainer", "tabContainer--home")}>
+        <img
+          className={cx("validereIcon")}
+          src={config.VALIDERE_ICON_URL}
+          alt="Validere"
+        />
 
-          <SidebarTabText isVisible={isSidebarExpanded}>
-            Back to hubs
-          </SidebarTabText>
-        </button>
-      )}
-
-      {homeTabText && (
-        <div className={cx("tabContainer", "tabContainer--home")}>
-          <img
-            className={cx("validereIcon")}
-            src={config.VALIDERE_ICON_URL}
-            alt="Validere"
-          />
-
-          <SidebarTabText isVisible={isSidebarExpanded}>
-            {homeTabText}
-          </SidebarTabText>
-        </div>
-      )}
+        <img
+          className={cx("validereLogo")}
+          src={config.VALIDERE_LOGO_URL}
+          alt="Validere"
+        />
+      </div>
 
       <div
         className={cx("tabsWrapper", {
