@@ -318,6 +318,9 @@ body {
 .Modal-module__modal {
   background-color: white;
   width: 600px;
+  border: 1px solid #E6EAEC;
+  box-shadow: 0px 5px 20px rgba(49, 142, 228, 0.1);
+  border-radius: 4px;
 }
 @media only screen and (max-width: 768px) {
   .Modal-module__modal {
@@ -346,14 +349,15 @@ body {
 }
 
 .Modal-module__header {
-  padding: 15px 15px 0px;
+  padding: 20px 10px 20px 24px;
   display: flex;
+  border: 1px solid #E6EAEC;
+  border-radius: 4px 4px 0px 0px;
 }
 .Modal-module__header > * {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-right: 5px;
 }
 
 .Modal-module__closeButton {
@@ -370,13 +374,14 @@ body {
 }
 
 .Modal-module__content {
-  padding: 15px;
+  padding: 32px 24px;
 }
 
 .Modal-module__footer {
-  padding: 15px;
-  padding-top: 0;
+  padding: 20px 24px;
   text-align: right;
+  border: 1px solid #E6EAEC;
+  border-radius: 0px 0px 4px 4px;
 }
 
 body {
@@ -1201,8 +1206,8 @@ body {
   background-color: transparent;
 }
 .Sidebar-module__tabContainer--home {
-  text-transform: uppercase;
-  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: clip;
   cursor: default;
 }
 
@@ -1242,6 +1247,11 @@ body {
   width: 22px;
   height: 19px;
   margin-right: 15px;
+}
+
+.Sidebar-module__validereLogo {
+  width: 100px;
+  height: 15px;
 }
 
 .Sidebar-module__backIcon {
