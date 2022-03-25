@@ -36,6 +36,7 @@ import Tooltip from "./Tooltip/Tooltip";
 import AlertMessage from "./AlertMessage/AlertMessage";
 import Status from "./Status/Status";
 import ControlLabel from "./ControlLabel/ControlLabel";
+import Alert from "./Alert/Alert";
 
 export {
   CustomTable,
@@ -73,6 +74,7 @@ export {
   AlertMessage,
   Status,
   ControlLabel,
+  Alert,
 };
 
 export default {
@@ -111,4 +113,5 @@ export default {
   AlertMessage,
   Status,
   ControlLabel,
+  Alert,
 };
