@@ -14,7 +14,10 @@ export function getTimeStringFromUTC(utcTime: number, format: string): string {
   return "-";
 }
 
-export function getTimeStringFromDate(date: Date, format: string): string {
+export function getTimeStringFromDate(
+  date: Date | string,
+  format: string
+): string {
   if (date) {
     return moment(date).tz(TIMEZONE).format(format);
   }
