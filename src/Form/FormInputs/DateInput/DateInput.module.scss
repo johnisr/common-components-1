@@ -37,19 +37,3 @@
     }
   }
 }
-
-.overlayWrapper {
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 20px;
-  z-index: var(--zindex-layer-first);
-  border-radius: 6px;
-
-  background: var(--colour-white);
-  border: 1px solid var(--colour-background-dark);
-  @include popUpShadows;
-}

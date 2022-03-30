@@ -27,7 +27,8 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
   timePlaceholder = "Time",
   use12Hours,
   showSecond,
-  dayPickerProps,
+  disabledDays,
+  hiddenDays,
 }: DateTimeInputType) => {
   const sharedProps = {
     name,
@@ -39,6 +40,7 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
     isError,
     showIcon,
   };
+
   return (
     <div className={cx("wrapper")}>
       <DateInput
@@ -46,7 +48,8 @@ export const DateTimeInput: React.FC<DateTimeInputType> = ({
         inputRef={inputRef}
         format={dateFormat}
         placeholder={datePlaceholder}
-        dayPickerProps={dayPickerProps}
+        disabled={disabledDays}
+        hidden={hiddenDays}
       />
       <TimeInput
         {...sharedProps}

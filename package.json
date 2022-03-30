@@ -37,8 +37,9 @@
   "dependencies": {
     "@reach/dialog": "^0.16.2",
     "classnames": "^2.3.1",
+    "date-fns": "^2.28.0",
     "rc-time-picker": "^3.7.3",
-    "react-day-picker": "^7.4.10",
+    "react-day-picker": "^8.0.0",
     "react-hook-form": "^7.20.2",
     "react-select": "^5.2.1",
     "react-transition-group": "^4.4.2",
